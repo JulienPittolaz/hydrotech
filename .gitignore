@@ -1,0 +1,9 @@
+vendor/
+node_modules/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+storage/*.key
+.env
+.idea/
