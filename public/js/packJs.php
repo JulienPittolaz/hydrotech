@@ -13,7 +13,7 @@
         'Lib/handlebars.hydrotech.js',
         'Lib/backbone.js',
         'Lib/backbone.hydrotech.js',
-        'appjsTest.js'
+        'tests_backbone.js'
     ];
     $folders = [
         'Views',
