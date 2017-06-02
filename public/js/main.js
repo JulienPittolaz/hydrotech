@@ -23,4 +23,22 @@ $(function(){
     console.log("Erreurs: " + testModelReseauSocial.validationError);
     testModelReseauSocial.log()
     $(".content").html(JST['reseauSocial'](testModelReseauSocial.toJSON()));
+
+
+
+//Prix
+    var testPrix = new ModelPrix({
+        nom: "Prix d'innovation Poney",
+        description: "Ce prix récompense l'innovation en matière de Poney",
+        montant: 200
+    });
+    testPrix.log();
+    console.log(testPrix.isValid());
+
+
 });
+
+
+
+
+
