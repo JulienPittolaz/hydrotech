@@ -16,12 +16,5 @@ $(function(){
     testModelMembre.log()
   $(".content").html(JST['membre'](testModelMembre.toJSON()));
 
-    // RESEAU SOCIAL
-    var testModelReseauSocial = new ModelReseauSocial({
-        nom : "Face de bouk",
-        url: "facebook.com"
-    })
-    console.log("Erreurs: " + testModelReseauSocial.validationError);
-    testModelReseauSocial.log()
-    $(".content").html(JST['reseauSocial'](testModelReseauSocial.toJSON()));
+    
 });
