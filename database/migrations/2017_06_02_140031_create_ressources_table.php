@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlePressesTable extends Migration
+class CreateRessourcesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateArticlePressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articlePresses', function (Blueprint $table) {
+        Schema::create('ressources', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
-            $table->string('titreArticle');
-            $table->string('description');
-            $table->date('dateParution');
-            $table->timestamps();
-            $table->string('nomPresse');
+            $table->string('nom');
             $table->boolean('actif');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +28,6 @@ class CreateArticlePressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articlePresses');
+        Schema::dropIfExists('ressources');
     }
 }
