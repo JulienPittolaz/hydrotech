@@ -9,6 +9,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+        <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
@@ -61,7 +63,6 @@
                 margin-bottom: 30px;
             }
         </style>
-        <script src="js/packJs.php" charset="utf-8"></script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
