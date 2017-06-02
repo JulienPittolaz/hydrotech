@@ -18,8 +18,8 @@ class CreateActualiteEditionTable extends Migration
             $table->integer('actualite_id')->unsigned();
             $table->integer('edition_id')->unsigned();
             $table->timestamps();
-            $table->foreign('actualite_id')->references('id')->on('actualite')->onDelete("cascade");
-            $table->foreign('edition_id')->references('id')->on('edition')->onDelete("cascade");
+            $table->foreign('actualite_id')->references('id')->on('actualites')->onDelete("cascade");
+            $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
         });
     }
 
