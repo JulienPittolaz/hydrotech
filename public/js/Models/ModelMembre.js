@@ -1,13 +1,9 @@
 var ModelMembre = Hydrotech.Model.extend({
-    url: 'url_ici',
-    defaults: function () {
-        return {
-            createdAt:  $.now()
-        }
-    },
+   // url: 'url_ici',
+
     validate: function(attrs, options) {
         var msg = '';
-        // Validation des champs vide
+        // Validation des champs vides
         if (!_.isEmpty(attrs.nom)) {
             msg += 'Le nom doit être renseigné\n';
         }
@@ -34,18 +30,20 @@ var ModelMembre = Hydrotech.Model.extend({
         }
 
         // Validation des types de champs
+
         var emailRegex = '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}$';
         var onlyLettersRegex = '/^[A-Za-z ]+$/';
 
-
-        if (attrs.adresseMail.match(onlyLettersRegex)) {
+        if (attrs.adresseMail.match(emailRegex)) {
             msg += 'L\'adresse mail n\'est pas valide\n';
         }
-
-        if (!_.isString(attrs.section)) {
+        if (attrs.section.match(onlyLettersRegex)) {
             msg += 'La section doit être une string\n';
         }
-        if (!_.isString(attrs.description)) {
+        if (attrs.role.match(onlyLettersRegex)) {
+            msg += 'Le role doit être une string\n';
+        }
+        if (attrs.description.match(onlyLettersRegex)) {
             msg += 'La description doit être une string\n';
         }
         if (!_.isDate(attrs.dateNaissance)) {
