@@ -13,7 +13,7 @@
         'Lib/handlebars.hydrotech.js',
         'Lib/backbone.js',
         'Lib/backbone.hydrotech.js',
-        'Lib/randomcolor.js',
+        'appjsTest.js'
     ];
     $folders = [
         'Views',
