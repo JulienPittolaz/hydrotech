@@ -29,7 +29,7 @@ $(function(){
 
     testArticle.log();
 
-});
+
 
 
 // RESEAU SOCIAL
@@ -54,4 +54,5 @@ $(function(){
     console.log("Erreurs Utilisateur: " + testModelUtilisateur.validationError);
     testModelUtilisateur.log()
     $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
+
 });
