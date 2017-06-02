@@ -28,7 +28,6 @@ $(function(){
 
     testArticle.log();
 
-});
 
 
 // RESEAU SOCIAL
