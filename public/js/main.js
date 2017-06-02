@@ -4,15 +4,15 @@ $(function(){
         adresseMail: "lea.soukouti@gmail.com",
         nom: "Soukouti",
         prenom: "Léa",
-        dateNaissance: "29.03.1994",
+        dateNaissance: "29/03/1994",
         section: "Media",
         description: "je suis trop belle",
         role: "admin",
-        photoProfil:""
+        photoProfil:"moi.jpg"
 
     });
 
-
+    console.log(testModelMembre.validationError);
     testModelMembre.log()
   $(".content").html(JST['membre'](testModelMembre.toJSON()));
 
