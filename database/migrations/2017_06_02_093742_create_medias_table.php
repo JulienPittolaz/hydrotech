@@ -18,7 +18,7 @@ class CreateMediasTable extends Migration
             $table->string('url');
             $table->string('titre');
             $table->date('date');
-            $table->date('typeMedia');
+            $table->string('typeMedia');
             $table->timestamps();
         });
     }
