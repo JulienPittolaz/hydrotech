@@ -30,6 +30,6 @@ class CreateGroupeRessourceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_ressource');
+        Schema::dropIfExists('groupe_ressource');
     }
 }
