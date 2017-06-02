@@ -18,6 +18,7 @@ class CreateArticlePressesTable extends Migration
             $table->string('url');
             $table->string('titreArticle');
             $table->string('description');
+            $table->date('dateParution');
             $table->timestamps();
             $table->string('nomPresse');
         });
