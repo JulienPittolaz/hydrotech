@@ -8,8 +8,13 @@ var ModelPrix = Hydrotech.Model.extend({
         if (_.isEmpty(attrs.nom) || !_.isString(attrs.nom)){
             msg += "Le nom doit être spécifié et de format texte ! \n";
         }
+        //Validation description
         if (_.isEmpty(attrs.description) || !_.isString(attrs.description)){
             msg += "La description doit être un texte et renseignée ! \n";
+        }
+        //Validation montant
+        if (!_.isNumber(attrs.montant)){
+            msg += "Le montant doit être un nombre réel positif ! \n";
         }
         return msg;
     }

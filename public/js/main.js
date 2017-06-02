@@ -33,8 +33,6 @@ $(function(){
         montant: 200
     });
     testPrix.log();
-    console.log(testPrix.isValid());
-
 
 });
 
