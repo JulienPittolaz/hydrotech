@@ -7,7 +7,7 @@ var ModelArticleDePresse = Hydrotech.Model.extend({
     // @params: attrs, options
     // return un msg d'erreur ou rien
     validate: function(attrs,options){
-        msg = "";
+        var msg = "";
         //Validation url
         if(_.isEmpty(attrs.url) || !_.isString(attrs.url)){
             msg += "L'url doit être composée de texte !\n";

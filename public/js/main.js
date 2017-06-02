@@ -30,8 +30,6 @@ $(function(){
     testArticle.log();
 
 
-
-
 // RESEAU SOCIAL
     var testModelReseauSocial = new ModelReseauSocial({
         nom : "Face de bouk",
