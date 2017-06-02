@@ -16,5 +16,5 @@ $(function(){
     testModelMembre.log()
   test1.log();
   $(".content").html(JST['test'](test1.toJSON()));
-  $(".content").html(JST['test'](testModelMembre.toJSON()));
+  $(".content").html(JST['membre'](testModelMembre.toJSON()));
 });
