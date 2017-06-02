@@ -11,6 +11,7 @@ $(function(){
         section: "Media",
         description: "je suis trop belle",
         role: "admin",
+        photoProfil:""
 
     });
     testModelMembre.log()

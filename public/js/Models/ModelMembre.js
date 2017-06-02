@@ -26,6 +26,7 @@ var ModelMembre = Hydrotech.Model.extend({
             msg += 'Le rôle doit être renseigné\n';
         }
         if (!_.isEmpty(attrs.photoProfil)) {
+            alert("ERREUR")
             msg += 'La photo doit être renseignée\n';
         }
 
