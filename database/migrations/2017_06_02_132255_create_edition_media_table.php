@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategorieSponsorEditionTable extends Migration
+class CreateEditionMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateCategorieSponsorEditionTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorieSponsor_edition', function (Blueprint $table) {
+        Schema::create('edition_media', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('categorieSponsor_id')->unsigned();
+            $table->integer('media_id')->unsigned();
             $table->integer('edition_id')->unsigned();
             $table->timestamps();
-            $table->foreign('categorieSponsor_id')->references('id')->on('categorieSponsors')->onDelete("cascade");
-            $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
+            $table->foreign('media_id')->references('id')->on('media')->onDelete("cascade");
+            $table->foreign('edition_id')->references('id')->on('edition')->onDelete("cascade");
         });
     }
 
@@ -30,6 +30,6 @@ class CreateCategorieSponsorEditionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorieSponsor_edition');
+        Schema::dropIfExists('edition_media');
     }
 }

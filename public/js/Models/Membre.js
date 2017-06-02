@@ -14,9 +14,6 @@ var ModelMembre = Hydrotech.Model.extend({
         if (_.isEmpty(attrs.adresseMail)) {
             msg += 'L\'adresse mail doit être renseignée\n';
         }
-        if (_.isEmpty(attrs.dateNaissance)) {
-            msg += 'La date de naissance doit être renseignée\n';
-        }
         if (_.isEmpty(attrs.section)) {
             msg += 'La section doit être renseignée\n';
         }
@@ -33,7 +30,7 @@ var ModelMembre = Hydrotech.Model.extend({
         // Validation des types de champs
         var emailRegex = '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,20}$';
 
-        if (!_.isString(attrs.adresseMail)) {
+        if (attrs.adresseMail.match(emailRegex)) {
             msg += 'L\'adresse mail n\'est pas valide\n';
         }
         if (!_.isString(attrs.section)) {

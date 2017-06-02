@@ -18,8 +18,8 @@ class CreateCategorieSponsorSponsorTable extends Migration
             $table->integer('categorieSponsor_id')->unsigned();
             $table->integer('sponsor_id')->unsigned();
             $table->timestamps();
-            $table->foreign('categorieSponsor_id')->references('id')->on('categorieSponsor')->onDelete("cascade");
-            $table->foreign('sponsor_id')->references('id')->on('sponsor')->onDelete("cascade");
+            $table->foreign('categorieSponsor_id')->references('id')->on('categorieSponsors')->onDelete("cascade");
+            $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete("cascade");
         });
     }
 
