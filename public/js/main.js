@@ -1,8 +1,5 @@
 $(function(){
-  var test1 = new ModelTest({
-    name: "Website",
-    agency: "Hydrotech"
-  });
+
     var testModelMembre = new ModelMembre({
         adresseMail: "lea.soukouti@gmail.com",
         nom: "Soukouti",
@@ -14,8 +11,9 @@ $(function(){
         photoProfil:""
 
     });
+
+
     testModelMembre.log()
-  test1.log();
-  $(".content").html(JST['test'](test1.toJSON()));
   $(".content").html(JST['membre'](testModelMembre.toJSON()));
+
 });
