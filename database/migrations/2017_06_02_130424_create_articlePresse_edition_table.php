@@ -18,8 +18,8 @@ class CreateArticlePresseEditionTable extends Migration
             $table->integer('articlePresse_id')->unsigned();
             $table->integer('edition_id')->unsigned();
             $table->timestamps();
-            $table->foreign('articlePresse_id')->references('id')->on('articlePresse')->onDelete("cascade");
-            $table->foreign('edition_id')->references('id')->on('edition')->onDelete("cascade");
+            $table->foreign('articlePresse_id')->references('id')->on('articlePresses')->onDelete("cascade");
+            $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
         });
     }
 
