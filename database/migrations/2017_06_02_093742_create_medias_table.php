@@ -19,6 +19,7 @@ class CreateMediasTable extends Migration
             $table->string('titre');
             $table->date('date');
             $table->string('typeMedia');
+            $table->boolean('actif');
             $table->timestamps();
         });
     }

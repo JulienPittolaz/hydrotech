@@ -20,6 +20,7 @@ class CreateArticlePressesTable extends Migration
             $table->string('description');
             $table->timestamps();
             $table->string('nomPresse');
+            $table->boolean('actif');
         });
     }
 
