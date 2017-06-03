@@ -18,8 +18,8 @@ class CreateEditionPrixTable extends Migration
             $table->integer('edition_id')->unsigned();
             $table->integer('prix_id')->unsigned();
             $table->timestamps();
-            $table->foreign('prix_id')->references('id')->on('prix')->onDelete("cascade");
-            $table->foreign('edition_id')->references('id')->on('edition')->onDelete("cascade");
+            $table->foreign('prix_id')->references('id')->on('prixs')->onDelete("cascade");
+            $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
         });
     }
 
