@@ -24,7 +24,6 @@ class CreateEditionsTable extends Migration
             $table->date('dateFin');
             $table->string('description');
             $table->boolean('publie');
-            $table->timestamps();
             $table->boolean('actif');
             $table->timestamps();
         });
