@@ -17,7 +17,7 @@ class CreateReseauSocialsTable extends Migration
             $table->increments('id');
             $table->string('nom');
             $table->string('url');
-            $table->boolean('actif');
+            $table->boolean('actif')->default(true);
             $table->timestamps();
         });
     }

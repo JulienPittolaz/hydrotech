@@ -21,7 +21,7 @@ class CreateArticlePressesTable extends Migration
             $table->date('dateParution');
             $table->timestamps();
             $table->string('nomPresse');
-            $table->boolean('actif');
+            $table->boolean('actif')->default(true);
         });
     }
 

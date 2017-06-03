@@ -17,7 +17,8 @@ class CreateSponsorsTable extends Migration
             $table->increments('id');
             $table->string('nom');
             $table->string('urlLogo');
-            $table->boolean('actif');
+            $table->string('urlSponsor');
+            $table->boolean('actif')->default(true);
             $table->timestamps();
         });
     }
