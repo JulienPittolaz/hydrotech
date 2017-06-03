@@ -8,7 +8,7 @@ use Validator;
 class Actualite extends Model
 {
     protected $fillable = ['titre', 'datePublication', 'contenu', 'auteur', 'publie'];
-    protected $table = "medias";
+    protected $table = "actualites";
 
     public function editions() {
         return $this->belongsToMany('\App\Edition');
