@@ -18,8 +18,8 @@ class CreateEditionMediaTable extends Migration
             $table->integer('media_id')->unsigned();
             $table->integer('edition_id')->unsigned();
             $table->timestamps();
-            $table->foreign('media_id')->references('id')->on('media')->onDelete("cascade");
-            $table->foreign('edition_id')->references('id')->on('edition')->onDelete("cascade");
+            $table->foreign('media_id')->references('id')->on('medias')->onDelete("cascade");
+            $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
         });
     }
 
