@@ -500,5 +500,15 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition3->membres()->save($membre2);
         $edition3->membres()->save($membre3);
         $edition3->membres()->save($membre4);
+
+        //*******CREATION DES COUVERTURES*******
+        $edition1->actualites()->save($actualite1);
+        $edition1->actualites()->save($actualite2);
+        $edition1->actualites()->save($actualite3);
+        $edition2->actualites()->save($actualite1);
+        $edition2->actualites()->save($actualite2);
+        $edition3->actualites()->save($actualite1);
+        $edition3->actualites()->save($actualite2);
+        $edition3->actualites()->save($actualite3);
     }
 }
