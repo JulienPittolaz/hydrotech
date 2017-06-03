@@ -127,4 +127,17 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     console.log("Erreurs actualite: " + testModelActualite.validationError);
     testModelActualite.log()
     $(".content").html(JST['actualite'](testModelActualite.toJSON()));
+
+
+    // SPONSOR
+    var testModelSponsor = new ModelSponsor({
+        nom: "sponsor",
+        urlLogo: "log.jpg",
+        urlSponsor: "sponsor.com"
+    })
+
+    testModelSponsor.isValid();
+    console.log("Erreurs sponsor: " + testModelSponsor.validationError);
+    testModelSponsor.log()
+    $(".content").html(JST['sponsor'](testModelSponsor.toJSON()));
 });
