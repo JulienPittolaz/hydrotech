@@ -344,6 +344,7 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition3->medias()->save($media3);
 
         //*******ASSOCIATION GESTION, AVEC PIVOT ROLE*******
+        //***ADMINS***
         $admin->ressources()->save($sponsor,['role' => \App\Role::CREATE]);
         $admin->ressources()->save($sponsor,['role' => \App\Role::READ]);
         $admin->ressources()->save($sponsor,['role' => \App\Role::UPDATE]);
@@ -363,6 +364,11 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $admin->ressources()->save($articlePresse,['role' => \App\Role::READ]);
         $admin->ressources()->save($articlePresse,['role' => \App\Role::UPDATE]);
         $admin->ressources()->save($articlePresse,['role' => \App\Role::DELETE]);
+
+        $admin->ressources()->save($edition,['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($edition,['role' => \App\Role::READ]);
+        $admin->ressources()->save($edition,['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($edition,['role' => \App\Role::DELETE]);
 
         $admin->ressources()->save($media,['role' => \App\Role::CREATE]);
         $admin->ressources()->save($media,['role' => \App\Role::READ]);
@@ -389,7 +395,46 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $admin->ressources()->save($user,['role' => \App\Role::UPDATE]);
         $admin->ressources()->save($user,['role' => \App\Role::DELETE]);
 
+        //***CONTRIBUTEURS***
+        $contributor->ressources()->save($sponsor,['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($sponsor,['role' => \App\Role::READ]);
+        $contributor->ressources()->save($sponsor,['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($sponsor,['role' => \App\Role::DELETE]);
 
+        $contributor->ressources()->save($categorieSponsor,['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($categorieSponsor,['role' => \App\Role::READ]);
+        $contributor->ressources()->save($categorieSponsor,['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($categorieSponsor,['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($prix,['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($prix,['role' => \App\Role::READ]);
+        $contributor->ressources()->save($prix,['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($prix,['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($articlePresse,['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($articlePresse,['role' => \App\Role::READ]);
+        $contributor->ressources()->save($articlePresse,['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($articlePresse,['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($media,['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($media,['role' => \App\Role::READ]);
+        $contributor->ressources()->save($media,['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($media,['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($actualite,['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($actualite,['role' => \App\Role::READ]);
+        $contributor->ressources()->save($actualite,['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($actualite,['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($membre,['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($membre,['role' => \App\Role::READ]);
+        $contributor->ressources()->save($membre,['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($membre,['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($reseauSocial,['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($reseauSocial,['role' => \App\Role::READ]);
+        $contributor->ressources()->save($reseauSocial,['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($reseauSocial,['role' => \App\Role::DELETE]);
 
 
 
