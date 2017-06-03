@@ -8,6 +8,7 @@ use Validator;
 class ArticlePresse extends Model
 {
     protected $fillable = ['url', 'titreArticle', 'description', 'dateParution', 'nomPresse'];
+    protected $table = "articlepresses";
 
     public function editions() {
         return $this->belongsTo('\App\Edition');

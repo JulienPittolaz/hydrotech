@@ -8,6 +8,7 @@ use Validator;
 class ReseauSocial extends Model
 {
     protected $fillable = ['nom', 'url'];
+    protected $table = "reseauSocials";
 
     public static function isValid($data = array()) {
         return Validator::make($data, [

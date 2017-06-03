@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Edition extends Model
 {
     protected $fillable = ['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description'];
+    protected $table = "editions";
 
     public function membres() {
         return $this->belongsToMany('\App\Membre');

@@ -8,6 +8,7 @@ use Validator;
 class Media extends Model
 {
     protected $fillable = ['url', 'titre', 'date', 'auteur', 'typeMedia'];
+    protected $table = "medias";
 
     public function editions() {
         return $this->belongsToMany('\App\Edition');
