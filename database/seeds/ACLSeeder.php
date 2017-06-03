@@ -14,23 +14,23 @@ class ACLSeeder extends Seeder
         DB::table('users')->truncate();
         DB::table('ressources')->truncate();
         DB::table('groupes')->truncate();
-        DB::table('group_user')->truncate();
-        DB::table('group_resource')->truncate();
+        DB::table('groupe_user')->truncate();
+        DB::table('groupe_ressource')->truncate();
 
         DB::table('sponsors')->truncate();
-        DB::table('categorieSponsors')->truncate();
-        DB::table('categorieSponsor_sponsor')->truncate();
+        DB::table('categoriesponsors')->truncate();
+        DB::table('categoriesponsor_sponsor')->truncate();
 
         DB::table('editions')->truncate();
         DB::table('prixs')->truncate();
-        DB::table('articlePresses')->truncate();
+        DB::table('articlepresses')->truncate();
         DB::table('medias')->truncate();
         DB::table('actualites')->truncate();
         DB::table('membres')->truncate();
 
-        DB::table('categorieSponsor_edition')->truncate();
+        DB::table('categoriesponsor_edition')->truncate();
         DB::table('edition_prix')->truncate();
-        DB::table('articlePresse_edition')->truncate();
+        DB::table('articlepresse_edition')->truncate();
         DB::table('edition_media')->truncate();
         DB::table('actualite_edition')->truncate();
         DB::table('edition_membre')->truncate();
@@ -46,7 +46,7 @@ class ACLSeeder extends Seeder
         $user2 = new App\User();
         $user2->email = 'david@example.com';
         $user2->password = bcrypt('123456');
-        $user1->name = 'David Neely';
+        $user2->name = 'David Neely';
         $user2->save();
         $user3 = new App\User();
         $user3->email = 'peter@example.com';
@@ -98,6 +98,7 @@ class ACLSeeder extends Seeder
         $user->save();
 
         //*******CREATION DES SPONSORS*******
+
         $sponsor1 = new \App\Sponsor();
         $sponsor1->nom = "Ville d'Yverdon";
         $sponsor1->urlLogo = "http://www.nationalsportscamp.ch/images/yootheme/logo-ville-yverdon.jpg";
@@ -114,8 +115,8 @@ class ACLSeeder extends Seeder
         $sponsor3->urlSponsor = "www.coke.ch/fr/home/";
         $sponsor3->save();
 
-
         //*******CREATION DES CATEGORIE DE SPONSORS*******
+
         $categorie1 = new \App\CategorieSponsor();
         $categorie1->nom = "Platine";
         $categorie1->description = "Catégorie de sponsors réservée aux plus grands contributeurs (min 15'000chf)";
@@ -132,7 +133,7 @@ class ACLSeeder extends Seeder
 
         //*******CREATION DES MEDIAS*******
         $media1 = new \App\Media();
-        $media1->url = "https://www.youtube.com/watch?v=xold7iw04E4";
+        $media1->url = urlencode("https://www.youtube.com/watch?v=xold7iw04E4");
         $media1->titre = "Un album trop cool !";
         $media1->date = "2017-06-03";
         $media1->auteur = "Future Fuzz";
@@ -154,15 +155,15 @@ class ACLSeeder extends Seeder
         $media3->save();
 
         //*******CREATION DE RESEAUX SOCIAUX*******
-        $reseau1 = new \App\ReseauSocial();
+        $reseau1 = new \App\Reseausocial();
         $reseau1->nom = "Facebook";
         $reseau1->url = "https://www.facebook.com/";
         $reseau1->save();
-        $reseau2 = new \App\ReseauSocial();
+        $reseau2 = new \App\Reseausocial();
         $reseau2->nom = "Twitter";
         $reseau2->url = "https://twitter.com/";
         $reseau2->save();
-        $reseau3 = new \App\ReseauSocial();
+        $reseau3 = new \App\Reseausocial();
         $reseau3->nom = "Instagram";
         $reseau3->url = "https://www.instagram.com/";
         $reseau3->save();
@@ -194,336 +195,6 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $actualite3->urlImage = "http://static.boredpanda.com/blog/wp-content/uploads/2017/06/todays-problems-illustrations-john-holcroft-26-593113a5905fd__700.jpg";
         $actualite3->save();
 
-        //*********************************************************************************
-        //*********************************************************************************
-        //*********************************************************************************
-        //*********************************************************************************
-        //*********************************************************************************
-        //*********************************************************************************
-        //*********************************************************************************
-        //*********************************************************************************
-        //*********************************************************************************
-        //*********************************************************************************
-        //*********************************************************************************
-        //*********************************************************************************
-        //*******************A PARTIR DE LA C'EST PAS ENCORE FAIT**************************
-
-
-        /*$album1 = new App\Album();
-        $album1->titre = 'album1';
-        $album1->description = "description de l'album 1";
-        $album1->user_id = 1;
-        $album1->save();*/
-
-        //OU MIEUX
-
-        $album1 = $user1->albums()->save(new \App\Album([
-            'titre' => 'Album 1',
-            'description' => 'Description de l album 1'
-        ]));
-
-        $album2 = $user1->albums()->save(new \App\Album([
-            'titre' => 'Album 2',
-            'description' => 'Description de l album 2'
-        ]));
-
-        /*$album2 = new App\Album();
-        $album2->titre = 'album2';
-        $album2->description = "description de l'album 2";
-        $album2->user_id = 1;
-        $album2->save();*/
-
-        $album3 = $user2->albums()->save(new \App\Album([
-            'titre' => 'Album 3',
-            'description' => 'Description de l album 3'
-        ]));
-
-        /*$album3 = new App\Album();
-        $album3->titre = 'album3';
-        $album3->description = "description de l'album 3";
-        $album3->user_id = 2;
-        $album3->save();*/
-
-        $photo1 = new \App\Photo();
-        $photo1->nom = 'photo 1';
-        $photo1->description = 'description de la photo 1';
-        $photo1->save();
-
-        $photo2 = new \App\Photo();
-        $photo2->nom = 'photo 2';
-        $photo2->description = 'description de la photo 2';
-        $photo2->save();
-
-        $photo3 = new \App\Photo();
-        $photo3->nom = 'photo 3';
-        $photo3->description = 'description de la photo 3';
-        $photo3->save();
-
-        $photo4 = new \App\Photo();
-        $photo4->nom = 'photo 4';
-        $photo4->description = 'description de la photo 4';
-        $photo4->save();
-
-        $photo5 = new \App\Photo();
-        $photo5->nom = 'photo 5';
-        $photo5->description = 'description de la photo 5';
-        $photo5->save();
-
-        $photo6 = new \App\Photo();
-        $photo6->nom = 'photo 6';
-        $photo6->description = 'description de la photo 6';
-        $photo6->save();
-
-        $photo7 = new \App\Photo();
-        $photo7->nom = 'photo 7';
-        $photo7->description = 'description de la photo 7';
-        $photo7->save();
-
-        $album1->photos()->save($photo1);
-        $album1->photos()->save($photo2);
-        $album1->photos()->save($photo3);
-
-        $album2->photos()->save($photo1);
-
-        $album3->photos()->save($photo4);
-        $album3->photos()->save($photo5);
-        $album3->photos()->save($photo6);
-        $album3->photos()->save($photo7);
-
-        /*** RELATIONSHIPS ***/
-        /*** GROUPS ***/
-        $admin = new \App\Group();
-        $admin->name = 'admin';
-        $admin->save();
-        /*$moderator = new \App\Group();
-        $moderator->name = 'moderator';
-        $moderator->save();*/
-        $basique = new \App\Group();
-        $basique->name = 'visitor';
-        $basique->save();
-        /*** RESSOURCES ***/
-        $album = new \App\Resource();
-        $album->name = "album";
-        $album->save();
-        $photo = new \App\Resource();
-        $photo->name = "photo";
-        $photo->save();
-        // ADD USERS TO GROUPS
-        $admin->users()->save($user1);
-        $basique->users()->save($user2);
-        // GIVE ROLES TO GROUPS ON RESSOURCES
-        $admin->resources()->save($album, ['role' => \App\Role::DELETE]);
-        $admin->resources()->save($album, ['role' => \App\Role::UPDATE]);
-        $admin->resources()->save($album, ['role' => \App\Role::READ]);
-        $admin->resources()->save($album, ['role' => \App\Role::CREATE]);
-
-        $basique->resources()->save($album, ['role' => \App\Role::READ]);
-        $basique->resources()->save($album, ['role' => \App\Role::CREATE]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //*******CREATION DES PRIXS*******
         $prix1 = new App\Prix();
@@ -543,21 +214,21 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $prix3->save();
 
         //*******CREATION DES ARTICLES DE PRESSE*******
-        $presse1 = new App\ArticlePresse();
+        $presse1 = new App\Articlepresse();
         $presse1->url = 'http://flashinformatique.epfl.ch/spip.php?article36';
         $presse1->titreArticle = "Mais c'est super !";
         $presse1->description = "C'est une super description !";
         $presse1->dateParution = '2002-09-17';
         $presse1->nomPresse = "EPFL";
         $presse1->save();
-        $presse2 = new App\ArticlePresse();
+        $presse2 = new App\Articlepresse();
         $presse2->url = 'https://www.lematin.ch/';
         $presse2->titreArticle = "LA DERNIÈRE PROMESSE D'ALVES AU FC BARCELONE";
         $presse2->description = "C'est une super description !";
         $presse2->dateParution = '2012-03-04';
         $presse2->nomPresse = "Le Matin";
         $presse2->save();
-        $presse3 = new App\ArticlePresse();
+        $presse3 = new App\Articlepresse();
         $presse3->url = 'https://www.lefigaro.fr/';
         $presse3->titreArticle = "Notre-Dame-des-Landes : trois médiateurs déjà contestés";
         $presse3->description = "C'est une super description !";
