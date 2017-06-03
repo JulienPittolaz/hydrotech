@@ -11,7 +11,7 @@ class Membre extends Model
     //protected $table = "membres";
 
     public function editions() {
-        return $this->belongsToMany('\App\Edition');
+        return $this->belongsToMany('\App\Edition')->withTimestamps();
     }
 
     public static function isValid($data = array()) {

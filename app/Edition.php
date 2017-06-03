@@ -10,27 +10,27 @@ class Edition extends Model
     //protected $table = "editions";
 
     public function membres() {
-        return $this->belongsToMany('\App\Membre');
+        return $this->belongsToMany('\App\Membre')->withTimestamps();
     }
 
     public function actualites() {
-        return $this->belongsToMany('\App\Actualite');
+        return $this->belongsToMany('\App\Actualite')->withTimestamps();
     }
 
     public function medias() {
-        return $this->belongsToMany('\App\Media');
+        return $this->belongsToMany('\App\Media')->withTimestamps();
     }
 
     public function categories() {
-        return $this->belongsToMany('\App\Categorie');
+        return $this->belongsToMany('\App\Categorie')->withTimestamps();
     }
 
     public function prixs() {
-        return $this->belongsToMany('\App\Prix');
+        return $this->belongsToMany('\App\Prix')->withTimestamps();
     }
 
     public function presses() {
-        return $this->belongsToMany('\App\Presse');
+        return $this->belongsToMany('\App\Presse')->withTimestamps();
     }
 
     public static function isValid($inputs) {

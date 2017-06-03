@@ -11,7 +11,7 @@ class Presse extends Model
     //protected $table = "presses";
 
     public function editions() {
-        return $this->belongsTo('\App\Edition');
+        return $this->belongsTo('\App\Edition')->withTimestamps();
     }
 
     public static function isValid($inputs) {

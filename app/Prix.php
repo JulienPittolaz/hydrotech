@@ -11,7 +11,7 @@ class Prix extends Model
     protected $table = "prixs";
 
     public function editions() {
-        return $this->belongsToMany('\App\Edition');
+        return $this->belongsToMany('\App\Edition')->withTimestamps();
     }
 
     public static function isValid($data = array()) {
