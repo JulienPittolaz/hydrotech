@@ -20,6 +20,7 @@ class CreateEditionPrixTable extends Migration
             $table->timestamps();
             $table->foreign('prix_id')->references('id')->on('prixs')->onDelete("cascade");
             $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
+            $table->boolean('actif')->default(true);
         });
     }
 

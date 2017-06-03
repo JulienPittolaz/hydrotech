@@ -16,10 +16,12 @@ class CreateGroupeRessourceTable extends Migration
         Schema::create('groupe_ressource', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('groupe_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('ressource_id')->unsigned();
+            $table->string('role');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
+            $table->foreign('ressource_id')->references('id')->on('ressources')->onDelete("cascade");
             $table->foreign('groupe_id')->references('id')->on('groupes')->onDelete("cascade");
+            $table->boolean('actif')->default(true);
         });
     }
 

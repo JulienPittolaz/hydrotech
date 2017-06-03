@@ -20,6 +20,7 @@ class CreateEditionMembreTable extends Migration
             $table->timestamps();
             $table->foreign('membre_id')->references('id')->on('membres')->onDelete("cascade");
             $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
+            $table->boolean('actif')->default(true);
         });
     }
 
