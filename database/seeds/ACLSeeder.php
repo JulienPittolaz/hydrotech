@@ -463,13 +463,13 @@ class ACLSeeder extends Seeder
         $prix3->save();
 
         //*******CREATION DES ARTICLES DE PRESSE*******
-        $prix1 = new App\ArticlePresse();
-        $prix1->url = 'http://google.com';
-        $prix1->titreArticle = "Mais c'est super !";
-        $prix1->description = "C'est une super description !";
-        $prix1->dateParution = ;
-        $prix1->nomPresse = 3000;
-        $prix1->save();
+        $presse1 = new App\ArticlePresse();
+        $presse1->url = 'https://www.letemps.ch/';
+        $presse1->titreArticle = "Mais c'est super !";
+        $presse1->description = "C'est une super description !";
+        $presse1->dateParution = '2017-03-04';
+        $presse1->nomPresse = "Le Temps";
+        $presse1->save();
 
     }
 }
