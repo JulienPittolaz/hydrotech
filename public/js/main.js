@@ -95,14 +95,14 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
   testModelUtilisateur.log()
   $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
-    // DESCRIPTION
+    // GROUPE
     var testModelGroupe = new ModelGroupe({
         nom: "admin",
         description: "peut modifier tout ce qu'il veut"
     })
 
     testModelGroupe.isValid();
-    console.log("Erreurs Utilisateur: " + testModelGroupe.validationError);
+    console.log("Erreurs groupe: " + testModelGroupe.validationError);
     testModelGroupe.log()
     $(".content").html(JST['groupe'](testModelGroupe.toJSON()));
 
@@ -112,7 +112,19 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     })
 
     testModelResssource.isValid();
-    console.log("Erreurs Utilisateur: " + testModelGroupe.validationError);
+    console.log("Erreurs ressource: " + testModelGroupe.validationError);
     testModelResssource.log()
     $(".content").html(JST['ressource'](testModelResssource.toJSON()));
+
+    // ACTUALITE
+    var testModelActualite = new ModelActualite({
+        titre: "test",
+        datePublication: new Date(),
+        dateModification: new Date()
+    })
+
+    testModelActualite.isValid();
+    console.log("Erreurs actualite: " + testModelActualite.validationError);
+    testModelActualite.log()
+    $(".content").html(JST['actualite'](testModelActualite.toJSON()));
 });
