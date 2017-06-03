@@ -95,4 +95,14 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
   testModelUtilisateur.log()
   $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
+    // DESCRIPTION
+    var testModelGroupe = new ModelGroupe({
+        nom: "admin",
+        description: "peut modifier tout ce qu'il veut"
+    })
+
+    testModelGroupe.isValid();
+    console.log("Erreurs Utilisateur: " + testModelGroupe.validationError);
+    testModelGroupe.log()
+    $(".content").html(JST['groupe'](testModelGroupe.toJSON()));
 });
