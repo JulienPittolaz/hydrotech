@@ -16,7 +16,7 @@ class CreatePrixsTable extends Migration
         Schema::create('prixs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom');
-            $table->string('description');
+            $table->text('description');
             $table->float('montant');
             $table->boolean('actif')->default(true);
             $table->timestamps();
