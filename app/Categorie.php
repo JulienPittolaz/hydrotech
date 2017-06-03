@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Validator;
 
-class CategorieSponsor extends Model
+class Categorie extends Model
 {
     protected $fillable = ['nom', 'description'];
-    protected $table = "categorieSponsors";
+    //protected $table = "categories";
 
 
     public function sponsors()
@@ -23,7 +23,7 @@ class CategorieSponsor extends Model
 
     public static function isValid($data = array()){
         return Validator::make($data, [
-            'id' => 'exists:categorieSponsors|sometimes|required',
+            'id' => 'exists:categories|sometimes|required',
             'nom'   => 'string|sometimes|required',
             'description'    => 'string|sometimes|required',
         ])->passes();

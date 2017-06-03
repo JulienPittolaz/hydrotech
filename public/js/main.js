@@ -39,7 +39,7 @@ $(function () {
 
 
   testModelReseauSocial.isValid();
-  console.log("Erreurs ReseauSocial: " + testModelReseauSocial.validationError);
+  console.log("Erreurs Social: " + testModelReseauSocial.validationError);
   testModelReseauSocial.log()
   $(".content").html(JST['reseauSocial'](testModelReseauSocial.toJSON()));
 
@@ -58,7 +58,7 @@ var testModelReseauSocial = new ModelReseauSocial({
 })
 
 testModelReseauSocial.isValid();
-console.log("Erreurs ReseauSocial: " + testModelReseauSocial.validationError);
+console.log("Erreurs Social: " + testModelReseauSocial.validationError);
 testModelReseauSocial.log()
 $(".content").html(JST['reseauSocial'](testModelReseauSocial.toJSON()));
 

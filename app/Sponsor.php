@@ -8,13 +8,13 @@ use Validator;
 class Sponsor extends Model
 {
     protected $fillable = ['nom', 'urlLogo', 'urlSponsor'];
-    protected $table = "sponsors";
+    //protected $table = "sponsors";
 
 
 
-    public function categorieSponsors()
+    public function categories()
     {
-        return $this->belongsToMany('App\CategorieSponsor')->withTimestamps();
+        return $this->belongsToMany('App\Categorie')->withTimestamps();
     }
 
     public static function isValid($data = array()){

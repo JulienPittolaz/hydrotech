@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Edition extends Model
 {
     protected $fillable = ['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description'];
-    protected $table = "editions";
+    //protected $table = "editions";
 
     public function membres() {
         return $this->belongsToMany('\App\Membre');
@@ -21,15 +21,15 @@ class Edition extends Model
         return $this->belongsToMany('\App\Media');
     }
 
-    public function categorieSponsors() {
-        return $this->belongsToMany('\App\CategorieSponsor');
+    public function categories() {
+        return $this->belongsToMany('\App\Categorie');
     }
 
     public function prixs() {
         return $this->belongsToMany('\App\Prix');
     }
 
-    public function articlePresses() {
+    public function presses() {
         return $this->belongsToMany('\App\AcrticlePresse');
     }
 
