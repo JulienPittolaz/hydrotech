@@ -343,6 +343,52 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition3->medias()->save($media2);
         $edition3->medias()->save($media3);
 
+        //*******ASSOCIATION GESTION, AVEC PIVOT ROLE*******
+        $admin->ressources()->save($sponsor,['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($sponsor,['role' => \App\Role::READ]);
+        $admin->ressources()->save($sponsor,['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($sponsor,['role' => \App\Role::DELETE]);
+
+        $admin->ressources()->save($categorieSponsor,['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($categorieSponsor,['role' => \App\Role::READ]);
+        $admin->ressources()->save($categorieSponsor,['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($categorieSponsor,['role' => \App\Role::DELETE]);
+
+        $admin->ressources()->save($prix,['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($prix,['role' => \App\Role::READ]);
+        $admin->ressources()->save($prix,['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($prix,['role' => \App\Role::DELETE]);
+
+        $admin->ressources()->save($articlePresse,['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($articlePresse,['role' => \App\Role::READ]);
+        $admin->ressources()->save($articlePresse,['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($articlePresse,['role' => \App\Role::DELETE]);
+
+        $admin->ressources()->save($media,['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($media,['role' => \App\Role::READ]);
+        $admin->ressources()->save($media,['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($media,['role' => \App\Role::DELETE]);
+
+        $admin->ressources()->save($actualite,['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($actualite,['role' => \App\Role::READ]);
+        $admin->ressources()->save($actualite,['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($actualite,['role' => \App\Role::DELETE]);
+
+        $admin->ressources()->save($membre,['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($membre,['role' => \App\Role::READ]);
+        $admin->ressources()->save($membre,['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($membre,['role' => \App\Role::DELETE]);
+
+        $admin->ressources()->save($reseauSocial,['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($reseauSocial,['role' => \App\Role::READ]);
+        $admin->ressources()->save($reseauSocial,['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($reseauSocial,['role' => \App\Role::DELETE]);
+
+        $admin->ressources()->save($user,['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($user,['role' => \App\Role::READ]);
+        $admin->ressources()->save($user,['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($user,['role' => \App\Role::DELETE]);
+
 
 
 
