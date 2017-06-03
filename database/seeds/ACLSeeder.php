@@ -101,18 +101,18 @@ class ACLSeeder extends Seeder
 
         $sponsor1 = new \App\Sponsor();
         $sponsor1->nom = "Ville d'Yverdon";
-        $sponsor1->urlLogo = "http://www.nationalsportscamp.ch/images/yootheme/logo-ville-yverdon.jpg";
-        $sponsor1->urlSponsor = "http://www.yverdon-les-bains.ch";
+        $sponsor1->urlLogo = urlencode("http://www.nationalsportscamp.ch/images/yootheme/logo-ville-yverdon.jpg");
+        $sponsor1->urlSponsor = urlencode("http://www.yverdon-les-bains.ch");
         $sponsor1->save();
         $sponsor2 = new \App\Sponsor();
         $sponsor2->nom = "Apple";
-        $sponsor2->urlLogo = "https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png";
-        $sponsor2->urlSponsor = "https://www.apple.com/chfr/";
+        $sponsor2->urlLogo = urlencode("https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png");
+        $sponsor2->urlSponsor = urlencode("https://www.apple.com/chfr/");
         $sponsor2->save();
         $sponsor3 = new \App\Sponsor();
         $sponsor3->nom = "Coca-Cola";
-        $sponsor3->urlLogo = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/1200px-Coca-Cola_logo.svg.png";
-        $sponsor3->urlSponsor = "www.coke.ch/fr/home/";
+        $sponsor3->urlLogo = urlencode("https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/1200px-Coca-Cola_logo.svg.png");
+        $sponsor3->urlSponsor = urlencode("www.coke.ch/fr/home/");
         $sponsor3->save();
 
         //*******CREATION DES CATEGORIE DE SPONSORS*******
@@ -140,14 +140,14 @@ class ACLSeeder extends Seeder
         $media1->typeMedia = "Video";
         $media1->save();
         $media2 = new \App\Media();
-        $media2->url = "//c1.staticflickr.com/7/6092/6330704947_dd7e1b453c.jpg";
+        $media2->url = urlencode("https://c1.staticflickr.com/7/6092/6330704947_dd7e1b453c.jpg");
         $media2->titre = "Mrrrooouuuuhhhhh !";
         $media2->date = "2011-10-10";
         $media2->auteur = "Cuba Gallery";
         $media2->typeMedia = "Photo";
         $media2->save();
         $media3 = new \App\Media();
-        $media3->url = "https://s-media-cache-ak0.pinimg.com/736x/6a/a4/13/6aa41332810cc5164395aa9d5705a38b.jpg";
+        $media3->url = urlencode("https://s-media-cache-ak0.pinimg.com/736x/6a/a4/13/6aa41332810cc5164395aa9d5705a38b.jpg");
         $media3->titre = "Titre de la photo";
         $media3->date = "2015-02-03";
         $media3->auteur = "Bilan";
@@ -157,15 +157,15 @@ class ACLSeeder extends Seeder
         //*******CREATION DE RESEAUX SOCIAUX*******
         $reseau1 = new \App\Reseausocial();
         $reseau1->nom = "Facebook";
-        $reseau1->url = "https://www.facebook.com/";
+        $reseau1->url = urlencode("https://www.facebook.com/");
         $reseau1->save();
         $reseau2 = new \App\Reseausocial();
         $reseau2->nom = "Twitter";
-        $reseau2->url = "https://twitter.com/";
+        $reseau2->url = urlencode("https://twitter.com/");
         $reseau2->save();
         $reseau3 = new \App\Reseausocial();
         $reseau3->nom = "Instagram";
-        $reseau3->url = "https://www.instagram.com/";
+        $reseau3->url = urlencode("https://www.instagram.com/");
         $reseau3->save();
 
         //*******CREATION D'ACTUALITES*******
@@ -175,7 +175,7 @@ class ACLSeeder extends Seeder
         $actualite1->contenu = "Notre dernier drône vient juste d'être terminé !!";
         $actualite1->auteur = "Claude P.";
         $actualite1->publie = true;
-        $actualite1->urlImage = "https://pbs.twimg.com/media/CO6_xCjUAAEsE0y.jpg";
+        $actualite1->urlImage = urlencode("https://pbs.twimg.com/media/CO6_xCjUAAEsE0y.jpg");
         $actualite1->save();
         $actualite2 = new \App\Actualite();
         $actualite2->titre = "WTF ?!";
@@ -183,7 +183,7 @@ class ACLSeeder extends Seeder
         $actualite2->contenu = "Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?";
         $actualite2->auteur = "Quentin Tarentino";
         $actualite2->publie = true;
-        $actualite2->urlImage = "http://fr.web.img5.acsta.net/c_300_300/pictures/15/08/25/09/24/458662.jpg";
+        $actualite2->urlImage = urlencode("http://fr.web.img5.acsta.net/c_300_300/pictures/15/08/25/09/24/458662.jpg");
         $actualite2->save();
         $actualite3 = new \App\Actualite();
         $actualite3->titre = "What’s Wrong With Today’s Society ";
@@ -192,7 +192,7 @@ class ACLSeeder extends Seeder
 With a style based on 50's advertisements and a vintage feel - Holocraft perfectly captures today's social issues and modern behavior in his illustrations and does so in a brutally honest way. Keep on scrolling to check them out and don't forget to vote for your favorites!";
         $actualite3->auteur = "Iveta";
         $actualite3->publie = true;
-        $actualite3->urlImage = "http://static.boredpanda.com/blog/wp-content/uploads/2017/06/todays-problems-illustrations-john-holcroft-26-593113a5905fd__700.jpg";
+        $actualite3->urlImage = urlencode("http://static.boredpanda.com/blog/wp-content/uploads/2017/06/todays-problems-illustrations-john-holcroft-26-593113a5905fd__700.jpg");
         $actualite3->save();
 
 
@@ -215,21 +215,21 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
 
         //*******CREATION DES ARTICLES DE PRESSE*******
         $presse1 = new App\Articlepresse();
-        $presse1->url = 'http://flashinformatique.epfl.ch/spip.php?article36';
+        $presse1->url = urlencode('http://flashinformatique.epfl.ch/spip.php?article36');
         $presse1->titreArticle = "Mais c'est super !";
         $presse1->description = "C'est une super description !";
         $presse1->dateParution = '2002-09-17';
         $presse1->nomPresse = "EPFL";
         $presse1->save();
         $presse2 = new App\Articlepresse();
-        $presse2->url = 'https://www.lematin.ch/';
+        $presse2->url = urlencode('https://www.lematin.ch/');
         $presse2->titreArticle = "LA DERNIÈRE PROMESSE D'ALVES AU FC BARCELONE";
         $presse2->description = "C'est une super description !";
         $presse2->dateParution = '2012-03-04';
         $presse2->nomPresse = "Le Matin";
         $presse2->save();
         $presse3 = new App\Articlepresse();
-        $presse3->url = 'https://www.lefigaro.fr/';
+        $presse3->url = urlencode('https://www.lefigaro.fr/');
         $presse3->titreArticle = "Notre-Dame-des-Landes : trois médiateurs déjà contestés";
         $presse3->description = "C'est une super description !";
         $presse3->dateParution = '2017-06-11';
@@ -240,32 +240,35 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition1 = new App\Edition();
         $edition1->annee = 2017;
         $edition1->nomEquipe = "TEAM HEIG-VD TAMER";
-        $edition1->urlImageMedia = "http://img.el-wlid.com/imgcache/122723.jpg";
-        $edition1->urlImageEquipe = 'http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png';
+        $edition1->urlImageMedia = urlencode("http://img.el-wlid.com/imgcache/122723.jpg");
+        $edition1->urlImageEquipe = urlencode('http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png');
         $edition1->lieu = "Saint-Tropez";
         $edition1->dateDebut = "2017-07-04";
         $edition1->dateFin = '2017-07-11';
         $edition1->description = "Une description qui sera surement enlevée bientôt";
+        $edition1->publie = false;
         $edition1->save();
         $edition2 = new App\Edition();
         $edition2->annee = 2016;
         $edition2->nomEquipe = "TEAM HEIG-VD JEAN-JEAN";
-        $edition2->urlImageMedia = "http://img.el-wlid.com/imgcache/122723.jpg";
-        $edition2->urlImageEquipe = 'http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png';
+        $edition2->urlImageMedia = urlencode("http://img.el-wlid.com/imgcache/122723.jpg");
+        $edition2->urlImageEquipe = urlencode('http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png');
         $edition2->lieu = "Lausanne";
         $edition2->dateDebut = "2016-07-04";
         $edition2->dateFin = '2016-07-11';
         $edition2->description = "Une description qui sera surement enlevée bientôt";
+        $edition2->publie = true;
         $edition2->save();
         $edition3 = new App\Edition();
         $edition3->annee = 2015;
         $edition3->nomEquipe = "TEAM HEIG-VD ON ETAIT PAS ENCORE LA";
-        $edition3->urlImageMedia = "http://img.el-wlid.com/imgcache/122723.jpg";
-        $edition3->urlImageEquipe = 'http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png';
+        $edition3->urlImageMedia = urlencode("http://img.el-wlid.com/imgcache/122723.jpg");
+        $edition3->urlImageEquipe = urlencode('http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png');
         $edition3->lieu = "Un lieu resté secret";
         $edition3->dateDebut = "2015-07-04";
         $edition3->dateFin = '2015-07-11';
         $edition3->description = "Une description qui sera surement enlevée bientôt";
+        $edition3->publie = true;
         $edition3->save();
 
         //*******CREATION DES MEMBRES*******
@@ -276,7 +279,7 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre1->dateNaissance = '1970-01-02';
         $membre1->section = "Professeur";
         $membre1->description = "Du fait de la fragilité conjoncturelle, il est nécessaire d'inventorier systématiquement les problématiques opportunes, pour le futur.";
-        $membre1->photoProfil = 'http://flashinformatique.epfl.ch/IMG/auton28.jpg?1349272172';
+        $membre1->photoProfil = urlencode('http://flashinformatique.epfl.ch/IMG/auton28.jpg?1349272172');
         $membre1->role = "CEO";
         $membre1->save();
         $membre2 = new App\Membre();
@@ -286,7 +289,7 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre2->dateNaissance = '1994-03-29';
         $membre2->section = "Ingénieur des médias";
         $membre2->description = "Dans le but de pallier à l'inertie de l'époque actuelle, il est nécessaire de fédérer la simultanéité des organisations matricielles déclinables, avec beaucoup de recul.";
-        $membre2->photoProfil = 'http://www.cly.ch/cly_site_2016/wp-content/uploads/2017/03/hotel_02.jpg';
+        $membre2->photoProfil = urlencode('http://www.cly.ch/cly_site_2016/wp-content/uploads/2017/03/hotel_02.jpg');
         $membre2->role = "MASTER OF JAVASCRIPT";
         $membre2->save();
         $membre3 = new App\Membre();
@@ -296,7 +299,7 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre3->dateNaissance = '1992-06-22';
         $membre3->section = "Ingénieur des médias";
         $membre3->description = "Tant que durera la politique de ces derniers temps, on se doit de gérer la somme des actions emblématiques, dans une perspective correcte.";
-        $membre3->photoProfil = 'http://1.bp.blogspot.com/-N1pmBkeBId0/UrS71Gsx0uI/AAAAAAAAKbM/pRIguKho8H0/s1600/021+333+MAJORCe%CC%81linaAde%CC%81line.jpg';
+        $membre3->photoProfil = urlencode('http://1.bp.blogspot.com/-N1pmBkeBId0/UrS71Gsx0uI/AAAAAAAAKbM/pRIguKho8H0/s1600/021+333+MAJORCe%CC%81linaAde%CC%81line.jpg');
         $membre3->role = "MASTER OF WAVES";
         $membre3->save();
         $membre4 = new App\Membre();
@@ -306,7 +309,7 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre4->dateNaissance = '1993-02-16';
         $membre4->section = "Ingénieur des médias";
         $membre4->description = "Avec cette inflexion intrinsèque, il serait bon de revoir toutes les voies que nous connaissons, dans une perspective correcte.";
-        $membre4->photoProfil = 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAh5AAAAJGM2ZmUzNTNlLThlNGYtNDk4OC05NzgxLTQ1ZjgxYzdiZTNmMg.jpg';
+        $membre4->photoProfil = urlencode('https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAh5AAAAJGM2ZmUzNTNlLThlNGYtNDk4OC05NzgxLTQ1ZjgxYzdiZTNmMg.jpg');
         $membre4->role = "MASTER OF COLOR PIXELS";
         $membre4->save();
 
