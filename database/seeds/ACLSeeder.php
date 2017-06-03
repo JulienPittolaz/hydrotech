@@ -490,6 +490,15 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition3->prixs()->save($prix1);
         $edition3->prixs()->save($prix2);
         $edition3->prixs()->save($prix3);
-        
+
+        //*******CREATION DES COMPOSITIONS*******
+        $edition1->membres()->save($membre1);
+        $edition2->membres()->save($membre1);
+        $edition2->membres()->save($membre2);
+        $edition2->membres()->save($membre3);
+        $edition2->membres()->save($membre4);
+        $edition3->membres()->save($membre2);
+        $edition3->membres()->save($membre3);
+        $edition3->membres()->save($membre4);
     }
 }
