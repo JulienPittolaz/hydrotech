@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Validator;
 
-class ArticlePresse extends Model
+class Presse extends Model
 {
     protected $fillable = ['url', 'titreArticle', 'description', 'dateParution', 'nomPresse'];
-    protected $table = "articlepresses";
+    //protected $table = "presses";
 
     public function editions() {
         return $this->belongsTo('\App\Edition');
@@ -16,7 +16,7 @@ class ArticlePresse extends Model
 
     public static function isValid($inputs) {
         return Validator::make($inputs, [
-            'id' => 'exists:articlepresses|sometimes|required',
+            'id' => 'exists:presses|sometimes|required',
             'url' => 'url|sometimes|required',
             'titreArticle' => 'string|sometimes|required',
             'description' => 'string|sometimes|required',

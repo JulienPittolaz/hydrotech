@@ -8,7 +8,7 @@ use Validator;
 class Prix extends Model
 {
     protected $fillable = ['nom', 'description', 'montant'];
-    protected $table = "prixs";
+    //protected $table = "prixs";
 
     public function editions() {
         return $this->belongsToMany('\App\Edition');
