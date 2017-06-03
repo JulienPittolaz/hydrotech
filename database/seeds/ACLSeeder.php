@@ -530,20 +530,49 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
 
 
 
+        
+        //*******CREATION DES COMMENTAIRES*******
+        $edition1->articlePresses()->save($presse1);
+        $edition1->articlePresses()->save($presse2);
+        $edition2->articlePresses()->save($presse2);
+        $edition2->articlePresses()->save($presse3);
+        $edition3->articlePresses()->save($presse1);
+        $edition3->articlePresses()->save($presse2);
+        $edition3->articlePresses()->save($presse3);
 
+        //*******CREATION DES GAINS*******
+        $edition1->prixs()->save($prix1);
+        $edition1->prixs()->save($prix2);
+        $edition2->prixs()->save($prix3);
+        $edition2->prixs()->save($prix1);
+        $edition2->prixs()->save($prix2);
+        $edition3->prixs()->save($prix1);
+        $edition3->prixs()->save($prix2);
+        $edition3->prixs()->save($prix3);
 
+        //*******CREATION DES COMPOSITIONS*******
+        $edition1->membres()->save($membre1);
+        $edition2->membres()->save($membre1);
+        $edition2->membres()->save($membre2);
+        $edition2->membres()->save($membre3);
+        $edition2->membres()->save($membre4);
+        $edition3->membres()->save($membre2);
+        $edition3->membres()->save($membre3);
+        $edition3->membres()->save($membre4);
 
+        //*******CREATION DES COUVERTURES*******
+        $edition1->actualites()->save($actualite1);
+        $edition1->actualites()->save($actualite2);
+        $edition1->actualites()->save($actualite3);
+        $edition2->actualites()->save($actualite1);
+        $edition2->actualites()->save($actualite2);
+        $edition3->actualites()->save($actualite1);
+        $edition3->actualites()->save($actualite2);
+        $edition3->actualites()->save($actualite3);
 
-
-
-
-
-
-
-
-
-
-
-
+        //*******CREATION DES COMPOSITIONS (user - groupe)*******
+        $admin->users()->save($user1);
+        $contributor->users()->save($user2);
+        $contributor->users()->save($user3);
     }
 }
