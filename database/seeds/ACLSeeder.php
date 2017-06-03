@@ -510,5 +510,10 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition3->actualites()->save($actualite1);
         $edition3->actualites()->save($actualite2);
         $edition3->actualites()->save($actualite3);
+
+        //*******CREATION DES COMPOSITIONS (user - groupe)*******
+        $admin->users()->save($user1);
+        $contributor->users()->save($user2);
+        $contributor->users()->save($user3);
     }
 }
