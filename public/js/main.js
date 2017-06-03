@@ -128,7 +128,16 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     testModelActualite.log()
     $(".content").html(JST['actualite'](testModelActualite.toJSON()));
 
+// MEDIA
+    var testModelMedia = new ModelMedia({
+        url: "test",
+        titre: "ma photo"
+    })
 
+    testModelMedia.isValid();
+    console.log("Erreurs media: " + testModelMedia.validationError);
+    testModelMedia.log()
+    $(".content").html(JST['media'](testModelMedia.toJSON()));
     // SPONSOR
     var testModelSponsor = new ModelSponsor({
         nom: "sponsor",
@@ -140,4 +149,5 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     console.log("Erreurs sponsor: " + testModelSponsor.validationError);
     testModelSponsor.log()
     $(".content").html(JST['sponsor'](testModelSponsor.toJSON()));
+
 });
