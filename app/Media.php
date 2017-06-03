@@ -12,7 +12,7 @@ class Media extends Model
     protected $table = "medias";
 
     public function editions() {
-        return $this->belongsToMany('\App\Edition');
+        return $this->belongsToMany('\App\Edition')->withTimestamps();
     }
 
     public static function isValid($data = array()) {

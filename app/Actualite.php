@@ -11,7 +11,7 @@ class Actualite extends Model
     //protected $table = "actualites";
 
     public function editions() {
-        return $this->belongsToMany('\App\Edition');
+        return $this->belongsToMany('\App\Edition')->withTimestamps();
     }
 
     public static function isValid($data = array()) {
