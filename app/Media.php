@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 class Media extends Model
 {
     protected $fillable = ['url', 'titre', 'date', 'auteur', 'typeMedia'];
-    //protected $table = "medias";
+    protected $table = "medias";
 
     public function editions() {
         return $this->belongsToMany('\App\Edition');
