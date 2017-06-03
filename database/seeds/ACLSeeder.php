@@ -314,10 +314,34 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre4->save();
 
 
+        //*******************************************************************************************
+        //*******************************************************************************************
+        //*******************************************************************************************
+        //****************************CREATION DES ASSOCIATIONS**************************************
 
 
+        //*******ASSOCIATION LISTING*******
+        $categorie1->sponsors()->save($sponsor1);
+        $categorie1->sponsors()->save($sponsor2);
+        $categorie3->sponsors()->save($sponsor1);
+        $categorie3->sponsors()->save($sponsor2);
+        $categorie3->sponsors()->save($sponsor3);
 
+        //*******ASSOCIATION SPONSORING*******
+        $edition1->categorieSponsors()->save($categorie1);
+        $edition1->categorieSponsors()->save($categorie2);
+        $edition2->categorieSponsors()->save($categorie1);
+        $edition2->categorieSponsors()->save($categorie2);
+        $edition2->categorieSponsors()->save($categorie3);
+        $edition3->categorieSponsors()->save($categorie1);
+        $edition3->categorieSponsors()->save($categorie3);
 
+        //*******ASSOCIATION ILLUSTRATION*******
+        $edition1->medias()->save($media1);
+        $edition1->medias()->save($media2);
+        $edition3->medias()->save($media1);
+        $edition3->medias()->save($media2);
+        $edition3->medias()->save($media3);
 
 
 
@@ -460,18 +484,7 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+        
         //*******CREATION DES COMMENTAIRES*******
         $edition1->articlePresses()->save($presse1);
         $edition1->articlePresses()->save($presse2);
