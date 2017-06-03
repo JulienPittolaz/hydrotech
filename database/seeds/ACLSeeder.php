@@ -314,8 +314,18 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre4->save();
 
 
+        //*******************************************************************************************
+        //*******************************************************************************************
+        //*******************************************************************************************
+        //****************************CREATION DES ASSOCIATIONS**************************************
 
 
+        //*******ASSOCIATION LISTING*******
+        $categorie1->sponsors()->save($sponsor1);
+        $categorie1->sponsors()->save($sponsor2);
+        $categorie3->sponsors()->save($sponsor1);
+        $categorie3->sponsors()->save($sponsor2);
+        $categorie3->sponsors()->save($sponsor3);
 
 
 
@@ -465,7 +475,10 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
 
 
 
-        
+
+
+
+
 
 
 
