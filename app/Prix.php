@@ -9,7 +9,7 @@ class Prix extends Model
 {
     protected $fillable = ['nom', 'description', 'montant'];
 
-    public function projects() {
+    public function editions() {
         return $this->belongsToMany('\App\Edition');
     }
 
