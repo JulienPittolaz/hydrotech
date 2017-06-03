@@ -465,15 +465,31 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
 
 
 
+
+
+
+
+
+
+
+        //*******CREATION DES COMMENTAIRES*******
+        $edition1->articlePresses()->save($presse1);
+        $edition1->articlePresses()->save($presse2);
+        $edition2->articlePresses()->save($presse2);
+        $edition2->articlePresses()->save($presse3);
+        $edition3->articlePresses()->save($presse1);
+        $edition3->articlePresses()->save($presse2);
+        $edition3->articlePresses()->save($presse3);
+
+        //*******CREATION DES GAINS*******
+        $edition1->prixs()->save($prix1);
+        $edition1->prixs()->save($prix2);
+        $edition2->prixs()->save($prix3);
+        $edition2->prixs()->save($prix1);
+        $edition2->prixs()->save($prix2);
+        $edition3->prixs()->save($prix1);
+        $edition3->prixs()->save($prix2);
+        $edition3->prixs()->save($prix3);
         
-
-
-
-
-
-
-
-
-
     }
 }
