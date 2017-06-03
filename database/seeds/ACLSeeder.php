@@ -65,6 +65,37 @@ class ACLSeeder extends Seeder
         $contributor->save();
 
 
+        /*******CREATION DES RESSOURCES*******/
+        $sponsor = new \App\Ressource();
+        $sponsor->nom = "sponsor";
+        $sponsor->save();
+        $categorieSponsor = new \App\Ressource();
+        $categorieSponsor->nom = "categorieSponsor";
+        $categorieSponsor->save();
+        $prix = new \App\Ressource();
+        $prix->nom = "prix";
+        $prix->save();
+        $articlePresse = new \App\Ressource();
+        $articlePresse->nom = "articlePresse";
+        $articlePresse->save();
+        $edition = new \App\Ressource();
+        $edition->nom = "edition";
+        $edition->save();
+        $media = new \App\Ressource();
+        $media->nom = "media";
+        $media->save();
+        $actualite = new \App\Ressource();
+        $actualite->nom = "actualite";
+        $actualite->save();
+        $membre = new \App\Ressource();
+        $membre->nom = "membre";
+        $membre->save();
+        $reseauSocial = new \App\Ressource();
+        $reseauSocial->nom = "reseauSocial";
+        $reseauSocial->save();
+        $user = new \App\Ressource();
+        $user->nom = "user";
+        $user->save();
 
         //*********************************************************************************
         //*********************************************************************************
