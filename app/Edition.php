@@ -35,14 +35,14 @@ class Edition extends Model
     public static function isValid($inputs) {
         return Validator::make($inputs, [
             'id' => 'exists:editions|sometimes|required',
-            'annee' => 'integer||sometimes|required',
-            'nomEquipe' => 'boolean|sometimes|required',
-            'urlImageMedia' => 'integer|min:1|max:3|sometimes|required',
-            'urlImageEquipe' => 'exists: projects,id|sometimes|required',
-            'lieu' => 'exists: projects,id|sometimes|required',
-            'dateDebut' => 'exists: projects,id|sometimes|required',
-            'dateFin' => 'exists: projects,id|sometimes|required',
-            'description' => 'exists: projects,id|sometimes|required'
+            'annee' => 'integer|digits:4|sometimes|required',
+            'nomEquipe' => 'string|sometimes|required',
+            'urlImageMedia' => 'url|sometimes|required',
+            'urlImageEquipe' => 'url|sometimes|required',
+            'lieu' => 'string|sometimes|required',
+            'dateDebut' => 'date|sometimes|required|before_or_equal:dateFin',
+            'dateFin' => 'date|sometimes|required|after_or_equal:dateDebut|before_or_equal:datePubliation',
+            'description' => 'string|sometimes|required'
         ])->passes();
     }
 }
