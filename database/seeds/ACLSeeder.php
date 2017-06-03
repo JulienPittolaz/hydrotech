@@ -107,7 +107,7 @@ class ACLSeeder extends Seeder
         $sponsor2->nom = "Apple";
         $sponsor2->urlLogo = "https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png";
         $sponsor2->urlSponsor = "https://www.apple.com/chfr/";
-        $sponsor2->save();$sponsor2 = new \App\Sponsor();
+        $sponsor2->save();
         $sponsor3 = new \App\Sponsor();
         $sponsor3->nom = "Coca-Cola";
         $sponsor3->urlLogo = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/1200px-Coca-Cola_logo.svg.png";
@@ -128,6 +128,31 @@ class ACLSeeder extends Seeder
         $categorie3->nom = "Argent";
         $categorie3->description = "Catégorie de sponsors réservée aux contributeurs moyen (5'000-10'000chf)";
         $categorie3->save();
+
+
+        //*******CREATION DES MEDIAS*******
+        $media1 = new \App\Media();
+        $media1->url = "https://www.youtube.com/watch?v=xold7iw04E4";
+        $media1->titre = "Un album trop cool !";
+        $media1->date = "2017-06-03";
+        $media1->auteur = "Future Fuzz";
+        $media1->typeMedia = "Video";
+        $media1->save();
+        $media2 = new \App\Media();
+        $media2->url = "//c1.staticflickr.com/7/6092/6330704947_dd7e1b453c.jpg";
+        $media2->titre = "Mrrrooouuuuhhhhh !";
+        $media2->date = "2011-10-10";
+        $media2->auteur = "Cuba Gallery";
+        $media2->typeMedia = "Photo";
+        $media2->save();
+        $media3 = new \App\Media();
+        $media3->url = "https://s-media-cache-ak0.pinimg.com/736x/6a/a4/13/6aa41332810cc5164395aa9d5705a38b.jpg";
+        $media3->titre = "Titre de la photo";
+        $media3->date = "2015-02-03";
+        $media3->auteur = "Bilan";
+        $media3->typeMedia = "Photo";
+        $media3->save();
+
 
         //*********************************************************************************
         //*********************************************************************************
