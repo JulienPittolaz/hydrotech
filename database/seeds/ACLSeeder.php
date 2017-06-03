@@ -327,8 +327,14 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $categorie3->sponsors()->save($sponsor2);
         $categorie3->sponsors()->save($sponsor3);
 
-
-
+        //*******ASSOCIATION SPONSORING*******
+        $edition1->categorieSponsors()->save($categorie1);
+        $edition1->categorieSponsors()->save($categorie2);
+        $edition2->categorieSponsors()->save($categorie1);
+        $edition2->categorieSponsors()->save($categorie2);
+        $edition2->categorieSponsors()->save($categorie3);
+        $edition3->categorieSponsors()->save($categorie1);
+        $edition3->categorieSponsors()->save($categorie3);
 
 
 
