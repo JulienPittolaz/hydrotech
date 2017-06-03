@@ -479,11 +479,11 @@ class ACLSeeder extends Seeder
 
         //*******CREATION DES ARTICLES DE PRESSE*******
         $presse1 = new App\ArticlePresse();
-        $presse1->url = 'https://www.letemps.ch/';
+        $presse1->url = 'http://flashinformatique.epfl.ch/spip.php?article36';
         $presse1->titreArticle = "Mais c'est super !";
         $presse1->description = "C'est une super description !";
-        $presse1->dateParution = '2017-03-04';
-        $presse1->nomPresse = "Le Temps";
+        $presse1->dateParution = '2002-09-17';
+        $presse1->nomPresse = "EPFL";
         $presse1->save();
         $presse2 = new App\ArticlePresse();
         $presse2->url = 'https://www.lematin.ch/';
@@ -531,6 +531,48 @@ class ACLSeeder extends Seeder
         $edition3->dateFin = '2015-07-11';
         $edition3->description = "Une description qui sera surement enlevée bientôt";
         $edition3->save();
+
+        //*******CREATION DES MEMBRES*******
+        $membre1 = new App\Membre();
+        $membre1->adresseMail = 'claude@pingouin.heig-vd.ch';
+        $membre1->nom = "Philipona";
+        $membre1->prenom = "Claude";
+        $membre1->dateNaissance = '1970-01-02';
+        $membre1->section = "Professeur";
+        $membre1->description = "Du fait de la fragilité conjoncturelle, il est nécessaire d'inventorier systématiquement les problématiques opportunes, pour le futur.";
+        $membre1->photoProfil = 'http://flashinformatique.epfl.ch/IMG/auton28.jpg?1349272172';
+        $membre1->role = "CEO";
+        $membre1->save();
+        $membre2 = new App\Membre();
+        $membre2->adresseMail = 'lea@soukouti.ch';
+        $membre2->nom = "Soukouti";
+        $membre2->prenom = "Léa";
+        $membre2->dateNaissance = '1994-03-29';
+        $membre2->section = "Ingénieur des médias";
+        $membre2->description = "Dans le but de pallier à l'inertie de l'époque actuelle, il est nécessaire de fédérer la simultanéité des organisations matricielles déclinables, avec beaucoup de recul.";
+        $membre2->photoProfil = 'http://www.cly.ch/cly_site_2016/wp-content/uploads/2017/03/hotel_02.jpg';
+        $membre2->role = "MASTER OF JAVASCRIPT";
+        $membre2->save();
+        $membre3 = new App\Membre();
+        $membre3->adresseMail = 'tima@dlp.ch';
+        $membre3->nom = "Delapierre";
+        $membre3->prenom = "Timothée";
+        $membre3->dateNaissance = '1992-06-22';
+        $membre3->section = "Ingénieur des médias";
+        $membre3->description = "Tant que durera la politique de ces derniers temps, on se doit de gérer la somme des actions emblématiques, dans une perspective correcte.";
+        $membre3->photoProfil = 'http://1.bp.blogspot.com/-N1pmBkeBId0/UrS71Gsx0uI/AAAAAAAAKbM/pRIguKho8H0/s1600/021+333+MAJORCe%CC%81linaAde%CC%81line.jpg';
+        $membre3->role = "MASTER OF WAVES";
+        $membre3->save();
+        $membre4 = new App\Membre();
+        $membre4->adresseMail = 'jose@phine.ch';
+        $membre4->nom = "Joséphine";
+        $membre4->prenom = "Chabin";
+        $membre4->dateNaissance = '1993-02-16';
+        $membre4->section = "Ingénieur des médias";
+        $membre4->description = "Avec cette inflexion intrinsèque, il serait bon de revoir toutes les voies que nous connaissons, dans une perspective correcte.";
+        $membre4->photoProfil = 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAh5AAAAJGM2ZmUzNTNlLThlNGYtNDk4OC05NzgxLTQ1ZjgxYzdiZTNmMg.jpg';
+        $membre4->role = "MASTER OF COLOR PIXELS";
+        $membre4->save();
 
     }
 }
