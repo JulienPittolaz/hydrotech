@@ -20,6 +20,7 @@ class CreateActualiteEditionTable extends Migration
             $table->timestamps();
             $table->foreign('actualite_id')->references('id')->on('actualites')->onDelete("cascade");
             $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
+            $table->boolean('actif')->default(true);
         });
     }
 

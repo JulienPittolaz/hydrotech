@@ -22,9 +22,9 @@ class CreateEditionsTable extends Migration
             $table->string('lieu');
             $table->date('dateDebut');
             $table->date('dateFin');
-            $table->string('description');
+            $table->text('description');
             $table->boolean('publie');
-            $table->boolean('actif');
+            $table->boolean('actif')->default(true);
             $table->timestamps();
         });
     }
