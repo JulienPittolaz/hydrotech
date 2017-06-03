@@ -20,6 +20,7 @@ class CreateCategorieSponsorSponsorTable extends Migration
             $table->timestamps();
             $table->foreign('categorieSponsor_id')->references('id')->on('categorieSponsors')->onDelete("cascade");
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete("cascade");
+            $table->boolean('actif')->default(true);
         });
     }
 

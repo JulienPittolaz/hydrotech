@@ -17,7 +17,7 @@ class CreateCategorieSponsorsTable extends Migration
             $table->increments('id');
             $table->string('nom');
             $table->string('description');
-            $table->boolean('actif');
+            $table->boolean('actif')->default(true);
             $table->timestamps();
         });
     }

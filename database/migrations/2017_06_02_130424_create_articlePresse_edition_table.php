@@ -20,6 +20,7 @@ class CreateArticlePresseEditionTable extends Migration
             $table->timestamps();
             $table->foreign('articlePresse_id')->references('id')->on('articlePresses')->onDelete("cascade");
             $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
+            $table->boolean('actif')->default(true);
         });
     }
 
