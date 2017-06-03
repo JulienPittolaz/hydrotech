@@ -17,7 +17,7 @@ class CreateActualitesTable extends Migration
             $table->increments('id');
             $table->string('titre');
             $table->date('datePublication');
-            $table->string('contenu');
+            $table->text('contenu');
             $table->string('auteur');
             $table->boolean('publie');
             $table->boolean('actif')->default(true);

@@ -15,9 +15,9 @@ class CreateArticlePressesTable extends Migration
     {
         Schema::create('articlePresses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
+            $table->text('url');
             $table->string('titreArticle');
-            $table->string('description');
+            $table->text('description');
             $table->date('dateParution');
             $table->timestamps();
             $table->string('nomPresse');

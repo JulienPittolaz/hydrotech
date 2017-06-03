@@ -16,7 +16,7 @@ class CreateCategorieSponsorsTable extends Migration
         Schema::create('categorieSponsors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom');
-            $table->string('description');
+            $table->text('description');
             $table->boolean('actif')->default(true);
             $table->timestamps();
         });
