@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategorieSponsorsTable extends Migration
+class CreateSocialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCategorieSponsorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorieSponsors', function (Blueprint $table) {
+        Schema::create('socials', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom');
-            $table->text('description');
+            $table->string('url');
             $table->boolean('actif')->default(true);
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateCategorieSponsorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorieSponsors');
+        Schema::dropIfExists('socials');
     }
 }

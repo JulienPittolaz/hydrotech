@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlePressesTable extends Migration
+class CreatePressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateArticlePressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articlePresses', function (Blueprint $table) {
+        Schema::create('presses', function (Blueprint $table) {
             $table->increments('id');
             $table->text('url');
             $table->string('titreArticle');
@@ -32,6 +32,6 @@ class CreateArticlePressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articlePresses');
+        Schema::dropIfExists('presses');
     }
 }
