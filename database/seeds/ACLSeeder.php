@@ -31,7 +31,7 @@ class ACLSeeder extends Seeder
 
         DB::table('categorie_edition')->truncate();
         DB::table('edition_prix')->truncate();
-        DB::table('presse_edition')->truncate();
+        DB::table('edition_presse')->truncate();
         DB::table('edition_media')->truncate();
         DB::table('actualite_edition')->truncate();
         DB::table('edition_membre')->truncate();
