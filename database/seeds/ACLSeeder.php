@@ -510,6 +510,52 @@ class ACLSeeder extends Seeder
         $presse1->dateParution = '2017-03-04';
         $presse1->nomPresse = "Le Temps";
         $presse1->save();
+        $presse2 = new App\ArticlePresse();
+        $presse2->url = 'https://www.lematin.ch/';
+        $presse2->titreArticle = "LA DERNIÈRE PROMESSE D'ALVES AU FC BARCELONE";
+        $presse2->description = "C'est une super description !";
+        $presse2->dateParution = '2012-03-04';
+        $presse2->nomPresse = "Le Matin";
+        $presse2->save();
+        $presse3 = new App\ArticlePresse();
+        $presse3->url = 'https://www.lefigaro.fr/';
+        $presse3->titreArticle = "Notre-Dame-des-Landes : trois médiateurs déjà contestés";
+        $presse3->description = "C'est une super description !";
+        $presse3->dateParution = '2017-06-11';
+        $presse3->nomPresse = "Le Figaro";
+        $presse3->save();
+
+        //*******CREATION DES EDITIONS*******
+        $edition1 = new App\Edition();
+        $edition1->annee = 2017;
+        $edition1->nomEquipe = "TEAM HEIG-VD TAMER";
+        $edition1->urlImageMedia = "http://img.el-wlid.com/imgcache/122723.jpg";
+        $edition1->urlImageEquipe = 'http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png';
+        $edition1->lieu = "Saint-Tropez";
+        $edition1->dateDebut = "2017-07-04";
+        $edition1->dateFin = '2017-07-11';
+        $edition1->description = "Une description qui sera surement enlevée bientôt";
+        $edition1->save();
+        $edition2 = new App\Edition();
+        $edition2->annee = 2016;
+        $edition2->nomEquipe = "TEAM HEIG-VD JEAN-JEAN";
+        $edition2->urlImageMedia = "http://img.el-wlid.com/imgcache/122723.jpg";
+        $edition2->urlImageEquipe = 'http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png';
+        $edition2->lieu = "Lausanne";
+        $edition2->dateDebut = "2016-07-04";
+        $edition2->dateFin = '2016-07-11';
+        $edition2->description = "Une description qui sera surement enlevée bientôt";
+        $edition2->save();
+        $edition3 = new App\Edition();
+        $edition3->annee = 2015;
+        $edition3->nomEquipe = "TEAM HEIG-VD ON ETAIT PAS ENCORE LA";
+        $edition3->urlImageMedia = "http://img.el-wlid.com/imgcache/122723.jpg";
+        $edition3->urlImageEquipe = 'http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png';
+        $edition3->lieu = "Un lieu resté secret";
+        $edition3->dateDebut = "2015-07-04";
+        $edition3->dateFin = '2015-07-11';
+        $edition3->description = "Une description qui sera surement enlevée bientôt";
+        $edition3->save();
 
     }
 }
