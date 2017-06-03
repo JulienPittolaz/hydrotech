@@ -8,7 +8,7 @@ use Validator;
 class CategorieSponsor extends Model
 {
     protected $fillable = ['nom', 'description'];
-
+    protected $table = "categorieSponsors";
 
 
     public function sponsors()

@@ -8,6 +8,7 @@ use Validator;
 class Sponsor extends Model
 {
     protected $fillable = ['nom', 'urlLogo', 'urlSponsor'];
+    protected $table = "sponsors";
 
 
 
