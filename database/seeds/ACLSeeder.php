@@ -153,7 +153,7 @@ class ACLSeeder extends Seeder
         $media3->typeMedia = "Photo";
         $media3->save();
 
-        //*******RESEAU SOCIAL*******
+        //*******CREATION DE RESEAUX SOCIAUX*******
         $reseau1 = new \App\ReseauSocial();
         $reseau1->nom = "Facebook";
         $reseau1->url = "https://www.facebook.com/";
@@ -167,6 +167,32 @@ class ACLSeeder extends Seeder
         $reseau3->url = "https://www.instagram.com/";
         $reseau3->save();
 
+        //*******CREATION D'ACTUALITES*******
+        $actualite1 = new \App\Actualite();
+        $actualite1->titre = "Nouveau drone !";
+        $actualite1->datePublication = "2017-07-18";
+        $actualite1->contenu = "Notre dernier drône vient juste d'être terminé !!";
+        $actualite1->auteur = "Claude P.";
+        $actualite1->publie = true;
+        $actualite1->urlImage = "https://pbs.twimg.com/media/CO6_xCjUAAEsE0y.jpg";
+        $actualite1->save();
+        $actualite2 = new \App\Actualite();
+        $actualite2->titre = "WTF ?!";
+        $actualite2->datePublication = "2017-10-03";
+        $actualite2->contenu = "Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?";
+        $actualite2->auteur = "Quentin Tarentino";
+        $actualite2->publie = true;
+        $actualite2->urlImage = "http://fr.web.img5.acsta.net/c_300_300/pictures/15/08/25/09/24/458662.jpg";
+        $actualite2->save();
+        $actualite3 = new \App\Actualite();
+        $actualite3->titre = "What’s Wrong With Today’s Society ";
+        $actualite3->datePublication = "2017-12-26";
+        $actualite3->contenu = "It's no secret that our society has its flaws - dependence on technology, taxes, obesity, devaluation of workers - to name a few. Some people may not even want to think about any these problems but illustrator John Holocraft, on the other hand, he looks them straight in the eye and depicts them in a satirical way.
+With a style based on 50's advertisements and a vintage feel - Holocraft perfectly captures today's social issues and modern behavior in his illustrations and does so in a brutally honest way. Keep on scrolling to check them out and don't forget to vote for your favorites!";
+        $actualite3->auteur = "Iveta";
+        $actualite3->publie = true;
+        $actualite3->urlImage = "http://static.boredpanda.com/blog/wp-content/uploads/2017/06/todays-problems-illustrations-john-holcroft-26-593113a5905fd__700.jpg";
+        $actualite3->save();
 
         //*********************************************************************************
         //*********************************************************************************
