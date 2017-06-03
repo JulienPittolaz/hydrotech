@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePresseEditionTable extends Migration
+class CreateEditionPresseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePresseEditionTable extends Migration
      */
     public function up()
     {
-        Schema::create('presse_edition', function (Blueprint $table) {
+        Schema::create('edition_presse', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('presse_id')->unsigned();
             $table->integer('edition_id')->unsigned();
@@ -31,6 +31,6 @@ class CreatePresseEditionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('presse_edition');
+        Schema::dropIfExists('edition_presse');
     }
 }
