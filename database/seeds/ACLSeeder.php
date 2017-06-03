@@ -336,7 +336,12 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition3->categorieSponsors()->save($categorie1);
         $edition3->categorieSponsors()->save($categorie3);
 
-
+        //*******ASSOCIATION ILLUSTRATION*******
+        $edition1->medias()->save($media1);
+        $edition1->medias()->save($media2);
+        $edition3->medias()->save($media1);
+        $edition3->medias()->save($media2);
+        $edition3->medias()->save($media3);
 
 
 
