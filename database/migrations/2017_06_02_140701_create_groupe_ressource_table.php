@@ -17,6 +17,7 @@ class CreateGroupeRessourceTable extends Migration
             $table->increments('id');
             $table->integer('groupe_id')->unsigned();
             $table->integer('ressource_id')->unsigned();
+            $table->string('role');
             $table->timestamps();
             $table->foreign('ressource_id')->references('id')->on('ressources')->onDelete("cascade");
             $table->foreign('groupe_id')->references('id')->on('groupes')->onDelete("cascade");
