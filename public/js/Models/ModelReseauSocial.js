@@ -18,6 +18,5 @@ var ModelReseauSocial = Hydrotech.Model.extend({
         }
         return msg;
     }
-})/**
- * Created by Léa on 02/06/2017.
- */
+})
+
