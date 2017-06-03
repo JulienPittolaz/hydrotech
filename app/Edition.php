@@ -29,7 +29,7 @@ class Edition extends Model
         return $this->belongsToMany('\App\Prix');
     }
 
-    public function articlepresses() {
+    public function articlePresses() {
         return $this->belongsToMany('\App\AcrticlePresse');
     }
 
