@@ -114,6 +114,21 @@ class ACLSeeder extends Seeder
         $sponsor3->urlSponsor = "www.coke.ch/fr/home/";
         $sponsor3->save();
 
+
+        //*******CREATION DES CATEGORIE DE SPONSORS*******
+        $categorie1 = new \App\CategorieSponsor();
+        $categorie1->nom = "Platine";
+        $categorie1->description = "Catégorie de sponsors réservée aux plus grands contributeurs (min 15'000chf)";
+        $categorie1->save();
+        $categorie2 = new \App\CategorieSponsor();
+        $categorie2->nom = "Or";
+        $categorie2->description = "Catégorie de sponsors réservée aux grands contributeurs (10'000-15'000chf)";
+        $categorie2->save();
+        $categorie3 = new \App\CategorieSponsor();
+        $categorie3->nom = "Argent";
+        $categorie3->description = "Catégorie de sponsors réservée aux contributeurs moyen (5'000-10'000chf)";
+        $categorie3->save();
+
         //*********************************************************************************
         //*********************************************************************************
         //*********************************************************************************
