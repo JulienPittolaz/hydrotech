@@ -445,5 +445,14 @@ class ACLSeeder extends Seeder
         $prix3->montant = 2;
         $prix3->save();
 
+        //*******CREATION DES ARTICLES DE PRESSE*******
+        $prix1 = new App\ArticlePresse();
+        $prix1->url = 'http://google.com';
+        $prix1->titreArticle = "Mais c'est super !";
+        $prix1->description = "C'est une super description !";
+        $prix1->dateParution = ;
+        $prix1->nomPresse = 3000;
+        $prix1->save();
+
     }
 }
