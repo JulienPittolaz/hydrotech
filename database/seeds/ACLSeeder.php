@@ -97,6 +97,23 @@ class ACLSeeder extends Seeder
         $user->nom = "user";
         $user->save();
 
+        //*******CREATION DES SPONSORS*******
+        $sponsor1 = new \App\Sponsor();
+        $sponsor1->nom = "Ville d'Yverdon";
+        $sponsor1->urlLogo = "http://www.nationalsportscamp.ch/images/yootheme/logo-ville-yverdon.jpg";
+        $sponsor1->urlSponsor = "http://www.yverdon-les-bains.ch";
+        $sponsor1->save();
+        $sponsor2 = new \App\Sponsor();
+        $sponsor2->nom = "Apple";
+        $sponsor2->urlLogo = "https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png";
+        $sponsor2->urlSponsor = "https://www.apple.com/chfr/";
+        $sponsor2->save();$sponsor2 = new \App\Sponsor();
+        $sponsor3 = new \App\Sponsor();
+        $sponsor3->nom = "Coca-Cola";
+        $sponsor3->urlLogo = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/1200px-Coca-Cola_logo.svg.png";
+        $sponsor3->urlSponsor = "www.coke.ch/fr/home/";
+        $sponsor3->save();
+
         //*********************************************************************************
         //*********************************************************************************
         //*********************************************************************************
