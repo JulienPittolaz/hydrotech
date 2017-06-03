@@ -20,7 +20,7 @@ class CreateActualitesTable extends Migration
             $table->string('contenu');
             $table->string('auteur');
             $table->boolean('publie');
-            $table->boolean('actif');
+            $table->boolean('actif')->default(true);
             $table->string('urlImage');
             $table->timestamps();
         });

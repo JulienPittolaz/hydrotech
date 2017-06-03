@@ -20,7 +20,7 @@ class CreateMediasTable extends Migration
             $table->date('date');
             $table->string('auteur');
             $table->string('typeMedia');
-            $table->boolean('actif');
+            $table->boolean('actif')->default(true);
             $table->timestamps();
         });
     }

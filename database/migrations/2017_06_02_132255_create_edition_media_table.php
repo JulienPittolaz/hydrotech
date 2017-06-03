@@ -20,6 +20,7 @@ class CreateEditionMediaTable extends Migration
             $table->timestamps();
             $table->foreign('media_id')->references('id')->on('medias')->onDelete("cascade");
             $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
+            $table->boolean('actif')->default(true);
         });
     }
 

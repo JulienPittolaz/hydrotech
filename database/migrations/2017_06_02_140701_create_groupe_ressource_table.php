@@ -20,6 +20,7 @@ class CreateGroupeRessourceTable extends Migration
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
             $table->foreign('groupe_id')->references('id')->on('groupes')->onDelete("cascade");
+            $table->boolean('actif')->default(true);
         });
     }
 

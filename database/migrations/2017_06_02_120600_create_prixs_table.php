@@ -18,7 +18,7 @@ class CreatePrixsTable extends Migration
             $table->string('nom');
             $table->string('description');
             $table->float('montant');
-            $table->boolean('actif');
+            $table->boolean('actif')->default(true);
             $table->timestamps();
         });
     }
