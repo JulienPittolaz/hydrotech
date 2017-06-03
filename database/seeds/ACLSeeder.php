@@ -153,6 +153,20 @@ class ACLSeeder extends Seeder
         $media3->typeMedia = "Photo";
         $media3->save();
 
+        //*******RESEAU SOCIAL*******
+        $reseau1 = new \App\ReseauSocial();
+        $reseau1->nom = "Facebook";
+        $reseau1->url = "https://www.facebook.com/";
+        $reseau1->save();
+        $reseau2 = new \App\ReseauSocial();
+        $reseau2->nom = "Twitter";
+        $reseau2->url = "https://twitter.com/";
+        $reseau2->save();
+        $reseau3 = new \App\ReseauSocial();
+        $reseau3->nom = "Instagram";
+        $reseau3->url = "https://www.instagram.com/";
+        $reseau3->save();
+
 
         //*********************************************************************************
         //*********************************************************************************
