@@ -18,23 +18,23 @@ class ACLSeeder extends Seeder
         DB::table('groupe_ressource')->truncate();
 
         DB::table('sponsors')->truncate();
-        DB::table('categoriesponsors')->truncate();
-        DB::table('categoriesponsor_sponsor')->truncate();
+        DB::table('categories')->truncate();
+        DB::table('categorie_sponsor')->truncate();
 
         DB::table('editions')->truncate();
         DB::table('prixs')->truncate();
-        DB::table('articlepresses')->truncate();
+        DB::table('presses')->truncate();
         DB::table('medias')->truncate();
         DB::table('actualites')->truncate();
         DB::table('membres')->truncate();
+        DB::table('socials')->truncate();
 
-        DB::table('categoriesponsor_edition')->truncate();
+        DB::table('categorie_edition')->truncate();
         DB::table('edition_prix')->truncate();
-        DB::table('articlepresse_edition')->truncate();
+        DB::table('presse_edition')->truncate();
         DB::table('edition_media')->truncate();
         DB::table('actualite_edition')->truncate();
         DB::table('edition_membre')->truncate();
-
 
 
         //*******CREATION DES USERS*******
@@ -57,7 +57,7 @@ class ACLSeeder extends Seeder
         //*******CREATION DES GROUPES*******
         $admin = new \App\Groupe();
         $admin->nom = 'admin';
-        $admin->description ="Groupe d'administrateur, ayant tous les droits sur toutes les ressources - Create, Read, Update, Delete";
+        $admin->description = "Groupe d'administrateur, ayant tous les droits sur toutes les ressources - Create, Read, Update, Delete";
         $admin->save();
         $contributor = new \App\Groupe();
         $contributor->nom = 'contributor';
@@ -69,15 +69,15 @@ class ACLSeeder extends Seeder
         $sponsor = new \App\Ressource();
         $sponsor->nom = "sponsor";
         $sponsor->save();
-        $categorieSponsor = new \App\Ressource();
-        $categorieSponsor->nom = "categorieSponsor";
-        $categorieSponsor->save();
+        $categorie = new \App\Ressource();
+        $categorie->nom = "categorie";
+        $categorie->save();
         $prix = new \App\Ressource();
         $prix->nom = "prix";
         $prix->save();
-        $articlePresse = new \App\Ressource();
-        $articlePresse->nom = "articlePresse";
-        $articlePresse->save();
+        $presse = new \App\Ressource();
+        $presse->nom = "presse";
+        $presse->save();
         $edition = new \App\Ressource();
         $edition->nom = "edition";
         $edition->save();
@@ -90,9 +90,9 @@ class ACLSeeder extends Seeder
         $membre = new \App\Ressource();
         $membre->nom = "membre";
         $membre->save();
-        $reseauSocial = new \App\Ressource();
-        $reseauSocial->nom = "reseauSocial";
-        $reseauSocial->save();
+        $social = new \App\Ressource();
+        $social->nom = "social";
+        $social->save();
         $user = new \App\Ressource();
         $user->nom = "user";
         $user->save();
@@ -117,15 +117,15 @@ class ACLSeeder extends Seeder
 
         //*******CREATION DES CATEGORIE DE SPONSORS*******
 
-        $categorie1 = new \App\CategorieSponsor();
+        $categorie1 = new \App\Categorie();
         $categorie1->nom = "Platine";
         $categorie1->description = "Catégorie de sponsors réservée aux plus grands contributeurs (min 15'000chf)";
         $categorie1->save();
-        $categorie2 = new \App\CategorieSponsor();
+        $categorie2 = new \App\Categorie();
         $categorie2->nom = "Or";
         $categorie2->description = "Catégorie de sponsors réservée aux grands contributeurs (10'000-15'000chf)";
         $categorie2->save();
-        $categorie3 = new \App\CategorieSponsor();
+        $categorie3 = new \App\Categorie();
         $categorie3->nom = "Argent";
         $categorie3->description = "Catégorie de sponsors réservée aux contributeurs moyen (5'000-10'000chf)";
         $categorie3->save();
@@ -155,15 +155,15 @@ class ACLSeeder extends Seeder
         $media3->save();
 
         //*******CREATION DE RESEAUX SOCIAUX*******
-        $reseau1 = new \App\Reseausocial();
+        $reseau1 = new \App\Social();
         $reseau1->nom = "Facebook";
         $reseau1->url = urlencode("https://www.facebook.com/");
         $reseau1->save();
-        $reseau2 = new \App\Reseausocial();
+        $reseau2 = new \App\Social();
         $reseau2->nom = "Twitter";
         $reseau2->url = urlencode("https://twitter.com/");
         $reseau2->save();
-        $reseau3 = new \App\Reseausocial();
+        $reseau3 = new \App\Social();
         $reseau3->nom = "Instagram";
         $reseau3->url = urlencode("https://www.instagram.com/");
         $reseau3->save();
@@ -214,21 +214,21 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $prix3->save();
 
         //*******CREATION DES ARTICLES DE PRESSE*******
-        $presse1 = new App\Articlepresse();
+        $presse1 = new App\Presse();
         $presse1->url = urlencode('http://flashinformatique.epfl.ch/spip.php?article36');
         $presse1->titreArticle = "Mais c'est super !";
         $presse1->description = "C'est une super description !";
         $presse1->dateParution = '2002-09-17';
         $presse1->nomPresse = "EPFL";
         $presse1->save();
-        $presse2 = new App\Articlepresse();
+        $presse2 = new App\Presse();
         $presse2->url = urlencode('https://www.lematin.ch/');
         $presse2->titreArticle = "LA DERNIÈRE PROMESSE D'ALVES AU FC BARCELONE";
         $presse2->description = "C'est une super description !";
         $presse2->dateParution = '2012-03-04';
         $presse2->nomPresse = "Le Matin";
         $presse2->save();
-        $presse3 = new App\Articlepresse();
+        $presse3 = new App\Presse();
         $presse3->url = urlencode('https://www.lefigaro.fr/');
         $presse3->titreArticle = "Notre-Dame-des-Landes : trois médiateurs déjà contestés";
         $presse3->description = "C'est une super description !";
@@ -328,13 +328,13 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $categorie3->sponsors()->save($sponsor3);
 
         //*******ASSOCIATION SPONSORING*******
-        $edition1->categorieSponsors()->save($categorie1);
-        $edition1->categorieSponsors()->save($categorie2);
-        $edition2->categorieSponsors()->save($categorie1);
-        $edition2->categorieSponsors()->save($categorie2);
-        $edition2->categorieSponsors()->save($categorie3);
-        $edition3->categorieSponsors()->save($categorie1);
-        $edition3->categorieSponsors()->save($categorie3);
+        $edition1->categories()->save($categorie1);
+        $edition1->categories()->save($categorie2);
+        $edition2->categories()->save($categorie1);
+        $edition2->categories()->save($categorie2);
+        $edition2->categories()->save($categorie3);
+        $edition3->categories()->save($categorie1);
+        $edition3->categories()->save($categorie3);
 
         //*******ASSOCIATION ILLUSTRATION*******
         $edition1->medias()->save($media1);
@@ -345,245 +345,106 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
 
         //*******ASSOCIATION GESTION, AVEC PIVOT ROLE*******
         //***ADMINS***
-        $admin->ressources()->save($sponsor,['role' => \App\Role::CREATE]);
-        $admin->ressources()->save($sponsor,['role' => \App\Role::READ]);
-        $admin->ressources()->save($sponsor,['role' => \App\Role::UPDATE]);
-        $admin->ressources()->save($sponsor,['role' => \App\Role::DELETE]);
+        $admin->ressources()->save($sponsor, ['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($sponsor, ['role' => \App\Role::READ]);
+        $admin->ressources()->save($sponsor, ['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($sponsor, ['role' => \App\Role::DELETE]);
 
-        $admin->ressources()->save($categorieSponsor,['role' => \App\Role::CREATE]);
-        $admin->ressources()->save($categorieSponsor,['role' => \App\Role::READ]);
-        $admin->ressources()->save($categorieSponsor,['role' => \App\Role::UPDATE]);
-        $admin->ressources()->save($categorieSponsor,['role' => \App\Role::DELETE]);
+        $admin->ressources()->save($categorie, ['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($categorie, ['role' => \App\Role::READ]);
+        $admin->ressources()->save($categorie, ['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($categorie, ['role' => \App\Role::DELETE]);
 
-        $admin->ressources()->save($prix,['role' => \App\Role::CREATE]);
-        $admin->ressources()->save($prix,['role' => \App\Role::READ]);
-        $admin->ressources()->save($prix,['role' => \App\Role::UPDATE]);
-        $admin->ressources()->save($prix,['role' => \App\Role::DELETE]);
+        $admin->ressources()->save($prix, ['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($prix, ['role' => \App\Role::READ]);
+        $admin->ressources()->save($prix, ['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($prix, ['role' => \App\Role::DELETE]);
 
-        $admin->ressources()->save($articlePresse,['role' => \App\Role::CREATE]);
-        $admin->ressources()->save($articlePresse,['role' => \App\Role::READ]);
-        $admin->ressources()->save($articlePresse,['role' => \App\Role::UPDATE]);
-        $admin->ressources()->save($articlePresse,['role' => \App\Role::DELETE]);
+        $admin->ressources()->save($presse, ['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($presse, ['role' => \App\Role::READ]);
+        $admin->ressources()->save($presse, ['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($presse, ['role' => \App\Role::DELETE]);
 
-        $admin->ressources()->save($edition,['role' => \App\Role::CREATE]);
-        $admin->ressources()->save($edition,['role' => \App\Role::READ]);
-        $admin->ressources()->save($edition,['role' => \App\Role::UPDATE]);
-        $admin->ressources()->save($edition,['role' => \App\Role::DELETE]);
+        $admin->ressources()->save($edition, ['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($edition, ['role' => \App\Role::READ]);
+        $admin->ressources()->save($edition, ['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($edition, ['role' => \App\Role::DELETE]);
 
-        $admin->ressources()->save($media,['role' => \App\Role::CREATE]);
-        $admin->ressources()->save($media,['role' => \App\Role::READ]);
-        $admin->ressources()->save($media,['role' => \App\Role::UPDATE]);
-        $admin->ressources()->save($media,['role' => \App\Role::DELETE]);
+        $admin->ressources()->save($media, ['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($media, ['role' => \App\Role::READ]);
+        $admin->ressources()->save($media, ['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($media, ['role' => \App\Role::DELETE]);
 
-        $admin->ressources()->save($actualite,['role' => \App\Role::CREATE]);
-        $admin->ressources()->save($actualite,['role' => \App\Role::READ]);
-        $admin->ressources()->save($actualite,['role' => \App\Role::UPDATE]);
-        $admin->ressources()->save($actualite,['role' => \App\Role::DELETE]);
+        $admin->ressources()->save($actualite, ['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($actualite, ['role' => \App\Role::READ]);
+        $admin->ressources()->save($actualite, ['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($actualite, ['role' => \App\Role::DELETE]);
 
-        $admin->ressources()->save($membre,['role' => \App\Role::CREATE]);
-        $admin->ressources()->save($membre,['role' => \App\Role::READ]);
-        $admin->ressources()->save($membre,['role' => \App\Role::UPDATE]);
-        $admin->ressources()->save($membre,['role' => \App\Role::DELETE]);
+        $admin->ressources()->save($membre, ['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($membre, ['role' => \App\Role::READ]);
+        $admin->ressources()->save($membre, ['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($membre, ['role' => \App\Role::DELETE]);
 
-        $admin->ressources()->save($reseauSocial,['role' => \App\Role::CREATE]);
-        $admin->ressources()->save($reseauSocial,['role' => \App\Role::READ]);
-        $admin->ressources()->save($reseauSocial,['role' => \App\Role::UPDATE]);
-        $admin->ressources()->save($reseauSocial,['role' => \App\Role::DELETE]);
+        $admin->ressources()->save($social, ['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($social, ['role' => \App\Role::READ]);
+        $admin->ressources()->save($social, ['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($social, ['role' => \App\Role::DELETE]);
 
-        $admin->ressources()->save($user,['role' => \App\Role::CREATE]);
-        $admin->ressources()->save($user,['role' => \App\Role::READ]);
-        $admin->ressources()->save($user,['role' => \App\Role::UPDATE]);
-        $admin->ressources()->save($user,['role' => \App\Role::DELETE]);
+        $admin->ressources()->save($user, ['role' => \App\Role::CREATE]);
+        $admin->ressources()->save($user, ['role' => \App\Role::READ]);
+        $admin->ressources()->save($user, ['role' => \App\Role::UPDATE]);
+        $admin->ressources()->save($user, ['role' => \App\Role::DELETE]);
 
         //***CONTRIBUTEURS***
-        $contributor->ressources()->save($sponsor,['role' => \App\Role::CREATE]);
-        $contributor->ressources()->save($sponsor,['role' => \App\Role::READ]);
-        $contributor->ressources()->save($sponsor,['role' => \App\Role::UPDATE]);
-        $contributor->ressources()->save($sponsor,['role' => \App\Role::DELETE]);
+        $contributor->ressources()->save($sponsor, ['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($sponsor, ['role' => \App\Role::READ]);
+        $contributor->ressources()->save($sponsor, ['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($sponsor, ['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($categorie, ['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($categorie, ['role' => \App\Role::READ]);
+        $contributor->ressources()->save($categorie, ['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($categorie, ['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($prix, ['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($prix, ['role' => \App\Role::READ]);
+        $contributor->ressources()->save($prix, ['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($prix, ['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($presse, ['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($presse, ['role' => \App\Role::READ]);
+        $contributor->ressources()->save($presse, ['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($presse, ['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($media, ['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($media, ['role' => \App\Role::READ]);
+        $contributor->ressources()->save($media, ['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($media, ['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($actualite, ['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($actualite, ['role' => \App\Role::READ]);
+        $contributor->ressources()->save($actualite, ['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($actualite, ['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($membre, ['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($membre, ['role' => \App\Role::READ]);
+        $contributor->ressources()->save($membre, ['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($membre, ['role' => \App\Role::DELETE]);
+
+        $contributor->ressources()->save($social, ['role' => \App\Role::CREATE]);
+        $contributor->ressources()->save($social, ['role' => \App\Role::READ]);
+        $contributor->ressources()->save($social, ['role' => \App\Role::UPDATE]);
+        $contributor->ressources()->save($social, ['role' => \App\Role::DELETE]);
 
-        $contributor->ressources()->save($categorieSponsor,['role' => \App\Role::CREATE]);
-        $contributor->ressources()->save($categorieSponsor,['role' => \App\Role::READ]);
-        $contributor->ressources()->save($categorieSponsor,['role' => \App\Role::UPDATE]);
-        $contributor->ressources()->save($categorieSponsor,['role' => \App\Role::DELETE]);
 
-        $contributor->ressources()->save($prix,['role' => \App\Role::CREATE]);
-        $contributor->ressources()->save($prix,['role' => \App\Role::READ]);
-        $contributor->ressources()->save($prix,['role' => \App\Role::UPDATE]);
-        $contributor->ressources()->save($prix,['role' => \App\Role::DELETE]);
-
-        $contributor->ressources()->save($articlePresse,['role' => \App\Role::CREATE]);
-        $contributor->ressources()->save($articlePresse,['role' => \App\Role::READ]);
-        $contributor->ressources()->save($articlePresse,['role' => \App\Role::UPDATE]);
-        $contributor->ressources()->save($articlePresse,['role' => \App\Role::DELETE]);
-
-        $contributor->ressources()->save($media,['role' => \App\Role::CREATE]);
-        $contributor->ressources()->save($media,['role' => \App\Role::READ]);
-        $contributor->ressources()->save($media,['role' => \App\Role::UPDATE]);
-        $contributor->ressources()->save($media,['role' => \App\Role::DELETE]);
-
-        $contributor->ressources()->save($actualite,['role' => \App\Role::CREATE]);
-        $contributor->ressources()->save($actualite,['role' => \App\Role::READ]);
-        $contributor->ressources()->save($actualite,['role' => \App\Role::UPDATE]);
-        $contributor->ressources()->save($actualite,['role' => \App\Role::DELETE]);
-
-        $contributor->ressources()->save($membre,['role' => \App\Role::CREATE]);
-        $contributor->ressources()->save($membre,['role' => \App\Role::READ]);
-        $contributor->ressources()->save($membre,['role' => \App\Role::UPDATE]);
-        $contributor->ressources()->save($membre,['role' => \App\Role::DELETE]);
-
-        $contributor->ressources()->save($reseauSocial,['role' => \App\Role::CREATE]);
-        $contributor->ressources()->save($reseauSocial,['role' => \App\Role::READ]);
-        $contributor->ressources()->save($reseauSocial,['role' => \App\Role::UPDATE]);
-        $contributor->ressources()->save($reseauSocial,['role' => \App\Role::DELETE]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
         //*******CREATION DES COMMENTAIRES*******
-        $edition1->articlePresses()->save($presse1);
-        $edition1->articlePresses()->save($presse2);
-        $edition2->articlePresses()->save($presse2);
-        $edition2->articlePresses()->save($presse3);
-        $edition3->articlePresses()->save($presse1);
-        $edition3->articlePresses()->save($presse2);
-        $edition3->articlePresses()->save($presse3);
+        $edition1->presses()->save($presse1);
+        $edition1->presses()->save($presse2);
+        $edition2->presses()->save($presse2);
+        $edition2->presses()->save($presse3);
+        $edition3->presses()->save($presse1);
+        $edition3->presses()->save($presse2);
+        $edition3->presses()->save($presse3);
 
         //*******CREATION DES GAINS*******
         $edition1->prixs()->save($prix1);
