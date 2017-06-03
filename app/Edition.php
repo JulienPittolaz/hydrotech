@@ -30,7 +30,7 @@ class Edition extends Model
     }
 
     public function presses() {
-        return $this->belongsToMany('\App\AcrticlePresse');
+        return $this->belongsToMany('\App\Presse');
     }
 
     public static function isValid($inputs) {
