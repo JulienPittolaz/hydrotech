@@ -22,7 +22,6 @@ var ModelArticleDePresse = Hydrotech.Model.extend({
         }
         //Validation date
         if(!_.isDate(attrs.date)) {
-            console.log(attrs.date);
             msg += "La date doit être renseignée !\n";
         }
         //Validation nomPresse
