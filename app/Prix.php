@@ -18,7 +18,7 @@ class Prix extends Model
     public static function isValid($data = array()) {
         return Validator::make($data, [
             'id' => 'exists:prixs|sometimes|required',
-            'nom' => 'string|sometimes|required',
+            'nom' => 'string|sometimes|required|unique:prixs',
             'description' => 'string|sometimes|required',
             'montant' => 'numeric|min:0|sometimes|required'
         ])->passes();
