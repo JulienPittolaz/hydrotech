@@ -105,17 +105,7 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     console.log("Erreurs groupe: " + testModelGroupe.validationError);
     testModelGroupe.log()
     $(".content").html(JST['groupe'](testModelGroupe.toJSON()));
-
-    // RESSOURCE
-    var testModelResssource = new ModelRessource({
-        nom: "Jean Jacques",
-    })
-
-    testModelResssource.isValid();
-    console.log("Erreurs ressource: " + testModelGroupe.validationError);
-    testModelResssource.log()
-    $(".content").html(JST['ressource'](testModelResssource.toJSON()));
-
+    
     // ACTUALITE
     var testModelActualite = new ModelActualite({
         titre: "test",
