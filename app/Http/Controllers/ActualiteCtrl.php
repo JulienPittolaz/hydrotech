@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actualite;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Auth;
 
 class ActualiteCtrl extends Controller
 {
@@ -14,9 +16,9 @@ class ActualiteCtrl extends Controller
      */
     public function index()
     {
-        $actualites = Actualite::all();
+        $actualites = Actualite::all()->where('actif', true);
         foreach ($actualites as $actualite) {
-            $actualite['urlImage'] = urldecode($actualite['urlImage']);
+            $actualite->urlImage = urldecode($actualite->urlImage);
         }
         return $actualites;
     }
@@ -39,15 +41,22 @@ class ActualiteCtrl extends Controller
      */
     public function store(Request $request)
     {
-        $inputs = $request->only(['titre', 'datePublication', 'contenu', 'auteur', 'publie']);
-        if (!Project::isValid(['id' => $projectId])) {
-            return response()->json('not found', Response::HTTP_NOT_FOUND);
+        $inputs = $request->only(['titre', 'datePublication', 'contenu', 'publie', 'urlImage']);
+        if (!Actualite::isValid($inputs)) {
+            return response()->json('Actualité invalide', Response::HTTP_BAD_REQUEST);
         }
-        // Check ownership
-        if (Auth::user()->projects()->find($projectId) == null) {
-            return response()->json('forbidden', Response::HTTP_FORBIDDEN);
-        }
-        return Project::find($projectId)->tasks()->get();
+
+        $actualite = new Actualite([
+            'titre' => $inputs['titre'],
+            'datePublication' => $inputs['datePublication'],
+            'contenu' => $inputs['contenu'],
+            'urlImage' => urlencode($inputs['urlImage']),
+            //'auteur' => 'UTILISATEUR TEST',
+            'auteur' => Auth::user()->name,
+            'publie' => $inputs['publie']
+        ]);
+        $actualite->save();
+        return  response()->json($actualite, Response::HTTP_CREATED);
     }
 
     /**
@@ -58,7 +67,13 @@ class ActualiteCtrl extends Controller
      */
     public function show($id)
     {
-        //
+
+        $actualite = Actualite::find($id);
+
+        if (!Actualite::isValid(['id' => $id]) || $actualite->actif == false) {
+            return response()->json('Requête invalide', Response::HTTP_NOT_FOUND);
+        }
+        return $actualite;
     }
 
     /**
@@ -81,7 +96,27 @@ class ActualiteCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $actualite = Actualite::find($id);
+
+        $inputs = $request->intersect(['titre', 'datePublication', 'contenu', 'publie', 'urlImage']);
+        if (!Actualite::isValid($inputs)) {
+            return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
+        }
+
+        if (!Actualite::isValid(['id' => $id])) {
+            return response()->json('Not found', Response::HTTP_NOT_FOUND);
+        }
+
+        if($actualite['actif'] == false){
+            return response()->json('Actualité déjà supprimé', Response::HTTP_NOT_FOUND);
+        }
+
+        if($request->has('urlImage')) {
+            $inputs['urlImage'] = urlencode($inputs['urlImage']);
+        }
+        $actualite->update($inputs);
+        $actualite['urlImage'] = urldecode($actualite['urlImage']);
+        return  response()->json($actualite, Response::HTTP_OK);
     }
 
     /**
@@ -92,6 +127,17 @@ class ActualiteCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        $actualite = Actualite::find($id);
+
+        if (!Actualite::isValid(['id' => $id])) {
+            return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
+        }
+
+        if($actualite['actif'] == false){
+            return response()->json('Actualité déjà supprimée', Response::HTTP_NOT_FOUND);
+        }
+        $actualite->actif = false;
+        $actualite->save();
+        return response()->json('OK', Response::HTTP_OK);
     }
 }
