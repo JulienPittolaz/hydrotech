@@ -8,6 +8,7 @@ use Validator;
 class Categorie extends Model
 {
     protected $fillable = ['nom', 'description'];
+    protected $hidden = ['actif'];
     //protected $table = "categories";
 
 
