@@ -8,6 +8,7 @@ use Validator;
 class Presse extends Model
 {
     protected $fillable = ['url', 'titreArticle', 'description', 'dateParution', 'nomPresse'];
+    protected $hidden = ['actif'];
     //protected $table = "presses";
 
     public function editions() {

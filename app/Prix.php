@@ -8,6 +8,7 @@ use Validator;
 class Prix extends Model
 {
     protected $fillable = ['nom', 'description', 'montant'];
+    protected $hidden = ['actif'];
     protected $table = "prixs";
 
     public function editions() {

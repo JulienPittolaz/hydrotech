@@ -8,6 +8,7 @@ use Validator;
 class Social extends Model
 {
     protected $fillable = ['nom', 'url'];
+    protected $hidden = ['actif'];
     //protected $table = "socials";
 
     public static function isValid($data = array()) {
