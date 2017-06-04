@@ -51,6 +51,7 @@ class MembreCtrl extends Controller
         $membre = new Membre($para);
 
         $membre->save();
+        $membre->photoProfil = urldecode($membre->photoProfil);
         return response()->json($membre, Response::HTTP_CREATED);
     }
 
