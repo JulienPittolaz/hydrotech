@@ -20,7 +20,7 @@ class Prix extends Model
             'id' => 'exists:prixs|sometimes|required',
             'nom' => 'string|sometimes|required',
             'description' => 'string|sometimes|required',
-            'montant' => 'float|min:0|sometimes|required'
+            'montant' => 'numeric|min:0|sometimes|required'
         ])->passes();
     }
 }
