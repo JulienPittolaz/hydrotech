@@ -153,12 +153,20 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
     // EDITION
     var testModelEdition = new ModelEdition({
-        annee: "2017",
+        annee: 2016,
+        nomEquipe: "Tests",
+        urlImageMedia: "bla",
+        urlImageEquipe: "bla2",
+        lieu: "Cossonay",
+        dateDebut: new Date("2017-09-30"),
+        dateFin: new Date("2017-09-31"),
+        description: "This is a test",
+        publie: true
 
     })
 
     testModelEdition.isValid();
-    console.log("Erreurs sponsor: " + testModelEdition.validationError);
+    console.log("Erreurs Edition: " + testModelEdition.validationError);
     testModelEdition.log()
     $(".content").html(JST['edition'](testModelEdition.toJSON()));
 });

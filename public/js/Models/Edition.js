@@ -8,33 +8,30 @@ var ModelEdition = Hydrotech.Model.extend({
         var msg = '';
 
         // Validation des champs vides
-        if (_.isEmpty(attrs.annee)) {
-            msg += 'L\'année doit être renseigné\n';
+        if (!_.isNumber(attrs.annee)) {
+            msg += 'L\'année doit être renseignée \n';
         }
         if (_.isEmpty(attrs.nomEquipe)) {
             msg += 'Le nom d\'équipe doit être renseigné\n';
         }
         if (_.isEmpty(attrs.urlImageMedia)) {
-            msg += 'L\'url image media doit être renseigné\n';
+            msg += 'L\'url image media doit être renseignée\n';
         }
         if (_.isEmpty(attrs.urlImageEquipe)) {
-            msg += 'L\'url image equipe doit être renseigné\n';
+            msg += 'L\'url image equipe doit être renseignée\n';
         }
         if (_.isEmpty(attrs.lieu)) {
             msg += 'Le lieu doit être renseigné\n';
         }
-        if (_.isEmpty(attrs.dateDebut)) {
+        if (_.isUndefined(attrs.dateDebut)) {
             msg += 'La date de début doit être renseigné\n';
         }
-        if (_.isEmpty(attrs.dateFin)) {
-            msg += 'La date de fin doit être renseigné\n';
-        }
-        if (_.isEmpty(attrs.dateFin)) {
+        if (_.isUndefined(attrs.dateFin)) {
             msg += 'La date de fin doit être renseigné\n';
         }
         // Validation des types de champs
 
-        if (attrs.annee.length = 4 ) {
+        if (attrs.annee.toString().length != 4 ) {
             msg += 'L\'année doit être composée de 4 chiffres\n';
         }
 
@@ -56,8 +53,8 @@ var ModelEdition = Hydrotech.Model.extend({
 
         // validation contraint integration
 
-        if (!(attrs.dateFin > attrs.dateDebut)){
-            msg += 'La date de fin doit être posterieur a la date de debut\n';
+        if (attrs.dateFin < attrs.dateDebut){
+            msg += 'La date de fin doit être posterieure à la date de debut\n';
 
         }
         return msg;
