@@ -161,4 +161,10 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     console.log("Erreurs sponsor: " + testModelEdition.validationError);
     testModelEdition.log()
     $(".content").html(JST['edition'](testModelEdition.toJSON()));
+    var test1 = new ModelMembres();
+    test1.fetch({
+        success:function () {
+            $("body").html(JST['membres']({membres:test1.toJSON()}));
+        }
+    });
 });
