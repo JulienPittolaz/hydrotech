@@ -149,7 +149,7 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
         urlImageEquipe: "bla2",
         lieu: "Cossonay",
         dateDebut: new Date("2017-09-30"),
-        dateFin: new Date("2017-09-31"),
+        dateFin: new Date("2018-01-13"),
         description: "This is a test",
         publie: true
 
