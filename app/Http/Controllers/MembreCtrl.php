@@ -98,7 +98,7 @@ class MembreCtrl extends Controller
         if (!Membre::isValid($para)) {
             return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
         }
-        if (!Membre::isValid(['id' => $id])) {
+        if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
             return response()->json('Membre inexistant', Response::HTTP_NOT_FOUND);
         }
         if($request->has('photoProfil')){
