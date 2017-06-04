@@ -122,7 +122,7 @@ class PrixCtrl extends Controller
         }
 
         if($prix['actif'] == false){
-            return response()->json('Prix déjà supprimée', Response::HTTP_NOT_FOUND);
+            return response()->json('Prix déjà supprimé', Response::HTTP_NOT_FOUND);
         }
         $prix->actif = false;
         $prix->save();

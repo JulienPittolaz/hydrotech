@@ -51,11 +51,12 @@ class ActualiteCtrl extends Controller
             'datePublication' => $inputs['datePublication'],
             'contenu' => $inputs['contenu'],
             'urlImage' => urlencode($inputs['urlImage']),
-            //'auteur' => 'UTILISATEUR TEST',
-            'auteur' => Auth::user()->name,
+            'auteur' => 'UTILISATEUR TEST',
+            //'auteur' => Auth::user()->name,
             'publie' => $inputs['publie']
         ]);
         $actualite->save();
+        $actualite['urlImage'] = urldecode($actualite['urlImage']);
         return  response()->json($actualite, Response::HTTP_CREATED);
     }
 
