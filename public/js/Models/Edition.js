@@ -23,12 +23,6 @@ var ModelEdition = Hydrotech.Model.extend({
         if (_.isEmpty(attrs.lieu)) {
             msg += 'Le lieu doit être renseigné\n';
         }
-        if (_.isUndefined(attrs.dateDebut)) {
-            msg += 'La date de début doit être renseigné\n';
-        }
-        if (_.isUndefined(attrs.dateFin)) {
-            msg += 'La date de fin doit être renseigné\n';
-        }
         // Validation des types de champs
 
         if (attrs.annee.toString().length != 4 ) {
