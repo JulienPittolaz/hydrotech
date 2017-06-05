@@ -18,7 +18,7 @@
         <div id="contact">
         </div>
     </section>
-    <section id="globalNews">
+    <section id="globalNews" class="container">
     </section>
     <section id="timeline">
     </section>
