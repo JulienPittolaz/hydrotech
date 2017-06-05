@@ -17,7 +17,9 @@ class CreateCategorieSponsorTable extends Migration
             $table->increments('id');
             $table->integer('categorie_id')->unsigned();
             $table->integer('sponsor_id')->unsigned();
+            $table->integer('edition_annee')->unsigned();
             $table->timestamps();
+            $table->foreign('edition_annee')->references('annee')->on('editions')->onDelete("cascade");
             $table->foreign('categorie_id')->references('id')->on('categories')->onDelete("cascade");
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete("cascade");
             $table->boolean('actif')->default(true);
