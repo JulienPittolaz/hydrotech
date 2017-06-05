@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Validator;
 
 class Edition extends Model
 {
-    protected $fillable = ['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description'];
+    protected $fillable = ['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie'];
     protected $hidden = ['actif'];
     //protected $table = "editions";
 
@@ -51,8 +52,9 @@ class Edition extends Model
             'urlImageEquipe' => 'url|sometimes|required',
             'lieu' => 'string|sometimes|required',
             'dateDebut' => 'date|sometimes|required|before_or_equal:dateFin',
-            'dateFin' => 'date|sometimes|required|after_or_equal:dateDebut|before_or_equal:datePubliation',
-            'description' => 'string|sometimes|required'
+            'dateFin' => 'date|sometimes|required|after_or_equal:dateDebut',
+            'description' => 'string|sometimes|required',
+            'publie' => 'boolean|sometimes|required'
         ])->passes();
     }
 }
