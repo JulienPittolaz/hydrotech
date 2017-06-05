@@ -175,13 +175,18 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     var testMembre = new ModelMembres();
     testMembre.fetch({
         success: function () {
-            $("body").html(JST['membres']({membres:testMembre.toJSON()}));
+            $("#globalNews").html(JST['membres']({membres:testMembre.toJSON()}));
 
         }
     })
 
+    var mesArticles = new ModelArticlesDePresse();
+    mesArticles.fetch({
+        success: function () {
+            $("#timeline").html(JST['articlesPresse']({articlesPresse:mesArticles.toJSON()}));
 
-
+        }
+    })
 
 
 
