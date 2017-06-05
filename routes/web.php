@@ -15,4 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/membre', 'MembreCtrl');
+Route::group(['prefix' => '/api/v1'], function () {
+    Route::resource('/membres', 'MembreCtrl');
+    Route::resource('/actualites', 'ActualiteCtrl');
+    Route::resource('/categories', 'CategorieCtrl');
+    Route::resource('/editions', 'EditionCtrl');
+    Route::resource('/medias', 'MediaCtrl');
+    Route::resource('/presses', 'PresseCtrl');
+    Route::resource('/prixs', 'PrixCtrl');
+    Route::resource('/socials', 'SocialCtrl');
+    Route::resource('/sponsors', 'SponsorCtrl');
+    Route::resource('/users', 'UserCtrl');
+});
