@@ -19,7 +19,6 @@ class ACLSeeder extends Seeder
 
         DB::table('sponsors')->truncate();
         DB::table('categories')->truncate();
-        DB::table('categorie_sponsor')->truncate();
 
         DB::table('editions')->truncate();
         DB::table('prixs')->truncate();
@@ -28,8 +27,8 @@ class ACLSeeder extends Seeder
         DB::table('actualites')->truncate();
         DB::table('membres')->truncate();
         DB::table('socials')->truncate();
+        DB::table('categorieeditionsponsors')->truncate();
 
-        DB::table('categorie_edition')->truncate();
         DB::table('edition_prix')->truncate();
         DB::table('edition_presse')->truncate();
         DB::table('edition_media')->truncate();
@@ -314,27 +313,48 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre4->save();
 
 
+        //*******CREATION DES CATEGORIE EDITION SPONSOR*******
+        $categorieEditionSponsor1 = new \App\Categorieeditionsponsor();
+        $categorieEditionSponsor1->categorie()->associate($categorie1);
+        $categorieEditionSponsor1->edition()->associate($edition1);
+        $categorieEditionSponsor1->sponsor()->associate($sponsor1);
+        $categorieEditionSponsor1->save();
+
+        $categorieEditionSponsor2 = new \App\Categorieeditionsponsor();
+        $categorieEditionSponsor2->categorie()->associate($categorie3);
+        $categorieEditionSponsor2->edition()->associate($edition2);
+        $categorieEditionSponsor2->sponsor()->associate($sponsor1);
+        $categorieEditionSponsor2->save();
+
+        $categorieEditionSponsor3 = new \App\Categorieeditionsponsor();
+        $categorieEditionSponsor3->categorie()->associate($categorie2);
+        $categorieEditionSponsor3->edition()->associate($edition2);
+        $categorieEditionSponsor3->sponsor()->associate($sponsor3);
+        $categorieEditionSponsor3->save();
+
+        $categorieEditionSponsor4 = new \App\Categorieeditionsponsor();
+        $categorieEditionSponsor4->categorie()->associate($categorie3);
+        $categorieEditionSponsor4->edition()->associate($edition1);
+        $categorieEditionSponsor4->sponsor()->associate($sponsor3);
+        $categorieEditionSponsor4->save();
+
+        $categorieEditionSponsor4 = new \App\Categorieeditionsponsor();
+        $categorieEditionSponsor4->categorie()->associate($categorie1);
+        $categorieEditionSponsor4->edition()->associate($edition2);
+        $categorieEditionSponsor4->sponsor()->associate($sponsor2);
+        $categorieEditionSponsor4->save();
+
+        $categorieEditionSponsor4 = new \App\Categorieeditionsponsor();
+        $categorieEditionSponsor4->categorie()->associate($categorie3);
+        $categorieEditionSponsor4->edition()->associate($edition1);
+        $categorieEditionSponsor4->sponsor()->associate($sponsor2);
+        $categorieEditionSponsor4->save();
+
         //*******************************************************************************************
         //*******************************************************************************************
         //*******************************************************************************************
         //****************************CREATION DES ASSOCIATIONS**************************************
 
-
-        //*******ASSOCIATION LISTING*******
-        $categorie1->sponsors()->save($sponsor1);
-        $categorie1->sponsors()->save($sponsor2);
-        $categorie3->sponsors()->save($sponsor1);
-        $categorie3->sponsors()->save($sponsor2);
-        $categorie3->sponsors()->save($sponsor3);
-
-        //*******ASSOCIATION SPONSORING*******
-        $edition1->categories()->save($categorie1);
-        $edition1->categories()->save($categorie2);
-        $edition2->categories()->save($categorie1);
-        $edition2->categories()->save($categorie2);
-        $edition2->categories()->save($categorie3);
-        $edition3->categories()->save($categorie1);
-        $edition3->categories()->save($categorie3);
 
         //*******ASSOCIATION ILLUSTRATION*******
         $edition1->medias()->save($media1);
