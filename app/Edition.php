@@ -22,8 +22,9 @@ class Edition extends Model
         return $this->belongsToMany('\App\Media')->withTimestamps();
     }
 
-    public function categories() {
-        return $this->belongsToMany('\App\Categorie')->withTimestamps();
+    public function categorieeditionsponsors()
+    {
+        return $this->hasMany('App\Categorieeditionsponsor')->withTimestamps();
     }
 
     public function prixs() {
@@ -33,6 +34,7 @@ class Edition extends Model
     public function presses() {
         return $this->belongsToMany('\App\Presse')->withTimestamps();
     }
+
 
     public static function isValid($inputs) {
         return Validator::make($inputs, [

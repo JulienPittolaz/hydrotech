@@ -13,11 +13,12 @@ class Sponsor extends Model
 
 
 
-    public function categories()
+    public function categorieeditionsponsors()
     {
-        return $this->belongsToMany('App\Categorie')->withTimestamps();
+        return $this->hasMany('App\Categorieeditionsponsor')->withTimestamps();
     }
 
+    
     public static function isValid($data = array()){
         return Validator::make($data, [
             'id' => 'exists:sponsors|sometimes|required',
