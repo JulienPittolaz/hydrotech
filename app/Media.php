@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 class Media extends Model
 {
     protected $fillable = ['url', 'titre', 'date', 'auteur', 'typeMedia'];
+    protected $hidden = ['actif'];
     protected $table = "medias";
 
     public function editions() {

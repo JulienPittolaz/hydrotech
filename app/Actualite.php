@@ -7,7 +7,8 @@ use Validator;
 
 class Actualite extends Model
 {
-    protected $fillable = ['titre', 'datePublication', 'contenu', 'auteur', 'publie'];
+    protected $fillable = ['titre', 'datePublication', 'contenu', 'auteur', 'publie', 'urlImage'];
+    protected $hidden = ['actif'];
     //protected $table = "actualites";
 
     public function editions() {
