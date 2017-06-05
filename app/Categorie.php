@@ -8,18 +8,15 @@ use Validator;
 class Categorie extends Model
 {
     protected $fillable = ['nom', 'description'];
+    protected $hidden = ['actif'];
     //protected $table = "categories";
 
 
-    public function sponsors()
+    public function categorieeditionsponsors()
     {
-        return $this->belongsToMany('App\Sponsor')->withTimestamps();
+        return $this->hasMany('App\Categorieeditionsponsor');
     }
 
-    public function editions()
-    {
-        return $this->belongsToMany('App\Edition')->withTimestamps();
-    }
 
     public static function isValid($data = array()){
         return Validator::make($data, [

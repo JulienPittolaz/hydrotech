@@ -8,6 +8,7 @@ use Validator;
 class Membre extends Model
 {
     protected $fillable = ['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role'];
+    protected $hidden = ['actif'];
     //protected $table = "membres";
 
     public function editions() {

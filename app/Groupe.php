@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Groupe extends Model
 {
 
+    protected $hidden = ['actif'];
+
     public function users()
     {
         return $this->belongsToMany('App\User')->withTimestamps();
