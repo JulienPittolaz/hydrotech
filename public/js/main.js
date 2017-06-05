@@ -172,7 +172,13 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     ]);
     $(".content").html(JST['medias']({medias:mesMedias.toJSON()}));
 
+    var testMembre = new ModelMembres();
+    testMembre.fetch({
+        success: function () {
+            $("body").html(JST['membres']({membres:testMembre.toJSON()}));
 
+        }
+    })
 
 
 
