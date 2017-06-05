@@ -22,8 +22,9 @@ class Edition extends Model
         return $this->belongsToMany('\App\Media')->withTimestamps();
     }
 
-    public function categories() {
-        return $this->belongsToMany('\App\Categorie')->withTimestamps();
+    public function categorieeditionsponsors()
+    {
+        return $this->hasMany('App\Categorieeditionsponsor')->withTimestamps();
     }
 
     public function prixs() {
