@@ -14,20 +14,13 @@
     <body>
     <section id="home">
         <div id="socialNetworks">
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
         </div>
         <div id="contact">
-            <a href="#"></a>
         </div>
     </section>
     <section id="globalNews">
-
     </section>
     <section id="timeline">
-
     </section>
     </body>
 </html>
