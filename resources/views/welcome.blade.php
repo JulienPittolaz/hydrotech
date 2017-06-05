@@ -7,8 +7,8 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <!-- Styles -->
+        <link rel="stylesheet" href="css/app.css" type="text/css">
         <script src="js/packJs.php" charset="utf-8"></script>
     </head>
     <body>

@@ -587,11 +587,11 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
-
-
-
-
-
-
+    var actualitesSite = new ModelActualites();
+    actualitesSite.fetch({
+        success: function(){
+            $("#globalNews").html(JST['atualites']({actualites:actualitesSite.toJSON()}));
+        }
+    });
 
 });
