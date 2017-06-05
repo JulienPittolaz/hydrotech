@@ -1,9 +1,15 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 // Variables
-@import "variables";
+@import 'variables';
 
 // Bootstrap
 //@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+//Style général
+@import "general";
+
+//Composants
+@import 'actualites';
