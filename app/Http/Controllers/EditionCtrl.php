@@ -82,7 +82,8 @@ class EditionCtrl extends Controller
         $para['urlImageEquipe'] = urlencode($para['urlImageEquipe']);
         $edition = new Edition($para);
         $edition->save();
-        $edition->url = urldecode($edition->url);
+        $edition->urlImageMedia = urldecode($edition->urlImageMedia);
+        $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
         return response()->json($edition, Response::HTTP_CREATED);
     }
 
@@ -94,7 +95,16 @@ class EditionCtrl extends Controller
      */
     public function show($id)
     {
-        //
+        $edition = Edition::find($id);
+        if (!Edition::isValid(['id' => $id]) || $edition->actif == false) {
+            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+        }
+        if (Edition::find($id) == null) {
+            return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
+        }
+        $edition->urlImageMedia = urldecode($edition->urlImageMedia);
+        $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
+        return $edition;
     }
 
     /**
@@ -117,7 +127,24 @@ class EditionCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $edition = Edition::find($id);
+        $para = $request->intersect(['url', 'titre', 'date', 'auteur', 'typeMedia']);
+        if (!Edition::isValid($para)) {
+            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+        }
+        if (!Edition::isValid(['id' => $id]) || $edition->actif == false) {
+            return response()->json('Edition inexistante', Response::HTTP_NOT_FOUND);
+        }
+        if($request->has('urlImageMedia')){
+            $para['urlImageMedia'] = urlencode($para['urlImageMedia']);
+        }
+        if($request->has('urlImageEquipe')){
+            $para['urlImageEquipe'] = urlencode($para['urlImageEquipe']);
+        }
+        $edition->update($para);
+        $edition->urlImageMedia = urldecode($edition->urlImageMedia);
+        $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
+        return response()->json($edition, Response::HTTP_OK);
     }
 
     /**
@@ -128,6 +155,19 @@ class EditionCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        $edition = Edition::find($id);
+
+        if (!Edition::isValid(['id' => $id])) {
+            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+        }
+        if ($edition == null) {
+            return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
+        }
+        if($edition['actif'] == false){
+            return response()->json('Edition déjà supprimée', Response::HTTP_NOT_FOUND);
+        }
+        $edition->actif = false;
+        $edition->save();
+        return response()->json('OK', Response::HTTP_OK);
     }
 }
