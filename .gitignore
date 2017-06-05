@@ -8,4 +8,5 @@ storage/*.key
 .env
 .idea/
 public/css/app.css
-
+composer.lock
+package-lock.json
