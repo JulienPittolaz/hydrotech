@@ -34,6 +34,10 @@ class Edition extends Model
         return $this->belongsToMany('\App\Presse')->withTimestamps();
     }
 
+    public function sponsors(){
+        return $this->belongsToMany('\App\Sponsor')->withTimestamps();
+    }
+
     public static function isValid($inputs) {
         return Validator::make($inputs, [
             'id' => 'exists:editions|sometimes|required',
