@@ -155,6 +155,19 @@ class EditionCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        $edition = Edition::find($id);
+
+        if (!Edition::isValid(['id' => $id])) {
+            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+        }
+        if ($edition == null) {
+            return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
+        }
+        if($edition['actif'] == false){
+            return response()->json('Edition déjà supprimée', Response::HTTP_NOT_FOUND);
+        }
+        $edition->actif = false;
+        $edition->save();
+        return response()->json('OK', Response::HTTP_OK);
     }
 }
