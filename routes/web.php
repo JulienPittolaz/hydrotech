@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => '/api/v1'], function () {
+    Route::post('/editions/:annee/:ressource/:resource_id', 'EditionAssociationCtrl@store');
     Route::resource('/membres', 'MembreCtrl');
     Route::resource('/actualites', 'ActualiteCtrl');
     Route::resource('/categories', 'CategorieCtrl');
