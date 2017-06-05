@@ -20,7 +20,7 @@
     </section>
     <section id="globalNews" class="container">
     </section>
-    <section id="timeline">
+    <section id="timeline" class="container">
     </section>
     </body>
 </html>

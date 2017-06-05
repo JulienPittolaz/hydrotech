@@ -4,5 +4,5 @@ _.each(TMPL, function(template,name){
   Handlebars.registerPartial(name, template);
 });
 Handlebars.registerHelper("toHuman", function(timestamp) {
-     return (new Date(timestamp*1000)).toLocaleDateString();
+     return (new Date(timestamp)).toLocaleDateString();
 });

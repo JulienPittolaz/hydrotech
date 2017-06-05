@@ -1,13 +1,8 @@
-
-h1{
-  font-size: $main-title-size;
-}
-
 .actualite_header{
-  border-top: 5px solid blue;
+  border-top: 5px solid $contrast-blue;
 }
 .actualite_time  {
-  color:blue;
+  color:$contrast-blue;
 }
 
 .actualite_titre {

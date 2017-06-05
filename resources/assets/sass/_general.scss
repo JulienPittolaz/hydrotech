@@ -1,6 +1,19 @@
 body,html{
   font-family: 'Montserrat',sans-serif;
-  h1{
+  h1 {
     font-size: $main-title-size;
+    text-transform: uppercase;
+    color:$contrast-blue;
+  }
+  a{
+    color:$contrast-blue;
+  }
+  nav.menu{
+    float:left;
+    ul{
+      padding-left:8px;
+      text-transform: uppercase;
+      border-left: 5px solid $contrast-blue;
+    }
   }
 }
