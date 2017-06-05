@@ -26,6 +26,8 @@ class SponsorCtrl extends Controller
             foreach ($categorieSponsorEditions as $categorieDuSponsor){
                 $ed = $categorieDuSponsor->edition;
                 $ed->annee;
+                $ed->urlImageMedia = urldecode($ed->urlImageMedia);
+                $ed->urlImageEquipe = urldecode($ed->urlImageEquipe);
             }
         }
         return $sponsors;
