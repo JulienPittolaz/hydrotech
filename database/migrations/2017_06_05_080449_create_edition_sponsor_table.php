@@ -13,7 +13,7 @@ class CreateEditionSponsorTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorie_edition', function (Blueprint $table) {
+        Schema::create('edition_sponsor', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sponsor_id')->unsigned();
             $table->integer('edition_id')->unsigned();
