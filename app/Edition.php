@@ -21,10 +21,16 @@ class Edition extends Model
     public function medias() {
         return $this->belongsToMany('\App\Media')->withTimestamps();
     }
+    public function socials() {
+        return $this->belongsToMany('\App\Social')->withTimestamps();
+    }
+    public function sponsors() {
+        return $this->belongsToMany('\App\Sponsor')->withTimestamps();
+    }
 
     public function categorieeditionsponsors()
     {
-        return $this->hasMany('App\Categorieeditionsponsor')->withTimestamps();
+        return $this->hasMany('App\Categorieeditionsponsor');
     }
 
     public function prixs() {

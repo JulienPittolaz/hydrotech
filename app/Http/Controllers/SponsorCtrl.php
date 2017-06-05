@@ -16,9 +16,17 @@ class SponsorCtrl extends Controller
     public function index()
     {
         $sponsors = Sponsor::all()->where('actif', true);
+
+
         foreach ($sponsors as $sponsor){
             $sponsor->urlLogo = urldecode($sponsor->urlLogo);
             $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
+
+            $categorieSponsorEditions = $sponsor->categorieeditionsponsors;
+            foreach ($categorieSponsorEditions as $categorieDuSponsor){
+                $ed = $categorieDuSponsor->edition;
+                $ed->annee;
+            }
         }
         return $sponsors;
     }

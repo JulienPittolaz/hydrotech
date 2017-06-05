@@ -14,7 +14,7 @@ class Categorie extends Model
 
     public function categorieeditionsponsors()
     {
-        return $this->hasMany('App\Categorieeditionsponsor')->withTimestamps();
+        return $this->hasMany('App\Categorieeditionsponsor');
     }
 
 
