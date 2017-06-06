@@ -22,6 +22,8 @@ Route::group(['middleware' => 'myAuth'], function () {
     Route::get('/auth/logout', 'AuthController@logout');
 });
 
+Route::resource('/membres', 'Back_office\MembreCtrl');
+
 Route::group(['prefix' => '/api/v1'], function () {
     //PUBLIC ROUTES
     Route::resource('/membres', 'MembreCtrl', ['only' => ['index', 'show']]);
