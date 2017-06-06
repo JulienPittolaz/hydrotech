@@ -1,14 +1,6 @@
-{{--@extends('layouts.master')
+@extends('layouts.master')
 
-@section('title', 'Nouvel article')
-
-@section('navbar')
-    <li><a href="{{ url('membres') }}">Tous les membres</a></li>
-@endsection
-
-@section('content-title', 'Nouveau membre')
-
-@section('content')--}}
+@section('content')
     <form action="{{ url('membres') }}" method="post" class="col s12">
         {{ csrf_field() }}
         <div class="row">
@@ -96,5 +88,4 @@
         </div>
         <button type="submit" class="btn waves-effect waves-light amber darken-4">Mémoriser</button>
     </form>
-{{--
-@endsection--}}
+@endsection
