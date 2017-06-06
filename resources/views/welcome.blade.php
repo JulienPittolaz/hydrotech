@@ -1,3 +1,4 @@
+@inject('membres', 'App\Membre')
 <!doctype html>
 <html lang="{{ config('app.locale') }}">
     <head>
@@ -90,5 +91,9 @@
                 </div>
             </div>
         </div>
+        {{$membres}}
+        @foreach($membres as $membre)
+            {{!!dd($membre)}}
+        @endforeach
     </body>
 </html>

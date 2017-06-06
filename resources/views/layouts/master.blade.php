@@ -674,6 +674,7 @@
     <script src="{{url("back_office/plugins/chartjs/Chart.bundle.js")}}"></script>
 
     <!-- Flot Charts Plugin Js -->
+    <!-- Flot Charts Plugin Js -->
     <script src="{{url("back_office/plugins/flot-charts/jquery.flot.js")}}"></script>
     <script src="{{url("back_office/plugins/flot-charts/jquery.flot.resize.js")}}"></script>
     <script src="{{url("back_office/plugins/flot-charts/jquery.flot.pie.js")}}"></script>
@@ -683,9 +684,12 @@
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{url("back_office/plugins/jquery-sparkline/jquery.sparkline.js")}}"></script>
 
+
+    <script src="{{url("back_office/plugins/jquery-datatable/jquery.dataTable.js")}}"></script>
+
     <!-- Custom Js -->
     <script src="{{url("back_office/js/admin.js")}}"></script>
-    <script src="{{url("back_office/js/pages/index.js")}}"></script>
+    <script src="{{url("back_office/js/pages/tables/jquery-datatables.js")}}"></script>
 
     <!-- Demo Js -->
     <script src="{{url("back_office/js/demo.js")}}"></script>

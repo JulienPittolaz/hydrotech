@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Back_office;
 
+use App\Http\Controllers\Controller;
 use App\Prix;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,7 +17,7 @@ class PrixCtrl extends Controller
     public function index()
     {
         $prixs = Prix::all()->where('actif', true);
-        return view('')
+        return view('prix/index', ['prixs' => $prixs]);
     }
 
     /**

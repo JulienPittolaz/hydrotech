@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('Back_office.prixCtrl@index');
 });
 
 Route::get('/auth/login', 'AuthController@login');
@@ -22,7 +22,7 @@ Route::group(['middleware' => 'myAuth'], function () {
     Route::get('/auth/logout', 'AuthController@logout');
 });
 
-Route::resource('/membres', 'Back_office\MembreCtrl');
+Route::resource('/prix', 'Back_office\PrixCtrl');
 
 Route::group(['prefix' => '/api/v1'], function () {
     //PUBLIC ROUTES
