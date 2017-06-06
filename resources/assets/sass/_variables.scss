@@ -20,7 +20,7 @@ $brand-danger: #bf5329;
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $font-family-sans-serif: 'Montserrat', sans-serif;
 $font-size-base: 14px;
-$font-size-medium: 25px;
+$font-size-medium: 20px;
 $line-height-base: 1.6;
 $line-height-medium: 2.5;
 $text-color: #636b6f;
@@ -45,7 +45,9 @@ $input-color-placeholder: lighten($text-color, 30%);
 $panel-default-heading-bg: #fff;
 
 //Titres
-$main-title-size:100px;
+$main-title-size:72px;
+$main-title-size:72px;
 
 //Colors
 $contrast-blue:#1f3b7e;
+$text-color-grey:#2b2b2b;

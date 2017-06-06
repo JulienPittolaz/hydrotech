@@ -4,10 +4,13 @@
 
 body,html{
   font-family: 'Montserrat',sans-serif;
+  color: $text-color-grey;
   h1 {
     font-size: $main-title-size;
     text-transform: uppercase;
     color:$contrast-blue;
+    text-weight: $text-weight-bold;
+
   }
   a{
     color:$contrast-blue;

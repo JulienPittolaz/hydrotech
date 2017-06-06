@@ -1,16 +1,16 @@
 .actualite {
   margin-top : 50px;
+  margin-right : 10px;
 }
 .actualite_header{
   border-top: 8px solid $contrast-blue;
 }
-.actualite_time  {
-  font-weight: 700;
-
+.page_title{
+  font-weight: $text-weight-bold;
 }
 
 .actualite_titre {
-
+  font-size: $font-size-medium;
   text-transform: uppercase;
   padding-top: 2px;
   color: $contrast-blue;
@@ -35,4 +35,8 @@
 }
 .actualite_contenu {
   text-align: justify;
+}
+
+.actualite_plus{
+  text-align: center;
 }
