@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Front_office\FrontCtrl@index');
 
 Route::group(['prefix' => '/api/v1'], function () {
     Route::resource('/membres', 'MembreCtrl');
