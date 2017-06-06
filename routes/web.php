@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 Route::group(['prefix' => '/api/v1'], function () {
     Route::post('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@store');
-    Route::post('/editions/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@store');
+    Route::post('/sponsors/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@store');
     Route::delete('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@destroy');
-    Route::delete('/editions/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@destroy');
+    Route::delete('/sponsors/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@destroy');
     Route::resource('/membres', 'MembreCtrl');
     Route::resource('/actualites', 'ActualiteCtrl');
     Route::resource('/categories', 'CategorieCtrl');
