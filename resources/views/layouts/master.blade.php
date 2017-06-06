@@ -2,6 +2,9 @@
 <html>
 
 <head>
+    <base href="@php
+        echo public_path();
+    @endphp/" target="_blank">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -14,22 +17,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="back_office/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{url("back_office/plugins/bootstrap/css/bootstrap.css")}}" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="back_office/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="{{url("back_office/plugins/node-waves/waves.css")}}" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="back_office/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="{{url("back_office/plugins/animate-css/animate.css")}}" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
-    <link href="back_office/plugins/morrisjs/morris.css" rel="stylesheet" />
+    <link href="{{url("back_office/plugins/morrisjs/morris.css")}}" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="back_office/css/style.css" rel="stylesheet">
+    <link href="{{url("back_office/css/style.css")}}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="back_office/css/themes/all-themes.css" rel="stylesheet" />
+    <link href="{{url("back_office/css/themes/all-themes.css")}}" rel="stylesheet" />
 </head>
 
 <body class="theme-red">
@@ -646,45 +649,45 @@
     </section>
     </section>
     <!-- Jquery Core Js -->
-    <script src="back_office/plugins/jquery/jquery.min.js"></script>
+    <script src="{{url("back_office/plugins/jquery/jquery.min.js")}}"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="back_office/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="{{url("back_office/plugins/bootstrap/js/bootstrap.js")}}"></script>
 
     <!-- Select Plugin Js -->
-    <script src="back_office/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="{{url("back_office/plugins/bootstrap-select/js/bootstrap-select.js")}}"></script>
 
     <!-- Slimscroll Plugin Js -->
-    <script src="back_office/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="{{url("back_office/plugins/jquery-slimscroll/jquery.slimscroll.js")}}"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="back_office/plugins/node-waves/waves.js"></script>
+    <script src="{{url("back_office/plugins/node-waves/waves.js")}}"></script>
 
     <!-- Jquery CountTo Plugin Js -->
-    <script src="back_office/plugins/jquery-countto/jquery.countTo.js"></script>
+    <script src="{{url("back_office/plugins/jquery-countto/jquery.countTo.js")}}"></script>
 
     <!-- Morris Plugin Js -->
-    <script src="back_office/plugins/raphael/raphael.min.js"></script>
-    <script src="back_office/plugins/morrisjs/morris.js"></script>
+    <script src="{{url("back_office/plugins/raphael/raphael.min.js")}}"></script>
+    <script src="{{url("back_office/plugins/morrisjs/morris.js")}}"></script>
 
     <!-- ChartJs -->
-    <script src="back_office/plugins/chartjs/Chart.bundle.js"></script>
+    <script src="{{url("back_office/plugins/chartjs/Chart.bundle.js")}}"></script>
 
     <!-- Flot Charts Plugin Js -->
-    <script src="back_office/plugins/flot-charts/jquery.flot.js"></script>
-    <script src="back_office/plugins/flot-charts/jquery.flot.resize.js"></script>
-    <script src="back_office/plugins/flot-charts/jquery.flot.pie.js"></script>
-    <script src="back_office/plugins/flot-charts/jquery.flot.categories.js"></script>
-    <script src="back_office/plugins/flot-charts/jquery.flot.time.js"></script>
+    <script src="{{url("back_office/plugins/flot-charts/jquery.flot.js")}}"></script>
+    <script src="{{url("back_office/plugins/flot-charts/jquery.flot.resize.js")}}"></script>
+    <script src="{{url("back_office/plugins/flot-charts/jquery.flot.pie.js")}}"></script>
+    <script src="{{url("back_office/plugins/flot-charts/jquery.flot.categories.js")}}"></script>
+    <script src="{{url("back_office/plugins/flot-charts/jquery.flot.time.js")}}"></script>
 
     <!-- Sparkline Chart Plugin Js -->
-    <script src="back_office/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src="{{url("back_office/plugins/jquery-sparkline/jquery.sparkline.js")}}"></script>
 
     <!-- Custom Js -->
-    <script src="back_office/js/admin.js"></script>
-    <script src="back_office/js/pages/index.js"></script>
+    <script src="{{url("back_office/js/admin.js")}}"></script>
+    <script src="{{url("back_office/js/pages/index.js")}}"></script>
 
     <!-- Demo Js -->
-    <script src="back_office/js/demo.js"></script>
+    <script src="{{url("back_office/js/demo.js")}}"></script>
 </body>
 </html>
