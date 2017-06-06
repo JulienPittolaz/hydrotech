@@ -1,14 +1,17 @@
     {{> menu }}
-<h1>Actualités</h1>
-
-<div class="columns">
+<h1 class="page_title">Actualités</h1>
+    <div class="actualite_cross">X</div>
+<div class="container">
+<div class="columns ">
     {{#each actualites}}
-    <article class="actualite column is-one-quarter is-multiline">
+    <article class="actualite column is-one-quarter is-multiline ">
         {{> actualite }}
     </article>
     {{/each}}
 </div>
 
-<footer>
-<div> Plus </div>
+<footer class="actualite_footer">
+<div > Plus </div>
+    <div class="arrow"> </div>
 </footer>
+</div>

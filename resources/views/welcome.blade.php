@@ -20,9 +20,11 @@
         <div id="contact">
         </div>
     </section>
-    <section id="globalNews" class="container">
+    <section id="globalNews" class="container is-fluid">
     </section>
-    <section id="timeline" class="container">
+    <section id="timeline" class="container is-fluid">
+    </section>
+    <section id="popup" class="container is-fluid">
     </section>
     <section id="popup">
 
