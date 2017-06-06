@@ -13,6 +13,7 @@
         'Lib/handlebars.hydrotech.js',
         'Lib/backbone.js',
         'Lib/backbone.hydrotech.js',
+        'router.js',
         'main.js'
     ];
     $folders = [

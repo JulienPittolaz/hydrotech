@@ -26,5 +26,8 @@ var Hydrotech = {
     log: function (){
       console.log(JSON.parse(JSON.stringify(this)));
     }
-  })
+  }),
+    Router: Backbone.Router.extend({
+
+    })
 };
