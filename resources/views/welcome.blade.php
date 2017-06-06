@@ -22,5 +22,7 @@
     </section>
     <section id="timeline" class="container is-fluid">
     </section>
+    <section id="popup" class="container is-fluid">
+    </section>
     </body>
 </html>

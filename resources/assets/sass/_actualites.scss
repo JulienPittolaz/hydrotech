@@ -7,9 +7,10 @@
 }
 .page_title{
   font-weight: $text-weight-bold;
+  margin-bottom: 80px;
 }
 
-.actualite_titre {
+.actualite_titre, .actualite_footer {
   font-size: $font-size-medium;
   text-transform: uppercase;
   padding-top: 2px;
@@ -24,6 +25,8 @@
 }
 .actualite_nomAuteur {
   font-weight: $text-weight-bold;
+  text-transform: uppercase;
+
 }
 .actualite_auteur {
   text-transform: uppercase;
@@ -37,6 +40,17 @@
   text-align: justify;
 }
 
-.actualite_plus{
+.arrow{
+  border-bottom:solid 3px $contrast-blue;
+  border-right:solid 3px $contrast-blue;
+  height: 20px;
+  width: 20px;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+.actualite_footer{
+  margin-top: 100px;
   text-align: center;
 }
+

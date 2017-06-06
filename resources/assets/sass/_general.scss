@@ -4,7 +4,10 @@
 
 body,html{
   font-family: 'Montserrat',sans-serif;
-  color: $text-color-grey;
+  color: $text-color;
+  font-size: $font-size-base;
+  margin-top: 35px;
+
   h1 {
     font-size: $main-title-size;
     text-transform: uppercase;
@@ -24,3 +27,4 @@ body,html{
     }
   }
 }
+
