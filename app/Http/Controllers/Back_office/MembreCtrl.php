@@ -32,7 +32,7 @@ class MembreCtrl extends Controller
      */
     public function create()
     {
-        //
+        return view('membre/create');
     }
 
     /**
