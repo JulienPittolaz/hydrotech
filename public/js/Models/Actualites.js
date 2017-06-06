@@ -8,7 +8,7 @@ var ModelActualites = Hydrotech.Collection.extend({
         this.on("change add remove", this.log);
     },
     comparator: function (model) {
-        return -model.get("datePublication");
+        return model.get('datePublication');
     }
 
 })

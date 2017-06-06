@@ -1,11 +1,9 @@
+{{> menu}}
 <h1>Articles de presse</h1>
-<h2>Ils ont parlés de nous:</h2>
+<h2>Ils ont parlé de nous:</h2>
 
-
-<div>
+<div class="columns">
     {{#each articlesPresse}}
-    <article>
         {{> articlePresse }}
-    </article>
     {{/each}}
 </div>
