@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('/auth/login', 'AuthController@login');
 Route::post('/auth/check', 'AuthController@check');
 
-Route::groupe(['middleware' => 'myAuth'], function () {
+Route::group(['middleware' => 'myAuth'], function () {
     Route::get('/auth/logout', 'AuthController@logout');
 });
 
