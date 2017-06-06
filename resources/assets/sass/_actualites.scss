@@ -1,14 +1,38 @@
+.actualite {
+  margin-top : 50px;
+}
 .actualite_header{
-  border-top: 5px solid $contrast-blue;
+  border-top: 8px solid $contrast-blue;
 }
 .actualite_time  {
-  color:$contrast-blue;
+  font-weight: 700;
+
 }
 
 .actualite_titre {
+
+  text-transform: uppercase;
+  padding-top: 2px;
+  color: $contrast-blue;
+  font-weight: $text-weight-bold;
+  line-height: $line-height-base;
+
+}
+
+.actualite_time::before {
+  content: " | ";
+}
+.actualite_nomAuteur {
+  font-weight: $text-weight-bold;
+}
+.actualite_auteur {
   text-transform: uppercase;
 }
 
-.actualite_auteur::after {
-  content: " | ";
+.actualite_time {
+  font-weight: $text-weight-bold;
+
+}
+.actualite_contenu {
+  text-align: justify;
 }
