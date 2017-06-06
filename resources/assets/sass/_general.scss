@@ -19,11 +19,16 @@ body,html{
     color:$contrast-blue;
   }
   nav.menu{
-    float:left;
+    position: fixed;
+    left:0;
+    margin-top:15px;
     ul{
       padding-left:8px;
       text-transform: uppercase;
-      border-left: 5px solid $contrast-blue;
+      border-left: 15px solid $contrast-blue;
+      margin-right: 30px;
+      line-height: 1.4;
+
     }
   }
 }

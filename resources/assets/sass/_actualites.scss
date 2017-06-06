@@ -8,6 +8,7 @@
 .page_title{
   font-weight: $text-weight-bold;
   margin-bottom: 80px;
+  margin-left: 100px;
 }
 
 .actualite_titre, .actualite_footer {
@@ -54,3 +55,10 @@
   text-align: center;
 }
 
+.actualite_cross{
+  position: fixed;
+  text-align: right;
+  right:150px;
+  top:75px;
+  font-size: 30px;
+}
