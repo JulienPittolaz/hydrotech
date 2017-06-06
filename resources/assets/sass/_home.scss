@@ -1,0 +1,110 @@
+#home{
+ background: url("../img/bateau.jpg");
+  background-position:center center;
+  // prend tte la place de la div et ne deform pas l'img
+  background-size: cover;
+  // vh: viewport height : 100% de la hauteur
+  height:100vh;
+  // vh: viewport width
+  width:100vw;
+// pour que les positions absolues soit par rapport à #home
+  position: relative;
+}
+
+.home_descConcours{
+  background: $contrast-blue;
+  color: white;
+  height:300px;
+  max-width: 300px;
+  text-align: justify;
+  padding:15px;
+  position: absolute;
+  right:50px;
+  bottom: 50px;
+}
+
+
+#contact{
+  text-transform: uppercase;
+  color:  $contrast-blue;
+  font-weight: $text-weight-bold;
+  font-size: $font-size-medium;
+  position: absolute;
+  right:50px;
+  top:50px;
+}
+
+.home_team{
+  font-size: 100px;
+  text-transform: uppercase;
+  font-weight: $text-weight-bold;
+  color:  $contrast-blue;
+line-height: 0.8;
+  position: absolute;
+  top:200px;
+  left:250px;
+}
+
+.home_participants{
+  color: white;
+  font-weight: $text-weight-bold;
+  font-size: $font-size-medium;
+  position: absolute;
+  top:205px;
+  left:100px;
+  text-align: right;
+  text-transform: uppercase;
+  border-right: 8px solid;
+  padding-right: 10px;
+
+
+}
+
+.home_arrow{
+  margin-top: 15px;
+  border-bottom:solid 3px white;
+  border-right:solid 3px white;
+  height: 20px;
+  width: 20px;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+.home_scroll{
+  color:white;
+  text-transform: uppercase;
+  font-size: $font-size-medium;
+  font-weight: $text-weight-bold;
+  position: absolute;
+  bottom: 50px;
+  left:50%;
+  text-align: center;
+  transform: translateX(-50%) ;
+  width: 200px;
+}
+
+#socialNetworks{
+  position: absolute;
+  left:50px;
+  top:50px;
+  font-size: 20px;
+  color: $contrast-blue;
+  font-family: icomoon;
+}
+
+#socialNetworks li{
+  margin-right: 15px;
+  display: inline-block;
+}
+
+#socialNetworks .facebook::before {
+  content: "\ea90";
+}
+
+#socialNetworks .instagram::before {
+  content: "\ea92";
+}
+
+#socialNetworks .youtube::before {
+   content: "\ea9d";
+ }

@@ -1,23 +1,6 @@
 $(function () {
-    // MEMBRE
-    var testModelMembre = new ModelMembre({
-        adresseMail: "lea.soukouti@gmail.com",
-        nom: "Soukouti",
-        prenom: "Léa",
-        dateNaissance: "29/03/1994",
-        section: "Media",
-        description: "je suis trop belle",
-        role: "admin",
-        photoProfil: "moi.jpg"
 
-    });
-    testModelMembre.isValid();
-    console.log("Erreurs Membre: " + testModelMembre.validationError);
-    testModelMembre.log()
-
-
-    $(".content").html(JST['membre'](testModelMembre.toJSON()));
-
+    /**
   //Article de Presse
 
   var testArticle = new ModelArticleDePresse({
@@ -172,14 +155,6 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     ]);
     $(".content").html(JST['medias']({medias:mesMedias.toJSON()}));
 
-    var testMembre = new ModelMembres();
-    testMembre.fetch({
-        success: function () {
-            $("#globalNews").html(JST['membres']({membres:testMembre.toJSON()}));
-
-        }
-    })
-
     var mesArticles = new ModelArticlesDePresse();
     mesArticles.fetch({
         success: function () {
@@ -189,9 +164,17 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     })
 
 
+    // MEMBRE
+    var mesMembres = new ModelMembres();
+    mesMembres.fetch({
+        success: function () {
+            $("#timeline").html(JST['membres']({membres:mesMembres.toJSON()}));
 
+        }
+    })
 
 
+**/
 
 
 
@@ -581,9 +564,7 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
-
-
-
+/**
 
 
 
@@ -593,5 +574,7 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
             $("#globalNews").html(JST['actualites']({actualites:actualitesSite.toJSON()}));
         }
     });
+ **/
 
 });
+
