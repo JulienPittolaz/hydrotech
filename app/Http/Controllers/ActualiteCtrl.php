@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actualite;
+use App\Edition;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Auth;
@@ -137,6 +138,11 @@ class ActualiteCtrl extends Controller
         if($actualite['actif'] == false){
             return response()->json('Actualité déjà supprimée', Response::HTTP_NOT_FOUND);
         }
+
+        foreach ($actualite->editions as $ed){
+            $actualite->editions()->updateExistingPivot($ed->id, ['actif' => false]);
+        }
+
         $actualite->actif = false;
         $actualite->save();
         return response()->json('OK', Response::HTTP_OK);
