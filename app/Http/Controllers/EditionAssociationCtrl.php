@@ -54,7 +54,7 @@ class EditionAssociationCtrl extends Controller
                 return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
             }
         }*/
-        if($objet->editions()->where(['edition_id' => $edition_id, $type_ressource . '_id' =>$resource_id])->first() != null) {
+        if($objet->editions()->where(['edition_id' => $edition_id, $type_ressource . '_id' =>$resource_id, 'actif' => true])->first() != null) {
             return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
         }
             $type_ressource = $type_ressource . 's';
