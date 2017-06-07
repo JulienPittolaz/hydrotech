@@ -102,7 +102,7 @@ class CategorieEditionSponsorCtrl extends Controller
      */
     public function destroy($categorie_id, $edition_id, $sponsor_id)
     {
-        $categorieEditionSponsor = Categorieeditionsponsor::where(['categorie_id' => $categorie_id, 'edition_id' =>$edition_id, 'sponsor_id' => $sponsor_id])->first;
+        $categorieEditionSponsor = Categorieeditionsponsor::where(['categorie_id' => $categorie_id, 'edition_id' =>$edition_id, 'sponsor_id' => $sponsor_id])->first();
         if (!Sponsor::isValid(['id' => $categorieEditionSponsor->id])) {
             return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
         }

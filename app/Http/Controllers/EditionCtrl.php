@@ -158,7 +158,16 @@ class EditionCtrl extends Controller
     public function update(Request $request, $id)
     {
         $edition = Edition::find($id);
-        $para = $request->intersect(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
+        $inputs = $request->intersect(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
+        if($request->has('publie')) {
+            if ($inputs['publie'] == 'false') {
+                $inputs['publie'] = false;
+            }
+            if ($inputs['publie'] == 'true') {
+                $inputs['publie'] = true;
+            }
+        }
+
         if (!Edition::isValid($para)) {
             return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
         }

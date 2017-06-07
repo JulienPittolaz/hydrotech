@@ -101,16 +101,26 @@ class ActualiteCtrl extends Controller
         $actualite = Actualite::find($id);
 
         $inputs = $request->intersect(['titre', 'datePublication', 'contenu', 'publie', 'urlImage']);
+        if($request->has('publie')) {
+            if ($inputs['publie'] == 'false') {
+                $inputs['publie'] = false;
+            }
+            if ($inputs['publie'] == 'true') {
+                $inputs['publie'] = true;
+            }
+        }
+
         if (!Actualite::isValid($inputs)) {
             return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
         }
+
 
         if (!Actualite::isValid(['id' => $id])) {
             return response()->json('Not found', Response::HTTP_NOT_FOUND);
         }
 
         if($actualite['actif'] == false){
-            return response()->json('Actualité déjà supprimé', Response::HTTP_NOT_FOUND);
+            return response()->json('Actualité supprimée', Response::HTTP_NOT_FOUND);
         }
 
         if($request->has('urlImage')) {
