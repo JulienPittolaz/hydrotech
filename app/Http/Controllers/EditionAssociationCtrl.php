@@ -112,9 +112,9 @@ class EditionAssociationCtrl extends Controller
         }
         $edition = Edition::find($edition_id);
 
-        $type_ressource = $type_ressource . 's';
-        $edition->$type_ressource()->detach($objet);
-
+        foreach ($objet->editions as $ed){
+            $objet->editions()->updateExistingPivot($ed->id, ['actif' => false]);
+        }
         return response()->json('OK', Response::HTTP_OK);
     }
 }
