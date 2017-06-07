@@ -163,18 +163,19 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
         }
     })
 
+     **/
 
     // MEMBRE
     var mesMembres = new ModelMembres();
     mesMembres.fetch({
         success: function () {
-            $("#timeline").html(JST['membres']({membres:mesMembres.toJSON()}));
+            $("#popup").html(JST['membres']({membres:mesMembres.toJSON()}));
 
         }
     })
 
 
-**/
+
 
 
 
