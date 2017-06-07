@@ -6,7 +6,7 @@ _.each(TMPL, function(template,name){
 Handlebars.registerHelper("toHuman", function(timestamp) {
      return (new Date(timestamp)).toLocaleDateString();
 });
-Handlebars.registerHelper('filterByType' function (object){
+Handlebars.registerHelper('filterByType', function (object){
     var photos = [];
     var videos = [];
     var returnVal = [];
