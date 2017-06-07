@@ -93,17 +93,47 @@ class EditionCtrl extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($annee)
     {
-        $edition = Edition::find($id);
-        if (!Edition::isValid(['id' => $id]) || $edition->actif == false) {
-            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+        $edition = Edition::all()->where('annee', $annee)->first();
+        if (!Edition::isValid(['annee' => $annee]) || $edition->actif == false) {
+            return response()->json('Annee edition non valide', Response::HTTP_BAD_REQUEST);
         }
-        if (Edition::find($id) == null) {
+        if ($edition == null) {
             return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
         }
         $edition->urlImageMedia = urldecode($edition->urlImageMedia);
         $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
+
+        $actualites = $edition->actualites;
+        foreach ($actualites as $actualite) {
+            $actualite->urlImage = urldecode($actualite->urlImage);
+        }
+        $categorieEditionSponsors = $edition->categorieeditionsponsors;
+        foreach ($categorieEditionSponsors as $catEdSp) {
+            $sponsor = $catEdSp->sponsor;
+            $sponsor->urlLogo = urldecode($sponsor->urlLogo);
+            $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
+
+            /*foreach ($sponsor->categorieeditionsponsors as $categorieDuSponsor){
+                $ed = $categorieDuSponsor->edition;
+                $ed->annee;
+            }*/
+            $catEdSp->categorie;
+        }
+        $medias = $edition->medias;
+        foreach ($medias as $media) {
+            $media->url = urldecode($media->url);
+        }
+        $membres = $edition->membres;
+        foreach ($membres as $membre) {
+            $membre->photoProfil = urldecode($membre->photoProfil);
+        }
+        $presses = $edition->presses;
+        foreach ($presses as $press) {
+            $press->url = urldecode($press->url);
+        }
+        $edition->prixs;
         return $edition;
     }
 
