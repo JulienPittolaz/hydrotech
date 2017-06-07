@@ -12,7 +12,7 @@ class Presse extends Model
     //protected $table = "presses";
 
     public function editions() {
-        return $this->belongsTo('\App\Edition')->withTimestamps();
+        return $this->belongsToMany('\App\Edition')->withTimestamps();
     }
 
     public static function isValid($inputs) {
