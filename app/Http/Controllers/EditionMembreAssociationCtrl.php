@@ -35,10 +35,13 @@ class EditionAssociationCtrl extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($edition_id, $type_ressource, $resource_id)
+    public function store($edition_id, $type_ressource, $resource_id, $role)
     {
         if (!Edition::isValid(['id' => $edition_id ])) {
             return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);
+        }
+        if($role == null){
+            return response()->json('Role non valide', Response::HTTP_BAD_REQUEST);
         }
         $objet = call_user_func_array(['\\App\\'.ucfirst($type_ressource), 'find'], [$resource_id]);
         if(!get_class($objet)::isValid(['id' => $resource_id])){
@@ -49,14 +52,13 @@ class EditionAssociationCtrl extends Controller
             return response()->json('Impossible d\'ajouter cette association', Response::HTTP_BAD_REQUEST);
         }
         foreach ($objet->editions as $ed){
-            if($ed['id'] == $edition_id && ){
+            if($ed['id'] == $edition_id){
                 return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
             }
         }
         $type_ressource = $type_ressource . 's';
 
-        $edition->$type_ressource()->save($objet);
-
+        $edition->$type_ressource()->save($objet, ['roleMembre' => $role]);
         return response()->json('OK', Response::HTTP_CREATED);
     }
 

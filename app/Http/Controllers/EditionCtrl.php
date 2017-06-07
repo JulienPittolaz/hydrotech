@@ -16,7 +16,7 @@ class EditionCtrl extends Controller
     public function index()
     {
         $editions = Edition::all()->where('actif', true);
-
+        $editions->where('publie', true);
         foreach ($editions as $edition) {
             $edition->urlImageMedia = urldecode($edition->urlImageMedia);
             $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
@@ -167,6 +167,9 @@ class EditionCtrl extends Controller
             return response()->json('Edition déjà supprimée', Response::HTTP_NOT_FOUND);
         }
         $edition->actif = false;
+        if ($edition['publie'] == true){
+            $edition['publie'] == false;
+        }
         $edition->save();
         return response()->json('OK', Response::HTTP_OK);
     }

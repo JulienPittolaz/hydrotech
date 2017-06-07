@@ -279,7 +279,6 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre1->section = "Professeur";
         $membre1->description = "Du fait de la fragilité conjoncturelle, il est nécessaire d'inventorier systématiquement les problématiques opportunes, pour le futur.";
         $membre1->photoProfil = urlencode('http://flashinformatique.epfl.ch/IMG/auton28.jpg?1349272172');
-        $membre1->role = "CEO";
         $membre1->save();
         $membre2 = new App\Membre();
         $membre2->adresseMail = 'lea@soukouti.ch';
@@ -289,7 +288,6 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre2->section = "Ingénieur des médias";
         $membre2->description = "Dans le but de pallier à l'inertie de l'époque actuelle, il est nécessaire de fédérer la simultanéité des organisations matricielles déclinables, avec beaucoup de recul.";
         $membre2->photoProfil = urlencode('http://www.cly.ch/cly_site_2016/wp-content/uploads/2017/03/hotel_02.jpg');
-        $membre2->role = "MASTER OF JAVASCRIPT";
         $membre2->save();
         $membre3 = new App\Membre();
         $membre3->adresseMail = 'tima@dlp.ch';
@@ -299,7 +297,6 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre3->section = "Ingénieur des médias";
         $membre3->description = "Tant que durera la politique de ces derniers temps, on se doit de gérer la somme des actions emblématiques, dans une perspective correcte.";
         $membre3->photoProfil = urlencode('http://1.bp.blogspot.com/-N1pmBkeBId0/UrS71Gsx0uI/AAAAAAAAKbM/pRIguKho8H0/s1600/021+333+MAJORCe%CC%81linaAde%CC%81line.jpg');
-        $membre3->role = "MASTER OF WAVES";
         $membre3->save();
         $membre4 = new App\Membre();
         $membre4->adresseMail = 'jose@phine.ch';
@@ -309,7 +306,6 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $membre4->section = "Ingénieur des médias";
         $membre4->description = "Avec cette inflexion intrinsèque, il serait bon de revoir toutes les voies que nous connaissons, dans une perspective correcte.";
         $membre4->photoProfil = urlencode('https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAh5AAAAJGM2ZmUzNTNlLThlNGYtNDk4OC05NzgxLTQ1ZjgxYzdiZTNmMg.jpg');
-        $membre4->role = "MASTER OF COLOR PIXELS";
         $membre4->save();
 
 
@@ -477,14 +473,14 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition3->prixs()->save($prix3);
 
         //*******CREATION DES COMPOSITIONS*******
-        $edition1->membres()->save($membre1);
-        $edition2->membres()->save($membre1);
-        $edition2->membres()->save($membre2);
-        $edition2->membres()->save($membre3);
-        $edition2->membres()->save($membre4);
-        $edition3->membres()->save($membre2);
-        $edition3->membres()->save($membre3);
-        $edition3->membres()->save($membre4);
+        $edition1->membres()->save($membre1, ['roleMembre' =>'CEO']);
+        $edition2->membres()->save($membre1, ['roleMembre' =>'Community manager']);
+        $edition2->membres()->save($membre2, ['roleMembre' =>'Responsable communication']);
+        $edition2->membres()->save($membre3, ['roleMembre' =>'Chef d\'équipe']);
+        $edition2->membres()->save($membre4, ['roleMembre' =>'Responsable IT']);
+        $edition3->membres()->save($membre2, ['roleMembre' =>'Responsable sponsors']);
+        $edition3->membres()->save($membre3, ['roleMembre' =>'Spécialiste IT']);
+        $edition3->membres()->save($membre4, ['roleMembre' =>'Graphiste']);
 
         //*******CREATION DES COUVERTURES*******
         $edition1->actualites()->save($actualite1);

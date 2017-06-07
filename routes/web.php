@@ -22,6 +22,8 @@ Route::group(['middleware' => 'myAuth'], function () {
     Route::get('/auth/logout', 'AuthController@logout');
 });
 
+
+
 Route::group(['prefix' => '/api/v1'], function () {
     //PUBLIC ROUTES
     Route::resource('/membres', 'MembreCtrl', ['only' => ['index', 'show']]);
@@ -38,6 +40,7 @@ Route::group(['prefix' => '/api/v1'], function () {
     //AUTH ROUTES
     Route::group(['middleware' => "myAuth"], function () {
         Route::post('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@store');
+        Route::post('/editions/{edition_id}/{type_ressource}/{resource_id}/{role}', 'EditionAssociationCtrl@store');
         Route::post('/sponsors/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@store');
         Route::delete('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@destroy');
         Route::delete('/sponsors/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@destroy');

@@ -22,7 +22,6 @@ class CreateMembresTable extends Migration
             $table->string('section');
             $table->string('description');
             $table->string('photoProfil');
-            $table->string('role');
             $table->boolean('actif')->default(true);
             $table->timestamps();
         });
