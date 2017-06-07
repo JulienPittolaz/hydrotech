@@ -23,6 +23,7 @@ Route::group(['middleware' => 'myAuth'], function () {
 });
 
 Route::resource('/membres', 'Back_office\MembreCtrl');
+Route::resource('/prixs', 'Back_office\PrixCtrl');
 
 Route::group(['prefix' => '/api/v1'], function () {
     //PUBLIC ROUTES

@@ -19,6 +19,9 @@
     <!-- Bootstrap Core Css -->
     <link href="{{url("back_office/plugins/bootstrap/css/bootstrap.css")}}" rel="stylesheet">
 
+    <!-- Colorpicker Css -->
+    <link href="{{url("back_office/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css")}}" rel="stylesheet" />
+
     <!-- Waves Effect Css -->
     <link href="{{url("back_office/plugins/node-waves/waves.css")}}" rel="stylesheet" />
 
@@ -35,7 +38,7 @@
     <link href="{{url("back_office/css/themes/all-themes.css")}}" rel="stylesheet" />
 </head>
 
-<body class="theme-red">
+<body class="theme-blue">
 <!-- Page Loader -->
 <div class="page-loader-wrapper">
     <div class="loader">
@@ -673,6 +676,21 @@
     <!-- ChartJs -->
     <script src="{{url("back_office/plugins/chartjs/Chart.bundle.js")}}"></script>
 
+<!-- Bootstrap Colorpicker Js -->
+<script src="{{url("back_office/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js")}}"></script>
+
+    <!-- DropzoneJs -->
+    <script src="{{url("back_office/plugins/dropzone/dropzone.js")}}"></script>
+
+<!-- Input Mask Plugin Js -->
+<script src="{{url("back_office/plugins/jquery-inputmask/jquery.inputmask.bundle.js")}}"></script>
+
+<!-- Multi Select Plugin Js -->
+<script src="{{url("back_office/plugins/multi-select/js/jquery.multi-select.js")}}"></script>
+
+<!-- noUISlider Plugin Js -->
+<script src="{{url("back_office/plugins/nouislider/nouislider.js")}}"></script>
+
     <!-- Flot Charts Plugin Js -->
     <script src="{{url("back_office/plugins/flot-charts/jquery.flot.js")}}"></script>
     <script src="{{url("back_office/plugins/flot-charts/jquery.flot.resize.js")}}"></script>
@@ -683,9 +701,23 @@
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{url("back_office/plugins/jquery-sparkline/jquery.sparkline.js")}}"></script>
 
-    <!-- Custom Js -->
-    <script src="{{url("back_office/js/admin.js")}}"></script>
-    <script src="{{url("back_office/js/pages/index.js")}}"></script>
+<!-- Autosize Plugin Js -->
+<script src="{{url("back_office/plugins/autosize/autosize.js")}}"></script>
+<!-- Moment Plugin Js -->
+<script src="{{url("back_office/plugins/momentjs/moment.js")}}"></script>
+<!-- Bootstrap Material Datetime Picker Plugin Js -->
+<script src="{{url("back_office/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js")}}"></script>
+<!-- Dropzone Css -->
+<link href="{{url("back_office/plugins/dropzone/dropzone.css")}}" rel="stylesheet">
+<!-- Animation Css -->
+<link href="{{url("back_office/plugins/animate-css/animate.css")}}" rel="stylesheet" />
+<!-- Bootstrap Core Css -->
+<link href="{{url("back_office/plugins/bootstrap/css/bootstrap.css")}}" rel="stylesheet">
+<!-- Bootstrap Material Datetime Picker Css -->
+<link href="{{url("back_office/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")}}" rel="stylesheet" />
+<!-- Custom Js -->
+<script src="{{url("back_office/js/admin.js")}}"></script>
+<script src="{{url("back_office/js/pages/forms/basic-form-elements.js")}}"></script>
 
     <!-- Demo Js -->
     <script src="{{url("back_office/js/demo.js")}}"></script>
