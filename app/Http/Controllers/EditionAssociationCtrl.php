@@ -120,7 +120,11 @@ class EditionAssociationCtrl extends Controller
         }
         $edition = Edition::find($edition_id);
 
+
         foreach ($objet->editions as $ed){
+            if($ed['id'] == $edition_id && $ed->pivot->actif == false){
+                return response()->json('Association inexistante', Response::HTTP_NOT_FOUND);
+            }
             $objet->editions()->updateExistingPivot($ed->id, ['actif' => false]);
         }
         return response()->json('OK', Response::HTTP_OK);
