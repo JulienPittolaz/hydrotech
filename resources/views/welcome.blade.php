@@ -62,11 +62,11 @@
             <h1>Bonjour, <br> peut-on vous aider?</h1>
 
             <div class=" formulaire_choix">
-                    <div class="button is-large is-primary is-outlined">Je veux soutenir</div>
+                <div class="button is-large is-primary is-outlined">Je veux soutenir</div>
 
-                    <div class="button is-large is-primary is-outlined">J'ai une question</div>
+                <div class="button is-large is-primary is-outlined">J'ai une question</div>
 
-                    <div class="button is-large is-primary is-outlined">Je veux m'inscrire</div>
+                <div class="button is-large is-primary is-outlined">Je veux m'inscrire</div>
 
                 <div class="reponseD">
                     <div class="button is-large is-primary is-outlined">La réponse D?</div>
@@ -74,8 +74,65 @@
             </div>
         </div>
     </div>
-    <div class="formulaireContactSuite"></div>
+    <div class="formulaireContactSuite">
 
+
+        <div class="container">
+            <h1>Titre dynamique yo!</h1>
+            <div class="form1 ">
+                <div class="columns">
+
+                    <div class="field column is-half
+">
+                        <p class="control">
+                            <input class="input is-medium" type="text" placeholder="*Nom">
+                        </p>
+                    </div>
+                    <div class="field column is-half
+">
+                        <p class="control">
+                            <input class="input is-medium" type="text" placeholder="*Prénom">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+
+                <div class="field column is-half
+">
+                    <p class="control">
+                        <input class="input is-medium" type="text" placeholder="Entreprise">
+                    </p>
+                </div>
+
+                <div class="field column is-half
+">
+                    <p class="control">
+                        <input class="input is-medium" type="email" placeholder="*Email">
+                    </p>
+                </div>
+            </div>
+
+            <div class="form2">
+                <div class="field">
+                    <p class="control">
+                        <input class="input is-medium" type="text" placeholder="*Objet">
+                    </p>
+                </div>
+
+                <div class="field">
+                    <p class="control">
+                        <textarea class="textarea is-medium" placeholder="*Message"></textarea>
+                    </p>
+                </div>
+            </div>
+            <a class="button is-medium is-primary is-outlined">Envoyer!</a>
+
+        </div>
+
+    </div>
+
+    </div>
 </section>
 </body>
 </html>
