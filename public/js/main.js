@@ -1,4 +1,4 @@
 $(function(){
-    new MainRouter;
+    var MaRoute = new MainRouter;
     Backbone.history.start();
 });
