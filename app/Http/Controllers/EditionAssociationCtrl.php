@@ -49,11 +49,19 @@ class EditionAssociationCtrl extends Controller
             return response()->json('Impossible d\'ajouter cette association', Response::HTTP_BAD_REQUEST);
         }
         foreach ($objet->editions as $ed){
-            if($ed['id'] == $edition_id && $objet['id'] == $resource_id && $ed->pivot->actif == true){
+             if($ed['id'] == $edition_id && $ed->pivot->actif == true){
+                 return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
+             }
+         }
+       /* foreach ($objet->editions as $association){
+            if($association->pivot->actif == true){
                 return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
-            }
+            };
+        }*/
+        /*if($objet->editions()->where(['edition_id' => $edition_id, $type_ressource . '_id' =>$resource_id, 'actif' => true])->first() != null) {
+            return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
         }
-        $type_ressource = $type_ressource . 's';
+           */ $type_ressource = $type_ressource . 's';
 
         $edition->$type_ressource()->save($objet);
 
@@ -112,7 +120,11 @@ class EditionAssociationCtrl extends Controller
         }
         $edition = Edition::find($edition_id);
 
+
         foreach ($objet->editions as $ed){
+            if($ed['id'] == $edition_id && $ed->pivot->actif == false){
+                return response()->json('Association inexistante', Response::HTTP_NOT_FOUND);
+            }
             $objet->editions()->updateExistingPivot($ed->id, ['actif' => false]);
         }
         return response()->json('OK', Response::HTTP_OK);
