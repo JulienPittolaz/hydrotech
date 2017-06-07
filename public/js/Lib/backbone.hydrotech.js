@@ -5,30 +5,6 @@ var Hydrotech = {
         },
         undo: function (){
             this.attributes = this.previousAttributes();
-        },
-        fetchByAttributes: function(attributes, callbacks) {
-
-            var queryString = [];
-            for(var a in attributes){
-                queryString.push( encodeURIComponent(a)+'='+encodeURIComponent(attributes[a]) );
-            }
-            queryString = '?'+queryString.join('&');
-            console.log(queryString);
-
-            var self = this;
-
-            $.ajax({
-                url: this.urlRoot+queryString,
-                type: 'GET',
-                dataType: "json",
-                success: function(data) {
-                    self.set(data);
-                    callbacks.success();
-                },
-                error: function(data){
-                    callbacks.error();
-                }
-            });
         }
     }),
     View: Backbone.View.extend({

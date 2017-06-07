@@ -61,5 +61,24 @@ var ModelEdition = Hydrotech.Model.extend({
 
         }
         return msg;
+    },
+    fetchByYear: function(attributes, callbacks) {
+
+        var queryString = attributes;
+        queryString = '/'+queryString;
+        var self = this;
+
+        $.ajax({
+            url: this.urlRoot+queryString,
+            type: 'GET',
+            dataType: "json",
+            success: function(data) {
+                self.set(data);
+                callbacks.success();
+            },
+            error: function(data){
+                callbacks.error();
+            }
+        });
     }
 })
