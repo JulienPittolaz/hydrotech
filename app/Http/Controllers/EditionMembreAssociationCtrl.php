@@ -51,10 +51,8 @@ class EditionMembreAssociationCtrl extends Controller
         if($edition['actif'] == false || $membre['actif'] == false){
             return response()->json('Impossible d\'ajouter cette association', Response::HTTP_BAD_REQUEST);
         }
-        foreach ($membre->editions as $ed){
-            if($ed['id'] == $edition_id){
-                return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
-            }
+        if($membre->editions()->where(['edition_id' => $edition_id,'membre_id' => $membre_id])->first() != null) {
+            return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
         }
 
         $edition->membres()->save($membre, ['roleMembre' => $role]);
