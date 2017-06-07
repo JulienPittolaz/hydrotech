@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Membre;
 
-class EditionAssociationCtrl extends Controller
+class EditionMembreAssociationCtrl extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class EditionAssociationCtrl extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($edition_id, $type_ressource, $resource_id, $role)
+    public function store($edition_id, $membre_id, $role)
     {
         if (!Edition::isValid(['id' => $edition_id ])) {
             return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);
@@ -43,22 +43,21 @@ class EditionAssociationCtrl extends Controller
         if($role == null){
             return response()->json('Role non valide', Response::HTTP_BAD_REQUEST);
         }
-        $objet = call_user_func_array(['\\App\\'.ucfirst($type_ressource), 'find'], [$resource_id]);
-        if(!get_class($objet)::isValid(['id' => $resource_id])){
+        $membre = Membre::find($membre_id);
+        if(!get_class($membre)::isValid(['id' => $membre_id])){
             return response()->json('Ressource non valide', Response::HTTP_BAD_REQUEST);
         }
         $edition = Edition::find($edition_id);
-        if($edition['actif'] == false || $objet['actif'] == false){
+        if($edition['actif'] == false || $membre['actif'] == false){
             return response()->json('Impossible d\'ajouter cette association', Response::HTTP_BAD_REQUEST);
         }
-        foreach ($objet->editions as $ed){
+        foreach ($membre->editions as $ed){
             if($ed['id'] == $edition_id){
                 return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
             }
         }
-        $type_ressource = $type_ressource . 's';
 
-        $edition->$type_ressource()->save($objet, ['roleMembre' => $role]);
+        $edition->membres()->save($membre, ['roleMembre' => $role]);
         return response()->json('OK', Response::HTTP_CREATED);
     }
 

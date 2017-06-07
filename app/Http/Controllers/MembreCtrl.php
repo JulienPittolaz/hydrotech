@@ -129,6 +129,9 @@ class MembreCtrl extends Controller
         if($membre['actif'] == false){
             return response()->json('Membre déjà supprimé', Response::HTTP_NOT_FOUND);
         }
+        foreach ($membre->editions as $ed){
+            $membre->editions()->updateExistingPivot($ed->id, ['actif' => false]);
+        }
         $membre->actif = false;
         $membre->save();
         return response()->json('OK', Response::HTTP_OK);

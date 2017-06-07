@@ -166,6 +166,10 @@ class EditionCtrl extends Controller
         if($edition['actif'] == false){
             return response()->json('Edition déjà supprimée', Response::HTTP_NOT_FOUND);
         }
+        foreach ($edition->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
+            $categoriesEditionSponsorAssociees->pivot->actif = false;
+            $categoriesEditionSponsorAssociees->save();
+        }
         $edition->actif = false;
         if ($edition['publie'] == true){
             $edition['publie'] == false;

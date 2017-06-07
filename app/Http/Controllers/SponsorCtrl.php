@@ -143,6 +143,10 @@ class SponsorCtrl extends Controller
         if($sponsor['actif'] == false){
             return response()->json('Sponsor déjà supprimé', Response::HTTP_NOT_FOUND);
         }
+        foreach ($sponsor->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
+            $categoriesEditionSponsorAssociees->pivot->actif = false;
+            $categoriesEditionSponsorAssociees->save();
+        }
         $sponsor->actif = false;
         $sponsor->save();
         return response()->json('OK', Response::HTTP_OK);
