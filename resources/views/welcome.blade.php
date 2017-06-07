@@ -46,6 +46,8 @@
     <section id="globalNews" class="container is-fluid">
     </section>
     <section id="timeline" class="container is-fluid">
+
+
     </section>
     <section id="popup" class="container is-fluid">
     </section>

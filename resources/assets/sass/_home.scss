@@ -23,6 +23,10 @@
   bottom: 50px;
 }
 
+.home_descConcours::after{
+  content: "+";
+}
+
 
 #contact{
   text-transform: uppercase;
