@@ -21,7 +21,7 @@ class Presse extends Model
             'url' => 'url|sometimes|required',
             'titreArticle' => 'string|sometimes|required',
             'description' => 'string|sometimes|required',
-            'dateParution' => 'date|sometimes|required',
+            'dateParution' => 'date|sometimes|required|before:tomorrow',
             'nomPresse' => 'string|sometimes|required',
         ])->passes();
     }

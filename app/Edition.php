@@ -46,7 +46,7 @@ class Edition extends Model
     public static function isValid($inputs) {
         return Validator::make($inputs, [
             'id' => 'exists:editions|sometimes|required',
-            'annee' => 'unique:editions|integer|digits:4|sometimes|required',
+            'annee' => 'exists:editions|integer|digits:4|sometimes|required',
             'nomEquipe' => 'string|sometimes|required',
             'urlImageMedia' => 'url|sometimes|required',
             'urlImageEquipe' => 'url|sometimes|required',

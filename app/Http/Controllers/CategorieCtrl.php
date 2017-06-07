@@ -123,6 +123,12 @@ class CategorieCtrl extends Controller
         if($categorie['actif'] == false){
             return response()->json('Categorie déjà supprimée', Response::HTTP_NOT_FOUND);
         }
+
+        foreach ($categorie->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
+            $categoriesEditionSponsorAssociees->pivot->actif = false;
+            $categoriesEditionSponsorAssociees->save();
+        }
+
         $categorie->actif = false;
         $categorie->save();
         return response()->json('OK', Response::HTTP_OK);
