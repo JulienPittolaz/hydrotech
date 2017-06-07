@@ -51,6 +51,10 @@ class CategorieEditionSponsorCtrl extends Controller
         if (!Sponsor::isValid(['id' => $sponsor_id]) || $sponsor->actif == false) {
             return response()->json('Sponsor inexistant', Response::HTTP_NOT_FOUND);
         }
+
+        if(Categorieeditionsponsor::where(['categorie_id' => $categorie_id, 'edition_id' =>$edition_id, 'sponsor_id' => $sponsor_id])->first() != null){
+            return response()->json('Association déjà existante', Response::HTTP_BAD_REQUEST);
+        }
         $categorieEditionSponsor = new Categorieeditionsponsor();
         $categorieEditionSponsor->categorie()->associate($categorie);
         $categorieEditionSponsor->edition()->associate($edition);
