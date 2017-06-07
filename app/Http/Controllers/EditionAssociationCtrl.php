@@ -48,16 +48,20 @@ class EditionAssociationCtrl extends Controller
         if($edition['actif'] == false || $objet['actif'] == false){
             return response()->json('Impossible d\'ajouter cette association', Response::HTTP_BAD_REQUEST);
         }
-       /* foreach ($objet->editions as $ed){
-            dd($ed->pivot->actif);
-            if($ed['id'] == $edition_id && $ed->pivot->actif == true){
+        foreach ($objet->editions as $ed){
+             if($ed['id'] == $edition_id && $ed->pivot->actif == true){
+                 return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
+             }
+         }
+       /* foreach ($objet->editions as $association){
+            if($association->pivot->actif == true){
                 return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
-            }
+            };
         }*/
-        if($objet->editions()->where(['edition_id' => $edition_id, $type_ressource . '_id' =>$resource_id, 'actif' => true])->first() != null) {
+        /*if($objet->editions()->where(['edition_id' => $edition_id, $type_ressource . '_id' =>$resource_id, 'actif' => true])->first() != null) {
             return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
         }
-            $type_ressource = $type_ressource . 's';
+           */ $type_ressource = $type_ressource . 's';
 
         $edition->$type_ressource()->save($objet);
 
