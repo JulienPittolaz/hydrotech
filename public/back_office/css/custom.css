@@ -1,0 +1,16 @@
+th:first-child, td:first-child {
+    width:20px !important;
+}
+
+@media (max-width: 767px) {
+    th, td {
+        display: none;
+    }
+
+    th:first-child,
+    th:nth-child(2),
+    td:first-child,
+    td:nth-child(2) {
+        display: table-cell;
+    }
+}

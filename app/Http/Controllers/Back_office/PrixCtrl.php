@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Prix;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
 
 class PrixCtrl extends Controller
 {
@@ -17,7 +18,8 @@ class PrixCtrl extends Controller
     public function index()
     {
         $prixs = Prix::all()->where('actif', true);
-        return view('prix/index', ['prixs' => $prixs]);
+        $prix_columns = Prix::all()->first()['fillable'];
+        return view('prix/index', ['prixs' => $prixs, 'columns' => $prix_columns]);
     }
 
     /**
@@ -27,7 +29,7 @@ class PrixCtrl extends Controller
      */
     public function create()
     {
-        //
+        return view('prix.create');
     }
 
     /**
@@ -39,8 +41,9 @@ class PrixCtrl extends Controller
     public function store(Request $request)
     {
         $inputs = $request->only(['nom', 'description', 'montant']);
+        $inputs['montant'] = (int)$inputs['montant'];
         if (!Prix::isValid($inputs)) {
-            return response()->json('Prix invalide', Response::HTTP_BAD_REQUEST);
+            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
 
         $prix = new Prix([
@@ -49,7 +52,7 @@ class PrixCtrl extends Controller
             'montant' => $inputs['montant']
         ]);
         $prix->save();
-        return  response()->json($prix, Response::HTTP_CREATED);
+        return  redirect('prix');
     }
 
     /**
@@ -77,7 +80,12 @@ class PrixCtrl extends Controller
      */
     public function edit($id)
     {
-        //
+        $prix = Prix::find($id);
+        if(!$prix) {
+            return redirect('prix');
+        }
+        $prix->first();
+        return view('prix/edit', ['prix' => $prix]);
     }
 
     /**
@@ -92,6 +100,8 @@ class PrixCtrl extends Controller
         $prix = Prix::find($id);
 
         $inputs = $request->intersect(['nom', 'description', 'montant']);
+        $inputs['montant'] = (int)$inputs['montant'];
+        $request->replace(['id' => $id]);
         if (!Prix::isValid($inputs)) {
             return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
         }
@@ -105,7 +115,7 @@ class PrixCtrl extends Controller
         }
 
         $prix->update($inputs);
-        return  response()->json($prix, Response::HTTP_OK);
+        return  back()->withInput();
     }
 
     /**

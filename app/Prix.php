@@ -3,7 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Validator;
+use Illuminate\Validation\Rule;
 
 class Prix extends Model
 {
@@ -16,9 +19,14 @@ class Prix extends Model
     }
 
     public static function isValid($data = array()) {
+        $id = Input::input('id', null);
         return Validator::make($data, [
             'id' => 'exists:prixs|sometimes|required',
-            'nom' => 'string|sometimes|required|unique:prixs',
+            'nom' => ['string',
+                'sometimes',
+                'required',
+                Rule::unique('prixs')->ignore($id)
+                ],
             'description' => 'string|sometimes|required',
             'montant' => 'numeric|min:0|sometimes|required'
         ])->passes();
