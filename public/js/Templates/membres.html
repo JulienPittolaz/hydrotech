@@ -1,10 +1,15 @@
-<h1 class="page_title">L'Équipe</h1>
-<nav>
 
     {{> menu }}
-</nav>
+
+<h1 class="page_title">L'Équipe</h1>
+
 <div class="container">
-<div class="columns ">
+<div class="columns membres">
+    {{#each membres}}
+    <article class="column is-one-quarter ">
+        {{> membre }}
+    </article>
+    {{/each}}
     {{#each membres}}
     <article class="column is-one-quarter ">
         {{> membre }}
