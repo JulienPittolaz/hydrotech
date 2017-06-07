@@ -1,0 +1,41 @@
+/****SOUS-TITRE PRESSE****/
+
+.presse_subtitle{
+
+  font-size: $font-size-big;
+  text-transform: uppercase;
+  font-weight: $text-weight-bold;
+
+}
+
+.presse_titre::after{
+
+  content: " — ";
+}
+
+
+.presse_titre{
+
+  font-size: $font-size-medium;
+  text-transform: uppercase;
+  font-weight: $text-weight-light;
+
+}
+
+
+.presse_description{
+
+  display: none;
+
+
+}
+
+.presse_bloc{
+
+  height: auto;
+  width: auto;
+  padding: 10px;
+  margin: auto;
+  background-color: #00e7eb;
+
+}

@@ -8,11 +8,15 @@
     $files = [
          // LIBRARIES
         'Lib/jquery.js',
+        'Lib/transition.js',
         'Lib/underscore.js',
         'Lib/handlebars.js',
         'Lib/handlebars.hydrotech.js',
         'Lib/backbone.js',
         'Lib/backbone.hydrotech.js',
+        'Lib/imagesloaded.pkgd.min.js',
+        'Lib/masonry.pkgd.min.js',
+        'Lib/zoom.js',
         'main.js'
     ];
     $folders = [
