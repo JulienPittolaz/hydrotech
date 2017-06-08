@@ -180,7 +180,7 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
         success: function () {
             $("#popup").html(JST['sponsors']({sponsors:mesSponsors.toJSON()}));
             $(".owl-carousel").owlCarousel();
-
+            console.log(CURRENT_ED);
         }
     })
 
