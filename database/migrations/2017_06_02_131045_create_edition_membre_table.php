@@ -17,6 +17,7 @@ class CreateEditionMembreTable extends Migration
             $table->increments('id');
             $table->integer('membre_id')->unsigned();
             $table->integer('edition_id')->unsigned();
+            $table->string('roleMembre');
             $table->timestamps();
             $table->foreign('membre_id')->references('id')->on('membres')->onDelete("cascade");
             $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");

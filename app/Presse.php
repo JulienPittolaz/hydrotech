@@ -12,7 +12,7 @@ class Presse extends Model
     //protected $table = "presses";
 
     public function editions() {
-        return $this->belongsTo('\App\Edition')->withTimestamps();
+        return $this->belongsToMany('\App\Edition')->withTimestamps()->withPivot('actif');
     }
 
     public static function isValid($inputs) {
@@ -21,7 +21,7 @@ class Presse extends Model
             'url' => 'url|sometimes|required',
             'titreArticle' => 'string|sometimes|required',
             'description' => 'string|sometimes|required',
-            'dateParution' => 'date|sometimes|required',
+            'dateParution' => 'date|sometimes|required|before:tomorrow',
             'nomPresse' => 'string|sometimes|required',
         ])->passes();
     }
