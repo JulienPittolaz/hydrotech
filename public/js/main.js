@@ -1,4 +1,6 @@
 $(function () {
+    var MaRoute = new MainRouter;
+    Backbone.history.start();
 
     /**
   //Article de Presse
@@ -758,9 +760,6 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
-
-
-
 /**
 var mediasTests = new ModelMedias();
     mediasTests.fetch({
@@ -858,4 +857,3 @@ var mediasTests = new ModelMedias();
 
 
 });
-

@@ -9,6 +9,23 @@ var ModelMedias = Hydrotech.Collection.extend({
     },
     comparator: function (model) {
         return -model.get("date");
+    },
+    breakByType: function (models){
+        var photos = [];
+        var videos = [];
+        var returnVal = [];
+        _.each(models, function(content){
+            if (content.attributes.typeMedia == 'Video'){
+                videos.push(content);
+            }
+            if (content.attributes.typeMedia == 'Photo'){
+                photos.push(content);
+            }
+        });
+        returnVal['videos'] = videos;
+        returnVal['photos'] = photos;
+        console.log(returnVal);
+        return returnVal;
     }
 
-})
+});
