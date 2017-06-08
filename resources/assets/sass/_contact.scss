@@ -1,0 +1,84 @@
+// PREMIERE PAGE CONTACT
+.formulaireContact h1, .formulaireContactSuite h1{
+  font-size:70px;
+  font-weight: $text-weight-bold;
+  line-height: 1;
+  margin-bottom: 50px;
+
+}
+
+.formulaireContact .formulaire_choix .column > div {
+  width: 220px;
+  height:50px;
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom:100px;
+  color:  $contrast-blue;
+}
+
+.formulaireContact .formulaire_choix  {
+  text-transform: uppercase;
+  font-weight: $text-weight-bold;
+  font-size: $font-size-medium;
+}
+
+
+.button.is-primary.is-outlined {
+  border-color: $contrast-blue;
+  color: $contrast-blue;
+
+}
+
+.button.is-primary.is-outlined:hover, .button.is-primary.is-outlined:focus{
+  background-color: $contrast-blue;
+  border-color: $contrast-blue;
+}
+
+.formulaire_choix > div{
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+.formulaire_choix .reponseD{
+  margin-bottom: 100px;
+}
+
+.button.is-large{
+  font-size: 1.9rem;
+}
+
+// DEUXIEME PAGE CONTACT
+
+
+.formulaireContactSuite .form2 {
+  width:582px;
+}
+.input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
+  border-color: $contrast-blue;
+  border:solid 2px;
+}
+
+.formulaireContactSuite .columns {
+  max-width: 600px;
+}
+
+body, button, input, select, textarea {
+  font-family: $font-family-sans-serif;
+}
+
+.formulairecontactsuite{
+  margin-bottom: 300px;
+}
+
+.input, .textarea {
+  color: $contrast-blue;
+  border-color: $text-color;
+}
+
+.formulaireContactSuite .button{
+border-color: $contrast-blue;
+  margin-top: 20px;
+  margin-left: 478px;
+  text-transform: uppercase;
+  font-weight: $text-weight-bold;
+}

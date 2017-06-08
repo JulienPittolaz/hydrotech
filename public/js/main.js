@@ -816,6 +816,12 @@ var mediasTests = new ModelMedias();
     presseTests.fetch({
         success: function(){
             $("#popup").html(JST['articlesPresse']({articlesPresse:presseTests.toJSON()}));
+
+            var chaine = $(".presse_bloc .presse_titre").text();
+
+            console.log(chaine);
+
+            //chaine.substring(0, chaine.length()-1);
         }
     });
 
