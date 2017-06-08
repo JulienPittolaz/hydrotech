@@ -18,10 +18,11 @@ class MembreCtrl extends Controller
     public function index()
     {
         $membres = Membre::all()->where('actif', true);
+        $membre_columns = Membre::all()->first()['fillable'];
         foreach ($membres as $membre){
             $membre->photoProfil = urldecode($membre->photoProfil);
         }
-        return view('membre/index')->with('membres', $membres);
+        return view('membre/index')->with(['membres' => $membres, 'columns' => $membre_columns]);
 
     }
 

@@ -25,6 +25,8 @@ Route::group(['middleware' => 'myAuth'], function () {
 Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::resource('/prix', 'Back_office\PrixCtrl');
     Route::post('/prix/edit/{id}', 'Back_office\PrixCtrl@update');
+    Route::resource('/membres', 'Back_office\MembreCtrl');
+    Route::post('/membre/edit/{id}', 'Back_office\MembreCtrl@update');
 });
 
 Route::group(['prefix' => '/api/v1'], function () {
