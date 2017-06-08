@@ -27,25 +27,14 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::post('/prix/edit/{id}', 'Back_office\PrixCtrl@update');
     Route::resource('/membres', 'Back_office\MembreCtrl');
     Route::post('/membre/edit/{id}', 'Back_office\MembreCtrl@update');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     Route::resource('/presse', 'Back_office\PresseCtrl');
     Route::post('/presse/{id}/edit', 'Back_office\PresseCtrl@update');
     Route::resource('/sponsor', 'Back_office\SponsorCtrl');
     Route::post('/sponsor/{id}/edit', 'Back_office\SponsorCtrl@update');
+    Route::resource('/categorie', 'Back_office\CategorieCtrl');
+    Route::post('/categorie/{id}/edit', 'Back_office\CategorieCtrl@update');
+    Route::resource('/media', 'Back_office\MediaCtrl');
+    Route::post('/media/{id}/edit', 'Back_office\MediaCtrl@update');
 });
 
 Route::group(['prefix' => '/api/v1'], function () {
