@@ -163,7 +163,7 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
         }
     })
 
-     **/
+
 
     // MEMBRE
     var mesMembres = new ModelMembres();
@@ -173,7 +173,15 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
         }
     })
+     **/
+    // SPONSOR
+    var mesSponsors = new ModelSponsors();
+    mesSponsors.fetch({
+        success: function () {
+            $("#popup").html(JST['sponsors']({sponsors:mesSponsors.toJSON()}));
 
+        }
+    })
 
 
 
