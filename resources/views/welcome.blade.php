@@ -9,6 +9,10 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/app.css" type="text/css">
+    <script>
+        var CURRENT_ED = {!!$current_ed !!};
+    </script>
+
     <script src="js/packJs.php" charset="utf-8"></script>
 
 </head>
@@ -58,9 +62,9 @@
 </section>
 
 {{--
-=======
+
 <!--
->>>>>>> e44738648ddd5954ee945ee47bd849920bf5a290
+
 <section class="formulaire">
 
     <div class="formulaireContact ">
