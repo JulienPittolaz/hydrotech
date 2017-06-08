@@ -1,11 +1,15 @@
 <div class="membre">
-        <h1>{{prenom}} {{nom}}</h1>
-    <ul>
-        <li> Adresse mail: {{adresseMail}}</li>
-        <li> Date de naissance: {{dateNaissance}}</li>
-        <li> Section: {{section}}</li>
-        <li> Description: {{description}}</li>
-        <li> Rôle: {{role}}</li>
-        <li> Photo de profil: <img src="{{photoProfil}}"></li>
-    </ul>
+    <figure>
+        <!--<img class="membre_img" src="{{photoProfil}}" >-->
+        <img class="membre_img" src="images/test.jpg" >
+        <!-- <div style=" width:320px; height: 396px; background-color: black" class="membre_img "> </div>-->
+        <div class="ligne"></div>
+        <ul class="membre_infos">
+            <li class="membre_nomComplet">{{prenom}} {{nom}}</li>
+            <li> {{role}}</li>
+            <li> {{section}}</li>
+            <li class="mail"> {{adresseMail}} </li>
+        </ul>
+    </figure>
+
 </div>
