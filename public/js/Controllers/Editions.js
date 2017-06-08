@@ -19,6 +19,18 @@ var CtrlEditions = {
                 content['year'] = annee;
                 $("#popup").empty();
                 $("#popup").append(JST[page](content));
+                if (page == 'galerie'){
+                    // init Masonry
+                    var $grid = $('.grid').imagesLoaded( function() {
+                        $grid.masonry({
+                            itemSelector: '.grid-item',
+                            columnWidth: 300,
+                            gutter: 10,
+                            isFitWidth: true,
+                            stamp: '.stamp'
+                        });
+                    });
+                }
             },
             error: function(){
                 $("#popup").empty();
