@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-
+    
     <!-- Styles -->
     <link rel="stylesheet" href="css/app.css" type="text/css">
+    <script>
+        var CURRENT_ED = {!!$current_ed !!};
+    </script>
+
     <script src="js/packJs.php" charset="utf-8"></script>
 
 </head>
@@ -61,8 +65,13 @@
     </div>
 </section>
 <section id="popup" class="container is-fluid">
+
 </section>
+
+{{--
+
 <!--
+
 <section class="formulaire">
 
     <div class="formulaireContact ">
@@ -142,6 +151,6 @@
 
     </div>
 </section>
--->
+--}}
 </body>
 </html>

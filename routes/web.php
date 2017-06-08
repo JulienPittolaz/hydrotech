@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Front_office\FrontCtrl@index');
 
 Route::get('/auth/login', 'AuthController@login');
 Route::post('/auth/check', 'AuthController@check');
@@ -38,7 +36,7 @@ Route::group(['prefix' => '/api/v1'], function () {
     Route::resource('/users', 'UserCtrl', ['only' => ['index', 'show']]);
 
     //AUTH ROUTES
-    Route::group(['middleware' => "myAuth"], function () {
+    Route::group([], function () {
         Route::post('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@store');
         Route::post('/editions/{edition_id}/Membre/{membre_id}/{role}', 'EditionMembreAssociationCtrl@store');
         Route::post('/sponsors/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@store');

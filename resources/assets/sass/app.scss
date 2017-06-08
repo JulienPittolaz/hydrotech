@@ -8,11 +8,15 @@
 // Bootstrap
 //@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+//ZOOM
+@import "zoom";
+
 // BULMA (flex grid)
 @import "node_modules/bulma/bulma.sass";
 
 // HELPERS
 @import "helper";
+
 //Style général
 @import "general";
 
@@ -22,6 +26,7 @@
 @import "home";
 @import "popup";
 @import "membres";
+@import "medias";
 @import "contact";
 @import "sponsors";
 @import "owl.carousel.min";

@@ -1,15 +1,25 @@
-<h1> Galerie</h1>
+    {{> menu }}
 
-<div class="filtres">
-    <div> Photos </div>
-    <div> Vidéos </div>
-</div>
+<h1 class="page_title"> Galerie</h1>
+    <div class="actualite_cross">X</div>
 
-<main class="galerie">
-    {{#each medias}}
-    <div>
-        {{> media }}
+<div class="container">
+
+    <div class="filtres">
+
+        <div class="btn"> Photos </div>
+        <div class="btn"> Vidéos </div>
     </div>
-    {{/each}}
 
-</main>
+
+    <main class="galerie grid">
+        <div class="grid-sizer"></div>
+        {{#each medias}}
+        <div class="grid-item">
+            {{> media }}
+        </div>
+        {{/each}}
+
+    </main>
+
+</div>
