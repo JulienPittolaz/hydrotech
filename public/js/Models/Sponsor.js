@@ -2,7 +2,6 @@
  * Created by Léa on 03/06/2017.
  */
 var ModelSponsor = Hydrotech.Model.extend({
-    // url: 'url_ici',
 
     validate: function(attrs, options) {
         var msg = '';
