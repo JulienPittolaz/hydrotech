@@ -13,11 +13,13 @@
         'Lib/handlebars.hydrotech.js',
         'Lib/backbone.js',
         'Lib/backbone.hydrotech.js',
+        'Lib/owl.carousel.min.js',
         'main.js'
     ];
     $folders = [
         'Views',
-        'Models'
+        'Models',
+        'custom'
     ];
 
     $js = '';

@@ -10,6 +10,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/app.css" type="text/css">
     <script src="js/packJs.php" charset="utf-8"></script>
+
 </head>
 <body>
 <section id="home">
@@ -54,7 +55,7 @@
 </section>
 <section id="popup" class="container is-fluid">
 </section>
-
+<!--
 <section class="formulaire">
 
     <div class="formulaireContact ">
@@ -134,5 +135,6 @@
 
     </div>
 </section>
+-->
 </body>
 </html>
