@@ -15,9 +15,15 @@
     <main class="galerie grid">
         <div class="grid-sizer"></div>
         {{#each medias}}
+        {{#isVideo}}
         <div class="grid-item">
-            {{> media }}
+            {{> video }}
         </div>
+        {{else}}
+        <div class="grid-item">
+            {{> photo }}
+        </div>
+        {{/isVideo}}
         {{/each}}
 
     </main>
