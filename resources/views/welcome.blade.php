@@ -50,7 +50,15 @@
 <section id="globalNews" class="container is-fluid">
 </section>
 <section id="timeline" class="">
-
+    <div class="timeline-container timeline-theme-1">
+        <div class="timeline js-timeline">
+            <div data-time="2017">your content or markup</div>
+            <div data-time="2016">your content or markup</div>
+            <div data-time="2015">your content or markup</div>
+            <div data-time="2014">your content or markup</div>
+            <div data-time="2013">your content or markup</div>
+        </div>
+    </div>
 </section>
 <section id="popup" class="container is-fluid">
 </section>
