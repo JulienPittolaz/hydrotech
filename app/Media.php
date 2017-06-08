@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 
 class Media extends Model
 {
-    protected $fillable = ['url', 'titre', 'date', 'auteur', 'typeMedia'];
+    protected $fillable = [ 'titre', 'date', 'auteur', 'typeMedia','url'];
     protected $hidden = ['actif'];
     protected $table = "medias";
 
