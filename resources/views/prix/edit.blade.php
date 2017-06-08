@@ -7,6 +7,9 @@
                     <h2>Edition du prix</h2>
                 </div>
                 <div class="body">
+                    @if($errors->any())
+                        <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
+                    @endif
                     <form action="{{ action('Back_office\PrixCtrl@update', $id = $prix->id) }}" id="prix-form" method="POST" novalidate="novalidate" target="_parent">
                     <label for="email_address">Nom</label>
                     <div class="form-group form-float">
