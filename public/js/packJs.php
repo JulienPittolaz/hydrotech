@@ -17,6 +17,7 @@
         'Lib/imagesloaded.pkgd.min.js',
         'Lib/masonry.pkgd.min.js',
         'Lib/zoom.js',
+        'Lib/jquery.gridder.min.js',
         'main.js'
     ];
     $folders = [

@@ -5,10 +5,16 @@
 
     <h2 class="presse_subtitle">Ils ont parlé de nous:</h2>
 
-    <div class="presse_bloc">
+    <div class="presse_bloc ">
+        <ul class="gridder">
 
         {{#each articlesPresse}}
             {{> articlePresse }}
+        {{/each}}
+        </ul>
+
+        {{#each articlesPresse}}
+        {{> articlePresse_Content }}
         {{/each}}
 
     </div>

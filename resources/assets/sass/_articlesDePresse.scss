@@ -1,3 +1,15 @@
+@mixin rowMachine($numPerRow, $margin) {
+  width: ((100% - (($numPerRow - 1) * $margin)) / $numPerRow);
+  &:nth-child(n) {
+    margin-bottom: $margin;
+    margin-right: $margin;
+  }
+  &:nth-of-type(#{$numPerRow}n) {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}
+
 /****SOUS-TITRE PRESSE****/
 
 .presse_subtitle{
@@ -8,9 +20,14 @@
 
 }
 
-.presse_titre::after{
+.presse_titre::before{
 
-  content: " — ";
+   content: " — ";
+ }
+
+.presse_titre:first-child::before{
+
+  content: '';
 }
 
 
@@ -22,20 +39,50 @@
 
 }
 
-
-.presse_description{
-
-  display: none;
-
-
-}
-
 .presse_bloc{
 
   height: auto;
   width: auto;
   padding: 10px;
   margin: auto;
-  background-color: #00e7eb;
+}
 
+
+.gridder{
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+  font-size:0;
+  display: inline;
+}
+
+.gridder-list, .gridder-show{
+  font-weight: $text-weight-light;
+}
+
+.gridder-list::before{
+  content: " — ";
+}
+
+.gridder-list{
+  display: inline;
+  vertical-align: top;
+}
+.gridder-show{
+  display: block;
+  float: left;
+  width: 100%;
+  position: relative;
+  color: white;
+  font-size: $font-size-base;
+  background-color: $contrast-blue;
+  padding: 10px;
+
+}
+.gridder-content{
+  display: none;
+}
+
+.gridder-list{
+  @include rowMachine(6,0%);
 }

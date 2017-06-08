@@ -55,6 +55,7 @@
 <section id="popup" class="container is-fluid">
 </section>
 
+{{--
 <section class="formulaire">
 
     <div class="formulaireContact ">
@@ -134,5 +135,6 @@
 
     </div>
 </section>
+--}}
 </body>
 </html>
