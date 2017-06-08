@@ -16,7 +16,7 @@ class EditionCtrl extends Controller
     public function index()
     {
         $editions = Edition::all()->where('actif', true);
-
+        $editions->where('publie', true);
         foreach ($editions as $edition) {
             $edition->urlImageMedia = urldecode($edition->urlImageMedia);
             $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
@@ -93,17 +93,47 @@ class EditionCtrl extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($annee)
     {
-        $edition = Edition::find($id);
-        if (!Edition::isValid(['id' => $id]) || $edition->actif == false) {
-            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+        $edition = Edition::all()->where('annee', $annee)->first();
+        if (!Edition::isValid(['annee' => $annee]) || $edition->actif == false) {
+            return response()->json('Annee edition non valide', Response::HTTP_BAD_REQUEST);
         }
-        if (Edition::find($id) == null) {
+        if ($edition == null) {
             return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
         }
         $edition->urlImageMedia = urldecode($edition->urlImageMedia);
         $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
+
+        $actualites = $edition->actualites;
+        foreach ($actualites as $actualite) {
+            $actualite->urlImage = urldecode($actualite->urlImage);
+        }
+        $categorieEditionSponsors = $edition->categorieeditionsponsors;
+        foreach ($categorieEditionSponsors as $catEdSp) {
+            $sponsor = $catEdSp->sponsor;
+            $sponsor->urlLogo = urldecode($sponsor->urlLogo);
+            $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
+
+            /*foreach ($sponsor->categorieeditionsponsors as $categorieDuSponsor){
+                $ed = $categorieDuSponsor->edition;
+                $ed->annee;
+            }*/
+            $catEdSp->categorie;
+        }
+        $medias = $edition->medias;
+        foreach ($medias as $media) {
+            $media->url = urldecode($media->url);
+        }
+        $membres = $edition->membres;
+        foreach ($membres as $membre) {
+            $membre->photoProfil = urldecode($membre->photoProfil);
+        }
+        $presses = $edition->presses;
+        foreach ($presses as $press) {
+            $press->url = urldecode($press->url);
+        }
+        $edition->prixs;
         return $edition;
     }
 
@@ -129,6 +159,15 @@ class EditionCtrl extends Controller
     {
         $edition = Edition::find($id);
         $para = $request->intersect(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
+        if($request->has('publie')) {
+            if ($para['publie'] == 'false') {
+                $para['publie'] = false;
+            }
+            if ($para['publie'] == 'true') {
+                $para['publie'] = true;
+            }
+        }
+
         if (!Edition::isValid($para)) {
             return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
         }
@@ -166,7 +205,14 @@ class EditionCtrl extends Controller
         if($edition['actif'] == false){
             return response()->json('Edition déjà supprimée', Response::HTTP_NOT_FOUND);
         }
+        foreach ($edition->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
+            $categoriesEditionSponsorAssociees->pivot->actif = false;
+            $categoriesEditionSponsorAssociees->save();
+        }
         $edition->actif = false;
+        if ($edition['publie'] == true){
+            $edition['publie'] == false;
+        }
         $edition->save();
         return response()->json('OK', Response::HTTP_OK);
     }

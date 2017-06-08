@@ -12,21 +12,18 @@ class Edition extends Model
     //protected $table = "editions";
 
     public function membres() {
-        return $this->belongsToMany('\App\Membre')->withTimestamps();
+        return $this->belongsToMany('\App\Membre')->withTimestamps()->withPivot('actif');
     }
 
     public function actualites() {
-        return $this->belongsToMany('\App\Actualite')->withTimestamps();
+        return $this->belongsToMany('\App\Actualite')->withTimestamps()->withPivot('actif');
     }
 
     public function medias() {
-        return $this->belongsToMany('\App\Media')->withTimestamps();
-    }
-    public function socials() {
-        return $this->belongsToMany('\App\Social')->withTimestamps();
+        return $this->belongsToMany('\App\Media')->withTimestamps()->withPivot('actif');
     }
     public function sponsors() {
-        return $this->belongsToMany('\App\Sponsor')->withTimestamps();
+        return $this->belongsToMany('\App\Sponsor')->withTimestamps()->withPivot('actif');
     }
 
     public function categorieeditionsponsors()
@@ -35,18 +32,18 @@ class Edition extends Model
     }
 
     public function prixs() {
-        return $this->belongsToMany('\App\Prix')->withTimestamps();
+        return $this->belongsToMany('\App\Prix')->withTimestamps()->withPivot('actif');
     }
 
     public function presses() {
-        return $this->belongsToMany('\App\Presse')->withTimestamps();
+        return $this->belongsToMany('\App\Presse')->withTimestamps()->withPivot('actif');
     }
 
 
     public static function isValid($inputs) {
         return Validator::make($inputs, [
             'id' => 'exists:editions|sometimes|required',
-            'annee' => 'unique:editions|integer|digits:4|sometimes|required',
+            'annee' => 'exists:editions|integer|digits:4|sometimes|required',
             'nomEquipe' => 'string|sometimes|required',
             'urlImageMedia' => 'url|sometimes|required',
             'urlImageEquipe' => 'url|sometimes|required',

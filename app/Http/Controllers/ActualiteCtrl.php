@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actualite;
+use App\Edition;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Auth;
@@ -100,16 +101,26 @@ class ActualiteCtrl extends Controller
         $actualite = Actualite::find($id);
 
         $inputs = $request->intersect(['titre', 'datePublication', 'contenu', 'publie', 'urlImage']);
+        if($request->has('publie')) {
+            if ($inputs['publie'] == 'false') {
+                $inputs['publie'] = false;
+            }
+            if ($inputs['publie'] == 'true') {
+                $inputs['publie'] = true;
+            }
+        }
+
         if (!Actualite::isValid($inputs)) {
             return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
         }
+
 
         if (!Actualite::isValid(['id' => $id])) {
             return response()->json('Not found', Response::HTTP_NOT_FOUND);
         }
 
         if($actualite['actif'] == false){
-            return response()->json('Actualité déjà supprimé', Response::HTTP_NOT_FOUND);
+            return response()->json('Actualité supprimée', Response::HTTP_NOT_FOUND);
         }
 
         if($request->has('urlImage')) {
@@ -137,6 +148,11 @@ class ActualiteCtrl extends Controller
         if($actualite['actif'] == false){
             return response()->json('Actualité déjà supprimée', Response::HTTP_NOT_FOUND);
         }
+
+        foreach ($actualite->editions as $ed){
+            $actualite->editions()->updateExistingPivot($ed->id, ['actif' => false]);
+        }
+
         $actualite->actif = false;
         $actualite->save();
         return response()->json('OK', Response::HTTP_OK);

@@ -44,7 +44,6 @@ class MembreCtrl extends Controller
     public function store(Request $request)
     {
         $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role']);
-        dd($para);
         if (!Membre::isValid($para)) {
             return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
         }
@@ -96,7 +95,7 @@ class MembreCtrl extends Controller
     public function update(Request $request, $id)
     {
         $membre = Membre::find($id);
-        $para = $request->intersect(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role']);
+        $para = $request->intersect(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil']);
         if (!Membre::isValid($para)) {
             return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
         }
@@ -129,6 +128,9 @@ class MembreCtrl extends Controller
         }
         if($membre['actif'] == false){
             return response()->json('Membre déjà supprimé', Response::HTTP_NOT_FOUND);
+        }
+        foreach ($membre->editions as $ed){
+            $membre->editions()->updateExistingPivot($ed->id, ['actif' => false]);
         }
         $membre->actif = false;
         $membre->save();
