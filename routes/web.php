@@ -35,6 +35,62 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::post('/categorie/{id}/edit', 'Back_office\CategorieCtrl@update');
     Route::resource('/media', 'Back_office\MediaCtrl');
     Route::post('/media/{id}/edit', 'Back_office\MediaCtrl@update');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 });
 
 Route::group(['prefix' => '/api/v1'], function () {
