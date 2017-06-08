@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-
+    
     <!-- Styles -->
     <link rel="stylesheet" href="css/app.css" type="text/css">
     <script src="js/packJs.php" charset="utf-8"></script>
@@ -56,7 +56,6 @@
 <section id="popup" class="container is-fluid">
 
 </section>
-<<<<<<< HEAD
 
 {{--
 =======
@@ -141,10 +140,6 @@
 
     </div>
 </section>
-<<<<<<< HEAD
 --}}
-=======
--->
->>>>>>> e44738648ddd5954ee945ee47bd849920bf5a290
 </body>
 </html>
