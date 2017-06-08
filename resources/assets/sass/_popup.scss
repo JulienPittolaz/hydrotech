@@ -1,6 +1,19 @@
-.page_title{
+.popup_content .page_title{
   font-weight: $text-weight-bold;
-  margin-bottom: 80px;
-  margin-left: 100px;
+  margin-bottom: 100px;
+  margin-left: 120px;
+  margin-top: 50px;
 }
 
+
+.popup_cross{
+  position: fixed;
+  text-align: right;
+  right:150px;
+  top:75px;
+  font-size: 30px;
+}
+ .container.is-fluid {
+  margin:0px;
+
+ }

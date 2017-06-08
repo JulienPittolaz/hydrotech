@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/app.css" type="text/css">
     <script>
@@ -55,10 +55,15 @@
 </section>
 <section id="timeline" class="container is-fluid">
 
-
+    <ul>
+        <li><a href="#/editions/2016/membres">Équipe</a></li>
+    </ul>
 </section>
 <section id="popup" class="container is-fluid">
+    <div class="popup_cross"> X</div>
+    <div class="popup_content">
 
+    </div>
 </section>
 
 {{--
