@@ -179,6 +179,7 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     mesSponsors.fetch({
         success: function () {
             $("#popup").html(JST['sponsors']({sponsors:mesSponsors.toJSON()}));
+            $(".owl-carousel").owlCarousel();
 
         }
     })

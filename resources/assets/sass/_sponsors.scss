@@ -1,0 +1,32 @@
+.sponsor{
+margin-bottom: 50px;
+}
+
+.spons_logo {
+  width: 165px;
+  height:81px;
+  margin-right: 40px;
+  padding:10px;
+  position: relative;
+
+
+}
+
+.sponsor .spons_logo img {
+  filter: $text-color; /* IE6-9 */
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+  max-height: 81px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: auto !important;
+}
+
+/* Disable grayscale on hover */
+.sponsor .spons_logo img:hover {
+  -webkit-filter: grayscale(0);
+  filter: none;
+}
+
