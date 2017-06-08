@@ -835,7 +835,7 @@ var mediasTests = new ModelMedias();
                 scrollTo: "panel", // panel or listitem
                 animationSpeed: 400,
                 animationEasing: "easeInOutExpo",
-                showNav: true, // Show Navigation
+                showNav: false, // Show Navigation
                 nextText: "", // Next button text
                 prevText: "", // Previous button text
                 closeText: "", // Close button text
