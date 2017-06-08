@@ -3,7 +3,6 @@
  */
 var ModelEdition = Hydrotech.Model.extend({
     urlRoot: '/api/v1/editions',
-
     validate: function(attrs, options) {
         var msg = '';
 

@@ -1,12 +1,13 @@
 /**
  * Created by timdlp on 06.06.17.
  */
-var Ctrleditions = {
+var CtrlEditions = {
     show: function(annee,page){
         if (annee == CURRENT_ED.annee) {
             var content = {};
             var fillIn = CURRENT_ED[page];
             content[page] = fillIn;
+            content['year'] = annee;
             $("#popup").empty();
             $("#popup").append(JST[page](content));
         } else if (annee != CURRENT_ED.annee){
@@ -15,7 +16,7 @@ var Ctrleditions = {
                 var content = {};
                 var fillIn = edition.attributes[page];
                 content[page] = fillIn;
-                console.log(fillIn);
+                content['year'] = annee;
                 $("#popup").empty();
                 $("#popup").append(JST[page](content));
             },

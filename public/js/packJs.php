@@ -19,7 +19,7 @@
     $folders = [
         'Views',
         'Models',
-        'Controlers'
+        'Controllers'
     ];
 
     $js = '';
