@@ -8,12 +8,20 @@
     $files = [
          // LIBRARIES
         'Lib/jquery.js',
+        'Lib/transition.js',
         'Lib/underscore.js',
         'Lib/handlebars.js',
         'Lib/handlebars.hydrotech.js',
         'Lib/backbone.js',
         'Lib/backbone.hydrotech.js',
+<<<<<<< HEAD
+        'Lib/imagesloaded.pkgd.min.js',
+        'Lib/masonry.pkgd.min.js',
+        'Lib/zoom.js',
+        'Lib/jquery.gridder.min.js',
+=======
         'Lib/owl.carousel.min.js',
+>>>>>>> e44738648ddd5954ee945ee47bd849920bf5a290
         'main.js'
     ];
     $folders = [

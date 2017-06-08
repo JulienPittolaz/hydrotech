@@ -56,7 +56,12 @@
 <section id="popup" class="container is-fluid">
 
 </section>
+<<<<<<< HEAD
+
+{{--
+=======
 <!--
+>>>>>>> e44738648ddd5954ee945ee47bd849920bf5a290
 <section class="formulaire">
 
     <div class="formulaireContact ">
@@ -136,6 +141,10 @@
 
     </div>
 </section>
+<<<<<<< HEAD
+--}}
+=======
 -->
+>>>>>>> e44738648ddd5954ee945ee47bd849920bf5a290
 </body>
 </html>

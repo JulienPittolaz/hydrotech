@@ -1,9 +1,22 @@
 {{> menu}}
-<h1>Articles de presse</h1>
-<h2>Ils ont parlé de nous:</h2>
+<h1 class="page_title">Articles de presse</h1>
 
-<div class="columns">
-    {{#each articlesPresse}}
-        {{> articlePresse }}
-    {{/each}}
+<div class="container">
+
+    <h2 class="presse_subtitle">Ils ont parlé de nous:</h2>
+
+    <div class="presse_bloc ">
+        <ul class="gridder">
+
+        {{#each articlesPresse}}
+            {{> articlePresse }}
+        {{/each}}
+        </ul>
+
+        {{#each articlesPresse}}
+        {{> articlePresse_Content }}
+        {{/each}}
+
+    </div>
+
 </div>
