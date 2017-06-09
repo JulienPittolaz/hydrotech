@@ -18,7 +18,12 @@
 </head>
 <body>
 <section id="home">
-    <div class="home_menu">
+    <div class="home_menu home_menu_deroule">
+        <div id="logo_equipe">
+            <a href="">
+                <img src="images/logo.svg" alt="logo de l'équipe">
+            </a>
+        </div>
         <div id="socialNetworks">
             <ul>
                 <li class="facebook"></li>
