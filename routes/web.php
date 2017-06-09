@@ -25,8 +25,8 @@ Route::group(['middleware' => 'myAuth'], function () {
 Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::resource('/prix', 'Back_office\PrixCtrl');
     Route::post('/prix/edit/{id}', 'Back_office\PrixCtrl@update');
-    Route::resource('/membres', 'Back_office\MembreCtrl');
-    Route::post('/membre/edit/{id}', 'Back_office\MembreCtrl@update');
+    Route::resource('/membre', 'Back_office\MembreCtrl');
+    Route::post('/membre/{id}/edit', 'Back_office\MembreCtrl@update');
     Route::resource('/presse', 'Back_office\PresseCtrl');
     Route::post('/presse/{id}/edit', 'Back_office\PresseCtrl@update');
     Route::resource('/sponsor', 'Back_office\SponsorCtrl');
@@ -35,6 +35,12 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::post('/categorie/{id}/edit', 'Back_office\CategorieCtrl@update');
     Route::resource('/media', 'Back_office\MediaCtrl');
     Route::post('/media/{id}/edit', 'Back_office\MediaCtrl@update');
+    Route::resource('/actualite', 'Back_office\ActualiteCtrl');
+    Route::post('/actualite/{id}/edit', 'Back_office\ActualiteCtrl@update');
+    Route::resource('/social', 'Back_office\SocialCtrl');
+    Route::post('/social/{id}/edit', 'Back_office\SocialCtrl@update');
+    Route::resource('/edition', 'Back_office\EditionCtrl');
+    Route::post('/edition/{id}/edit', 'Back_office\EditionCtrl@update');
 });
 
 Route::group(['prefix' => '/api/v1'], function () {

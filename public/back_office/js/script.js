@@ -117,7 +117,8 @@
                 maxlength: 30
             },
             'date': {
-                required: true
+                required: true,
+                date: true
 
             },
             'url': {
@@ -141,6 +142,112 @@
             $(element).parents('.form-group').append(error);
         }
     });
+
+    $('#actualite-form').validate({
+        rules: {
+            'titre': {
+                required: true,
+                maxlength: 30
+            },
+            'datePublication': {
+                required: true,
+                date: true
+
+            },
+            'contenu': {
+                required: true,
+                maxlength: 500
+            },
+            'auteur': {
+                required: true
+            },
+            'publie': {
+                required: true
+            },
+            'urlImage': {
+                required: true,
+                url: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+
+    $('#social-form').validate({
+        rules: {
+            'nom': {
+                required: true,
+                maxlength: 30
+            },
+            'url': {
+                required: true,
+                url: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+    $('#edition-form').validate({
+        rules: {
+            'annee': {
+                required: true,
+                digits: 4
+            },
+            'nomEquipe': {
+                required: true,
+            },
+            'urlImageMedia': {
+                required: true,
+                url: true
+            },
+            'urlImageEquipe': {
+                required: true,
+                url: true
+            },
+            'lieu': {
+                required: true,
+            },
+            'dateDebut': {
+                required: true,
+                date: true
+            },
+            'dateFin': {
+                required: true,
+                date: true
+            },
+            'description': {
+                required: true,
+                maxlength: 500
+            },
+            'publie': {
+                required: true,
+            },
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+    $('#optgroup').multiSelect({ selectableOptgroup: true });
 
 
 

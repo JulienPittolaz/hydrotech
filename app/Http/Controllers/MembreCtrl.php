@@ -43,7 +43,7 @@ class MembreCtrl extends Controller
      */
     public function store(Request $request)
     {
-        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role']);
+        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil']);
         if (!Membre::isValid($para)) {
             return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
         }

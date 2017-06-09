@@ -42,6 +42,7 @@ class PrixCtrl extends Controller
     {
         $inputs = $request->only(['nom', 'description', 'montant']);
         $inputs['montant'] = (int)$inputs['montant'];
+
         if (!Prix::isValid($inputs)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
@@ -52,7 +53,7 @@ class PrixCtrl extends Controller
             'montant' => $inputs['montant']
         ]);
         $prix->save();
-        return  redirect('prix');
+        return  redirect('admin/prix')->withInput()->with('message', 'Nouveau prix ajouté');
     }
 
     /**
@@ -67,7 +68,10 @@ class PrixCtrl extends Controller
         $prix = Prix::find($id);
 
         if (!Prix::isValid(['id' => $id]) || $prix->actif == false) {
-            return response()->json('Requête invalide', Response::HTTP_NOT_FOUND);
+            return response()->json('Prix non valide', Response::HTTP_NOT_FOUND);
+        }
+        if (Prix::find($id) == null) {
+            return response()->json('Prix introuvable', Response::HTTP_NOT_FOUND);
         }
         return $prix;
     }
@@ -82,7 +86,7 @@ class PrixCtrl extends Controller
     {
         $prix = Prix::find($id);
         if(!$prix) {
-            return redirect('prix');
+            return redirect('admin/prix');
         }
         $prix->first();
         return view('prix/edit', ['prix' => $prix]);
@@ -103,11 +107,11 @@ class PrixCtrl extends Controller
         $inputs['montant'] = (int)$inputs['montant'];
         $request->replace(['id' => $id]);
         if (!Prix::isValid($inputs)) {
-            return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
+            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
 
-        if (!Prix::isValid(['id' => $id])) {
-            return response()->json('Not found', Response::HTTP_NOT_FOUND);
+        if (!Prix::isValid(['id' => $id])  || $prix->actif == false) {
+            return response()->json('Sponsor inexistant', Response::HTTP_NOT_FOUND);
         }
 
         if($prix['actif'] == false){
@@ -115,7 +119,7 @@ class PrixCtrl extends Controller
         }
 
         $prix->update($inputs);
-        return  back()->withInput();
+        return  redirect('admin/prix')->withInput()->with('message', 'Modification enregistrée');
     }
 
     /**
@@ -131,7 +135,9 @@ class PrixCtrl extends Controller
         if (!Prix::isValid(['id' => $id])) {
             return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
         }
-
+        if ($prix == null) {
+            return response()->json('Prix introuvable', Response::HTTP_NOT_FOUND);
+        }
         if($prix['actif'] == false){
             return response()->json('Prix déjà supprimé', Response::HTTP_NOT_FOUND);
         }
