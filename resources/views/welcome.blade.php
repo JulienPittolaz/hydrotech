@@ -46,7 +46,7 @@
         le transport maritime est un enjeu économique et environnemental majeur. En effet, si le bateau reste le moyen
         de transport le plus écologique, en matière d’emissions de CO2 par tonne transportée, il représente tout de même
         la 5ème source de pollution mondiale...
-        <span class="home_more">+</span>
+        <span class="home_more"><a href="http://www.hydrocontest.org/fr/">+</a></span>
     </div>
 
     <footer class="home_scroll">

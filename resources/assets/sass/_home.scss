@@ -42,6 +42,20 @@
 }
 
 .home_more{
+
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+  font-size: 30px;
+  font-weight: $text-weight-bold;
+  text-transform: uppercase;
+
+}
+
+.home_more a{
+
+  color: white;
+
 }
 
 
