@@ -247,6 +247,9 @@
     <script src="{{url("back_office/plugins/autosize/autosize.js")}}"></script>
     <script src="{{url("back_office/plugins/jquery-validation/jquery.validate.js")}}"></script>
 
+
+    <script src="{{url("back_office/js/cropit.js")}}"></script>
+
 <!-- Autosize Plugin Js -->
 <script src="{{url("back_office/plugins/autosize/autosize.js")}}"></script>
 <!-- Moment Plugin Js -->

@@ -6,6 +6,8 @@ use App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+
 
 class SponsorCtrl extends Controller
 {
@@ -53,15 +55,21 @@ class SponsorCtrl extends Controller
      */
     public function store(Request $request)
     {
-        $para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
+
+
+        /*$para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
         if (!Sponsor::isValid($para)) {
             return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
         }
         $para['urlLogo'] = urlencode($para['urlLogo']);
-        $para['urlSponsor'] = urlencode($para['urlSponsor']);
+        $para['urlSponsor'] = urlencode($para['urlSponsor']);*/
+        $para = $request->only(['nom', 'urlSponsor']);
+        $ext = $request->file('urlLogo')->getClientOriginalExtension();
+        $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.' . $ext);
         $sponsor = new Sponsor($para);
+        $sponsor->urlLogo = $image;
         $sponsor->save();
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
+        //$sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return redirect('admin/sponsor')->withInput()->with('message', 'Nouveau sponsor ajouté');
     }
