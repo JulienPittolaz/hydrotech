@@ -5,9 +5,7 @@ $(function () {
 
     // GESTION MENU HAMBURGER
     $("#popup").on("click", "nav.edition_menu",  function () {
-        if($("body nav.edition_menu ul").hasClass('isHidden')) {
-            $("body nav.edition_menu ul").removeClass('isHidden');
-        }
+        $("body nav.edition_menu ul").toggleClass('isHidden');
         $("html").toggleClass("isNoScroll")
         $("body nav.edition_menu ul").toggleClass("isBlock")
 

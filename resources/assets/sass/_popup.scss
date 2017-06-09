@@ -49,15 +49,19 @@ and (min-width: 30em) and (max-width: 41em), screen and (min-device-width: 30em)
   cursor: pointer;
     top: 20px;
     left:35px;
+    z-index: 800;
 }
 
   body nav.edition_menu:before {
     font-size: 2.5em;
     font-family: icomoon;
     content: "\ea7a";
+    z-index: 801;
+    position: relative;
   }
   body nav.edition_menu:hover:before {
     color: $contrast-blue;
+
   }
   body nav.edition_menu ul {
     position: fixed;
