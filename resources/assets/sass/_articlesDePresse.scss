@@ -99,9 +99,11 @@
 .btn_presse{
 
   position: relative;
-  float: left;
-  bottom: -45px;
-  right: -92%;
+  float: right;
+  bottom: -60px;
+  text-transform: uppercase;
+  color: $contrast-blue;
+  font-weight: $text-weight-bold;
 
 }
 
