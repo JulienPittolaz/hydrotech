@@ -18,7 +18,12 @@
 </head>
 <body>
 <section id="home">
-    <div class="home_menu">
+    <div class="home_menu home_menu_deroule">
+        <div id="logo_equipe">
+            <a href="">
+                <img src="images/logo.svg" alt="logo de l'équipe">
+            </a>
+        </div>
         <div id="socialNetworks">
             <ul>
                 <li class="facebook"></li>
@@ -54,6 +59,7 @@
 <section id="globalNews" class="container is-fluid">
 </section>
 <section id="timeline" class="container is-fluid">
+
 <h1>TIMELINE PROVISOIRE SUSU</h1>
     <ul>
         <li><a href="#/editions/2016/membres">Équipe</a></li>
@@ -66,8 +72,12 @@
         <li><a href="#/editions/2016/membres">Équipe</a></li>
         <li><a href="#/editions/2016/membres">Équipe</a></li>
     </ul>
+    <ul>
+        <li><a href="#/editions/2017/membres">Équipe</a></li>
+    </ul>
 </section>
 <section id="popup" class="container is-fluid">
+
     <div class="popup_content">
 
     </div>

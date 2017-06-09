@@ -11,6 +11,9 @@
   position: relative;
 }
 
+.home_menu_deroule{
+}
+
 .home_descConcours{
   background: $contrast-blue;
   color: white;
@@ -86,17 +89,27 @@ line-height: 0.8;
   width: 200px;
 }
 
+
+#logo_equipe{
+  position: absolute;
+  width: 40px;
+  height: auto;
+  top : 30px;
+  left: 50px;
+
+}
+
 #socialNetworks{
   position: absolute;
-  left:50px;
+  right:125px;
   top:50px;
-  font-size: 20px;
+  font-size: $font-size-medium;
   color: $contrast-blue;
   font-family: icomoon;
 }
 
 #socialNetworks li{
-  margin-right: 15px;
+  margin-right: 5px;
   display: inline-block;
 }
 

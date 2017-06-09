@@ -5,7 +5,6 @@
 var CtrlEditions = {
     show: function (annee, page) {
         var POPUP = $("#popup .popup_content");
-        console.log(POPUP);
         if (annee == CURRENT_ED.annee) {
             var content = {};
             var fillIn = CURRENT_ED[page];
@@ -15,6 +14,7 @@ var CtrlEditions = {
             POPUP.append(JST[page](content));
             $('section').hide();
             $('section#popup').show();
+            console.log("SHOW THE POPUP BITCH !")
             if (page == 'medias'){
                 // init Masonry
                 var $grid = $('.galerie_grid').imagesLoaded( function() {
@@ -53,7 +53,12 @@ var CtrlEditions = {
                     }
                 });
             }
-        } else if (annee != CURRENT_ED.annee) {
+            $(".popup_cross").on("click", function () {
+                $('section').show();
+                $('section#popup').hide();
+
+            });
+        } else{
             var edition = new ModelEdition();
             edition.fetchByYear(annee, {
                 success: function () {
@@ -65,6 +70,7 @@ var CtrlEditions = {
                     POPUP.append(JST[page](content));
                     $('section').hide();
                     $('section#popup').show();
+                    console.log("SHOW THE POPUP BITCH !");
                     if (page == 'medias'){
                         // init Masonry
                         var $grid = $('.galerie_grid').imagesLoaded( function() {
@@ -104,7 +110,8 @@ var CtrlEditions = {
                         });
                     }
                     $(".popup_cross").on("click", function () {
-                        history.pushState(this, '',"/" );
+                        $('section').show();
+                        $('section#popup').hide();
                     });
                 },
                 error: function () {
