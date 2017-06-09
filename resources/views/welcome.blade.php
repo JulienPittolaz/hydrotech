@@ -68,7 +68,6 @@
     </ul>
 </section>
 <section id="popup" class="container is-fluid">
-    <div class="popup_cross"> X</div>
     <div class="popup_content">
 
     </div>
