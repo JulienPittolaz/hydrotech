@@ -11,9 +11,63 @@
   text-align: right;
   right:150px;
   top:75px;
-  font-size: 30px;
+  font-family: icomoon;
+  font-size: 2em;
+}
+.popup_cross:before{
+  content: "\ea0f";
 }
  .container.is-fluid {
   margin:0px;
 
  }
+/* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
+@media screen and (min-width: 21em) and (max-width: 30em),  screen and (min-device-width: 21em) and (max-device-width: 30em)
+and (min-width: 30em) and (max-width: 41em), screen and (min-device-width: 30em) and (max-device-width: 41em){
+
+  // CROIX
+  .popup_cross{
+    top:35px;
+    right:40px;
+
+  }
+  .popup_cross:before{
+    content: "\ea0f";
+  }
+
+
+  // TITRE
+  .popup_content .page_title{
+    font-size: 50px;
+    margin-left:0px;
+    margin-top:80px;
+    text-align: center;
+  }
+  // MENU
+  body nav.edition_menu {
+  min-height: 1.6em;
+  cursor: pointer;
+    top: 20px;
+    left:35px;
+}
+
+
+  body nav.edition_menu:before {
+    font-size: 2.5em;
+    font-family: icomoon;
+    content: "\ea7a";
+  }
+  body nav.edition_menu:hover:before {
+    color: $contrast-blue;
+  }
+  body nav.edition_menu ul {
+    display: none;
+  }
+  body nav.edition_menu li {
+    display: block;
+    border-top-width: 1px;
+    border-top-style: solid;
+    z-index: 100;
+  }
+}
+
