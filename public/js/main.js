@@ -852,13 +852,13 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
-    var actuZoomTests = new ModelActualite();
-    actuZoomTests.fetch({
-         success: function(){
-             $("#popup").html(JST['actualite_zoom']({actualite:actuZoomTests.toJSON()}));
-
-         }
-     });
+    // var actuZoomTests = new ModelActualite();
+    // actuZoomTests.fetch({
+    //      success: function(){
+    //          $("#popup").html(JST['actualite_zoom']({actualite:actuZoomTests.toJSON()}));
+    //
+    //      }
+    //  });
 
 
 
