@@ -19,6 +19,7 @@
         'Lib/zoom.js',
         'Lib/jquery.gridder.min.js',
         'Lib/owl.carousel.min.js',
+        'Lib/timeline.min.js',
         'router.js',
         'main.js'
     ];

@@ -1,3 +1,6 @@
 $(function() {
-    $('.js-timeline').Timeline();
+    $('.js-timeline').Timeline({
+        mode: 'vertical',
+        itemClass: 'timeline-item'
+    });
 });
