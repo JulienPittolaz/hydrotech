@@ -13,6 +13,8 @@ var CtrlEditions = {
             content['year'] = annee;
             POPUP.empty();
             POPUP.append(JST[page](content));
+            $('section').hide();
+            $('section#popup').show();
             if (page == 'medias'){
                 // init Masonry
                 var $grid = $('.galerie_grid').imagesLoaded( function() {
