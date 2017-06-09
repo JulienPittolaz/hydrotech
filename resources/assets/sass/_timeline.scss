@@ -105,6 +105,9 @@ $dots-item-width: 35px;
   width: 100%;
   height: 100%;
   transition: transform $transition-time $transition-ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
 	.timeline-horizontal &{
 		//background: url('../img/timeline-bg.png') bottom repeat-x;
@@ -127,6 +130,7 @@ $dots-item-width: 35px;
 
 		.timeline-vertical &{
 			width: 100%;
+      //margin:3vh auto;
 		}
 
     &.slide-active {
@@ -177,7 +181,11 @@ $dots-item-width: 35px;
   width: $item-width;
   height: 100vh;
   padding: 10px;
-  border: 1px solid #ddd
+  border: 1px solid #ddd;
+  background-position: center center;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat:no-repeat;
 }
 
 .timeline-dots {

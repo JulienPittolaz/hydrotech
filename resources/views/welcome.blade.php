@@ -62,15 +62,6 @@
             <div data-time="2016">
                 your content or markup
             </div>
-            <div data-time="2015">
-                your content or markup
-            </div>
-            <div data-time="2014">
-                your content or markup
-            </div>
-            <div data-time="2013">
-                your content or markup
-            </div>
         </div>
     </div>
 </section>

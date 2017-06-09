@@ -244,7 +244,7 @@
 
 			if (type === 'vertical'){
 				itemSize = currentItem.outerHeight(true);
-				listSize = listWrapper.height();
+				listSize = $(window).height;
 			}else {
 				itemSize = currentItem.outerWidth(true);
 				listSize = listWrapper.width();
@@ -255,7 +255,7 @@
 
 
 			if (type === 'vertical'){
-				dotsWrapper.height(totalSize);
+				dotsWrapper.height("100vh");
 				dotsWrapper.css({"transform": "translate3d(0px," + getTranslate + "px, 0px)"});
 			}else {
 				dotsWrapper.width(totalSize);
