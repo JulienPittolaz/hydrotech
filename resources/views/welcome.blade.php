@@ -33,20 +33,22 @@
         </div>
         <div id="contact"> Contact</div>
     </div>
+
+
     <div class="home_presentation">
         <div class="home_team"> Team <br> Heig-Vd</div>
         <div class="home_participants"> Participants <br> au concours <br> Hydrocontest</div>
-
     </div>
 
     <div class="home_descConcours">
-        Le concours — II s’agit d’une des problématiques actuelles et communes liées au développement industriel et
+        <p>Le concours — II s’agit d’une des problématiques actuelles et communes liées au développement industriel et
         technologique de notre ère. Avec 90% des échanges commerciaux opérés par la mer,
 
         le transport maritime est un enjeu économique et environnemental majeur. En effet, si le bateau reste le moyen
         de transport le plus écologique, en matière d’emissions de CO2 par tonne transportée, il représente tout de même
         la 5ème source de pollution mondiale...
-        <span class="home_more"><a href="http://www.hydrocontest.org/fr/">+</a></span>
+        </p>
+        <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ voir plus</a></p>
     </div>
 
     <footer class="home_scroll">
@@ -55,32 +57,32 @@
     </footer>
 
 </section>
-<section id="globalNews" class="container is-fluid">
-</section>
-<section id="timeline" class="container is-fluid">
+{{--<section id="globalNews" class="container is-fluid">--}}
+{{--</section>--}}
+{{--<section id="timeline" class="container is-fluid">--}}
 
-<h1>TIMELINE PROVISOIRE SUSU</h1>
-    <ul>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-    </ul>
-    <ul>
-        <li><a href="#/editions/2017/membres">Équipe</a></li>
-    </ul>
-</section>
-<section id="popup" class="container is-fluid">
+{{--<h1>TIMELINE PROVISOIRE SUSU</h1>--}}
+    {{--<ul>--}}
+        {{--<li><a href="#/editions/2016/membres">Équipe</a></li>--}}
+        {{--<li><a href="#/editions/2016/membres">Équipe</a></li>--}}
+        {{--<li><a href="#/editions/2016/membres">Équipe</a></li>--}}
+        {{--<li><a href="#/editions/2016/membres">Équipe</a></li>--}}
+        {{--<li><a href="#/editions/2016/membres">Équipe</a></li>--}}
+        {{--<li><a href="#/editions/2016/membres">Équipe</a></li>--}}
+        {{--<li><a href="#/editions/2016/membres">Équipe</a></li>--}}
+        {{--<li><a href="#/editions/2016/membres">Équipe</a></li>--}}
+        {{--<li><a href="#/editions/2016/membres">Équipe</a></li>--}}
+    {{--</ul>--}}
+    {{--<ul>--}}
+        {{--<li><a href="#/editions/2017/membres">Équipe</a></li>--}}
+    {{--</ul>--}}
+{{--</section>--}}
+{{--<section id="popup" class="container is-fluid">--}}
 
-    <div class="popup_content">
+    {{--<div class="popup_content">--}}
 
-    </div>
-</section>
+    {{--</div>--}}
+{{--</section>--}}
 
 {{--<section class="formulaire">
 {{--
