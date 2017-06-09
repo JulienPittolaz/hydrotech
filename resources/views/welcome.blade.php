@@ -54,13 +54,16 @@
 <section id="globalNews" class="container is-fluid">
 </section>
 <section id="timeline" class="container is-fluid">
-
+    <h1>Papo</h1>
     <ul>
         <li><a href="#/editions/2016/membres">Équipe</a></li>
     </ul>
+    <ul>
+        <li><a href="#/editions/2017/membres">Équipe</a></li>
+    </ul>
 </section>
 <section id="popup" class="container is-fluid">
-    <div class="popup_cross"> X</div>
+    <div class="popup_cross"><a href="/#timeline">X</a></div>
     <div class="popup_content">
 
     </div>
