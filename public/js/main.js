@@ -847,4 +847,28 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });

@@ -66,6 +66,7 @@
     </div>
 </section>
 
+{{--<section class="formulaire">
 {{--
 
 <!--
@@ -148,7 +149,7 @@
     </div>
 
     </div>
-</section>
---}}
+
+</section>--}}
 </body>
 </html>
