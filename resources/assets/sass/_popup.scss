@@ -40,7 +40,7 @@ and (min-width: 30em) and (max-width: 41em), screen and (min-device-width: 30em)
   .popup_content .page_title{
     font-size: 50px;
     margin-left:0px;
-    margin-top:80px;
+    margin-top:100px;
     text-align: center;
   }
   // MENU
@@ -71,3 +71,18 @@ and (min-width: 30em) and (max-width: 41em), screen and (min-device-width: 30em)
   }
 }
 
+// MENU & CROIX fixed
+
+.edition_grandMenu{
+  position: fixed;
+  z-index: 20000;
+  height: 103px;
+  width: 103vw;
+  top: 0px;
+  padding: 10px;
+
+}
+
+.edition_grandMenu_deroule{
+  background-color: white;
+}
