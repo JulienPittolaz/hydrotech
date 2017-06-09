@@ -23,6 +23,7 @@
     <!-- Animation Css -->
     <link href="{{url("back_office/plugins/animate-css/animate.css")}}" rel="stylesheet" />
 
+    <link href="{{url("back_office/plugins/multi-select/css/multi-select.css")}}" rel="stylesheet">
     <!-- Colorpicker Css -->
     <link href="{{url("back_office/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css")}}" rel="stylesheet" />
 
@@ -254,6 +255,7 @@
 <script src="{{url("back_office/plugins/autosize/autosize.js")}}"></script>
 <!-- Moment Plugin Js -->
 <script src="{{url("back_office/plugins/momentjs/moment.js")}}"></script>
+<script src="{{url("back_office/plugins/multi-select/js/jquery.multi-select.js")}}"></script>
 <!-- Bootstrap Material Datetime Picker Plugin Js -->
 <script src="{{url("back_office/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js")}}"></script>
 <!-- Custom Js -->

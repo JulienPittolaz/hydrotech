@@ -8,6 +8,11 @@
                         Liste des catégories sponsors
                     </h2>
                 </div>
+                @if(Session::has('message'))
+                    <div class="alert alert-success">
+                        {{ Session::get('message') }}
+                    </div>
+                @endif
                 <div class="body">
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">

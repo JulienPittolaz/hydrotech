@@ -7,6 +7,9 @@
                     <h2>Edition de la categorie</h2>
                 </div>
                 <div class="body">
+                    @if($errors->any())
+                        <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
+                    @endif
                     <form action="{{ action('Back_office\CategorieCtrl@update', $id = $categorie->id) }}" id="categorie-form" method="POST" novalidate="novalidate" target="_parent">
                         <label for="nom">Nom</label>
                         <div class="form-group form-float">

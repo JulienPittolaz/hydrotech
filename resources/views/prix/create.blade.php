@@ -8,7 +8,7 @@
                 </div>
                 <div class="body">
                     @if($errors->any())
-                        <div class="alert alert-danger">Le nom est déjà pris</div>
+                        <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
                     @endif
                     <form action="{{ action('Back_office\PrixCtrl@store') }}" id="prix-form" method="POST" novalidate="novalidate" target="_parent">
                         <label for="email_address">Nom</label>

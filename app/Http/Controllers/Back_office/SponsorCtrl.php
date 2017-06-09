@@ -59,7 +59,7 @@ class SponsorCtrl extends Controller
 
         /*$para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
         if (!Sponsor::isValid($para)) {
-            return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
+            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
         $para['urlLogo'] = urlencode($para['urlLogo']);
         $para['urlSponsor'] = urlencode($para['urlSponsor']);*/

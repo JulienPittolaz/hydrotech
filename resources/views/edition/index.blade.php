@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        Liste des prix
+                        Liste des editions
                     </h2>
                 </div>
                 @if(Session::has('message'))
@@ -17,7 +17,7 @@
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
                             <div class="col-sm-12">
-                                <a href="{{route('membre.create')}}" target="_parent"><button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button></a>
+                                <a href="{{route('edition.create')}}" target="_parent"><button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button></a>
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable"
                                        id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
                                     <thead>
@@ -36,14 +36,14 @@
                                     <tr>
                                         <th rowspan="1" colspan="1" style="width: 20px !important;">Action</th>
                                         @foreach($columns as $column)
-                                            <th rowspan="1" colspan="1">{{$column}}</th>
+                                        <th rowspan="1" colspan="1">{{$column}}</th>
                                         @endforeach
                                     </tr>
                                     </tfoot>
                                     <tbody>
                                     {{--*/ $i = 0 /*--}}
-                                    @foreach($membres as $membre)
-                                        @if($membre->iteration % 2 == 0)
+                                    @foreach($editions as $edition)
+                                        @if($edition->iteration % 2 == 0)
                                             {{--*/ $class = odd /*--}}
                                         @else
                                             {{--*/ $class = even /*--}}
@@ -51,26 +51,28 @@
                                         {{--*/ $i++ /*--}}
                                         <tr role="row" class="odd">
                                             <td style="width: 20px !important;">
-                                                <a target="_parent" href="{{ route('membre.edit', $membre->id) }}">
-                                                    <button type="button" class="btn btn-primary waves-effect">
-                                                        <i class="material-icons">mode_edit</i>
-                                                    </button>
+                                                <a target="_parent" href="{{ route('edition.edit', $edition->id) }}">
+                                                <button type="button" class="btn btn-primary waves-effect">
+                                                    <i class="material-icons">mode_edit</i>
+                                                </button>
                                                 </a>
                                             </td>
-                                            <td>{{$membre->adresseMail}}</td>
-                                            <td class="sorting_1">{{$membre->nom}}</td>
-                                            <td class="sorting_1">{{$membre->prenom}}</td>
-                                            <td>{{$membre->dateNaissance}}</td>
-                                            <td>{{$membre->section}}</td>
-                                            <td>{{$membre->description}}</td>
-                                            <td><img src="{{$membre->photoProfil}}" width="120px" alt=""></td>
+                                            <td class="sorting_1">{{$edition->annee}}</td>
+                                            <td>{{$edition->nomEquipe}}</td>
+                                            <td>{{$edition->urlImageMedia}}</td>
+                                            <td>{{$edition->urlImageEquipe}}</td>
+                                            <td>{{$edition->lieu}}</td>
+                                            <td>{{$edition->dateDebut}}</td>
+                                            <td>{{$edition->dateFin}}</td>
+                                            <td>{{$edition->description}}</td>
+                                            <td>{{$edition->publie}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div>
+                       </div>
                 </div>
             </div>
         </div>

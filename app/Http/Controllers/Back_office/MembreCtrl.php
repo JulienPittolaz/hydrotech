@@ -18,6 +18,7 @@ class MembreCtrl extends Controller
     public function index()
     {
         $membres = Membre::all()->where('actif', true);
+
         $membre_columns = Membre::all()->first()['fillable'];
         foreach ($membres as $membre){
             $membre->photoProfil = urldecode($membre->photoProfil);
@@ -44,17 +45,16 @@ class MembreCtrl extends Controller
      */
     public function store(Request $request)
     {
-        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role']);
-        dd($para);  
+        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil']);
         if (!Membre::isValid($para)) {
-            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
         $para['photoProfil'] = urlencode($para['photoProfil']);
         $membre = new Membre($para);
 
         $membre->save();
         $membre->photoProfil = urldecode($membre->photoProfil);
-        return response()->json($membre, Response::HTTP_CREATED);
+        return redirect('admin/membre')->withInput()->with('message', 'Nouveau membre ajouté');
     }
 
     /**
@@ -84,7 +84,13 @@ class MembreCtrl extends Controller
      */
     public function edit($id)
     {
-        //
+        $membre = Membre::find($id);
+        if (!$membre) {
+            return redirect('admin/membre');
+        }
+        $membre->first();
+        $membre->photoProfil = urldecode($membre->photoProfil);
+        return view('membre/edit', ['membre' => $membre]);
     }
 
     /**
@@ -99,7 +105,7 @@ class MembreCtrl extends Controller
         $membre = Membre::find($id);
         $para = $request->intersect(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role']);
         if (!Membre::isValid($para)) {
-            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
         if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
             return response()->json('Membre inexistant', Response::HTTP_NOT_FOUND);
@@ -109,7 +115,7 @@ class MembreCtrl extends Controller
         }
         $membre->update($para);
         $membre->photoProfil = urldecode($membre->photoProfil);
-        return response()->json($membre, Response::HTTP_OK);
+        return redirect('admin/membre')->withInput()->with('message', 'Modification enregistrée');
     }
 
     /**

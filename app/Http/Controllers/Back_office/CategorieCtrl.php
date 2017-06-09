@@ -6,6 +6,7 @@ use App\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class CategorieCtrl extends Controller
 {
@@ -17,6 +18,7 @@ class CategorieCtrl extends Controller
     public function index()
     {
         $categories = Categorie::all()->where('actif', true);
+
         $categorie_columns = Categorie::all()->first()['fillable'];
         return view('categorie/index', ['categories' => $categories, 'columns' => $categorie_columns]);
     }
@@ -49,7 +51,7 @@ class CategorieCtrl extends Controller
             'description' => $inputs['description']
         ]);
         $categorie->save();
-        return  response()->json($categorie, Response::HTTP_CREATED);
+        return  redirect('admin/categorie')->withInput()->with('message', 'Nouvelle catégorie sponsor ajoutée');
     }
 
     /**
@@ -66,6 +68,10 @@ class CategorieCtrl extends Controller
         if (!Categorie::isValid(['id' => $id]) || $categorie->actif == false) {
             return response()->json('Requête invalide', Response::HTTP_NOT_FOUND);
         }
+        if(Categorie::find($id) == null){
+            return response()->json('Categorie introuvable', Response::HTTP_NOT_FOUND);
+        }
+
         return $categorie;
     }
 
@@ -79,7 +85,7 @@ class CategorieCtrl extends Controller
     {
         $categorie = Categorie::find($id);
         if(!$categorie) {
-            return redirect('categorie');
+            return redirect('admin/categorie');
         }
         $categorie->first();
         return view('categorie/edit', ['categorie' => $categorie]);
@@ -99,10 +105,9 @@ class CategorieCtrl extends Controller
         $inputs = $request->intersect(['nom', 'description']);
         $request->replace(['id' => $id]);
         if (!Categorie::isValid($inputs)) {
-            return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
+            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
-
-        if (!Categorie::isValid(['id' => $id])) {
+        if (!Categorie::isValid(['id' => $id]) || $categorie->actif == false) {
             return response()->json('Not found', Response::HTTP_NOT_FOUND);
         }
 
@@ -111,7 +116,7 @@ class CategorieCtrl extends Controller
         }
 
         $categorie->update($inputs);
-        return  back()->withInput();
+        return  redirect('admin/categorie')->withInput()->with('message', 'Modification enregistrée');
     }
 
     /**
@@ -127,7 +132,9 @@ class CategorieCtrl extends Controller
         if (!Categorie::isValid(['id' => $id])) {
             return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
         }
-
+        if ($categorie == null) {
+            return response()->json('Categorie introuvable', Response::HTTP_NOT_FOUND);
+        }
         if($categorie['actif'] == false){
             return response()->json('Categorie déjà supprimée', Response::HTTP_NOT_FOUND);
         }
