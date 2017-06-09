@@ -1,4 +1,6 @@
 $(function () {
+    var MaRoute = new MainRouter;
+    Backbone.history.start();
 
     /**
   //Article de Presse
@@ -176,15 +178,15 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     });
 
      **/
-    // SPONSOR
-    var mesSponsors = new ModelSponsors();
-    mesSponsors.fetch({
-        success: function () {
-            $("#popup").html(JST['sponsors']({sponsors:mesSponsors.toJSON()}));
-            $(".owl-carousel").owlCarousel();
-
-        }
-    });
+    // // SPONSOR
+    // var mesSponsors = new ModelSponsors();
+    // mesSponsors.fetch({
+    //     success: function () {
+    //         $("#popup").html(JST['sponsors']({sponsors:mesSponsors.toJSON()}));
+    //         $(".owl-carousel").owlCarousel();
+    //
+    //     }
+    // });
 
 
 
@@ -758,34 +760,22 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
-
-
-
-/**
-var mediasTests = new ModelMedias();
-    mediasTests.fetch({
-        success: function(){
-            $("#popup").html(JST['medias']({medias:mediasTests.toJSON()}));
-            // init Masonry
-            var $grid = $('.grid').imagesLoaded( function() {
-                $grid.masonry({
-                itemSelector: '.grid-item',
-                columnWidth: 300,
-                gutter: 10,
-                isFitWidth: true,
-                    stamp: '.stamp'
-                });
-            });
-        }
-    });
-
-**/
-
-
-
-
-
-
+//
+// var mediasTests = new ModelMedias();
+//     mediasTests.fetch({
+//         success: function(){
+//             $("#popup").html(JST['medias']({medias:mediasTests.toJSON()}));
+//
+//         }
+//     });
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -835,7 +825,7 @@ var mediasTests = new ModelMedias();
     //             scrollTo: "panel", // panel or listitem
     //             animationSpeed: 400,
     //             animationEasing: "easeInOutExpo",
-    //             showNav: false, // Show Navigation
+    //             showNav: true, // Show Navigation
     //             nextText: "", // Next button text
     //             prevText: "", // Previous button text
     //             closeText: "", // Close button text
@@ -878,14 +868,7 @@ var mediasTests = new ModelMedias();
 
 
 
-    var actualiteTests = new ModelActualite();
-    actualiteTests.fetch({
-        success: function(){
-            $("#popup").html(JST['actualite']({actualite:actualiteTests.toJSON()}));
-        }
-    });
 
 
 
 });
-

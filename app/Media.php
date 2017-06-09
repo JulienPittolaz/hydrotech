@@ -21,7 +21,7 @@ class Media extends Model
             'id' => 'exists:medias|sometimes|required',
             'url' => 'url|sometimes|required',
             'titre' => 'string|sometimes|required',
-            'date' => 'date|sometimes|required',
+            'date' => 'date|sometimes|required|before:tomorrow',
             'auteur' => 'string|sometimes|required',
             'typeMedia' => [
                 'sometimes',

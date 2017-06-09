@@ -125,6 +125,9 @@ class MediaCtrl extends Controller
         if($media['actif'] == false){
             return response()->json('Media déjà supprimé', Response::HTTP_NOT_FOUND);
         }
+        foreach ($media->editions as $ed){
+            $media->editions()->updateExistingPivot($ed->id, ['actif' => false]);
+        }
         $media->actif = false;
         $media->save();
         return response()->json('OK', Response::HTTP_OK);

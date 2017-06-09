@@ -1,14 +1,7 @@
     {{> menu }}
 
-<<<<<<< HEAD
 <h1 class="page_title"> Galerie</h1>
     <div class="actualite_cross">X</div>
-=======
-<div class="filtres">
-    <div> Photos </div>
-    <div> Vidéos </div>
-</div>
->>>>>>> e44738648ddd5954ee945ee47bd849920bf5a290
 
 <div class="container">
 
@@ -22,9 +15,15 @@
     <main class="galerie grid">
         <div class="grid-sizer"></div>
         {{#each medias}}
+        {{#isVideo}}
         <div class="grid-item">
-            {{> media }}
+            {{> video }}
         </div>
+        {{else}}
+        <div class="grid-item">
+            {{> photo }}
+        </div>
+        {{/isVideo}}
         {{/each}}
 
     </main>

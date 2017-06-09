@@ -26,6 +26,8 @@ class SponsorCtrl extends Controller
             foreach ($categorieSponsorEditions as $categorieDuSponsor){
                 $ed = $categorieDuSponsor->edition;
                 $ed->annee;
+                $ed->urlImageMedia = urldecode($ed->urlImageMedia);
+                $ed->urlImageEquipe = urldecode($ed->urlImageEquipe);
             }
         }
         return $sponsors;
@@ -140,6 +142,10 @@ class SponsorCtrl extends Controller
         }
         if($sponsor['actif'] == false){
             return response()->json('Sponsor déjà supprimé', Response::HTTP_NOT_FOUND);
+        }
+        foreach ($sponsor->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
+            $categoriesEditionSponsorAssociees->pivot->actif = false;
+            $categoriesEditionSponsorAssociees->save();
         }
         $sponsor->actif = false;
         $sponsor->save();

@@ -9,6 +9,10 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/app.css" type="text/css">
+    <script>
+        var CURRENT_ED = {!!$current_ed !!};
+    </script>
+
     <script src="js/packJs.php" charset="utf-8"></script>
 
 </head>
@@ -51,12 +55,23 @@
 </section>
 <section id="timeline" class="container is-fluid">
 
-
+    <ul>
+        <li><a href="#/editions/2016/membres">Équipe</a></li>
+    </ul>
 </section>
 <section id="popup" class="container is-fluid">
+    <div class="popup_cross"> X</div>
+    <div class="popup_content">
+
+    </div>
 </section>
 
 {{--<section class="formulaire">
+{{--
+
+<!--
+
+<section class="formulaire">
 
     <div class="formulaireContact ">
         <div class="container">
@@ -134,7 +149,7 @@
     </div>
 
     </div>
-</section>--}}
 
+</section>--}}
 </body>
 </html>

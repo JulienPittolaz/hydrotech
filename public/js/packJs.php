@@ -19,12 +19,14 @@
         'Lib/zoom.js',
         'Lib/jquery.gridder.min.js',
         'Lib/owl.carousel.min.js',
+        'router.js',
         'main.js'
     ];
     $folders = [
         'Views',
         'Models',
-        'custom'
+        'custom',
+        'Controllers'
     ];
 
     $js = '';
