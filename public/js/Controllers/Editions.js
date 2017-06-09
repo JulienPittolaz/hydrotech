@@ -13,9 +13,9 @@ var CtrlEditions = {
             content['year'] = annee;
             POPUP.empty();
             POPUP.append(JST[page](content));
-            if (page == 'galerie'){
+            if (page == 'medias'){
                 // init Masonry
-                var $grid = $('.grid').imagesLoaded( function() {
+                var $grid = $('.galerie_grid').imagesLoaded( function() {
                     $grid.masonry({
                         itemSelector: '.grid-item',
                         columnWidth: 300,
@@ -63,9 +63,9 @@ var CtrlEditions = {
                     POPUP.append(JST[page](content));
                     $('section').hide();
                     $('section#popup').show();
-                    if (page == 'galerie'){
+                    if (page == 'medias'){
                         // init Masonry
-                        var $grid = $('.grid').imagesLoaded( function() {
+                        var $grid = $('.galerie_grid').imagesLoaded( function() {
                             $grid.masonry({
                                 itemSelector: '.grid-item',
                                 columnWidth: 300,
