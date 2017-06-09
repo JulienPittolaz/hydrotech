@@ -243,7 +243,6 @@
             $(element).parents('.form-group').append(error);
         }
     });
-    $('#optgroup').multiSelect({ selectableOptgroup: true });
 
 
 
