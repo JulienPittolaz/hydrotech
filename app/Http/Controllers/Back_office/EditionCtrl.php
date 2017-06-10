@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\Back_office;
 
+use App\Actualite;
+use App\Categorie;
 use App\Edition;
+use App\Media;
 use App\Membre;
+use App\Presse;
+use App\Prix;
+use App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -68,8 +74,22 @@ class EditionCtrl extends Controller
     public function create()
     {
         $membres = Membre::all()->where('actif', true);
+        $actualites = Actualite::all()->where('actif', true);
+        $medias = Media::all()->where('actif', true);
+        $sponsors = Sponsor::all()->where('actif', true);
+        $categories = Categorie::all()->where('actif', true);
+        $prixs = Prix::all()->where('actif', true);
+        $presses = Presse::all()->where('actif', true);
 
-        return view('edition.create', ['membres' => $membres]);
+        return view('edition.create',
+            ['membres' => $membres,
+                'actualites' => $actualites,
+                'medias' => $medias,
+                'sponsors' => $sponsors,
+                'categories' => $categories,
+                'prixs' => $prixs,
+                'presses' => $presses
+            ]);
     }
 
     /**
@@ -80,12 +100,11 @@ class EditionCtrl extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-        $para = $request->only(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
-        echo "caca";
+        $para = $request->only(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
         if (!Edition::isValid($para)) {
             return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
         }
+        //pour chaque actualite
         $para['urlImageMedia'] = urlencode($para['urlImageMedia']);
         $para['urlImageEquipe'] = urlencode($para['urlImageEquipe']);
         $edition = new Edition($para);
