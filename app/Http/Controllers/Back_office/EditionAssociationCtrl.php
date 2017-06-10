@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Back_office;
 use App\Edition;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Membre;
 use App\Http\Controllers\Controller;
 
 class EditionAssociationCtrl extends Controller
@@ -15,9 +14,17 @@ class EditionAssociationCtrl extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type_ressource)
     {
-        //
+        //$objets = ucfirst($type_ressource)::all();
+        //$objets = Media::all();
+        $objets = call_user_func(['\\App\\'.ucfirst($type_ressource), 'all'])->where('actif', true);
+        $editions = Edition::all()->where('actif', true);
+        $type_ressource = $type_ressource . 's';
+        foreach ($editions as $edition){
+            $edition->$type_ressource;
+        }
+        return view('editionAssociation/index', ['objets' => $objets, 'editions' => $editions]);
     }
 
     /**
@@ -62,7 +69,8 @@ class EditionAssociationCtrl extends Controller
         /*if($objet->editions()->where(['edition_id' => $edition_id, $type_ressource . '_id' =>$resource_id, 'actif' => true])->first() != null) {
             return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
         }
-           */ $type_ressource = $type_ressource . 's';
+           */
+        $type_ressource = $type_ressource . 's';
 
         $edition->$type_ressource()->save($objet);
 

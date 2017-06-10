@@ -41,6 +41,12 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::post('/social/{id}/edit', 'Back_office\SocialCtrl@update');
     Route::resource('/edition', 'Back_office\EditionCtrl');
     Route::post('/edition/{id}/edit', 'Back_office\EditionCtrl@update');
+
+
+    //*******ASSOCIATIONS*******
+
+    Route::get('/editions/{type_ressource}', 'Back_office\EditionAssociationCtrl@index');
+    Route::post('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@store');
 });
 
 Route::group(['prefix' => '/api/v1'], function () {
@@ -58,7 +64,7 @@ Route::group(['prefix' => '/api/v1'], function () {
 
     //AUTH ROUTES
     Route::group([], function () {
-        Route::post('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@store');
+        //Route::post('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@store');
         Route::post('/editions/{edition_id}/Membre/{membre_id}/{role}', 'EditionMembreAssociationCtrl@store');
         Route::post('/sponsors/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@store');
         Route::delete('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@destroy');
