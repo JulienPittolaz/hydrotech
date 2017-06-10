@@ -17,8 +17,8 @@
                                 <input value="" type="text" class="form-control" name="nom" required="" aria-required="true" aria-invalid="true" placeholder="Nom du sponsor">
                             </div>
                         </div>
-                        {{--<label for="urlLogo">Adresse URL du logo</label>
-                        <div class="image-editor">
+                        <label for="urlLogo">Adresse URL du logo</label>
+                        {{--<div class="image-editor">
                             <input type="hidden" name="MAX_FILE_SIZE" value="250000"/>
                             <input type="file" class="cropit-image-input" name="urlLogo">
                             <div class="cropit-preview"></div>

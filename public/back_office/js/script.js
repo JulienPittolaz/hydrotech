@@ -404,14 +404,14 @@
 
 
 
-/*
+
 
 
 
 
 
     $('.image-editor').cropit();
-
+/*
     $('form').submit(function() {
         // Move cropped image data to hidden input
         var imageData = $('.image-editor').cropit('export');

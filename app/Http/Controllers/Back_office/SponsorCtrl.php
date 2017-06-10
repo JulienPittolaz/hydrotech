@@ -55,8 +55,6 @@ class SponsorCtrl extends Controller
      */
     public function store(Request $request)
     {
-
-
         /*$para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
         if (!Sponsor::isValid($para)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();

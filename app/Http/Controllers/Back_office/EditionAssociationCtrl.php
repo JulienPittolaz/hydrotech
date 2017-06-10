@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Back_office;
 
 use App\Edition;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Membre;
+use App\Http\Controllers\Controller;
 
 class EditionAssociationCtrl extends Controller
 {
