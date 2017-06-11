@@ -36,7 +36,7 @@
 
 
 		// Get Total Items
-		// ----------------------------------------------------------------
+		// --------------------------------------	--------------------------
 		get_count: function () {
 			var self = this;
 
@@ -54,7 +54,8 @@
 			if (self.options.startItem === 'first') {
 				nextItem = 0;
 			} else if (self.options.startItem === 'last') {
-				nextItem = self.get_count() - 1;
+				nextItem =0;
+				//nextItem = self.get_count() - 1;
 			} else {
 				nextItem = self.options.startItem;
 			}
@@ -87,9 +88,36 @@
 			// Dots Click
 			$(document.body).on('click', self.dotsItem, function (e) {
 				var clickItem = $(this).index();
-
+				console.log(clickItem);
 				self.autoplay_clear();
 				self.change_slide('click', clickItem);
+			});
+
+			function bindMousewheel(self) {
+				$(window).on('mousewheel', function (e) {
+					if (e.target == $('.timeline-list')[0]) {
+						e.preventDefault();
+						console.log(e.originalEvent.deltaY);
+						if (e.originalEvent.deltaY > 0) {
+							var clickItem = $('.slide-next').index();
+							console.log(clickItem);
+						} else {
+							var clickItem = $('.slide-prev').index();
+						}
+						//var clickItem = $(this).index();
+						//self.autoplay_clear();
+						self.change_slide('click', clickItem);
+						$(window).unbind('mousewheel');
+						$('body').trigger('timelineScrolled');
+					}
+				});
+			}
+
+			bindMousewheel(self);
+			$('body').on('timelineScrolled', function() {
+				setTimeout(function() {
+					bindMousewheel(self);
+				}, 1000);
 			});
 
 			// Autoplay Start
@@ -173,9 +201,9 @@
 				self.autoplay_init();
 			}else {
 				if (self.get_count() - 1 > self.get_current() && self.initials.direction === 0){
-					self.options.startItem = self.get_next();
+					//self.options.startItem = self.get_next();
 				}else if(self.get_current() > 0 && self.initials.direction === 1) {
-					self.options.startItem = self.get_next();
+					//self.options.startItem = self.get_next();
 				}else {
 					self.autoplay_clear();
 				}
@@ -244,7 +272,7 @@
 
 			if (type === 'vertical'){
 				itemSize = currentItem.outerHeight(true);
-				listSize = $(window).height;
+				listSize = listWrapper.height;
 			}else {
 				itemSize = currentItem.outerWidth(true);
 				listSize = listWrapper.width();
@@ -360,9 +388,16 @@
 				.eq(self.get_current())
 				.addClass(self.options.activeClass);
 
-			timelineItem
-				.eq(self.get_prev())
-				.addClass(self.options.prevClass);
+			if($(timelineItem.eq(self.get_current())).index() != 0) {
+				timelineItem
+					.eq(self.get_prev())
+					.addClass(self.options.prevClass);
+			} else {
+				timelineItem
+					.last()
+					.removeClass(self.options.prevClass);
+
+			}
 
 			timelineItem
 				.eq(self.get_next())
@@ -379,13 +414,37 @@
 				.eq(self.get_current())
 				.addClass(self.options.activeClass);
 
-			timelineDot
-				.eq(self.get_prev())
-				.addClass(self.options.prevClass);
+			if($(timelineItem.eq(self.get_current())).index() != 0) {
+				timelineDot
+					.eq(self.get_prev())
+					.addClass(self.options.prevClass);
+			} else {
+				timelineDot
+					.last()
+					.removeClass(self.options.prevClass);
+			}
 
 			timelineDot
 				.eq(self.get_next())
 				.addClass(self.options.nextClass);
+
+			//Affichage de l'année actualle +- 2 années
+			TweenMax.to($('.slide-prev').prev('li').prevAll('li'), 0.1, {autoAlpha: 0} );
+			TweenMax.to($('.slide-next').next('li').nextAll('li'), 0.1, {autoAlpha: 0} );
+			TweenMax.to($('.slide-prev'), 0.1, {autoAlpha: 1} );
+			TweenMax.to($('.slide-prev').prev('li'), 0.1, {autoAlpha: 1} );
+			TweenMax.to($('.slide-next'), 0.1, {autoAlpha: 1} );
+			TweenMax.to($('.slide-next').next('li'), 0.1, {autoAlpha: 1} );
+			TweenMax.to($('.slide-active'), 0.1, {autoAlpha: 1} );
+
+			//Positionnement parrapport à la ligne
+			TweenMax.to($('.slide-active'), 0.1, {x: 0} );
+			TweenMax.to($('.slide-active').nextAll('li'), 0.1, {x: 40} );
+			TweenMax.to($('.slide-active').prevAll('li'), 0.1, {x: -40} );
+
+			$('.slide-active').nextAll('li').addClass('left-dot');
+			$('.slide-active').prevAll('li').addClass('right-dot');
+			$('.slide-active').removeClass('right-dot').removeClass('left-dot');
 		},
 
 

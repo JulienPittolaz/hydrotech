@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/app.css" type="text/css">
     <script>
@@ -62,12 +62,38 @@
             <div data-time="2016">
                 your content or markup
             </div>
+            <div data-time="2015">
+                your content or markup
+            </div>
+            <div data-time="2014">
+                your content or markup
+            </div>
+            <div data-time="2013">
+                your content or markup
+            </div>
         </div>
+        <div class="timeline-dots-wrap">
+                <ul class="timeline-dots">
+                    <li class="slide-active">
+                        <button type="button" role="button">2017</button>
+                    </li>
+                    <li class="">
+                        <button type="button" role="button">2016</button>
+                    </li>
+                    <li class="">
+                        <button type="button" role="button">2015</button>
+                    </li>
+                    <li class="slide-prev">
+                        <button type="button" role="button">2014</button>
+                    </li>
+                    <li>
+                        <button type="button" role="button">2013</button>
+                    </li>
+                </ul>
+            </div>
     </div>
 </section>
-<section id="popup" class="container is-fluid">
 
-</section>
 
 {{--
 
