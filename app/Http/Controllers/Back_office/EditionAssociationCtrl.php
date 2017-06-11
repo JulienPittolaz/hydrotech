@@ -68,6 +68,7 @@ class EditionAssociationCtrl extends Controller
 
         $edition->objetsDeLedition = $edition->$ressources;
 
+
         return view('editionAssociation/create', ['annee' => $annee, 'type_ressource' => $type_ressource, 'objets' => $objets, 'edition' => $edition]);
     }
 
@@ -82,6 +83,7 @@ class EditionAssociationCtrl extends Controller
         $edition_id = $request['edition_id'];
         $type_ressource = $request['type_ressource'];
         $resource_id = $request['ressource_id'];
+
         if (!Edition::isValid(['id' => $edition_id])) {
             return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);
         }
@@ -109,8 +111,11 @@ class EditionAssociationCtrl extends Controller
         }
            */
         $type_ressource = $type_ressource . 's';
-
-        $edition->$type_ressource()->save($objet);
+        if ($type_ressource == 'membres' && $request['role'] != null) {
+            $edition->$type_ressource()->save($objet, ['roleMembre' => $request['role']]);
+        } else {
+            $edition->$type_ressource()->save($objet);
+        }
         return response()->json('OK', Response::HTTP_CREATED);
     }
 

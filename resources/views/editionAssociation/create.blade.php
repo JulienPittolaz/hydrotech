@@ -20,7 +20,7 @@
                                 <select class="form-control show-tick" data-live-search="true" name="ressource_id">
                                     @foreach($objets as $objet)
                                         @if(!$edition->objetsDeLedition->contains($objet))
-                                        <option value="{{$objet->id}}" type="number">{{$objet->titre}}</option>
+                                        <option value="{{$objet->id}}" type="number">{{$objet->titre}}{{$objet->nom}}</option>
                                         @endif
                                     @endforeach
 
@@ -28,6 +28,16 @@
                                 </select>
                             </div>
                         </div>
+                        @if($type_ressource === 'membre')
+                            <label for="role">Role</label>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input value="" type="text" class="form-control" name="role" required="" aria-required="true" aria-invalid="true" placeholder="Role">
+                                </div>
+                            </div>
+                        @endif
+
+
                         <input type="hidden" name="edition_id" value="{{$edition->id}}">
                         <input type="hidden" name="type_ressource" value="{{$type_ressource}}">
                         <input type="submit" class="btn btn-primary waves-effect" value="Ajouter cette association"/>
