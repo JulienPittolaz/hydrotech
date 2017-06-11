@@ -108,7 +108,23 @@ margin-bottom: 300px;
     padding: 12px;
     background-color: rgba(31,59,126,0.4);
     text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    //prends 80% de la largeur
+    width: 80vw;
+  }
+  .columns {
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
+  .membre figure .ligne{
+    display: none;
+  }
+
+  .membre figure:hover .membre_img {
+    opacity: 1;
+  }
 
 }
