@@ -14,9 +14,18 @@
                         <ul>
                             <li>{{$edition->annee}}</li>
                             @foreach($edition->objetsDeLedition as $objet)
-                                <ul><li>{{$objet->titre}}</li></ul>
+                                <ul><li>{{$objet->titre}}{{$objet->nom}}</li></ul>
                             @endforeach
                         </ul>
+                        <a href="{{action('Back_office\EditionAssociationCtrl@create', [$edition->annee, $typeRessource])}}" target="_parent"><button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button></a>
+
+                        {{--
+                                                <a href="{{action('Back_office\EditionAssociationCtrl@create')}}" target="_parent"><button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button></a>
+                        --}}
+{{--
+                        <a href="{{action('Back_office\EditionAssociationCtrl@create'), ['type_ressource' => 'media', 'annee' => 2017]}}" target="_parent"><button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button></a>
+--}}
+
                     @endforeach
 
 

@@ -56,5 +56,6 @@ class Edition extends Model
             'description' => 'string|sometimes|required',
             'publie' => 'boolean|sometimes|required'
         ])->passes();
+
     }
 }

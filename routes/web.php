@@ -45,8 +45,9 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
 
     //*******ASSOCIATIONS*******
 
-    Route::get('/editions/{type_ressource}', 'Back_office\EditionAssociationCtrl@index');
-    Route::post('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@store');
+    Route::get('/associationedition/{type_ressource}', 'Back_office\EditionAssociationCtrl@index');
+    Route::resource('/associationedition/{annee}/{type_ressource}', 'Back_office\EditionAssociationCtrl', ['only' => 'create']);
+    Route::post('/associationedition', 'Back_office\EditionAssociationCtrl@store');
 });
 
 Route::group(['prefix' => '/api/v1'], function () {
@@ -72,7 +73,7 @@ Route::group(['prefix' => '/api/v1'], function () {
         Route::resource('/membres', 'MembreCtrl');
         Route::resource('/actualites', 'ActualiteCtrl');
         Route::resource('/categories', 'CategorieCtrl');
-        Route::resource('/editions', 'EditionCtrl');
+        //Route::resource('/editions', 'EditionCtrl');
         Route::resource('/medias', 'MediaCtrl');
         Route::resource('/presses', 'PresseCtrl');
         Route::resource('/prixs', 'PrixCtrl');
