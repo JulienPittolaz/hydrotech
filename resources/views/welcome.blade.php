@@ -44,7 +44,7 @@
         de transport le plus écologique, en matière d’emissions de CO2 par tonne transportée, il représente tout de même
         la 5ème source de pollution mondiale...
         </p>
-        <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ voir plus</a></p>
+        <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
     </div>
 
     <footer class="home_scroll">
