@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Back_office;
 
 use App\Categorie;
 use App\Categorieeditionsponsor;
@@ -8,6 +8,7 @@ use App\Edition;
 use App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
 
 class CategorieEditionSponsorCtrl extends Controller
 {
@@ -18,7 +19,18 @@ class CategorieEditionSponsorCtrl extends Controller
      */
     public function index()
     {
-        //
+        $editions = Edition::all()->where('actif', true);
+        $categories = Categorie::all()->where('actif', true);
+        foreach ($editions as $edition) {
+            foreach ($categories as $categorie) {
+                foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces){
+                    $categorie->sponsorsDeCetteCategorie = $ces->sponsor;
+                }
+            }
+            $edition->sponsorsParCategorie = $categories;
+        }
+        
+        return view('categorieeditionsponsor/index', ['editions' => $editions]);
     }
 
     /**
