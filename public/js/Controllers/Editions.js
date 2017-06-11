@@ -3,7 +3,7 @@
  */
 
 var CtrlEditions = {
-    show: function (annee, page) {
+    show: function (annee, page,article) {
         var POPUP = $("#popup .popup_content");
         if (annee == CURRENT_ED.annee) {
             var content = {};
@@ -35,7 +35,7 @@ var CtrlEditions = {
                     scrollTo: "panel", // panel or listitem
                     animationSpeed: 400,
                     animationEasing: "easeInOutExpo",
-                    showNav: true, // Show Navigation
+                    showNav: false, // Show Navigation
                     nextText: "", // Next button text
                     prevText: "", // Previous button text
                     closeText: "", // Close button text
@@ -52,6 +52,9 @@ var CtrlEditions = {
                         console.log('On Gridder Closed...');
                     }
                 });
+            }
+            if (page == 'actualites'){
+                manageArticles();
             }
             $(".popup_cross").on("click", function () {
                 $('section').show();
