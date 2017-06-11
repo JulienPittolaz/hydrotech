@@ -21,9 +21,14 @@ class EditionAssociationCtrl extends Controller
         $objets = call_user_func(['\\App\\'.ucfirst($type_ressource), 'all'])->where('actif', true);
         $editions = Edition::all()->where('actif', true);
         $type_ressource = $type_ressource . 's';
+
         foreach ($editions as $edition){
-            $edition->$type_ressource;
+            foreach ($edition->$type_ressource as $ressource){
+                $edition->nomResource = $ressource->titre;
+
+            }
         }
+        dd($editions);
         return view('editionAssociation/index', ['objets' => $objets, 'editions' => $editions]);
     }
 
