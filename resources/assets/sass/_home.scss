@@ -134,31 +134,36 @@
 
 }
 
-#socialNetworks{
+#socials{
   position: absolute;
   right:125px;
   top:30px;
   font-size: $font-size-medium;
   color: $contrast-blue;
   font-family: icomoon;
+
 }
 
-#socialNetworks li{
+.socialNetworks li a{
   margin-right: 5px;
   display: inline-block;
 }
 
-#socialNetworks .facebook::before {
+.socialNetworks .Facebook::before {
   content: "\ea90";
 }
 
-#socialNetworks .instagram::before {
+.socialNetworks .Instagram::before {
   content: "\ea92";
 }
 
-#socialNetworks .youtube::before {
+.socialNetworks .Youtube::before {
    content: "\ea9d";
  }
+
+.socialNetworks .Twitter::before {
+  content: "\ea96";
+}
 
 /* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
 @media screen and /*(min-width: 21em) and*/ (max-width: 30em),  screen and /*(min-device-width: 21em) and*/ (max-device-width: 30em)

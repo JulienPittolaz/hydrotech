@@ -24,12 +24,8 @@
                 <img src="images/logo.svg" alt="logo de l'équipe">
             </a>
         </div>
-        <div id="socialNetworks">
-            <ul>
-                <li class="facebook"></li>
-                <li class="instagram"></li>
-                <li class="youtube"></li>
-            </ul>
+        <div id="socials">
+
         </div>
         <div id="contact"> Contact</div>
     </div>

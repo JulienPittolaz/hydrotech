@@ -1,5 +1,4 @@
 var ModelReseauSocial = Hydrotech.Model.extend({
-    // url: 'url_ici',
 
     validate: function(attrs, options) {
         var msg = '';
