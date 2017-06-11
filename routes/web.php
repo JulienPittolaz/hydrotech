@@ -48,6 +48,7 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::get('/associationedition/{type_ressource}', 'Back_office\EditionAssociationCtrl@index');
     Route::resource('/associationedition/{annee}/{type_ressource}', 'Back_office\EditionAssociationCtrl', ['only' => 'create']);
     Route::post('/associationedition', 'Back_office\EditionAssociationCtrl@store');
+
 });
 
 Route::group(['prefix' => '/api/v1'], function () {
