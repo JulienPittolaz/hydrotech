@@ -16,20 +16,37 @@ class EditionAssociationCtrl extends Controller
      */
     public function index($type_ressource)
     {
-        //$objets = ucfirst($type_ressource)::all();
-        //$objets = Media::all();
-        $objets = call_user_func(['\\App\\'.ucfirst($type_ressource), 'all'])->where('actif', true);
-        $editions = Edition::all()->where('actif', true);
-        $type_ressource = $type_ressource . 's';
 
+        //$objets = call_user_func(['\\App\\'.ucfirst($type_ressource), 'all'])->where('actif', true);
+        $editions = Edition::all()->where('actif', true);
+        //$type_ressource = $type_ressource . 's';
+
+        foreach ($editions as $edition) {
+            $objets = call_user_func(['\\App\\'.ucfirst($type_ressource), 'all'])->where('actif', true)->where('edition_id', $edition->id);
+            foreach ($objets as $objet) {
+                foreach ($objet->editions->where('edition_id', $edition->id) as $objetDeLedition) {
+                    $objetDeLedition->editions;
+                }
+            }
+            $edition->objetsDeLedition = $objets;
+        }
+
+        /*
         foreach ($editions as $edition){
             foreach ($edition->$type_ressource as $ressource){
                 $edition->nomResource = $ressource->titre;
 
             }
-        }
+        }*/
+/*
+        foreach ($editions as $edition){
+            foreach ($edition->objetsDeLedition as $obj){
+                dd($obj->titre);
+            }
+        }*/
         dd($editions);
-        return view('editionAssociation/index', ['objets' => $objets, 'editions' => $editions]);
+
+        return view('editionAssociation/index', ['editions' => $editions]);
     }
 
     /**

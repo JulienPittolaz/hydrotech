@@ -12,12 +12,15 @@
 
                     @foreach($editions as $edition)
                         <ul>
-                            <li>{{$edition}}</li>
-                            {{--@foreach($objets as $objet)
+                            <li>{{$edition->annee}}</li>
+                            @foreach($edition->objetsDeLedition as $objet)
                                 <ul><li>{{$objet->titre}}</li></ul>
-                            @endforeach--}}
+                            @endforeach
                         </ul>
                     @endforeach
+
+
+
 
                 </div>
             </div>
