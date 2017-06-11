@@ -49,7 +49,9 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::resource('/associationedition/{annee}/{type_ressource}', 'Back_office\EditionAssociationCtrl', ['only' => 'create']);
     Route::post('/associationedition', 'Back_office\EditionAssociationCtrl@store');
 
-    Route::resource('/associationsponsor', 'Back_office\CategorieEditionSponsorCtrl');
+    Route::resource('/associationsponsor/{annee?}', 'Back_office\CategorieEditionSponsorCtrl');
+    Route::post('/associationsponsor', 'Back_office\CategorieEditionSponsorCtrl@store');
+
 
 
 });

@@ -14,31 +14,19 @@
 
                             <li>{{$edition->annee}}</li>
                             <ul>
-                                @foreach($edition->sponsorsParCategorie as $sponsorsParCategorie)
-                                    <li>{{$sponsorsParCategorie->nom}}</li>
-                                    <ul>
-                                        @foreach($sponsorsParCategorie as $categorie)
-                                            @foreach($categorie->sponsorsDeCetteCategorie as $sponsor)
-                                                {{$sponsor}}
-                                            @endforeach
+                                @foreach($edition->categorie as $categorie)
+                                    <li>{{$categorie->nom}}</li>
+                                <ul>
+                                    @foreach($categorie->categorieeditionsponsors as $assoc)
+                                        <ul>
+                                        <li>{{$assoc->sponsor->nom}}</li>
+                                        </ul>
                                         @endforeach
-                                    </ul>
+                                </ul>
                                 @endforeach
                             </ul>
 
-                            {{--
-                                                    <a href="{{action('Back_office\EditionAssociationCtrl@create', [$edition->annee, $typeRessource])}}"
-                            target="_parent">
-                            --}}
-                            <button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button>
-                            </a>
-
-                            {{--
-                                                    <a href="{{action('Back_office\EditionAssociationCtrl@create')}}" target="_parent"><button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button></a>
-                            --}}
-                            {{--
-                                                    <a href="{{action('Back_office\EditionAssociationCtrl@create'), ['type_ressource' => 'media', 'annee' => 2017]}}" target="_parent"><button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button></a>
-                            --}}
+                            <a href="{{action('Back_office\CategorieEditionSponsorCtrl@create',$edition->annee)}}" target="_parent"><button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button></a>
 
                         @endforeach
                     </ul>

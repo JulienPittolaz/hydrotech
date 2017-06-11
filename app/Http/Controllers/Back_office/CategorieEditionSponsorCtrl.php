@@ -20,16 +20,30 @@ class CategorieEditionSponsorCtrl extends Controller
     public function index()
     {
         $editions = Edition::all()->where('actif', true);
-        $categories = Categorie::all()->where('actif', true);
+        $editions->where('publie', true);
+
+
+
         foreach ($editions as $edition) {
+            $edition->urlImageMedia = urldecode($edition->urlImageMedia);
+            $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
+
+            $actualites = $edition->actualites;
+            foreach ($actualites as $actualite) {
+                $actualite->urlImage = urldecode($actualite->urlImage);
+            }
+            $categorieEditionSponsors = $edition->categorieeditionsponsors;
+
+            $categories = Categorie::all()->where('actif', true);
             foreach ($categories as $categorie) {
                 foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces){
-                    $categorie->sponsorsDeCetteCategorie = $ces->sponsor;
+                    $ces->edition;
+                    $ces->sponsor;
                 }
             }
-            $edition->sponsorsParCategorie = $categories;
+            $edition->categorie = $categories;
+
         }
-        
         return view('categorieeditionsponsor/index', ['editions' => $editions]);
     }
 
@@ -38,9 +52,13 @@ class CategorieEditionSponsorCtrl extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($annee)
     {
-        //
+        $categories = Categorie::all()->where('actif', true);
+        $sponsors = Sponsor::all()->where('actif', true);
+        $edition = Edition::all()->where('annee', $annee)->first();
+        return view('categorieeditionsponsor/create', ['annee' => $annee, 'categories' => $categories, 'sponsors' => $sponsors, 'edition' => $edition]);
+
     }
 
     /**
@@ -49,8 +67,11 @@ class CategorieEditionSponsorCtrl extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($categorie_id, $edition_id, $sponsor_id)
+    public function store(Request $request)
     {
+        $categorie_id = $request['categorie_id'];
+        $edition_id = $request['edition_id'];
+        $sponsor_id = $request['sponsor_id'];
         $categorie = Categorie::find($categorie_id);
         if (!Categorie::isValid(['id' => $categorie_id]) || $categorie->actif == false) {
             return response()->json('Catégorie inexistante', Response::HTTP_NOT_FOUND);
