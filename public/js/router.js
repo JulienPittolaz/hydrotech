@@ -4,6 +4,7 @@
 var MainRouter = Hydrotech.Router.extend({
     routes:{
         '' : 'index',
+        'contact(/:subject)' : 'contact',
         'editions/:annee/:page(/:article)(/)' :'editions',
         'r/:controler/:action' : 'dispatcher'
     },
@@ -14,6 +15,9 @@ var MainRouter = Hydrotech.Router.extend({
         $("section").show();
         $("section#popup").hide();
 
+    },
+    contact: function(subject){
+        window['CtrlContact']['contact']();
     },
     editions: function(annee,page){
         window['CtrlEditions']['show'](annee,page);
