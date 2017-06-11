@@ -12,6 +12,8 @@ var CtrlEditions = {
             content['year'] = annee;
             POPUP.empty();
             POPUP.append(JST[page](content));
+            $(" nav.edition_menu").css("display", "block");
+            $(" nav.edition_menu ul").addClass('isHidden');
             $('section').hide();
             $('section#popup').show();
             console.log("SHOW THE POPUP BITCH !")
@@ -71,6 +73,8 @@ var CtrlEditions = {
                     content['year'] = annee;
                     POPUP.empty();
                     POPUP.append(JST[page](content));
+                    $(" nav.edition_menu").css("display", "block");
+                    $(" nav.edition_menu ul").addClass('isHidden');
                     $('section').hide();
                     $('section#popup').show();
                     console.log("SHOW THE POPUP BITCH !");

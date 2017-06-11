@@ -2,6 +2,16 @@ $(function () {
     var MaRoute = new MainRouter;
     Backbone.history.start();
 
+
+    // GESTION MENU HAMBURGER
+    $("#popup").on("click", "nav.edition_menu",  function () {
+        $("body nav.edition_menu ul").toggleClass('isHidden');
+        $("html").toggleClass("isNoScroll")
+        $("body nav.edition_menu ul").toggleClass("isBlock")
+
+        })
+
+
     /**
   //Article de Presse
 
@@ -192,7 +202,13 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
-
+    // SPONSOR
+   var mesreseauxSociaux = new ModelReseauxSociaux();
+    mesreseauxSociaux.fetch({
+     success: function () {
+        $("#socials").html(JST['reseauxSociaux']({reseauxSociaux:mesreseauxSociaux.toJSON()}));
+    }
+ });
 
 
 

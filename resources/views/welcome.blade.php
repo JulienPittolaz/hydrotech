@@ -18,31 +18,33 @@
 </head>
 <body>
 <section id="home">
-    <div class="home_menu">
-        <div id="socialNetworks">
-            <ul>
-                <li class="facebook"></li>
-                <li class="instagram"></li>
-                <li class="youtube"></li>
-            </ul>
+    <div class="home_menu home_menu_deroule">
+        <div id="logo_equipe">
+            <a href="">
+                <img src="images/logo.svg" alt="logo de l'équipe">
+            </a>
+        </div>
+        <div id="socials">
+
         </div>
         <div id="contact"> Contact</div>
     </div>
+
+
     <div class="home_presentation">
         <div class="home_team"> Team <br> Heig-Vd</div>
         <div class="home_participants"> Participants <br> au concours <br> Hydrocontest</div>
-
     </div>
 
     <div class="home_descConcours">
-        Le concours — II s’agit d’une des problématiques actuelles et communes liées au développement industriel et
+        <p>Le concours — II s’agit d’une des problématiques actuelles et communes liées au développement industriel et
         technologique de notre ère. Avec 90% des échanges commerciaux opérés par la mer,
 
         le transport maritime est un enjeu économique et environnemental majeur. En effet, si le bateau reste le moyen
         de transport le plus écologique, en matière d’emissions de CO2 par tonne transportée, il représente tout de même
-        la 5ème source de pollution mondiale..
-
-
+        la 5ème source de pollution mondiale...
+        </p>
+        <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
     </div>
 
     <footer class="home_scroll">
@@ -55,7 +57,6 @@
 </section>
 <section id="timeline" class="container is-fluid">
 
-<h1>TIMELINE PROVISOIRE SUSU</h1>
     <ul>
         <li><a href="#/editions/2016/membres">Équipe</a></li>
         <li><a href="#/editions/2016/membres">Équipe</a></li>
@@ -72,14 +73,14 @@
     </ul>
 </section>
 <section id="popup" class="container is-fluid">
-    <div class="popup_cross"><a href="/#timeline">X</a></div>
+
     <div class="popup_content">
 
     </div>
 </section>
 
-{{--<section class="formulaire">
-{{--
+{{--<section class="formulaire">--}}
+{{----}}
 
 <!--
 
