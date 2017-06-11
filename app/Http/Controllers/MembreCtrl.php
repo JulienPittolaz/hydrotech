@@ -21,6 +21,7 @@ class MembreCtrl extends Controller
         foreach ($membres as $membre){
             //$membre['photoProfil'] = urldecode($membre['photoProfil']);
             $membre->photoProfil = urldecode($membre->photoProfil);
+            $membre->editions;
         }
         return $membres;
     }
@@ -64,6 +65,7 @@ class MembreCtrl extends Controller
     public function show($id)
     {
         $membre = Membre::find($id);
+        $membre->editions;
         if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
             return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
         }
