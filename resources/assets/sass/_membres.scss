@@ -1,0 +1,164 @@
+
+.membre_desc {
+  text-transform: uppercase;
+  font-size:40px;
+  font-weight: $text-weight-medium;
+  margin-bottom:100px;
+}
+.membre_desc .ingenieurs {
+  color: $contrast-blue;
+  font-weight: $text-weight-bold;
+
+}
+
+.membre_infos{
+  text-transform: uppercase;
+}
+.membre .mail {
+  text-transform: lowercase;
+}
+// EFFETS PHOTOS
+
+.membre figure {
+  overflow: hidden;
+}
+
+.membre figure img {
+  width: 100%;
+  position: relative;
+  filter: grayscale(100%);
+}
+
+.membre figure {
+  background: $contrast-blue;
+}
+.membre figure .membre_img{
+  opacity: 1;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  margin-bottom: -6px;
+}
+.membre figure:hover .membre_img {
+  opacity: .5;
+}
+
+// EFFETS LIGNE
+.membre figure .ligne {
+  height:117px;
+  width:6px;
+  background-color: white;
+  margin-left: 20px;
+  margin-bottom: 80px;
+  border: solid 2px white;
+  position: absolute;
+}
+.membre figure:hover .ligne {
+ transform: translateY(-100%);
+  transition-duration: 0.6s;
+}
+
+// EFFETS TEXTES
+
+.membre figure {
+  position: relative;
+}
+.membre_nomComplet {
+  font-weight: $text-weight-bold;
+
+}
+.membre_infos {
+  position: absolute;
+  bottom:15px;
+  left:35px;
+  opacity:0;
+  color: white;
+  font-size: 18px;
+  font-weight: $text-weight-light;
+}
+.membre figure:hover .membre_infos{
+  opacity:1;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-in;
+}
+
+// DISPOSITION
+
+.membres > article:nth-child(4n+1), .membres > article:nth-child(4n+2){
+  transform: translateY(+50%);
+}
+ .columns {
+  flex-wrap: wrap;
+}
+
+ .membre{
+   margin-right: 2px;
+   margin-bottom: 2px;
+ }
+
+ .membres .column{
+   padding: 0px;
+ }
+
+ .membre_container {
+margin-bottom: 300px;
+
+ }
+ .membre_container:before {
+   content: url("../img/vaguebleue.svg");
+   display: inline-block;
+   height: 100px;
+   width: 200px;
+   position: fixed;
+   bottom: 0px;
+   right: 200px;
+ }
+
+
+
+/* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
+@media screen and /*(min-width: 21em) and*/ (max-width: 30em),  screen and /*(min-device-width: 21em) and*/ (max-device-width: 30em)
+  /*and (min-width: 30em)*/ and (max-width: 41em), screen /*and (min-device-width: 30em)*/ and (max-device-width: 41em) {
+
+  .membres > article:nth-child(4n+1), .membres > article:nth-child(4n+2) {
+    transform : translateY(0);
+  }
+  .membre figure.membre_img{
+    opacity: 1;
+  }
+  .membre_infos{
+    opacity:1;
+    width:370px;
+    padding: 12px;
+    background-color: rgba(31,59,126,0.4);
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    //prends 80% de la largeur
+    width: 80vw;
+  }
+  .columns {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .membre figure .ligne{
+    display: none;
+  }
+
+  .membre figure:hover .membre_img {
+    opacity: 1;
+  }
+
+  .membre_desc {
+    font-size:15px;
+    text-align: center;
+
+  }
+  .membre_container:before {
+
+  display: none;
+  }
+
+
+  }

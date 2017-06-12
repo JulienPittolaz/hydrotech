@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Membre;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+
 
 class MembreCtrl extends Controller
 {
@@ -14,7 +17,12 @@ class MembreCtrl extends Controller
      */
     public function index()
     {
-        $membres = Membre::all();
+        $membres = Membre::all()->where('actif', true);
+        foreach ($membres as $membre){
+            //$membre['photoProfil'] = urldecode($membre['photoProfil']);
+            $membre->photoProfil = urldecode($membre->photoProfil);
+            $membre->editions;
+        }
         return $membres;
     }
 
@@ -36,7 +44,16 @@ class MembreCtrl extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil']);
+        if (!Membre::isValid($para)) {
+            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+        }
+        $para['photoProfil'] = urlencode($para['photoProfil']);
+        $membre = new Membre($para);
+
+        $membre->save();
+        $membre->photoProfil = urldecode($membre->photoProfil);
+        return response()->json($membre, Response::HTTP_CREATED);
     }
 
     /**
@@ -47,7 +64,16 @@ class MembreCtrl extends Controller
      */
     public function show($id)
     {
-        //
+        $membre = Membre::find($id);
+        $membre->editions;
+        if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
+            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+        }
+        if (Membre::find($id) == null) {
+            return response()->json('Membre introuvable', Response::HTTP_NOT_FOUND);
+        }
+        $membre->photoProfil = urldecode($membre->photoProfil);
+        return $membre;
     }
 
     /**
@@ -70,7 +96,20 @@ class MembreCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $membre = Membre::find($id);
+        $para = $request->intersect(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil']);
+        if (!Membre::isValid($para)) {
+            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+        }
+        if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
+            return response()->json('Membre inexistant', Response::HTTP_NOT_FOUND);
+        }
+        if($request->has('photoProfil')){
+            $para['photoProfil'] = urlencode($para['photoProfil']);
+        }
+        $membre->update($para);
+        $membre->photoProfil = urldecode($membre->photoProfil);
+        return response()->json($membre, Response::HTTP_OK);
     }
 
     /**
@@ -81,6 +120,22 @@ class MembreCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        $membre = Membre::find($id);
+
+        if (!Membre::isValid(['id' => $id])) {
+            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+        }
+        if ($membre == null) {
+            return response()->json('Membre introuvable', Response::HTTP_NOT_FOUND);
+        }
+        if($membre['actif'] == false){
+            return response()->json('Membre déjà supprimé', Response::HTTP_NOT_FOUND);
+        }
+        foreach ($membre->editions as $ed){
+            $membre->editions()->updateExistingPivot($ed->id, ['actif' => false]);
+        }
+        $membre->actif = false;
+        $membre->save();
+        return response()->json('OK', Response::HTTP_OK);
     }
 }

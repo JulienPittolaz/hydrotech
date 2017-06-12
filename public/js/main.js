@@ -1,23 +1,18 @@
 $(function () {
-    // MEMBRE
-    var testModelMembre = new ModelMembre({
-        adresseMail: "lea.soukouti@gmail.com",
-        nom: "Soukouti",
-        prenom: "Léa",
-        dateNaissance: "29/03/1994",
-        section: "Media",
-        description: "je suis trop belle",
-        role: "admin",
-        photoProfil: "moi.jpg"
-
-    });
-    testModelMembre.isValid();
-    console.log("Erreurs Membre: " + testModelMembre.validationError);
-    testModelMembre.log()
+    var MaRoute = new MainRouter;
+    Backbone.history.start();
 
 
-    $(".content").html(JST['membre'](testModelMembre.toJSON()));
+    // GESTION MENU HAMBURGER
+    $("#popup").on("click", "nav.edition_menu",  function () {
+        $("body nav.edition_menu ul").toggleClass('isHidden');
+        $("html").toggleClass("isNoScroll")
+        $("body nav.edition_menu ul").toggleClass("isBlock")
 
+        })
+
+
+    /**
   //Article de Presse
 
   var testArticle = new ModelArticleDePresse({
@@ -116,28 +111,6 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     testModelResssource.log()
     $(".content").html(JST['ressource'](testModelResssource.toJSON()));
 
-    // ACTUALITE
-    var testModelActualite = new ModelActualite({
-        titre: "test",
-        datePublication: new Date(),
-        dateModification: new Date()
-    })
-
-    testModelActualite.isValid();
-    console.log("Erreurs actualite: " + testModelActualite.validationError);
-    testModelActualite.log()
-    $(".content").html(JST['actualite'](testModelActualite.toJSON()));
-
-// MEDIA
-    var testModelMedia = new ModelMedia({
-        url: "test",
-        titre: "ma photo"
-    })
-
-    testModelMedia.isValid();
-    console.log("Erreurs media: " + testModelMedia.validationError);
-    testModelMedia.log()
-    $(".content").html(JST['media'](testModelMedia.toJSON()));
 
     // SPONSOR
     var testModelSponsor = new ModelSponsor({
@@ -161,4 +134,797 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     console.log("Erreurs sponsor: " + testModelEdition.validationError);
     testModelEdition.log()
     $(".content").html(JST['edition'](testModelEdition.toJSON()));
+
+
+    // ACTUALITE
+    var testModelActualite = new ModelActualite({
+        titre: "titre de l'actu",
+        auteur: "Jean Claude",
+        datePublication: new Date(),
+        contenu: "blablabla blablablblablablblablabl blablablblablabl blablabl blablabl blablabl blablabl blablabl blablabl blablabl blablabl blablabl "
+    })
+    var mesActualites= new ModelActualites({
+        template: "actualites"
+    });
+
+    testModelActualite.isValid();
+    console.log("Erreurs actualite: " + testModelActualite.validationError);
+    testModelActualite.log()
+    $(".content").html(JST['actualite'](testModelActualite.toJSON()));
+
+
+// MEDIA
+    var mesMedias= new ModelMedias([
+        {
+            url: "blap"
+        },
+        {
+            url: "michel"
+        },
+        {
+            url: "josé"
+        }
+    ]);
+    $(".content").html(JST['medias']({medias:mesMedias.toJSON()}));
+
+    var mesArticles = new ModelArticlesDePresse();
+    mesArticles.fetch({
+        success: function () {
+            $("#timeline").html(JST['articlesPresse']({articlesPresse:mesArticles.toJSON()}));
+
+        }
+    })
+
+
+
+    // MEMBRE
+    var mesMembres = new ModelMembres();
+    mesMembres.fetch({
+        success: function () {
+            $("#popup").html(JST['membres']({membres:mesMembres.toJSON()}));
+
+        }
+
+    });
+
+     **/
+    // // SPONSOR
+    // var mesSponsors = new ModelSponsors();
+    // mesSponsors.fetch({
+    //     success: function () {
+    //         $("#popup").html(JST['sponsors']({sponsors:mesSponsors.toJSON()}));
+    //         $(".owl-carousel").owlCarousel();
+    //
+    //     }
+    // });
+
+
+
+
+
+    // SPONSOR
+   var mesreseauxSociaux = new ModelReseauxSociaux();
+    mesreseauxSociaux.fetch({
+     success: function () {
+        $("#socials").html(JST['reseauxSociaux']({reseauxSociaux:mesreseauxSociaux.toJSON()}));
+    }
+ });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+
+
+
+    var actualitesSite = new ModelActualites();
+    actualitesSite.fetch({
+        success: function(){
+            $("#globalNews").html(JST['actualites']({actualites:actualitesSite.toJSON()}));
+        }
+    });
+ **/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// var mediasTests = new ModelMedias();
+//     mediasTests.fetch({
+//         success: function(){
+//             $("#popup").html(JST['medias']({medias:mediasTests.toJSON()}));
+//
+//         }
+//     });
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //
+    // var presseTests = new ModelArticlesDePresse();
+    // presseTests.fetch({
+    //     success: function(){
+    //         $("#popup").html(JST['articlesPresse']({articlesPresse:presseTests.toJSON()}));
+    //
+    //         // Call Gridder
+    //         $('.gridder').gridderExpander({
+    //             scroll: true,
+    //             scrollOffset: 30,
+    //             scrollTo: "panel", // panel or listitem
+    //             animationSpeed: 400,
+    //             animationEasing: "easeInOutExpo",
+    //             showNav: true, // Show Navigation
+    //             nextText: "", // Next button text
+    //             prevText: "", // Previous button text
+    //             closeText: "", // Close button text
+    //             onStart: function () {
+    //                 //Gridder Inititialized
+    //                 console.log('On Gridder Initialized...');
+    //             },
+    //             onContent: function () {
+    //                 //Gridder Content Loaded
+    //                 console.log('On Gridder Expand...');
+    //             },
+    //             onClosed: function () {
+    //                 //Gridder Closed
+    //                 console.log('On Gridder Closed...');
+    //             }
+    //         });
+    //     }
+    // });
+
+
+
+
+
+
+
+
+    // var actuZoomTests = new ModelActualite();
+    // actuZoomTests.fetch({
+    //      success: function(){
+    //          $("#popup").html(JST['actualite_zoom']({actualite:actuZoomTests.toJSON()}));
+    //
+    //      }
+    //  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var tests = new ModelEditions();
+    tests.fetch({
+        success: function(){
+            $('#timeline').append(JST['timeline']({timeline:tests.toJSON()}));
+            initTimeline();
+        }
+    });
 });

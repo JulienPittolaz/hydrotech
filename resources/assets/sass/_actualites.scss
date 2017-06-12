@@ -1,0 +1,66 @@
+.actualite {
+  margin-top : 50px;
+  display: none;
+}
+.actualite_header{
+  border-top: 8px solid $contrast-blue;
+}
+
+
+.actualite_titre, .actualite_footer {
+  font-size: $font-size-medium;
+  text-transform: uppercase;
+  padding-top: 2px;
+  color: $contrast-blue;
+  font-weight: $text-weight-bold;
+  line-height: $line-height-base;
+
+}
+
+.actualite_time::before {
+  content: " | ";
+}
+.actualite_nomAuteur {
+  font-weight: $text-weight-bold;
+  text-transform: uppercase;
+
+}
+.actualite_auteur {
+  text-transform: uppercase;
+}
+
+.actualite_time {
+  font-weight: $text-weight-bold;
+
+}
+.actualite_contenu {
+  text-align: justify;
+}
+
+.actualite_arrow{
+  border-bottom:solid 3px $contrast-blue;
+  border-right:solid 3px $contrast-blue;
+  height: 20px;
+  width: 20px;
+  transform: rotate(45deg);
+  display: inline-block;
+  margin-bottom: 50px;
+}
+
+.actualite_footer{
+  margin-top: 100px;
+  text-align: center;
+  cursor:pointer;
+}
+
+/* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
+@media screen and /*(min-width: 21em) and*/ (max-width: 30em),  screen and /*(min-device-width: 21em) and*/ (max-device-width: 30em)
+  /*and (min-width: 30em)*/ and (max-width: 41em), screen /*and (min-device-width: 30em)*/ and (max-device-width: 41em) {
+
+
+  .actualite {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  }

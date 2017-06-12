@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategorieSponsorTable extends Migration
+class CreateCategorieeditionsponsorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateCategorieSponsorTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorie_sponsor', function (Blueprint $table) {
+        Schema::create('categorieeditionsponsors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('categorie_id')->unsigned();
             $table->integer('sponsor_id')->unsigned();
+            $table->integer('categorie_id')->unsigned();
+            $table->integer('edition_id')->unsigned();
             $table->timestamps();
-            $table->foreign('categorie_id')->references('id')->on('categories')->onDelete("cascade");
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete("cascade");
+            $table->foreign('categorie_id')->references('id')->on('categories')->onDelete("cascade");
+            $table->foreign('edition_id')->references('id')->on('editions')->onDelete("cascade");
             $table->boolean('actif')->default(true);
         });
     }
@@ -31,6 +33,6 @@ class CreateCategorieSponsorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorie_sponsor');
+        Schema::dropIfExists('categorieeditionsponsors');
     }
 }

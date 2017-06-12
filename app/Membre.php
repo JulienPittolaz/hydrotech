@@ -7,11 +7,12 @@ use Validator;
 
 class Membre extends Model
 {
-    protected $fillable = ['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role'];
+    protected $fillable = ['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil'];
+    protected $hidden = ['actif'];
     //protected $table = "membres";
 
     public function editions() {
-        return $this->belongsToMany('\App\Edition')->withTimestamps();
+        return $this->belongsToMany('\App\Edition')->withTimestamps()->withPivot('actif');
     }
 
     public static function isValid($data = array()) {
@@ -20,11 +21,10 @@ class Membre extends Model
             'adresseMail' => 'email|sometimes|required',
             'nom' => 'string|sometimes|required',
             'prenom' => 'string|sometimes|required',
-            'dateNaissance' => 'date|sometimes|required',
+            'dateNaissance' => 'date|sometimes|required|before_or_equal:today',
             'section' => 'string|sometimes|required',
             'description' => 'string|sometimes|required',
             'photoProfil' => 'url|sometimes|required',
-            'role' => 'string|sometimes|required',
         ])->passes();
     }
 }
