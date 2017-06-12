@@ -17,6 +17,11 @@
 .popup_cross:before{
   content: "\ea0f";
 }
+.popup_cross:hover{
+  color: $contrast-blue;
+  cursor:pointer;
+
+}
  .container.is-fluid {
   margin:0px;
 
