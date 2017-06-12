@@ -67,28 +67,10 @@
 </section>
 <section id="globalNews" class="container is-fluid">
 </section>
-<section id="timeline" class="container is-fluid">
-
-    <ul>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-    </ul>
-    <ul>
-        <li><a href="#/editions/2017/membres">Équipe</a></li>
-    </ul>
+<section id="timeline" class="">
 </section>
 <section id="popup" class="container is-fluid">
-
-    <div class="popup_content">
-
-    </div>
+    <div class="popup_content"></div>
 </section>
 </body>
 </html>

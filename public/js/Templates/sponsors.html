@@ -2,18 +2,17 @@
 <div class="container">
     <h1 class="page_title"> Sponsors</h1>
     <div class="owl-carousel owl-theme owl-loaded">
-        <div class="owl-stage-outer">
-            <div class="owl-stage sponsor">
                 {{#each sponsors}}
-                <div class="owl-item">{{>sponsor}}</div>
+                <div>{{>sponsor}}</div>
                 {{/each}}
-            </div>
-        </div>
-        <div class="owl-controls">
-            <div class="owl-nav">
-                <div class="owl-prev">prev</div>
-                <div class="owl-next">next</div>
-            </div>
+        {{#each sponsors}}
+        <div>{{>sponsor}}</div>
+        {{/each}}
+    </div>
+    <div class="owl-controls">
+        <div class="owl-nav">
+            <div class="owl-prev">prev</div>
+            <div class="owl-next">next</div>
         </div>
     </div>
 </div>

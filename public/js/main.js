@@ -888,4 +888,43 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var tests = new ModelEditions();
+    tests.fetch({
+        success: function(){
+            $('#timeline').append(JST['timeline']({timeline:tests.toJSON()}));
+            initTimeline();
+        }
+    });
 });
