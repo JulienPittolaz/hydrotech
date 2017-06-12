@@ -52,7 +52,7 @@ class EditionMembreAssociationCtrl extends Controller
             return response()->json('Impossible d\'ajouter cette association', Response::HTTP_BAD_REQUEST);
         }
         foreach ($membre->editions as $ed){
-            if($ed['id'] == $edition_id){
+            if($ed['id'] == $edition_id && $ed->pivot->actif == true){
                 return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
             }
         }

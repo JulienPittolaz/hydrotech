@@ -73,6 +73,9 @@ class SponsorCtrl extends Controller
     public function show($id)
     {
         $sponsor = Sponsor::find($id);
+        foreach ($sponsor->categorieeditionsponsors as $cat){
+            $cat->edition->annee;
+        }
         if (!Sponsor::isValid(['id' => $id]) || $sponsor->actif == false) {
             return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
         }

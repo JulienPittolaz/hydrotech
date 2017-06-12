@@ -12,7 +12,7 @@ class Actualite extends Model
     //protected $table = "actualites";
 
     public function editions() {
-        return $this->belongsToMany('\App\Edition')->withTimestamps();
+        return $this->belongsToMany('\App\Edition')->withTimestamps()->withPivot('actif');
     }
 
     public static function isValid($data = array()) {
