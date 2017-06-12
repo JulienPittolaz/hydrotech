@@ -10,7 +10,7 @@
                     @if($errors->any())
                         <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
                     @endif
-                    <form action="{{ action('Back_office\ActualiteCtrl@store') }}" id="actualite-form" method="POST" novalidate="novalidate" target="_parent">
+                    <form action="{{ action('Back_office\ActualiteCtrl@store') }}" id="actualite-form" method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
                         <label for="titre">Titre</label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -42,13 +42,9 @@
                             <input class="radio-col-light-blue" name="publie" type="radio" value="0" id="false" />
                             <label for="false">Non</label>
                         </div>
-                        <label for="urlImage">Url de l'image </label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="" type="url" class="form-control" name="urlImage" required="" aria-required="true" aria-invalid="true" placeholder="Url de l'image">
-                            </div>
-                            <div class="help-info">Commence par http:// ou https://</div>
-                        </div>
+                        <label for="urlImage">Ajouter une image </label>
+                        <label for="urlImage">Image (JPG, PNG ou GIF) :</label><br />
+                        <input type="file" name="urlImage" id="urlImage" /><br />
                         <input type="submit" class="btn btn-primary waves-effect"></input>
                     </form>
                 </div>

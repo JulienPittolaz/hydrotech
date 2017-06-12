@@ -55,12 +55,14 @@ class SponsorCtrl extends Controller
      */
     public function store(Request $request)
     {
-        /*$para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
+        //dd($request['urlLogo']);
+        $para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
+        //dd($request->file('urlLogo'));
         if (!Sponsor::isValid($para)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
-        $para['urlLogo'] = urlencode($para['urlLogo']);
-        $para['urlSponsor'] = urlencode($para['urlSponsor']);*/
+
+        $para['urlSponsor'] = urlencode($para['urlSponsor']);
 
         $para = $request->only(['nom', 'urlSponsor']);
         $ext = $request->file('urlLogo')->getClientOriginalExtension();
@@ -88,7 +90,6 @@ class SponsorCtrl extends Controller
         if (Sponsor::find($id) == null) {
             return response()->json('Sponsor introuvable', Response::HTTP_NOT_FOUND);
         }
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return $sponsor;
     }
@@ -106,7 +107,6 @@ class SponsorCtrl extends Controller
             return redirect('admin/sponsor');
         }
         $sponsor->first();
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return view('sponsor/edit', ['sponsor' => $sponsor]);
     }
@@ -122,20 +122,32 @@ class SponsorCtrl extends Controller
     {
         $sponsor = Sponsor::find($id);
         $para = $request->intersect(['nom', 'urlLogo', 'urlSponsor']);
+
+        if($request['urlLogo'] != null){
+            $para = $request->only(['nom', 'urlSponsor']);
+            $ext = $request->file('urlLogo')->getClientOriginalExtension();
+            $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.' . $ext);
+            $sponsor->urlLogo = $image;
+        }
         if (!Sponsor::isValid($para)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
         if (!Sponsor::isValid(['id' => $id]) || $sponsor->actif == false) {
             return response()->json('Sponsor inexistant', Response::HTTP_NOT_FOUND);
         }
-        if($request->has('urlLogo')){
-            $para['urlLogo'] = urlencode($para['urlLogo']);
-        }
         if($request->has('urlSponsor')){
             $para['urlSponsor'] = urlencode($para['urlSponsor']);
         }
+
+        if($request['urlLogo'] != null){
+            $para = $request->only(['nom', 'urlSponsor']);
+            $ext = $request->file('urlLogo')->getClientOriginalExtension();
+            $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.' . $ext);
+            $sponsor->urlLogo = $image;
+        }
+
         $sponsor->update($para);
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
+
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return redirect('admin/sponsor')->withInput()->with('message', 'Modification enregistrée');
     }

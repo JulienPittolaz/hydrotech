@@ -20,9 +20,6 @@ class MembreCtrl extends Controller
         $membres = Membre::all()->where('actif', true);
 
         $membre_columns = Membre::all()->first()['fillable'];
-        foreach ($membres as $membre){
-            $membre->photoProfil = urldecode($membre->photoProfil);
-        }
         return view('membre/index')->with(['membres' => $membres, 'columns' => $membre_columns]);
 
     }
@@ -49,11 +46,9 @@ class MembreCtrl extends Controller
         if (!Membre::isValid($para)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
-        $para['photoProfil'] = urlencode($para['photoProfil']);
         $membre = new Membre($para);
 
         $membre->save();
-        $membre->photoProfil = urldecode($membre->photoProfil);
         return redirect('admin/membre')->withInput()->with('message', 'Nouveau membre ajouté');
     }
 
@@ -72,7 +67,6 @@ class MembreCtrl extends Controller
         if (Membre::find($id) == null) {
             return response()->json('Membre introuvable', Response::HTTP_NOT_FOUND);
         }
-        $membre->photoProfil = urldecode($membre->photoProfil);
         return $membre;
     }
 
@@ -89,7 +83,6 @@ class MembreCtrl extends Controller
             return redirect('admin/membre');
         }
         $membre->first();
-        $membre->photoProfil = urldecode($membre->photoProfil);
         return view('membre/edit', ['membre' => $membre]);
     }
 
@@ -110,11 +103,7 @@ class MembreCtrl extends Controller
         if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
             return response()->json('Membre inexistant', Response::HTTP_NOT_FOUND);
         }
-        if($request->has('photoProfil')){
-            $para['photoProfil'] = urlencode($para['photoProfil']);
-        }
         $membre->update($para);
-        $membre->photoProfil = urldecode($membre->photoProfil);
         return redirect('admin/membre')->withInput()->with('message', 'Modification enregistrée');
     }
 
