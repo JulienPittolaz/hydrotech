@@ -68,34 +68,6 @@
                             <input class="radio-col-light-blue" name="publie" type="radio" value="0" id="false" />
                             <label for="false">Non</label>
                         </div>
-                        <label for="membres">Membres</label>
-                        <div class="demo-checkbox">
-                            @foreach($membres as $membre)
-                                <input type="checkbox" id="basic_checkbox_membre_{{$membre->id}}" name="membres[]" value="{{$membre->id}}" />
-                                <label for="basic_checkbox_membre_{{$membre->id}}">{{$membre->prenom}} {{$membre->nom}}</label>
-                            @endforeach
-                        </div>
-                        <label for="actualites">Actualités</label>
-                        <div class="demo-checkbox">
-                            @foreach($actualites as $actualite)
-                                <input type="checkbox" id="basic_checkbox_actualite_{{$actualite->id}}" name="actualites[]" value="{{$actualite->id}}" />
-                                <label for="basic_checkbox_actualite_{{$actualite->id}}">{{$actualite->titre}}</label>
-                            @endforeach
-                        </div>
-                        <label for="medias">Médias</label>
-                        <div class="demo-checkbox">
-                            @foreach($medias as $media)
-                                <input type="checkbox" id="basic_checkbox_media_{{$media->id}}" name="medias[]" value="{{$media->id}}" />
-                                <label for="basic_checkbox_media_{{$media->id}}">{{$media->titre}}</label>
-                            @endforeach
-                        </div>
-                        <label for="sponsors">Sponsors</label>
-                        <div class="demo-checkbox">
-                            @foreach($sponsors as $sponsor)
-                                <input type="checkbox" id="basic_checkbox_sponsor_{{$sponsor->id}}" name="sponsors[]" value="{{$sponsor->id}}" />
-                                <label for="basic_checkbox_sponsor_{{$sponsor->id}}">{{$sponsor->nom}}</label>
-                            @endforeach
-                        </div>
                         <input type="submit" class="btn btn-primary waves-effect"></input>
                     </form>
                 </div>
