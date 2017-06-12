@@ -2,9 +2,6 @@
  * Created by timdlp on 11.06.17.
  */
 function initMasonry(){
-    $('label.btn').on('click', function(){
-       $(this).toggleClass('active');
-    });
     var $grid = $('.galerie_grid').imagesLoaded( function() {
         $grid.multipleFilterMasonry({
             itemSelector: '.grid-item',
@@ -15,5 +12,7 @@ function initMasonry(){
             stamp: '.stamp'
         });
     });
-
+    $('.btn input').on('click', function () {
+        $(this.parentElement).toggleClass('active');
+    });
 }
