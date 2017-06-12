@@ -4,20 +4,22 @@
 var MainRouter = Hydrotech.Router.extend({
     routes:{
         '' : 'index',
-        'editions/:annee/:page(/)' :'editions',
+        'contact(/:subject)' : 'contact',
+        'editions/:annee/:page(/:article)(/)' :'editions',
         'r/:controler/:action' : 'dispatcher'
     },
     dispatcher: function(controler,action){
     window['Ctrl'+controler][action]();
     },
     index: function(){
-        console.log('Route index appelée');
         $("section").show();
         $("section#popup").hide();
 
     },
+    contact: function(subject){
+        window['CtrlContact']['contact']();
+    },
     editions: function(annee,page){
-        console.log("Route appelée");
         window['CtrlEditions']['show'](annee,page);
     }
 });
