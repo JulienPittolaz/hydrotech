@@ -202,7 +202,13 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
-
+    // SPONSOR
+   var mesreseauxSociaux = new ModelReseauxSociaux();
+    mesreseauxSociaux.fetch({
+     success: function () {
+        $("#socials").html(JST['reseauxSociaux']({reseauxSociaux:mesreseauxSociaux.toJSON()}));
+    }
+ });
 
 
 

@@ -1,5 +1,6 @@
 .actualite {
   margin-top : 50px;
+  display: none;
 }
 .actualite_header{
   border-top: 8px solid $contrast-blue;
@@ -49,5 +50,17 @@
 .actualite_footer{
   margin-top: 100px;
   text-align: center;
+  cursor:pointer;
 }
 
+/* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
+@media screen and /*(min-width: 21em) and*/ (max-width: 30em),  screen and /*(min-device-width: 21em) and*/ (max-device-width: 30em)
+  /*and (min-width: 30em)*/ and (max-width: 41em), screen /*and (min-device-width: 30em)*/ and (max-device-width: 41em) {
+
+
+  .actualite {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  }

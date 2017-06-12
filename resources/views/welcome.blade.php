@@ -32,12 +32,8 @@
                 <img src="images/logo.svg" alt="logo de l'équipe">
             </a>
         </div>
-        <div id="socialNetworks">
-            <ul>
-                <li class="facebook"></li>
-                <li class="instagram"></li>
-                <li class="youtube"></li>
-            </ul>
+        <div id="socials">
+
         </div>
         <div id="contact"> Contact</div>
     </div>
@@ -57,7 +53,7 @@
         de transport le plus écologique, en matière d’emissions de CO2 par tonne transportée, il représente tout de même
         la 5ème source de pollution mondiale...
         </p>
-        <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ voir plus</a></p>
+        <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
     </div>
 
     <footer class="home_scroll">
@@ -70,7 +66,6 @@
 </section>
 <section id="timeline" class="container is-fluid">
 
-<h1>TIMELINE PROVISOIRE SUSU</h1>
     <ul>
         <li><a href="#/editions/2016/membres">Équipe</a></li>
         <li><a href="#/editions/2016/membres">Équipe</a></li>
@@ -92,91 +87,5 @@
 
     </div>
 </section>
-
-{{--<section class="formulaire">--}}
-{{----}}
-
-<!--
-
-<section class="formulaire">
-
-    <div class="formulaireContact ">
-        <div class="container">
-            <h1>Bonjour, <br> peut-on vous aider?</h1>
-
-            <div class=" formulaire_choix">
-                <div class="button is-large is-primary is-outlined">Je veux soutenir</div>
-
-                <div class="button is-large is-primary is-outlined">J'ai une question</div>
-
-                <div class="button is-large is-primary is-outlined">Je veux m'inscrire</div>
-
-                <div class="reponseD">
-                    <div class="button is-large is-primary is-outlined">La réponse D?</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="formulaireContactSuite">
-
-
-        <div class="container">
-            <h1>Titre dynamique yo!</h1>
-            <div class="form1 ">
-                <div class="columns">
-
-                    <div class="field column is-half
-">
-                        <p class="control">
-                            <input class="input is-medium" type="text" placeholder="*Nom">
-                        </p>
-                    </div>
-                    <div class="field column is-half
-">
-                        <p class="control">
-                            <input class="input is-medium" type="text" placeholder="*Prénom">
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="columns">
-
-                <div class="field column is-half
-">
-                    <p class="control">
-                        <input class="input is-medium" type="text" placeholder="Entreprise">
-                    </p>
-                </div>
-
-                <div class="field column is-half
-">
-                    <p class="control">
-                        <input class="input is-medium" type="email" placeholder="*Email">
-                    </p>
-                </div>
-            </div>
-
-            <div class="form2">
-                <div class="field">
-                    <p class="control">
-                        <input class="input is-medium" type="text" placeholder="*Objet">
-                    </p>
-                </div>
-
-                <div class="field">
-                    <p class="control">
-                        <textarea class="textarea is-medium" placeholder="*Message"></textarea>
-                    </p>
-                </div>
-            </div>
-            <a class="button is-medium is-primary is-outlined">Envoyer!</a>
-
-        </div>
-
-    </div>
-
-    </div>
-
-</section>--}}
 </body>
 </html>

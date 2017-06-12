@@ -17,6 +17,11 @@
 .popup_cross:before{
   content: "\ea0f";
 }
+.popup_cross:hover{
+  color: $contrast-blue;
+  cursor:pointer;
+
+}
  .container.is-fluid {
   margin:0px;
 
@@ -42,6 +47,7 @@ and (min-width: 30em) and (max-width: 41em), screen and (min-device-width: 30em)
     margin-left:0px;
     margin-top:100px;
     text-align: center;
+    line-height: 1.1;
   }
   // MENU
   body nav.edition_menu {
@@ -93,7 +99,7 @@ and (min-width: 30em) and (max-width: 41em), screen and (min-device-width: 30em)
     position: fixed;
     z-index: 20000;
     height: 103px;
-    width: 103vw;
+    width: 100vw;
     top: 0px;
     padding: 10px;
 

@@ -13,6 +13,7 @@
 .membre figure img {
   width: 100%;
   position: relative;
+  filter: grayscale(100%);
 }
 
 .membre figure {
@@ -88,3 +89,42 @@
  .membre_container {
 margin-bottom: 300px;
  }
+
+
+
+/* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
+@media screen and /*(min-width: 21em) and*/ (max-width: 30em),  screen and /*(min-device-width: 21em) and*/ (max-device-width: 30em)
+  /*and (min-width: 30em)*/ and (max-width: 41em), screen /*and (min-device-width: 30em)*/ and (max-device-width: 41em) {
+
+  .membres > article:nth-child(4n+1), .membres > article:nth-child(4n+2) {
+    transform : translateY(0);
+  }
+  .membre figure.membre_img{
+    opacity: 1;
+  }
+  .membre_infos{
+    opacity:1;
+    width:370px;
+    padding: 12px;
+    background-color: rgba(31,59,126,0.4);
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    //prends 80% de la largeur
+    width: 80vw;
+  }
+  .columns {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .membre figure .ligne{
+    display: none;
+  }
+
+  .membre figure:hover .membre_img {
+    opacity: 1;
+  }
+
+}
