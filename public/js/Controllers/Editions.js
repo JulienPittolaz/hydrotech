@@ -11,7 +11,6 @@ var CtrlEditions = {
             content[page] = fillIn;
             content['year'] = annee;
             POPUP.empty();
-
             POPUP.append(JST[page](content));
             $(" nav.edition_menu").css("display", "block");
             $(" nav.edition_menu ul").addClass('isHidden');
