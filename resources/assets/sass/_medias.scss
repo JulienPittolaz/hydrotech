@@ -63,5 +63,9 @@
   text-transform: uppercase;
   font-size: $font-size-medium;
   font-weight: $text-weight-bold;
+  input{
+    display:none;
+  }
 
 }
+
