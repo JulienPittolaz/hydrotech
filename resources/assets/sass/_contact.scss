@@ -21,10 +21,6 @@
   bottom: 20px;
   right: 200px;
 }
-.formulaireContact .container:hover::before{
-transform: translateX(30%);
-transition-duration: 3s;
-}
 
 .formulaireContact .formulaire_choix .column > div {
   width: 220px;
