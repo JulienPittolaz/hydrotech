@@ -59,13 +59,17 @@
   padding: 5px;
   width: 100px;
   border-radius: 5px;
+  border:1px solid $contrast-blue;
   text-align: center;
   text-transform: uppercase;
   font-size: $font-size-medium;
   font-weight: $text-weight-bold;
   input{
-    display:none;
+    display: none;
   }
-
+}
+.btn.active{
+  background:white;
+  color:$contrast-blue; 
 }
 
