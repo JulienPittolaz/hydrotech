@@ -12,6 +12,16 @@
 
 }
 
+.formulaireContact .container:before {
+  content: url("../img/vaguebleue.svg");
+  display: inline-block;
+  height: 100px;
+  width: 200px;
+  position: fixed;
+  bottom: 100px;
+  right: 200px;
+}
+
 .formulaireContact .formulaire_choix .column > div {
   width: 220px;
   height:50px;

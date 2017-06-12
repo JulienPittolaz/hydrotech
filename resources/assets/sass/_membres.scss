@@ -101,6 +101,16 @@
 
  .membre_container {
 margin-bottom: 300px;
+
+ }
+ .membre_container:before {
+   content: url("../img/vaguebleue.svg");
+   display: inline-block;
+   height: 100px;
+   width: 200px;
+   position: fixed;
+   bottom: 0px;
+   right: 200px;
  }
 
 
