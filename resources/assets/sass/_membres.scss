@@ -1,3 +1,16 @@
+
+.membre_desc {
+  text-transform: uppercase;
+  font-size:40px;
+  font-weight: $text-weight-medium;
+  margin-bottom:100px;
+}
+.membre_desc .ingenieurs {
+  color: $contrast-blue;
+  font-weight: $text-weight-bold;
+
+}
+
 .membre_infos{
   text-transform: uppercase;
 }
@@ -88,6 +101,16 @@
 
  .membre_container {
 margin-bottom: 300px;
+
+ }
+ .membre_container:before {
+   content: url("../img/vaguebleue.svg");
+   display: inline-block;
+   height: 100px;
+   width: 200px;
+   position: fixed;
+   bottom: 0px;
+   right: 200px;
  }
 
 
@@ -127,4 +150,15 @@ margin-bottom: 300px;
     opacity: 1;
   }
 
-}
+  .membre_desc {
+    font-size:15px;
+    text-align: center;
+
+  }
+  .membre_container:before {
+
+  display: none;
+  }
+
+
+  }
