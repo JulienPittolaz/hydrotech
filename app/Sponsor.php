@@ -8,15 +8,17 @@ use Validator;
 class Sponsor extends Model
 {
     protected $fillable = ['nom', 'urlLogo', 'urlSponsor'];
+    protected $hidden = ['actif'];
     //protected $table = "sponsors";
 
 
 
-    public function categories()
+    public function categorieeditionsponsors()
     {
-        return $this->belongsToMany('App\Categorie')->withTimestamps();
+        return $this->hasMany('App\Categorieeditionsponsor');
     }
 
+    
     public static function isValid($data = array()){
         return Validator::make($data, [
             'id' => 'exists:sponsors|sometimes|required',

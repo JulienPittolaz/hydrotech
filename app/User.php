@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Validator;
 
 class User extends Authenticatable
 {
@@ -24,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'actif'
     ];
 
     public function groupes()
@@ -41,5 +42,15 @@ class User extends Authenticatable
             }
         }
         return false;
+    }
+
+
+    public static function isValid($data = array()) {
+        return Validator::make($data, [
+            'id' => 'exists:users|sometimes|required',
+            'adresseMail' => 'unique:users|email|sometimes|required',
+            'password' => 'string|sometimes|required',
+            'name' => 'string|sometimes|required',
+        ])->passes();
     }
 }

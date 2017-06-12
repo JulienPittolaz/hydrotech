@@ -1,0 +1,135 @@
+.popup_content .page_title{
+  font-weight: $text-weight-bold;
+  margin-bottom: 100px;
+  margin-left: 120px;
+  margin-top: 50px;
+}
+
+
+.popup_cross{
+  position: fixed;
+  text-align: right;
+  right:150px;
+  top:75px;
+  font-family: icomoon;
+  font-size: 2em;
+  z-index: 15000;
+}
+.popup_cross:before{
+  content: "\ea0f";
+}
+.popup_cross:hover{
+  color: $contrast-blue;
+  cursor:pointer;
+
+}
+ .container.is-fluid {
+  margin:0px;
+
+ }
+
+
+.page_background {
+  position: fixed;
+  width: 30vw;
+  opacity:0.1;
+}
+
+/* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
+@media screen and (min-width: 21em) and (max-width: 30em),  screen and (min-device-width: 21em) and (max-device-width: 30em)
+and (min-width: 30em) and (max-width: 41em), screen and (min-device-width: 30em) and (max-device-width: 41em){
+
+  // CROIX
+  .popup_cross{
+    top:35px;
+    right:40px;
+
+  }
+  .popup_cross:before{
+    content: "\ea0f";
+  }
+
+
+  // TITRE
+  .popup_content .page_title{
+    font-size: 50px;
+    margin-left:0px;
+    margin-top:100px;
+    text-align: center;
+    line-height: 1.1;
+  }
+  // MENU
+  body nav.edition_menu {
+  min-height: 1.6em;
+  cursor: pointer;
+    top: 20px;
+    left:35px;
+    z-index: 800;
+}
+
+  body nav.edition_menu:before {
+    font-size: 2.5em;
+    font-family: icomoon;
+    content: "\ea7a";
+    z-index: 801;
+    position: relative;
+  }
+  body nav.edition_menu:hover:before {
+    color: $contrast-blue;
+
+  }
+  body nav.edition_menu ul {
+    position: fixed;
+    top:0px;
+    left: 0px;
+    background-color: white;
+    width:100vw;
+    height:103vh;
+    line-height: 5;
+    font-size: 20px;
+    padding-top: 150px;
+  }
+
+  body nav.edition_menu ul li.active{
+    font-weight: $text-weight-bold;
+
+  }
+
+  body nav.edition_menu li {
+
+    z-index: 100;
+    text-align: center;
+    top:100px;
+  }
+
+  // MENU & CROIX fixed
+
+  .edition_grandMenu{
+    position: fixed;
+    z-index: 20000;
+    height: 103px;
+    width: 100vw;
+    top: 0px;
+    padding: 10px;
+
+  }
+
+  .edition_grandMenu_deroule{
+    background-color: white;
+  }
+
+  .isBlock{
+    display: block;
+  }
+
+  .isHidden{
+    display: none;
+  }
+
+  .isNoScroll{
+    overflow-y: hidden;
+  }
+
+}
+
+

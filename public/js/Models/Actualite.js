@@ -1,5 +1,5 @@
 var ModelActualite = Hydrotech.Model.extend({
-    // url: 'url_ici',
+    url: '/api/v1/actualites',
 
     validate: function(attrs, options) {
         var msg = '';

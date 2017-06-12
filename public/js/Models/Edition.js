@@ -2,8 +2,7 @@
  * Created by Léa on 03/06/2017.
  */
 var ModelEdition = Hydrotech.Model.extend({
-    // url: 'url_ici',
-
+    urlRoot: '/api/v1/editions',
     validate: function(attrs, options) {
         var msg = '';
 
@@ -61,5 +60,24 @@ var ModelEdition = Hydrotech.Model.extend({
 
         }
         return msg;
+    },
+    fetchByYear: function(attributes, callbacks) {
+
+        var queryString = attributes;
+        queryString = '/'+queryString;
+        var self = this;
+
+        $.ajax({
+            url: this.urlRoot+queryString,
+            type: 'GET',
+            dataType: "json",
+            success: function(data) {
+                self.set(data);
+                callbacks.success();
+            },
+            error: function(data){
+                callbacks.error();
+            }
+        });
     }
 })

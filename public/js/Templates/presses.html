@@ -1,0 +1,24 @@
+<img src="images/logo.svg" class="page_background presse_background">
+
+{{> menu}}
+<h1 class="page_title">Articles de presse</h1>
+
+<div class="container">
+
+    <h2 class="presse_subtitle">Ils ont parlé de nous:</h2>
+
+    <div class="presse_bloc ">
+        <ul class="gridder">
+
+        {{#each presses}}
+            {{> articlePresse }}
+        {{/each}}
+        </ul>
+
+        {{#each presses}}
+        {{> articlePresse_Content }}
+        {{/each}}
+
+    </div>
+
+</div>

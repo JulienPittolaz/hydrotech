@@ -1,0 +1,46 @@
+/****************************** FONT FACE *************************************/
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot');
+  src:  url('../fonts/icomoon.eot') format('embedded-opentype'),
+  url('../fonts/icomoon.ttf') format('truetype'),
+  url('../fonts/icomoon.woff') format('woff'),
+  url('../fonts/icomoon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*,html,body {
+  box-sizing: border-box;
+}
+
+body,html{
+  font-family: 'Montserrat',sans-serif;
+  color: $text-color;
+  font-size: $font-size-base;
+
+  h1 {
+    font-size: $main-title-size;
+    text-transform: uppercase;
+    color:$contrast-blue;
+    text-weight: $text-weight-bold;
+
+  }
+  a{
+    color:$contrast-blue;
+  }
+  nav.edition_menu{
+    position: fixed;
+    left:0;
+    top:50px;
+    margin-top:15px;
+    ul{
+      padding-left:8px;
+      text-transform: uppercase;
+      border-left: 15px solid $contrast-blue;
+      margin-right: 30px;
+      line-height: 1.4;
+
+    }
+  }
+}

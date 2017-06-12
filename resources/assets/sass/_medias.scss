@@ -1,0 +1,75 @@
+/**************Images***************/
+
+* { box-sizing: border-box; }
+
+
+/* ---- grid ---- */
+
+.galerie_grid {
+
+  /* center */
+  margin: 0 auto;
+
+}
+
+/* clear fix */
+
+.galerie_grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-item {
+
+  width: 300px;
+}
+
+.grid-item {
+  float: left;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+/**************Videos***************/
+
+
+
+/**********Filtres*************/
+
+.filtres{
+
+  text-align: center;
+  margin-bottom: 50px;
+
+}
+
+.btn{
+
+  background-color: $contrast-blue;
+  margin-left: 15px;
+  margin-right: 15px;
+  display: inline-block;
+  color: white;
+  padding: 5px;
+  width: 100px;
+  border-radius: 5px;
+  border:1px solid $contrast-blue;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: $font-size-medium;
+  font-weight: $text-weight-bold;
+  input{
+    display: none;
+  }
+}
+.btn.active{
+  background:white;
+  color:$contrast-blue;
+}
+
