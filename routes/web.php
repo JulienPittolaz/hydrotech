@@ -41,6 +41,8 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::post('/social/{id}/edit', 'Back_office\SocialCtrl@update');
     Route::resource('/edition', 'Back_office\EditionCtrl');
     Route::post('/edition/{id}/edit', 'Back_office\EditionCtrl@update');
+    Route::resource('/user', 'Back_office\UserCtrl');
+    Route::post('/user/{id}/edit', 'Back_office\UserCtrl@update');
 
 
     //*******ASSOCIATIONS*******
