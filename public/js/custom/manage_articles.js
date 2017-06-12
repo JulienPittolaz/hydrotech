@@ -15,10 +15,6 @@ function manageArticles(){
         $('.actualite').hide('slow');
         var superCool = this.parentElement.parentElement;
         $('.actualite_zoom_'+$(superCool).data('id')).show('slow');
-        $(window).one('popstate',function(){
-            console.log('Close photo');
-        });
-        history.pushState(null,null,'#truc');
     });
     $(".actualite_footer").on('click',function(){
         x= (x+4 <= size_articles) ? x+4 : size_articles;
