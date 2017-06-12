@@ -60,7 +60,7 @@
             bateau le plus rapide et le moins gourmand
             en matière d’énergie.
         </p>
-        <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
+        <p class="home_more"><a target="_blank" href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
     </div>
 
     <footer class="home_scroll">
