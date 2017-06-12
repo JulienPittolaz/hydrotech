@@ -17,7 +17,6 @@ class Media extends Model
     }
 
     public static function isValid($data = array()) {
-        dd($data);
         return Validator::make($data, [
             'id' => 'exists:medias|sometimes|required',
             'url' => 'url|sometimes|required',
