@@ -18,10 +18,6 @@ class MembreCtrl extends Controller
     public function index()
     {
         $membres = Membre::all()->where('actif', true);
-        foreach ($membres as $membre){
-            //$membre['photoProfil'] = urldecode($membre['photoProfil']);
-            $membre->photoProfil = urldecode($membre->photoProfil);
-        }
         return $membres;
     }
 
@@ -47,11 +43,9 @@ class MembreCtrl extends Controller
         if (!Membre::isValid($para)) {
             return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
         }
-        $para['photoProfil'] = urlencode($para['photoProfil']);
         $membre = new Membre($para);
 
         $membre->save();
-        $membre->photoProfil = urldecode($membre->photoProfil);
         return response()->json($membre, Response::HTTP_CREATED);
     }
 
@@ -70,7 +64,6 @@ class MembreCtrl extends Controller
         if (Membre::find($id) == null) {
             return response()->json('Membre introuvable', Response::HTTP_NOT_FOUND);
         }
-        $membre->photoProfil = urldecode($membre->photoProfil);
         return $membre;
     }
 
@@ -102,11 +95,7 @@ class MembreCtrl extends Controller
         if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
             return response()->json('Membre inexistant', Response::HTTP_NOT_FOUND);
         }
-        if($request->has('photoProfil')){
-            $para['photoProfil'] = urlencode($para['photoProfil']);
-        }
         $membre->update($para);
-        $membre->photoProfil = urldecode($membre->photoProfil);
         return response()->json($membre, Response::HTTP_OK);
     }
 

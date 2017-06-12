@@ -21,9 +21,6 @@ class ActualiteCtrl extends Controller
     {
         $actualites = Actualite::all()->where('actif', true);
 
-        foreach ($actualites as $actualite) {
-            $actualite->urlImage = urldecode($actualite->urlImage);
-        }
         $actualite_columns = Actualite::all()->first()['fillable'];
         return view('actualite/index', ['actualites' => $actualites, 'columns' => $actualite_columns]);
     }
@@ -46,22 +43,25 @@ class ActualiteCtrl extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request['urlImage']);
         $inputs = $request->only(['titre', 'datePublication', 'contenu', 'urlImage', 'publie']);
         if (!Actualite::isValid($inputs)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
-        if($inputs['datePublication'] )
+        $inputs = $request->only(['titre', 'datePublication', 'contenu', 'publie']);
+        $ext = $request->file('urlImage')->getClientOriginalExtension();
+        $image = $request->file('urlImage')->storeAs('public/actualites', $inputs['titre'] . '.' . $ext);
         $actualite = new Actualite([
             'titre' => $inputs['titre'],
             'datePublication' => $inputs['datePublication'],
             'contenu' => $inputs['contenu'],
-            'urlImage' => urlencode($inputs['urlImage']),
+            'urlImage' => $image,
             'auteur' => 'UTILISATEUR TEST',
             //'auteur' => Auth::user()->name,
             'publie' => $inputs['publie']
         ]);
+        $actualite->urlImage = $image;
         $actualite->save();
-        $actualite['urlImage'] = urldecode($actualite['urlImage']);
         return redirect('admin/actualite')->withInput()->with('message', 'Nouvelle actualité créée');
     }
 
@@ -82,7 +82,6 @@ class ActualiteCtrl extends Controller
         if (Sponsor::find($id) == null) {
             return response()->json('Sponsor introuvable', Response::HTTP_NOT_FOUND);
         }
-        $actualite->urlImage = urldecode($actualite->urlImage);
         return $actualite;
     }
 
@@ -99,7 +98,6 @@ class ActualiteCtrl extends Controller
             return redirect('admin/actualite');
         }
         $actualite->first();
-        $actualite->urlImage = urldecode($actualite->urlImage);
         return view('actualite/edit', ['actualite' => $actualite]);
     }
 
@@ -137,11 +135,7 @@ class ActualiteCtrl extends Controller
             return response()->json('Actualité supprimée', Response::HTTP_NOT_FOUND);
         }
 
-        if($request->has('urlImage')) {
-            $inputs['urlImage'] = urlencode($inputs['urlImage']);
-        }
         $actualite->update($inputs);
-        $actualite['urlImage'] = urldecode($actualite['urlImage']);
         return  redirect('admin/actualite')->withInput()->with('message', 'Modification enregistrée');
     }
 

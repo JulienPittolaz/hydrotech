@@ -162,7 +162,6 @@
             },
             'urlImage': {
                 required: true,
-                url: true
             }
         },
         highlight: function (input) {
