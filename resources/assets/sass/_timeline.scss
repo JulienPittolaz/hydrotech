@@ -1,0 +1,414 @@
+/*!
+	Timeline - v0.0.1
+	ilker Yılmaz
+	https://github.com/ilkeryilmaz/timeline
+ */
+
+
+// Timeline Variables
+// --------------------------------------------------------
+$item-width: 100vw;
+$transition-time: 0.5s;
+$transition-ease: ease-in-out;
+
+$dots-item-width: 35px;
+
+
+// Timeline Mixins
+// --------------------------------------------------------
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+
+
+// Timeline Structure
+// --------------------------------------------------------
+
+.timeline-container {
+  position: relative;
+  @include clearfix;
+}
+
+.timeline {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-list {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline-list-wrap {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  transform: translate3d(0, 0, 0);
+  transition: transform $transition-time $transition-ease;
+}
+
+.timeline-item {
+  float: left;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+
+// Timeline Dots
+// --------------------------------------------------------
+.timeline-dots-wrap {
+  position: absolute;
+  overflow: hidden;
+
+	.timeline-horizontal &{
+		width: 100%;
+		height: $dots-item-width;
+	}
+
+	.timeline-vertical &{
+		width: $dots-item-width + 30px;
+		height: 100%;
+		top: 0;
+	}
+
+  &.bottom {
+    bottom: -50px;
+  }
+
+  &.top {
+    top: -50px;
+  }
+
+	&.left {
+		left: -65px;
+	}
+
+	&.right {
+		right: -70px;
+	}
+}
+
+.timeline-dots {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+	.timeline-horizontal &{
+		//background: url('../img/timeline-bg.png') bottom repeat-x;
+	}
+
+	.timeline-vertical & {
+		//background: url('../img/timeline-vertical-bg.png') left repeat-y;
+	}
+
+  li {
+    transition: all $transition-time $transition-ease;
+    list-style: none;
+
+		.timeline-horizontal &{
+			float: left;
+			width: 50px;
+			text-align: center;
+		}
+
+		.timeline-vertical &{
+			width: 100%;
+      margin: 10px auto;
+		}
+
+    &.slide-active {
+      button {
+        color: white;
+        font-size: 15px;
+      }
+    }
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all $transition-time $transition-ease;
+
+
+		.timeline-horizontal & {
+			//background: url('../img/date-icon.png') bottom no-repeat;
+			padding-bottom: 15px;
+		}
+
+		.timeline-vertical & {
+			//background: url("../img/date-icon-vertical.png") left no-repeat;
+			padding-left: 15px;
+		}
+  }
+}
+
+
+
+// Timeline Theme
+// --------------------------------------------------------
+
+.timeline-container {
+  width: $item-width;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.timeline-list {
+  width: 100vw;
+  height:100vh;
+}
+
+.isFixed {
+  position: fixed !important;
+}
+
+.timeline > div {
+  width: $item-width;
+  height: 100vh;
+  padding: 10px;
+  background-position: center center;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat:no-repeat;
+  padding:40px;
+}
+
+.timeline-dots {
+  height: 100vh !important;
+  text-align: center;
+  width: 300px;
+  position: relative;
+}
+
+li.right-dot button::after {
+  content: '';
+  width:8px;
+  height:8px;
+  background: white;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: -18px;
+  transform: translateY(-50%);
+}
+
+li.left-dot {
+  transform: translateX(38px);
+
+  button {
+    width: 50px;
+  }
+}
+
+li.right-dot {
+  transform: translateX(-38px);
+
+  button {
+    width: 50px;
+  }
+}
+
+li.left-dot button::before {
+  content: '';
+  width:8px;
+  height:8px;
+  background: white;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: -16px;
+  transform: translateY(-50%);
+}
+
+.timeline-dots button {
+  background-color: transparent;
+  position: relative;
+  transition: all $transition-time $transition-ease;
+}
+
+
+
+.timeline-dots li.big button {
+  font-size:120px;
+  margin: 40px auto;
+  width: 100%;
+}
+
+.timeline-container .dots-container {
+  position: absolute;
+  top: 0;
+  left: 0
+}
+
+.timeline-dots-wrap {
+  position: absolute;
+  top: 0%;
+  left:50%;
+  transform: translateX(-50%);
+  height: 100vh;
+  width:300px;
+
+  &::after {
+    content: '';
+    height: 100vh;
+    width: 1px;
+    //background-color: white;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 37%,rgba(255,255,255,0) 37%,rgba(255,255,255,0) 63%,rgba(255,255,255,1) 63%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+}
+
+.timeline > div {
+  height:100vh;
+  background-repeat: no-repeat;
+  width: 100vw;
+  background-size:cover;
+  position: relative;
+}
+
+.timeline-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(21, 39, 84, 0.8);
+}
+
+.timeline-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: grayscale(1);
+  width: 100vw;
+  height: 100vh;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+.timeline .timeline-content {
+  text-align: center;
+  margin-top: 15%;
+}
+
+.timeline-content > .columns {
+  margin: 20px auto 30px auto;
+  text-align: center;
+}
+
+.edition-button {
+  padding:10px 2px;
+  border: 3px solid white;
+  background: transparent;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 120px;
+}
+
+.actualites-button::before {
+  background-image: url(img/megaphone.svg);
+  background-repeat: no-repeat;
+  content:'';
+  display: block;
+  width: 70px;
+  height: 50px;
+  margin: 10px auto;
+}
+
+.galerie-button::before {
+  background-image: url(img/play.svg);
+  background-repeat: no-repeat;
+  content:'';
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 10px auto;
+}
+
+.equipe-button::before {
+  background-image: url(img/team.svg);
+  background-repeat: no-repeat;
+  content:'';
+  display: block;
+  width: 50px;
+  height: 40px;
+  margin: 10px auto;
+}
+
+.presse-button::before {
+  background-image: url(img/microphone.svg);
+  background-repeat: no-repeat;
+  content:'';
+  display: block;
+  width: 35px;
+  height: 40px;
+  margin: 10px auto;
+}
+
+.big {
+  margin:20% auto;
+}
+
+@media (max-width: 767px) {
+  .timeline-dots-wrap {
+    left: 20px;
+  }
+
+  .timeline-dots li.big button {
+    font-size:30px;
+    transform: translateX(30px);
+  }
+
+  li.right-dot {
+    transform: translateX(38px);
+
+    button {
+      width: 50px;
+    }
+  }
+
+  li.right-dot button::before {
+    content: '';
+    width:8px;
+    height:8px;
+    background: white;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: -16px;
+    transform: translateY(-50%);
+  }
+
+  li.right-dot button::after {
+    display: none;
+  }
+
+}
+
+

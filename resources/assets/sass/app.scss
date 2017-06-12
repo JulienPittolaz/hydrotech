@@ -1,9 +1,35 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
 
 // Variables
-@import "variables";
+@import 'variables';
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+//ZOOM
+@import "zoom";
+
+@import "timeline";
+
+// BULMA (flex grid)
+@import "node_modules/bulma/bulma.sass";
+
+// HELPERS
+@import "helper";
+
+//Style général
+@import "general";
+
+//Composants
+@import 'actualites';
+@import "articlesDePresse";
+@import 'actualitezoom';
+@import "home";
+@import "popup";
+@import "membres";
+@import "medias";
+@import "contact";
+@import "sponsors";
+@import "owl.carousel.min";

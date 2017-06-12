@@ -1,95 +1,80 @@
 <!doctype html>
 <html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+    <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <script>
+        var CURRENT_ED = {!!$current_ed !!};
+    </script>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    <script src="js/packJs.php" charset="utf-8"></script>
+    <script>
+        $(function(){
+            var austDay = new Date();
+            austDay = new Date(CURRENT_ED.dateDebut);
+            $('#defaultCountdown').countdown({until: austDay});
+            $('#year').text(austDay.getFullYear());
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+        });
+    </script>
+</head>
+<body>
+<section id="home">
+    <div class="home_menu home_menu_deroule">
+        <div id="logo_equipe">
+            <a href="">
+                <img src="images/logo.svg" alt="logo de l'équipe">
+            </a>
         </div>
-    </body>
+        <div id="socials">
+
+        </div>
+        <div id="contact"><a href="/#/contact">Contact</a></div>
+    </div>
+
+
+    <div class="home_presentation">
+        <div class="home_team"> Team <br> Heig-Vd</div>
+        <div class="home_participants"> Participants <br> au concours <br> Hydrocontest</div>
+        <div id="defaultCountdown"></div>
+    </div>
+
+    <div class="home_descConcours">
+        <p> <span class="concours"> Le concours </span> <br> L’HydroContest est l’événement phare
+            de la Fondation Hydros ; il est le premier
+            concours étudiant international dédié
+            à l’efficience énergétique nautique et
+            maritime.
+            Ce concours permet de sensibiliser,
+            et développer de nouvelles idées en
+            rassemblant les futurs ingénieurs
+            du monde entier autour de cette
+            problématique d’actualité. Ces étudiants
+            doivent concevoir, fabriquer et piloter le
+            bateau le plus rapide et le moins gourmand
+            en matière d’énergie.
+        </p>
+        <p class="home_more"><a target="_blank" href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
+    </div>
+
+    <footer class="home_scroll">
+        <div>Scroll</div>
+        <div class="home_arrow"></div>
+    </footer>
+
+</section>
+<section id="globalNews" class="container is-fluid">
+</section>
+<section id="timeline" class="">
+</section>
+<section id="popup" class="container is-fluid">
+    <div class="popup_content"></div>
+</section>
+</body>
 </html>

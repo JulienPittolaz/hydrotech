@@ -1,0 +1,35 @@
+    {{> menu }}
+
+<h1 class="page_title"> Galerie</h1>
+
+<div class="container">
+
+    <div class="filtres">
+        <label class="btn">
+        <input type="checkbox" value="Photo">
+        Photos
+        </label>
+        <label class="btn">
+        <input type="checkbox" value="Video">
+        Vidéos
+        </label>
+    </div>
+
+
+    <main class="galerie_grid">
+        <div class="grid-sizer"></div>
+        {{#each medias}}
+        {{#isVideo}}
+        <div class="grid-item {{typeMedia}}">
+            {{> video }}
+        </div>
+        {{else}}
+        <div class="grid-item {{typeMedia}}">
+            {{> photo }}
+        </div>
+        {{/isVideo}}
+        {{/each}}
+
+    </main>
+
+</div>

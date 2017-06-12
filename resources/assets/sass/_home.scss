@@ -1,0 +1,301 @@
+#home{
+ background: url("../img/bateau.jpg");
+  background-position:center center;
+  // prend tte la place de la div et ne deform pas l'img
+  background-size: cover;
+  // vh: viewport height : 100% de la hauteur
+  height:100vh;
+  // vh: viewport width
+  width:100vw;
+// pour que les positions absolues soit par rapport à #home
+  position: relative;
+}
+
+
+//Menu qui se déroule quand on scrolle
+
+.home_menu{
+
+  position: fixed;
+  z-index: 10000;
+  height: 80px;
+  width: 100vw;
+  padding: 10px;
+  background-color: white;
+}
+
+.home_menu_deroule{
+  //background-color: white;
+
+}
+
+.home_descConcours{
+  background: $contrast-blue;
+  color: white;
+  height:300px;
+  max-width: 300px;
+  text-align: justify;
+  padding:15px;
+  position: absolute;
+  right:50px;
+  bottom: 50px;
+}
+.home_descConcours .concours {
+  font-weight:$text-weight-bold ;
+  font-size: 16px;
+}
+
+.home_descConcours p{
+
+  height: 220px;
+  overflow: hidden;
+
+
+}
+
+.home_more{
+
+  text-align: center;
+  font-size: $font-size-medium;
+  font-weight: $text-weight-bold;
+  text-transform: uppercase;
+  margin-top: 20px;
+
+}
+
+.home_more a{
+
+  color: white;
+
+}
+
+
+#contact{
+  text-transform: uppercase;
+  color:  $contrast-blue;
+  font-weight: $text-weight-bold;
+  font-size: $font-size-medium;
+  position: absolute;
+  right:50px;
+  top:30px;
+}
+
+.home_team{
+  font-size: 100px;
+  text-transform: uppercase;
+  font-weight: $text-weight-bold;
+  color:  $contrast-blue;
+  line-height: 0.8;
+  position: absolute;
+  top:150px;
+  left:250px;
+}
+
+.home_participants{
+  color: white;
+  font-weight: $text-weight-bold;
+  font-size: $font-size-medium;
+  position: absolute;
+  margin-top:155px;
+  left:100px;
+  text-align: right;
+  text-transform: uppercase;
+  border-right: 8px solid;
+  padding-right: 10px;
+}
+
+.home_arrow {
+  margin-top: 15px;
+  border-bottom:solid 3px white;
+  border-right:solid 3px white;
+  height: 20px;
+  width: 20px;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+
+.home_scroll{
+  color:white;
+  text-transform: uppercase;
+  font-size: $font-size-medium;
+  font-weight: $text-weight-bold;
+  position: absolute;
+  bottom: 50px;
+  left:50%;
+  text-align: center;
+  transform: translateX(-50%) ;
+  width: 200px;
+}
+
+
+#logo_equipe{
+  position: absolute;
+  width: 40px;
+  height: auto;
+  top : 15px;
+  left: 30px;
+
+}
+
+#socials{
+  position: absolute;
+  right:125px;
+  top:30px;
+  font-size: $font-size-medium;
+  color: $contrast-blue;
+  font-family: icomoon;
+
+}
+.socialNetworks li{
+  float: right;
+}
+.socialNetworks li a{
+  margin-right: 20px;
+  display: inline-block;
+}
+
+.socialNetworks .Facebook::before {
+  content: "\ea90";
+}
+
+.socialNetworks .Instagram::before {
+  content: "\ea92";
+}
+
+.socialNetworks .Youtube::before {
+   content: "\ea9d";
+ }
+
+
+//Countdown css
+
+/* jQuery Countdown styles 2.0.0. */
+
+#defaultCountdown { width: 240px; height: 45px; }
+
+.is-countdown {
+  border: 1px solid #ccc;
+  background-color: #eee;
+}
+.countdown-rtl {
+  direction: rtl;
+}
+.countdown-holding span {
+  color: #888;
+}
+.countdown-row {
+  clear: both;
+  width: 100%;
+  padding: 0px 2px;
+  text-align: center;
+}
+.countdown-show1 .countdown-section {
+  width: 98%;
+}
+.countdown-show2 .countdown-section {
+  width: 48%;
+}
+.countdown-show3 .countdown-section {
+  width: 32.5%;
+}
+.countdown-show4 .countdown-section {
+  width: 24.5%;
+}
+.countdown-show5 .countdown-section {
+  width: 19.5%;
+}
+.countdown-show6 .countdown-section {
+  width: 16.25%;
+}
+.countdown-show7 .countdown-section {
+  width: 14%;
+}
+.countdown-section {
+  display: block;
+  float: left;
+  font-size: 75%;
+  text-align: center;
+}
+.countdown-amount {
+  font-size: 200%;
+}
+.countdown-period {
+  display: block;
+}
+.countdown-descr {
+  display: block;
+  width: 100%;
+}
+
+
+.socialNetworks .Twitter::before {
+  content: "\ea96";
+}
+
+/* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
+@media screen and /*(min-width: 21em) and*/ (max-width: 30em),  screen and /*(min-device-width: 21em) and*/ (max-device-width: 30em)
+/*and (min-width: 30em)*/ and (max-width: 41em), screen /*and (min-device-width: 30em)*/ and (max-device-width: 41em){
+
+
+
+  #home{
+    background: url("../img/bateau.jpg");
+    background-position:center center;
+    // prend tte la place de la div et ne deform pas l'img
+    background-size: cover;
+    // vh: viewport height : 100% de la hauteur
+    height:100vh;
+    // vh: viewport width
+    width:100vw;
+    // pour que les positions absolues soit par rapport à #home
+    position: relative;
+  }
+
+  .home_presentation{
+
+  }
+
+  .home_team{
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: $text-weight-bold;
+    color:  $contrast-blue;
+    line-height: 0.8;
+    position: initial;
+    padding-top: 15vh;
+    width: 300px;
+    margin:auto;
+  }
+
+  .home_descConcours{
+    background: $contrast-blue;
+    color: white;
+    height:300px;
+    max-width: 300px;
+    text-align: justify;
+    padding:15px;
+    position: initial;
+    margin: auto;
+    margin-top: 5vh;
+
+  }
+
+  .home_participants{
+    //color: white;
+    //font-weight: $text-weight-bold;
+    //font-size: $font-size-base;
+    //margin-top: 10px;
+    //border-right: none;
+    //text-align: left;
+    //text-transform: uppercase;
+    //padding-right: 10px;
+    //top: 100px;
+    //position: relative;
+    //left: 50px;
+    display: none;
+  }
+
+
+}
+
