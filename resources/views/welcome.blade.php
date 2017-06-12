@@ -46,12 +46,19 @@
     </div>
 
     <div class="home_descConcours">
-        <p>Le concours — II s’agit d’une des problématiques actuelles et communes liées au développement industriel et
-        technologique de notre ère. Avec 90% des échanges commerciaux opérés par la mer,
-
-        le transport maritime est un enjeu économique et environnemental majeur. En effet, si le bateau reste le moyen
-        de transport le plus écologique, en matière d’emissions de CO2 par tonne transportée, il représente tout de même
-        la 5ème source de pollution mondiale...
+        <p> <span class="concours"> Le concours </span> <br> L’HydroContest est l’événement phare
+            de la Fondation Hydros ; il est le premier
+            concours étudiant international dédié
+            à l’efficience énergétique nautique et
+            maritime.
+            Ce concours permet de sensibiliser,
+            et développer de nouvelles idées en
+            rassemblant les futurs ingénieurs
+            du monde entier autour de cette
+            problématique d’actualité. Ces étudiants
+            doivent concevoir, fabriquer et piloter le
+            bateau le plus rapide et le moins gourmand
+            en matière d’énergie.
         </p>
         <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
     </div>

@@ -1,3 +1,16 @@
+
+.membre_desc {
+  text-transform: uppercase;
+  font-size:40px;
+  font-weight: $text-weight-medium;
+  margin-bottom:100px;
+}
+.membre_desc .ingenieurs {
+  color: $contrast-blue;
+  font-weight: $text-weight-bold;
+
+}
+
 .membre_infos{
   text-transform: uppercase;
 }
@@ -126,5 +139,12 @@ margin-bottom: 300px;
   .membre figure:hover .membre_img {
     opacity: 1;
   }
+
+  .membre_desc {
+    font-size:15px;
+    text-align: center;
+
+  }
+
 
 }
