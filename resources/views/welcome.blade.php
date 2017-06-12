@@ -14,7 +14,15 @@
     </script>
 
     <script src="js/packJs.php" charset="utf-8"></script>
+    <script>
+        $(function(){
+            var austDay = new Date();
+            austDay = new Date(CURRENT_ED.dateDebut);
+            $('#defaultCountdown').countdown({until: austDay});
+            $('#year').text(austDay.getFullYear());
 
+        });
+    </script>
 </head>
 <body>
 <section id="home">
@@ -38,6 +46,7 @@
     <div class="home_presentation">
         <div class="home_team"> Team <br> Heig-Vd</div>
         <div class="home_participants"> Participants <br> au concours <br> Hydrocontest</div>
+        <div id="defaultCountdown"></div>
     </div>
 
     <div class="home_descConcours">

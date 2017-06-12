@@ -19,6 +19,8 @@
         'Lib/zoom.js',
         'Lib/jquery.gridder.min.js',
         'Lib/owl.carousel.min.js',
+        'Lib/jquery.plugin.min.js',
+        'Lib/jquery.countdown.min.js',
         'router.js',
         'main.js'
     ];
