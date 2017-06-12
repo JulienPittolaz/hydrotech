@@ -1,15 +1,5 @@
-$(function() {
-    /*
-    $('.js-timeline').Timeline({
-        mode: 'vertical',
-        itemClass: 'timeline-item'
-    });
-*/
-    $('.timeline > div').each(function() {
-       $(this).css({
-          "background-image" : 'url(images/editions/background-' + $(this).attr("data-time") + '.jpg)'
-       });
-    });
+function initTimeline() {
+
 
     function stickyDots() {
         var scroll = window.scrollY;
@@ -62,4 +52,4 @@ $(function() {
     };
     // create scene to pin and link animation
 
-});
+}

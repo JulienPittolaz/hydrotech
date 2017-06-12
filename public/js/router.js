@@ -11,9 +11,13 @@ var MainRouter = Hydrotech.Router.extend({
     window['Ctrl'+controler][action]();
     },
     index: function(){
-        console.log('index');
+        console.log('Route index appelée');
+        $("section").show();
+        $("section#popup").hide();
+
     },
     editions: function(annee,page){
+        console.log("Route appelée");
         window['CtrlEditions']['show'](annee,page);
     }
 });

@@ -8,7 +8,7 @@
 // Timeline Variables
 // --------------------------------------------------------
 $item-width: 100vw;
-$transition-time: 0.8s;
+$transition-time: 0.5s;
 $transition-ease: ease-in-out;
 
 $dots-item-width: 35px;
@@ -38,17 +38,6 @@ $dots-item-width: 35px;
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  &::after {
-    content: '';
-    width: 100vw;
-    height:100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    filter: initial;
-    background-color: rgba(4, 16, 56, 0.9);
-  }
 }
 
 .timeline-list {
@@ -130,7 +119,6 @@ $dots-item-width: 35px;
   li {
     transition: all $transition-time $transition-ease;
     list-style: none;
-    overflow: hidden;
 
 		.timeline-horizontal &{
 			float: left;
@@ -201,7 +189,7 @@ $dots-item-width: 35px;
   background-attachment: scroll;
   background-size: cover;
   background-repeat:no-repeat;
-  filter: grayscale(1);
+  padding:40px;
 }
 
 .timeline-dots {
@@ -264,7 +252,7 @@ li.left-dot button::before {
 .timeline-dots li.big button {
   font-size:120px;
   margin: 40px auto;
-  width: 300px;
+  width: 100%;
 }
 
 .timeline-container .dots-container {
@@ -299,10 +287,128 @@ li.left-dot button::before {
   background-repeat: no-repeat;
   width: 100vw;
   background-size:cover;
+  position: relative;
+}
+
+.timeline-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(21, 39, 84, 0.8);
+}
+
+.timeline-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: grayscale(1);
+  width: 100vw;
+  height: 100vh;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+.timeline .timeline-content {
+  text-align: center;
+  margin-top: 15%;
+}
+
+.timeline-content > .columns {
+  margin: 20px auto 30px auto;
+  text-align: center;
+}
+
+.edition-button {
+  padding:10px 2px;
+  border: 3px solid white;
+  background: transparent;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 120px;
+}
+
+.actualites-button::before {
+  background-image: url(img/megaphone.svg);
+  background-repeat: no-repeat;
+  content:'';
+  display: block;
+  width: 70px;
+  height: 50px;
+  margin: 10px auto;
+}
+
+.galerie-button::before {
+  background-image: url(img/play.svg);
+  background-repeat: no-repeat;
+  content:'';
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 10px auto;
+}
+
+.equipe-button::before {
+  background-image: url(img/team.svg);
+  background-repeat: no-repeat;
+  content:'';
+  display: block;
+  width: 50px;
+  height: 40px;
+  margin: 10px auto;
+}
+
+.presse-button::before {
+  background-image: url(img/microphone.svg);
+  background-repeat: no-repeat;
+  content:'';
+  display: block;
+  width: 35px;
+  height: 40px;
+  margin: 10px auto;
 }
 
 .big {
-  margin:40% auto;
+  margin:20% auto;
+}
+
+@media (max-width: 767px) {
+  .timeline-dots-wrap {
+    left: 20px;
+  }
+
+  .timeline-dots li.big button {
+    font-size:30px;
+    transform: translateX(30px);
+  }
+
+  li.right-dot {
+    transform: translateX(38px);
+
+    button {
+      width: 50px;
+    }
+  }
+
+  li.right-dot button::before {
+    content: '';
+    width:8px;
+    height:8px;
+    background: white;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: -16px;
+    transform: translateY(-50%);
+  }
+
+  li.right-dot button::after {
+    display: none;
+  }
+
 }
 
 

@@ -2,6 +2,16 @@ $(function () {
     var MaRoute = new MainRouter;
     Backbone.history.start();
 
+
+    // GESTION MENU HAMBURGER
+    $("#popup").on("click", "nav.edition_menu",  function () {
+        $("body nav.edition_menu ul").toggleClass('isHidden');
+        $("html").toggleClass("isNoScroll")
+        $("body nav.edition_menu ul").toggleClass("isBlock")
+
+        })
+
+
     /**
   //Article de Presse
 
@@ -192,7 +202,13 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
-
+    // SPONSOR
+   var mesreseauxSociaux = new ModelReseauxSociaux();
+    mesreseauxSociaux.fetch({
+     success: function () {
+        $("#socials").html(JST['reseauxSociaux']({reseauxSociaux:mesreseauxSociaux.toJSON()}));
+    }
+ });
 
 
 
@@ -760,25 +776,22 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
 
 
 
-/**
-var mediasTests = new ModelMedias();
-    mediasTests.fetch({
-        success: function(){
-            $("#popup").html(JST['medias']({medias:mediasTests.toJSON()}));
-            // init Masonry
-            var $grid = $('.grid').imagesLoaded( function() {
-                $grid.masonry({
-                itemSelector: '.grid-item',
-                columnWidth: 300,
-                gutter: 10,
-                isFitWidth: true,
-                    stamp: '.stamp'
-                });
-            });
-        }
-    });
-
-**/
+//
+// var mediasTests = new ModelMedias();
+//     mediasTests.fetch({
+//         success: function(){
+//             $("#popup").html(JST['medias']({medias:mediasTests.toJSON()}));
+//
+//         }
+//     });
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -815,13 +828,7 @@ var mediasTests = new ModelMedias();
 
 
 
-
-
-
-
-
-
-
+    //
     // var presseTests = new ModelArticlesDePresse();
     // presseTests.fetch({
     //     success: function(){
@@ -856,4 +863,68 @@ var mediasTests = new ModelMedias();
 
 
 
+
+
+
+
+
+    // var actuZoomTests = new ModelActualite();
+    // actuZoomTests.fetch({
+    //      success: function(){
+    //          $("#popup").html(JST['actualite_zoom']({actualite:actuZoomTests.toJSON()}));
+    //
+    //      }
+    //  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var tests = new ModelEditions();
+    tests.fetch({
+        success: function(){
+            $('#timeline').append(JST['timeline']({timeline:tests.toJSON()}));
+            initTimeline();
+        }
+    });
 });

@@ -5,7 +5,7 @@
 
 /* ---- grid ---- */
 
-.grid {
+.galerie_grid {
 
   /* center */
   margin: 0 auto;
@@ -14,7 +14,7 @@
 
 /* clear fix */
 
-.grid:after {
+.galerie_grid:after {
   content: '';
   display: block;
   clear: both;

@@ -1,0 +1,37 @@
+
+.btn_actualite_zoom{
+
+  background-color: $contrast-blue;
+  color: white;
+  font-size: $font-size-base;
+  font-weight: $text-weight-bold;
+  text-transform: uppercase;
+  border: 0px;
+  margin-top: 20px;
+
+}
+
+.btn_actualite_zoom:hover{
+
+  color: white;
+
+}
+
+.actualite_zoom{
+
+}
+
+.actualite_zoom img{
+
+  width: 100%;
+
+}
+
+.actualite_zoom p{
+
+  border-top: 8px solid $contrast-blue;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
