@@ -16,6 +16,11 @@ class CategorieCtrl extends Controller
     public function index()
     {
         $categories = Categorie::all()->where('actif', true);
+        foreach ($categories as $categorie) {
+            foreach ($categorie->categorieeditionsponsors as $ces){
+                $ces->edition;
+            }
+        }
         return $categories;
     }
 

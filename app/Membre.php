@@ -12,7 +12,7 @@ class Membre extends Model
     //protected $table = "membres";
 
     public function editions() {
-        return $this->belongsToMany('\App\Edition')->withTimestamps();
+        return $this->belongsToMany('\App\Edition')->withTimestamps()->withPivot('actif');
     }
 
     public static function isValid($data = array()) {
