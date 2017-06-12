@@ -61,9 +61,10 @@ class SponsorCtrl extends Controller
         }
         $para['urlLogo'] = urlencode($para['urlLogo']);
         $para['urlSponsor'] = urlencode($para['urlSponsor']);*/
+
         $para = $request->only(['nom', 'urlSponsor']);
         $ext = $request->file('urlLogo')->getClientOriginalExtension();
-        $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.' . $ext);
+        $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.jpg');
         $sponsor = new Sponsor($para);
         $sponsor->urlLogo = $image;
         $sponsor->save();
@@ -136,7 +137,7 @@ class SponsorCtrl extends Controller
         $sponsor->update($para);
         $sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
-        return redirect('admin/presse')->withInput()->with('message', 'Modification enregistrée');
+        return redirect('admin/sponsor')->withInput()->with('message', 'Modification enregistrée');
     }
 
     /**
@@ -160,6 +161,6 @@ class SponsorCtrl extends Controller
         }
         $sponsor->actif = false;
         $sponsor->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/sponsor')->withInput()->with('message', 'Sponsor supprimé');
     }
 }
