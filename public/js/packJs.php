@@ -22,6 +22,9 @@
         'Lib/TweenMax.min.js',
         'Lib/ScrollMagic.js',
         'Lib/animation.gsap.js',
+        'Lib/jquery.plugin.min.js',
+        'Lib/jquery.countdown.min.js',
+        'Lib/multipleFilterMasonry.js',
         'router.js',
         'main.js'
     ];

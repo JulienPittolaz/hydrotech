@@ -13,14 +13,28 @@
   top:75px;
   font-family: icomoon;
   font-size: 2em;
+  z-index: 15000;
 }
 .popup_cross:before{
   content: "\ea0f";
+}
+.popup_cross:hover{
+  color: $contrast-blue;
+  cursor:pointer;
+
 }
  .container.is-fluid {
   margin:0px;
 
  }
+
+
+.page_background {
+  position: fixed;
+  width: 30vw;
+  opacity:0.1;
+}
+
 /* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
 @media screen and (min-width: 21em) and (max-width: 30em),  screen and (min-device-width: 21em) and (max-device-width: 30em)
 and (min-width: 30em) and (max-width: 41em), screen and (min-device-width: 30em) and (max-device-width: 41em){
@@ -94,7 +108,7 @@ and (min-width: 30em) and (max-width: 41em), screen and (min-device-width: 30em)
     position: fixed;
     z-index: 20000;
     height: 103px;
-    width: 103vw;
+    width: 100vw;
     top: 0px;
     padding: 10px;
 
