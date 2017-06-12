@@ -22,6 +22,22 @@ Route::group(['middleware' => 'myAuth'], function () {
     Route::get('/auth/logout', 'AuthController@logout');
 });
 
+Route::get('/images/{type}/{filename}', function ($type, $filename)
+{
+    echo 'bla';
+    $path = storage_path() . '/' . $type .'/' . $filename;
+
+    if(!File::exists($path)) abort(404);
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->name('image');
+
+
 Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::resource('/prix', 'Back_office\PrixCtrl');
     Route::post('/prix/edit/{id}', 'Back_office\PrixCtrl@update');
