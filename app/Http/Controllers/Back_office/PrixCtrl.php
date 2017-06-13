@@ -143,6 +143,6 @@ class PrixCtrl extends Controller
         }
         $prix->actif = false;
         $prix->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/prix')->withInput()->with('message', 'Prix supprimé');
     }
 }
