@@ -6,10 +6,10 @@ $(function () {
     // GESTION MENU HAMBURGER
     $("#popup").on("click", "nav.edition_menu",  function () {
         $("body nav.edition_menu ul").toggleClass('isHidden');
-        $("html").toggleClass("isNoScroll")
-        $("body nav.edition_menu ul").toggleClass("isBlock")
+        $("html").toggleClass("isNoScroll");
+        $("body nav.edition_menu ul").toggleClass("isBlock");
 
-        })
+    })
 
 
     /**
