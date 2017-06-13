@@ -92,8 +92,8 @@
 
   position: relative;
   margin-top: 70px;
-  height: 30vh;
-  width: 800px;
+  height: 220px;
+  //width: 800px;
 
 }
 
@@ -103,9 +103,9 @@
   font-weight: $text-weight-bold;
   color:  $contrast-blue;
   line-height: 0.8;
-  position: absolute;
-  top:20px;
-  left:150px;
+  //position: absolute;
+  //top:20px;
+  //left:150px;
 }
 
 
@@ -113,13 +113,14 @@
   color: white;
   font-weight: $text-weight-bold;
   font-size: $font-size-medium;
-  position: absolute;
-  margin-top:25px;
-  left:0px;
+  //position: absolute;
+  margin-top:10px;
+  //left:0px;
   text-align: right;
   text-transform: uppercase;
   border-right: 8px solid;
   padding-right: 10px;
+  height: 80px;
 }
 
 .home_sponsors{
@@ -128,9 +129,9 @@
   font-weight: $text-weight-bold;
   font-size: 30px;
   text-transform: uppercase;
-  position: absolute;
-  top: 180px;
-  left:150px;
+  //position: absolute;
+  //top: 180px;
+  //left:150px;
 
 }
 
@@ -277,6 +278,7 @@
 }
 
 
+
 /* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
 @media screen and /*(min-width: 21em) and*/ (max-width: 30em),  screen and /*(min-device-width: 21em) and*/ (max-device-width: 30em)
 /*and (min-width: 30em)*/ and (max-width: 41em), screen /*and (min-device-width: 30em)*/ and (max-device-width: 41em){
@@ -307,26 +309,31 @@
   }
 
 
+}
 
 
-  .home_arrow {
-    display: none
-  }
+/*Media Queries pour Ipad en Landscape et portrait*/
+@media only screen
+and (max-width : 768px) {
+
+
 
   .home_participants{
 
-    display: none;
-  }
-
-
-  .home_scroll{
-    display: none
+    display:none;
   }
 
   #defaultCountdown {
     display: none;
   }
 
+  .home_arrow {
+    display: none
+  }
 
+
+  .home_scroll{
+    display: none
+  }
 }
 
