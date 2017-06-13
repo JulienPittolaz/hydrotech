@@ -25,10 +25,11 @@ var CtrlEditions = {
             }
             if (page == 'actualites'){
                 manageArticles();
+                $('.actualite_footer').show();
                 if (!_.isNull(article)){
                     $('#popup .columns').empty();
-                    console.log(JST['actualite_zoom'](CURRENT_ED.actualites[article-1]));
                     $('#popup .columns').append(JST['actualite_zoom'](CURRENT_ED.actualites[article-1]));
+                    $('footer.actualite_footer').hide();
                 }
             }
             $(".popup_cross").on("click", function () {
@@ -62,6 +63,8 @@ var CtrlEditions = {
                         if (!_.isNull(article)){
                             $('#popup .columns').empty();
                             $('#popup .columns').append(JST['actualite_zoom'](edition.attributes.actualites[article-1]));
+
+                            $('footer.actualite_footer').hide();
                         }
                     }
                     $(".popup_cross").on("click", function () {
