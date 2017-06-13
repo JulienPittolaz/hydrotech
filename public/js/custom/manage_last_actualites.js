@@ -12,7 +12,4 @@ function manageLatestActus(){
         }
         $(actu).html($(actu).html().substring(0,160)+"… "+"<div class='latest-news-view-more'>Lire la suite</div>");
     });
-    $('.latest-news-view-more').on('click',function(){
-
-    });
 }

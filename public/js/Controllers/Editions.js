@@ -63,6 +63,7 @@ var CtrlEditions = {
                         if (!_.isNull(article)){
                             $('#popup .columns').empty();
                             $('#popup .columns').append(JST['actualite_zoom'](edition.attributes.actualites[article-1]));
+
                             $('footer.actualite_footer').hide();
                         }
                     }
