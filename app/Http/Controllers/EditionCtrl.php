@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Categorie;
 use App\Edition;
+use App\Sponsor;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -34,11 +35,12 @@ class EditionCtrl extends Controller
 
             $categories = Categorie::all()->where('actif', true);
             foreach ($categories as $categorie) {
-                foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces){
+                foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces) {
                     $ces->edition;
                     $ces->sponsor;
                 }
             }
+
             $edition->categorie = $categories;
             foreach ($categorieEditionSponsors as $catEdSp) {
                 /*foreach ($catEdSp as $ces){
@@ -58,7 +60,6 @@ class EditionCtrl extends Controller
                 //$categorieEditionSponsors = $edition->categorieeditionsponsors->groupBy('categorie_id');
 
 
-
                 /*foreach ($sponsor->categorieeditionsponsors as $categorieDuSponsor){
                     $ed = $categorieDuSponsor->edition;
                     $ed->annee;
@@ -71,12 +72,8 @@ class EditionCtrl extends Controller
             }
 
 
-
             /*$categorieEditionSponsors = $edition->categorieeditionsponsors->groupBy('categorie.nom');
             dd($categorieEditionSponsors);*/
-
-
-
 
 
             //$edition-->put('listeSponsors', $categorieEditionSponsors);
@@ -89,6 +86,7 @@ class EditionCtrl extends Controller
             }
             $edition->listeSponsors = $listeSponsors;*/
 
+
             $medias = $edition->medias;
             foreach ($medias as $media) {
                 $media->url = urldecode($media->url);
@@ -96,6 +94,7 @@ class EditionCtrl extends Controller
             $membres = $edition->membres;
             foreach ($membres as $membre) {
                 $membre->photoProfil = urldecode($membre->photoProfil);
+                $membre->editions;
             }
             $presses = $edition->presses;
             foreach ($presses as $press) {
@@ -103,7 +102,16 @@ class EditionCtrl extends Controller
             }
             $edition->prixs;
 
+            $sponsors = Sponsor::all()->where('actif', true);
+            foreach ($sponsors as $sponsor) {
+                foreach ($sponsor->categorieeditionsponsors as $assoc) {
+                    $assoc->edition;
+                }
+            }
+            $edition->listeSponsors = $sponsors;
+
         }
+
         return $editions;
     }
 
