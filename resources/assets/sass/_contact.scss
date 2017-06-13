@@ -101,7 +101,19 @@ body, button, input, select, textarea {
   min-height: 170px;
 }
 
+.contact_retour {
+  font-family: icomoon;
+  margin-top: 80px;
+}
+.contact_retour:before {
+  content: "\ea2a";
+  font-size: 30px;
 
+}
+.contact_retour:hover:before {
+  color: $contrast-blue;
+
+}
 /* Smartphones moyen (ex: iphone)*/
 /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
 @media screen and /*(min-width: 21em) and*/

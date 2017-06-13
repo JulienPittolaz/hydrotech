@@ -19,5 +19,9 @@ var CtrlContact = {
             $('section').show();
             $('section#popup').hide();
         });
+        $('.send_email').on('click',CtrlContact.validate);
+    },
+    validate: function(data){
+        console.log("Validation");
     }
 }
