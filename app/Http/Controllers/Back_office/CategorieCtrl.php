@@ -43,7 +43,7 @@ class CategorieCtrl extends Controller
     {
         $inputs = $request->only(['nom', 'description']);
         if (!Categorie::isValid($inputs)) {
-            return response()->json('Categorie invalide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'categorie invalide');
         }
 
         $categorie = new Categorie([
@@ -66,10 +66,10 @@ class CategorieCtrl extends Controller
         $categorie = Categorie::find($id);
 
         if (!Categorie::isValid(['id' => $id]) || $categorie->actif == false) {
-            return response()->json('Requête invalide', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'categorie invalide');
         }
         if(Categorie::find($id) == null){
-            return response()->json('Categorie introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'categorie inexistante');
         }
 
         return $categorie;
@@ -105,14 +105,14 @@ class CategorieCtrl extends Controller
         $inputs = $request->intersect(['nom', 'description']);
         $request->replace(['id' => $id]);
         if (!Categorie::isValid($inputs)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->with('error', 'categorie invalide');
         }
         if (!Categorie::isValid(['id' => $id]) || $categorie->actif == false) {
-            return response()->json('Not found', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'categorie inexistante');
         }
 
         if($categorie['actif'] == false){
-            return response()->json('Categorie déjà supprimée', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'categorie inexistante');
         }
 
         $categorie->update($inputs);
@@ -130,13 +130,13 @@ class CategorieCtrl extends Controller
         $categorie = Categorie::find($id);
 
         if (!Categorie::isValid(['id' => $id])) {
-            return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'categorie invalide');
         }
         if ($categorie == null) {
-            return response()->json('Categorie introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'categorie existants');
         }
         if($categorie['actif'] == false){
-            return response()->json('Categorie déjà supprimée', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'categorie déjà supprimée');
         }
         $categorie->actif = false;
         $categorie->save();

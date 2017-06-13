@@ -44,7 +44,7 @@ class MembreCtrl extends Controller
     {
         $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil']);
         if (!Membre::isValid($para)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->with('error', 'Membre invalide');
         }
 
         $membre = new Membre($para);
@@ -71,10 +71,10 @@ class MembreCtrl extends Controller
     {
         $membre = Membre::find($id);
         if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
-            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Membre invalide');
         }
         if (Membre::find($id) == null) {
-            return response()->json('Membre introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Membre introuvable');
         }
         return $membre;
     }
@@ -114,10 +114,10 @@ class MembreCtrl extends Controller
             $membre->photoProfil = $image;
         }
         if (!Membre::isValid($para)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->with('error', 'Membre invalide');
         }
         if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
-            return response()->json('Membre inexistant', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Membre inexistant');
         }
         $membre->update($para);
         return redirect('admin/membre')->withInput()->with('message', 'Modification enregistrée');
@@ -134,13 +134,13 @@ class MembreCtrl extends Controller
         $membre = Membre::find($id);
 
         if (!Membre::isValid(['id' => $id])) {
-            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Membre invalide');
         }
         if ($membre == null) {
-            return response()->json('Membre introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Membre inexistant');
         }
         if($membre['actif'] == false){
-            return response()->json('Membre déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Membre déjà supprimé');
         }
         $membre->actif = false;
         $membre->save();

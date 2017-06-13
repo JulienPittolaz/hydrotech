@@ -45,7 +45,7 @@ class SocialCtrl extends Controller
     {
         $para = $request->only(['nom', 'url']);
         if (!Social::isValid($para)) {
-            return response()->json('Social non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Reseau social invalide');
         }
         $para['url'] = urlencode($para['url']);
         $social = new Social($para);
@@ -64,10 +64,10 @@ class SocialCtrl extends Controller
     {
         $social = Social::find($id);
         if (!Social::isValid(['id' => $id]) || $social->actif == false) {
-            return response()->json('Social non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Reseau social invalide');
         }
         if (Social::find($id) == null) {
-            return response()->json('Social introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Reseau social introuvable');
         }
         $social->url = urldecode($social->url);
         return $social;
@@ -102,17 +102,17 @@ class SocialCtrl extends Controller
         $social = Social::find($id);
         $para = $request->intersect(['url', 'titre', 'date', 'auteur', 'typeSocial']);
         if (!Social::isValid($para)) {
-            return response()->json('Social non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Reseau social invalide');
         }
         if (!Social::isValid(['id' => $id]) || $social->actif == false) {
-            return response()->json('Social inexistant', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Reseau social inexistant');
         }
         if($request->has('url')){
             $para['url'] = urlencode($para['url']);
         }
         $social->update($para);
         $social->url = urldecode($social->url);
-        return redirect('admin/presse')->withInput()->with('message', 'Modification enregristrée');
+        return redirect('admin/social')->withInput()->with('message', 'Modification enregristrée');
     }
 
     /**
@@ -126,16 +126,16 @@ class SocialCtrl extends Controller
         $social = Social::find($id);
 
         if (!Social::isValid(['id' => $id])) {
-            return response()->json('Social non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Reseau social non valide');
         }
         if ($social == null) {
-            return response()->json('Social introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Reseau social introuvable');
         }
         if($social['actif'] == false){
-            return response()->json('Social déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Reseau social deja supprimé');
         }
         $social->actif = false;
         $social->save();
-        return redirect('admin/social')->withInput()->with('message', 'Suppression supprimé');
+        return redirect('admin/social')->withInput()->with('message', 'Reseau social supprimé');
     }
 }

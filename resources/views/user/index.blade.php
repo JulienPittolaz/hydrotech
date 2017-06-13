@@ -13,6 +13,11 @@
                         {{ Session::get('message') }}
                     </div>
                 @endif
+                @if(Session::has('error'))
+                    <div class="alert alert-danger">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
                 <div class="body">
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">

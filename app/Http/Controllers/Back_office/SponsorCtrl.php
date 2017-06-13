@@ -59,7 +59,7 @@ class SponsorCtrl extends Controller
         $para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
         //dd($request->file('urlLogo'));
         if (!Sponsor::isValid($para)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->withErrors('error', 'Presse invalide');
         }
 
         $para['urlSponsor'] = urlencode($para['urlSponsor']);
@@ -85,10 +85,10 @@ class SponsorCtrl extends Controller
     {
         $sponsor = Sponsor::find($id);
         if (!Sponsor::isValid(['id' => $id]) || $sponsor->actif == false) {
-            return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
+            return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor non valide');
         }
         if (Sponsor::find($id) == null) {
-            return response()->json('Sponsor introuvable', Response::HTTP_NOT_FOUND);
+            return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor introuvable');
         }
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return $sponsor;
@@ -133,7 +133,7 @@ class SponsorCtrl extends Controller
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
         if (!Sponsor::isValid(['id' => $id]) || $sponsor->actif == false) {
-            return response()->json('Sponsor inexistant', Response::HTTP_NOT_FOUND);
+            return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor inexistant');
         }
         if($request->has('urlSponsor')){
             $para['urlSponsor'] = urlencode($para['urlSponsor']);
@@ -163,13 +163,13 @@ class SponsorCtrl extends Controller
         $sponsor = Sponsor::find($id);
 
         if (!Sponsor::isValid(['id' => $id])) {
-            return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
+            return rredirect('admin/sponsor')->withInput()->with('error', 'Sponsor non valide');
         }
         if ($sponsor == null) {
-            return response()->json('Sponsor introuvable', Response::HTTP_NOT_FOUND);
+            return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor introuvable');
         }
         if($sponsor['actif'] == false){
-            return response()->json('Sponsor déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor déjà supprimé');
         }
         $sponsor->actif = false;
         $sponsor->save();

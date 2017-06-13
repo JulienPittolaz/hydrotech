@@ -41,7 +41,7 @@ class UserCtrl extends Controller
     {
         $para = $request->only(['name', 'email', 'password']);
         if (!User::isValid($para)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->with('error', 'User invalide');
         }
         $user = new User($para);
         $user->save();
@@ -58,10 +58,10 @@ class UserCtrl extends Controller
         $user = User::find($id);
 
         if (!User::isValid(['id' => $id]) || $user->actif == false) {
-            return response()->json('User non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'User non valide');
         }
         if (User::find($id) == null) {
-            return response()->json('User introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'User introuvable');
         }
         return $user;
     }
@@ -102,13 +102,13 @@ class UserCtrl extends Controller
             $para['password'] = $para['password2'];
         }
         if (!User::isValid($para)) {
-            return response()->json('User non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'User non valide');
         }
         if (!User::isValid(['id' => $id]) || $user->actif == false) {
-            return response()->json('User inexistant', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'User inexistant');
         }
         if($user['actif'] == false){
-            return response()->json('User déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'User déjà supprimé');
         }
         $user->update($para);
         return redirect('admin/user')->withInput()->with('message', 'Modification enregistrée');
@@ -125,13 +125,13 @@ class UserCtrl extends Controller
         $user = User::find($id);
 
         if (!User::isValid(['id' => $id])) {
-            return response()->json('User non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'User introuvable');
         }
         if ($user == null) {
-            return response()->json('User introuvable', Response::HTTP_NOT_FOUND);
+            redirect()->back()->withInput()->with('error', 'User introuvable');
         }
         if($user['actif'] == false){
-            return response()->json('User déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'User déjà supprimé');
         }
         $user->actif = false;
         $user->save();

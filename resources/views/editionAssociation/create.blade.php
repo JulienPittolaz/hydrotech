@@ -7,8 +7,15 @@
                     <h2>Ajout d'une association {{$type_ressource}} pour l'édition {{$annee}}</h2>
                 </div>
                 <div class="body">
-                    @if($errors->any())
-                        <div class="alert alert-danger">Le nom est déjà pris</div>
+                    @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                        </div>
                     @endif
                     <form action="{{ action('Back_office\EditionAssociationCtrl@store') }}" id="media-form" method="POST"
                           novalidate="novalidate" target="_parent">

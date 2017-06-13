@@ -46,7 +46,7 @@ class ActualiteCtrl extends Controller
         //dd($request);
         $inputs = $request->only(['titre', 'datePublication', 'contenu', 'urlImage', 'publie']);
         if (!Actualite::isValid($inputs)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->with('error', 'Actualité invalide');
         }
         $inputs = $request->only(['titre', 'datePublication', 'contenu', 'publie']);
 //        $actualite = new Actualite([
@@ -131,16 +131,16 @@ class ActualiteCtrl extends Controller
             $actualite->urlImage = $image;
         }
         if (!Actualite::isValid($inputs)) {
-            return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Actualité invalide');
         }
 
 
         if (!Actualite::isValid(['id' => $id])) {
-            return response()->json('Not found', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Actualité inexistante');
         }
 
         if($actualite['actif'] == false){
-            return response()->json('Actualité supprimée', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Actualité déjà supprimée');
         }
 
         $actualite->update($inputs);
@@ -158,11 +158,11 @@ class ActualiteCtrl extends Controller
         $actualite = Actualite::find($id);
 
         if (!Actualite::isValid(['id' => $id])) {
-            return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Actualité invalide');
         }
 
         if($actualite['actif'] == false){
-            return response()->json('Actualité déjà supprimée', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Actualité inexistante');
         }
 
         foreach ($actualite->editions as $ed){

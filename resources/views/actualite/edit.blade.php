@@ -7,8 +7,15 @@
                     <h2>Modification de l'actualité</h2>
                 </div>
                 <div class="body">
-                    @if($errors->any())
-                        <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
+                    @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                        </div>
                     @endif
                     <form action="{{ action('Back_office\ActualiteCtrl@update', $id = $actualite->id) }}"
                           method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">

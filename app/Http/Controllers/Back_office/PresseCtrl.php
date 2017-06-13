@@ -65,10 +65,10 @@ class PresseCtrl extends Controller
     {
         $presse = Presse::find($id);
         if (!Presse::isValid(['id' => $id]) || $presse->actif == false) {
-            return response()->json('Presse non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Presse invalide');
         }
         if (Presse::find($id) == null) {
-            return response()->json('Presse introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Presse déjà introuvable');
         }
         $presse->url = urldecode($presse->url);
         return $presse;
@@ -104,10 +104,10 @@ class PresseCtrl extends Controller
         $para = $request->intersect(['url', 'titreArticle', 'description', 'dateParution', 'nomPresse']);
         $request->replace(['id' => $id]);
         if (!Presse::isValid($para)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->withErrors('error', 'Presse invalide');
         }
         if (!Presse::isValid(['id' => $id]) || $presse->actif == false) {
-            return response()->json('Presse inexistant', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->withErrors('error', 'Presse inexistante');
         }
         if ($request->has('url')) {
             $para['url'] = urlencode($para['url']);
@@ -128,13 +128,13 @@ class PresseCtrl extends Controller
         $presse = Presse::find($id);
 
         if (!Presse::isValid(['id' => $id])) {
-            return response()->json('Presse non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Presse invalide');
         }
         if ($presse == null) {
-            return response()->json('Presse introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Presse introuvable');
         }
         if ($presse['actif'] == false) {
-            return response()->json('Presse déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Presse déjà supprimée');
         }
         $presse->actif = false;
         $presse->save();

@@ -86,20 +86,20 @@ class EditionAssociationCtrl extends Controller
         $resource_id = $request['ressource_id'];
 
         if (!Edition::isValid(['id' => $edition_id])) {
-            return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'edition invalide');
         }
         $objet = call_user_func_array(['\\App\\' . ucfirst($type_ressource), 'find'], [$resource_id]);
         //$objet = call_user_func(['\\App\\'.ucfirst($type_ressource), 'all'])->where('actif', true)->where('id', $resource_id);
         if (!get_class($objet)::isValid(['id' => $resource_id])) {
-            return response()->json('Ressource non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'ressource invalide');
         }
         $edition = Edition::find($edition_id);
         if ($edition['actif'] == false || $objet['actif'] == false) {
-            return response()->json('Impossible d\'ajouter cette association', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'impossible d\'ajouter l\'association');
         }
         foreach ($objet->editions as $ed) {
             if ($ed['id'] == $edition_id && $ed->pivot->actif == true) {
-                return response()->json('Association déjà présente', Response::HTTP_BAD_REQUEST);
+                return redirect()->back()->withInput()->with('error', 'association déjà présente');
             }
         }
         /* foreach ($objet->editions as $association){
@@ -117,7 +117,7 @@ class EditionAssociationCtrl extends Controller
         } else {
             $edition->$type_ressource()->save($objet);
         }
-        return response()->json('OK', Response::HTTP_CREATED);
+        return redirect('admin/associationedition/'. $type_ressource)->with('message', 'association enregistrée');
     }
 
 
@@ -164,21 +164,21 @@ class EditionAssociationCtrl extends Controller
     public function destroy($edition_id, $type_ressource, $resource_id)
     {
         if (!Edition::isValid(['id' => $edition_id])) {
-            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'edition invalide');
         }
         $objet = call_user_func_array(['\\App\\' . ucfirst($type_ressource), 'find'], [$resource_id]);
         if (!get_class($objet)::isValid(['id' => $resource_id])) {
-            return response()->json('Ressource non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'ressource invalide');
         }
         $edition = Edition::find($edition_id);
 
 
         foreach ($objet->editions as $ed) {
             if ($ed['id'] == $edition_id && $ed->pivot->actif == false) {
-                return response()->json('Association inexistante', Response::HTTP_NOT_FOUND);
+                return redirect()->back()->withInput()->with('error', 'association inexistante');
             }
             $objet->editions()->updateExistingPivot($ed->id, ['actif' => false]);
         }
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/associationedition/'. $type_ressource)->with('message', 'association enregistrée');
     }
 }

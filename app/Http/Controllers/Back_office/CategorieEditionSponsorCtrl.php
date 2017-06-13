@@ -75,19 +75,19 @@ class CategorieEditionSponsorCtrl extends Controller
         $sponsor_id = $request['sponsor_id'];
         $categorie = Categorie::find($categorie_id);
         if (!Categorie::isValid(['id' => $categorie_id]) || $categorie->actif == false) {
-            return response()->json('Catégorie inexistante', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'categorie inexistante');
         }
         $edition = Edition::find($edition_id);
         if (!Edition::isValid(['id' => $edition_id]) || $edition->actif == false) {
-            return response()->json('Edition inexistante', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'edition inexistante');
         }
         $sponsor = Sponsor::find($sponsor_id);
         if (!Sponsor::isValid(['id' => $sponsor_id]) || $sponsor->actif == false) {
-            return response()->json('Sponsor inexistant', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'sponsor inexistante');
         }
 
         if(Categorieeditionsponsor::where(['categorie_id' => $categorie_id, 'edition_id' =>$edition_id, 'sponsor_id' => $sponsor_id, 'actif' => true])->first() != null){
-            return response()->json('Association déjà existante', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'association sponsor inexistante');
         }
         $categorieEditionSponsor = new Categorieeditionsponsor();
         $categorieEditionSponsor->categorie()->associate($categorie);
@@ -95,7 +95,7 @@ class CategorieEditionSponsorCtrl extends Controller
         $categorieEditionSponsor->sponsor()->associate($sponsor);
         $categorieEditionSponsor->save();
 
-        return response()->json($categorieEditionSponsor, Response::HTTP_CREATED);
+        return redirect('admin/associationsponsor')->with('message', 'association sponsor ajoutée');
     }
 
     /**
@@ -145,13 +145,13 @@ class CategorieEditionSponsorCtrl extends Controller
             ->where('sponsor_id', $sponsor_id)->first();
 
         if ($categorieEditionSponsor == null) {
-            return response()->json('Sponsor introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'association inexistante');
         }
         if($categorieEditionSponsor['actif'] == false){
-            return response()->json('Sponsor déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'association sponsor déjà supprimée');
         }
         $categorieEditionSponsor->actif = false;
         $categorieEditionSponsor->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/associationsponsor')->with('message', 'association sponsor supprimée');
     }
 }

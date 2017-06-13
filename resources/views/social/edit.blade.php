@@ -7,8 +7,15 @@
                     <h2>Modification du réseau social</h2>
                 </div>
                 <div class="body">
-                    @if($errors->any())
-                        <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
+                    @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                        </div>
                     @endif
                     <form action="{{ action('Back_office\SocialCtrl@update', $id = $social->id) }}" id="social-form"
                           method="POST" novalidate="novalidate" target="_parent">

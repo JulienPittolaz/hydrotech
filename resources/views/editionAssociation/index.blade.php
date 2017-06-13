@@ -9,7 +9,16 @@
                     </h2>
                 </div>
                 <div class="body">
-
+                    @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
                     @foreach($editions as $edition)
                         <ul>
                             <li>{{$edition->annee}}</li>

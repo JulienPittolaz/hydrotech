@@ -68,10 +68,10 @@ class PrixCtrl extends Controller
         $prix = Prix::find($id);
 
         if (!Prix::isValid(['id' => $id]) || $prix->actif == false) {
-            return response()->json('Prix non valide', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Prix invalide');
         }
         if (Prix::find($id) == null) {
-            return response()->json('Prix introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Prix introuvable');
         }
         return $prix;
     }
@@ -107,15 +107,15 @@ class PrixCtrl extends Controller
         $inputs['montant'] = (int)$inputs['montant'];
         $request->replace(['id' => $id]);
         if (!Prix::isValid($inputs)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->with('error', 'Prix invalide');
         }
 
         if (!Prix::isValid(['id' => $id])  || $prix->actif == false) {
-            return response()->json('Sponsor inexistant', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Prix inexistant');
         }
 
         if($prix['actif'] == false){
-            return response()->json('Prix déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Prix déjà supprimé');
         }
 
         $prix->update($inputs);
@@ -133,13 +133,13 @@ class PrixCtrl extends Controller
         $prix = Prix::find($id);
 
         if (!Prix::isValid(['id' => $id])) {
-            return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Prix invalide');
         }
         if ($prix == null) {
-            return response()->json('Prix introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Prix introuvable');
         }
         if($prix['actif'] == false){
-            return response()->json('Prix déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Prix déjà supprimé');
         }
         $prix->actif = false;
         $prix->save();

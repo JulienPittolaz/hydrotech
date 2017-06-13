@@ -45,7 +45,7 @@ class MediaCtrl extends Controller
     {
         $para = $request->only(['url', 'titre', 'date', 'auteur', 'typeMedia']);
         if (!Media::isValid($para)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->with('error', 'Media invalide');
         }
         $para['url'] = urlencode($para['url']);
         $media = new Media($para);
@@ -64,10 +64,10 @@ class MediaCtrl extends Controller
     {
         $media = Media::find($id);
         if (!Media::isValid(['id' => $id]) || $media->actif == false) {
-            return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Media invalide');
         }
         if (Media::find($id) == null) {
-            return response()->json('Media introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Media inexistant');
         }
         $media->url = urldecode($media->url);
         return $media;
@@ -103,17 +103,17 @@ class MediaCtrl extends Controller
         //dd($para);
         $request->replace(['id' => $id]);
         if (!Media::isValid($para)) {
-            return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Media invalide');
         }
         if (!Media::isValid(['id' => $id]) || $media->actif == false) {
-            return response()->json('Media inexistant', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Media inexistant');
         }
         if($request->has('url')){
             $para['url'] = urlencode($para['url']);
         }
         $media->update($para);
         $media->url = urldecode($media->url);
-        return response()->json($media, Response::HTTP_OK);
+        return redirect('admin/media')->withInput()->with('message', 'Modification enregistrée');
     }
 
     /**
@@ -127,13 +127,13 @@ class MediaCtrl extends Controller
         $media = Media::find($id);
 
         if (!Media::isValid(['id' => $id])) {
-            return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Media invalide');
         }
         if ($media == null) {
-            return response()->json('Media introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Media inexistant');
         }
         if($media['actif'] == false){
-            return response()->json('Media déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Media déjà supprimé');
         }
         $media->actif = false;
         $media->save();

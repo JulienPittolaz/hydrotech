@@ -95,7 +95,7 @@ class EditionCtrl extends Controller
         $para = $request->only(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
 
         if (!Edition::isValid($para)) {
-            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Edition invalide');
         }
         $para = $request->only(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
 
@@ -127,10 +127,10 @@ class EditionCtrl extends Controller
         $edition = Edition::find($id);
 
         if (!Edition::isValid(['id' => $id]) || $edition->actif == false) {
-            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Edition invalide');
         }
         if ($edition == null) {
-            return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Edition inexistante');
         }
 
         $actualites = $edition->actualites;
@@ -210,10 +210,10 @@ class EditionCtrl extends Controller
 
         if (!Edition::isValid($para)) {
             //dd($request);
-            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Edition invalide');
         }
         if (!Edition::isValid(['id' => $id]) || $edition->actif == false) {
-            return response()->json('Edition inexistante', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Edition inexistante');
         }
         $edition->update($para);
         return redirect('admin/edition')->withInput()->with('message', 'Modification enregistrée');
@@ -230,13 +230,13 @@ class EditionCtrl extends Controller
         $edition = Edition::find($id);
 
         if (!Edition::isValid(['id' => $id])) {
-            return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Edition invalide');
         }
         if ($edition == null) {
-            return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Edition inexistant');
         }
         if($edition['actif'] == false){
-            return response()->json('Edition déjà supprimée', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Edition déjà supprimée');
         }
         foreach ($edition->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
             $categoriesEditionSponsorAssociees->pivot->actif = false;
