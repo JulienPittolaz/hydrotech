@@ -28,6 +28,7 @@ var CtrlEditions = {
             $(".popup_cross").on("click", function () {
                 $('section').show();
                 $('section#popup').hide();
+                $(window).scrollTop($(window).scrollTop()+1);
             });
         } else{
             var edition = new ModelEdition();
