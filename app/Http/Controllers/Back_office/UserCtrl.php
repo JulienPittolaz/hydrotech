@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserCtrl extends Controller
 {
@@ -39,10 +40,11 @@ class UserCtrl extends Controller
      */
     public function store(Request $request)
     {
-        $para = $request->only(['name', 'email', 'password']);
+        $para = $request->only(['name', 'email', 'password', 'password2']);
         if (!User::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'User invalide');
         }
+        $para['password'] = bcrypt($para['password']);
         $user = new User($para);
         $user->save();
         return  redirect('admin/user')->withInput()->with('message', 'Nouvel user ajouté');
@@ -91,15 +93,17 @@ class UserCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Ca marche pas .... comment faire en sorte de chagner de mot de passe???????????
-        $NoNewPassword = false;
+
         $user = User::find($id);
-        if($request['password2'] == null){
-            $NoNewPassword = true;
-        }
         $para = $request->intersect(['name', 'email', 'password', 'password2']);
-        if(!$NoNewPassword){
-            $para['password'] = $para['password2'];
+        //dd($request);
+        if (!Hash::check($para['password'], $user->password)){
+            return redirect()->back()->withInput()->with('error', 'Le password n\'est pas le bon');
+        }
+        $para['password'] = bcrypt($para['password']);
+
+        if($para['password2'] != null){
+            $para['password'] = bcrypt($para['password2']);
         }
         if (!User::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'User non valide');
