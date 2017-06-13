@@ -20,6 +20,7 @@ class ActualiteCtrl extends Controller
         $actualites = Actualite::all()->where('actif', true);
         foreach ($actualites as $actualite) {
             $actualite->urlImage = urldecode($actualite->urlImage);
+            $actualite->editions;
         }
         return $actualites;
     }
