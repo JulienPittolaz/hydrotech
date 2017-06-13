@@ -4,7 +4,7 @@
   // prend tte la place de la div et ne deform pas l'img
   background-size: cover;
   // vh: viewport height : 100% de la hauteur
-  height:100vh;
+  min-height:100vh;
   // vh: viewport width
   width:100vw;
 // pour que les positions absolues soit par rapport à #home
@@ -24,13 +24,20 @@
   //background-color: white;
 }
 
+#home .container{
+
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
 
 .home_englobe{
 
-  height: 370px;
+  //max-height: 600px;
+  //width: 400px;
   position: relative;
-  //right:50px;
-  //bottom: 50px;
+  margin: auto;
 
 }
 
@@ -38,19 +45,19 @@
   margin-top: 40px;
   background: $contrast-blue;
   color: white;
-  height:400px;
+  height:auto;
   max-width: 460px;
   text-align: justify;
   padding:15px;
   position: relative;
-  font-size: $font-size-medium;
+  font-size: $font-size-base;
 }
 .home_descConcours b {
-  font-size:$font-size-medium;
+  font-size:$font-size-base;
 }
 .home_descConcours .concours {
   font-weight:$text-weight-bold ;
-  font-size: 16px;
+  font-size: $font-size-medium;
 }
 
 
@@ -84,11 +91,9 @@
 .home_presentation{
 
   position: relative;
-  background-color: red;
   margin-top: 70px;
-  height: 250px;
+  height: 30vh;
   width: 800px;
-  margin-left: 100px;
 
 }
 
@@ -125,7 +130,7 @@
   text-transform: uppercase;
   position: absolute;
   top: 180px;
-  left:250px;
+  left:150px;
 
 }
 
@@ -198,8 +203,9 @@
 /* jQuery Countdown styles 2.0.0. */
 
 #defaultCountdown {
-  width: 290px;
+  //width: 290px;
   height: 45px;
+  margin: auto;
   //position: absolute;
   //top: 310px;
   //left: 250px;
@@ -270,77 +276,55 @@
   content: "\ea96";
 }
 
+
 /* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
 @media screen and /*(min-width: 21em) and*/ (max-width: 30em),  screen and /*(min-device-width: 21em) and*/ (max-device-width: 30em)
 /*and (min-width: 30em)*/ and (max-width: 41em), screen /*and (min-device-width: 30em)*/ and (max-device-width: 41em){
 
 
 
-  #home{
-    background: url("../img/bateau.jpg");
-    background-position:center center;
-    // prend tte la place de la div et ne deform pas l'img
-    background-size: cover;
-    // vh: viewport height : 100% de la hauteur
-    max-height:100vh;
-    // vh: viewport width
-    width:100vw;
-    // pour que les positions absolues soit par rapport à #home
-    position: relative;
-  }
-
   .home_presentation{
-
+    height: auto;
+    width: 100vw;
+    margin-left: 0;
   }
 
   .home_team{
     font-size: 50px;
-    text-transform: uppercase;
-    font-weight: $text-weight-bold;
-    color:  $contrast-blue;
-    line-height: 0.8;
     position: initial;
-    padding-top: 15vh;
-    width: 300px;
+    padding-top: 5vh;
+    //width: 300px;
     margin:auto;
+    margin-left: 0;
   }
 
-  .home_descConcours{
-    background: $contrast-blue;
-    color: white;
-    height:300px;
-    max-width: 300px;
-    text-align: justify;
-    padding:15px;
+  .home_sponsors{
+
+    font-size: 18px;
+    margin-left: 0;
     position: initial;
-    margin: auto;
-    margin-top: 5vh;
 
   }
 
-  .home_participants{
-    //color: white;
-    //font-weight: $text-weight-bold;
-    //font-size: $font-size-base;
-    //margin-top: 10px;
-    //border-right: none;
-    //text-align: left;
-    //text-transform: uppercase;
-    //padding-right: 10px;
-    //top: 100px;
-    //position: relative;
-    //left: 50px;
-    display: none;
-  }
+
 
 
   .home_arrow {
     display: none
   }
 
+  .home_participants{
+
+    display: none;
+  }
+
 
   .home_scroll{
     display: none
+  }
+
+  #defaultCountdown {
+    display: none;
   }
 
 
