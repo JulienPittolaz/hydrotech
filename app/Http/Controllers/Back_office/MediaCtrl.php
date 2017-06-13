@@ -47,10 +47,12 @@ class MediaCtrl extends Controller
         if (!Media::isValid($para)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
-        $para['url'] = urlencode($para['url']);
         $media = new Media($para);
         $media->save();
-        $media->url = urldecode($media->url);
+        $para = $request->only(['titre', 'date', 'auteur', 'typeMedia']);
+        $image = $request->file('url')->storeAs('public/medias', $media->id . '.jpg');
+        $media->url = $image;
+        $media->save();
         return redirect('admin/media');
     }
 
@@ -100,7 +102,6 @@ class MediaCtrl extends Controller
     {
         $media = Media::find($id);
         $para = $request->intersect(['url', 'titre', 'date', 'auteur', 'typeMedia']);
-        //dd($para);
         $request->replace(['id' => $id]);
         if (!Media::isValid($para)) {
             return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);

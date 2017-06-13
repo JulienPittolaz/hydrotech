@@ -47,9 +47,9 @@ class MembreCtrl extends Controller
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
 
+        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description']);
         $membre = new Membre($para);
         $membre->save();
-        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description']);
         $ext = $request->file('photoProfil')->getClientOriginalExtension();
         $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.jpg');
 
