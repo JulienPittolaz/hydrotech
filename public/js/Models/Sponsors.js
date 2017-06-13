@@ -4,7 +4,7 @@
 
 
 var ModelSponsors = Hydrotech.Collection.extend({
-    url: '/api/v1/sponsors',
+    url: 'api/v1/sponsors',
 
     model: ModelSponsor,
     initialize: function () {
