@@ -117,7 +117,7 @@ class MediaCtrl extends Controller
         if (!Media::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Media invalide');
         }
-        if (!Media::isValid(['id' => $id]) || $media->actif == false) {
+        if ($media == null || $media->actif == false) {
             return redirect()->back()->withInput()->with('error', 'Media inexistant');
         }
         if($request->has('url')){

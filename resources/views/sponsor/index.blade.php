@@ -82,7 +82,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <div><img src="https://fr.wikipedia.org/wiki/Cheval#/media/File:Mangalarga_Marchador_Conforma%C3%A7%C3%A3o.jpg" alt=""/></div>
+                                <div>
                             </div>
                         </div>
                        </div>
@@ -90,4 +90,5 @@
             </div>
         </div>
     </div>
+
 @endsection

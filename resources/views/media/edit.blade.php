@@ -7,7 +7,7 @@
                     <h2>Edition du média</h2>
                 </div>
                 <div class="body">
-                    <form action="{{ action('Back_office\MediaCtrl@update', $id = $media->id) }}" id="media-form" method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
+                    <form action="{{ action('Back_office\MediaCtrl@update', $id = $media->id) }}" method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
                         <label for="titre">Titre</label>
                         <div class="form-group form-float">
                             <div class="form-line">
