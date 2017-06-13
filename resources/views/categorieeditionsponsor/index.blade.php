@@ -37,7 +37,7 @@
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token"
                                                                value="{{ csrf_token() }}">
-                                                        <button type="submit" class="btn bg-red waves-effect">
+                                                        <button type="submit" class="btn bg-red waves-effect ">
                                                             <i class="material-icons">delete</i>
                                                         </button>
                                                     </form>

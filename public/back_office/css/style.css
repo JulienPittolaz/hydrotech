@@ -11090,3 +11090,9 @@ select.selectpicker {
     float: none;
 }
 /*# sourceMappingURL=bootstrap-select.css.map */
+
+
+
+.bouton_delete {
+    display: inline-block;
+}

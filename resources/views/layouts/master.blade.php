@@ -91,34 +91,11 @@
 <section>
     <!-- Left Sidebar -->
     <aside id="leftsidebar" class="sidebar">
-        <!-- User Info -->
-        <div class="user-info">
-            <div class="image">
-                <img src="images/user.png" width="48" height="48" alt="User" />
-            </div>
-            <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                <div class="email">john.doe@example.com</div>
-                <div class="btn-group user-helper-dropdown">
-                    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                        <li role="seperator" class="divider"></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                        <li role="seperator" class="divider"></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- #User Info -->
         <!-- Menu -->
         <div class="menu">
             <ul class="list">
                 <li class="active">
-                    <a href="{{url('/admin/editions')}}">
+                    <a href="{{url('/admin/edition')}}">
                         <i class="material-icons">dashboard</i>
                         <span>Edition</span>
                     </a>
@@ -130,37 +107,63 @@
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/actualites')}}">
+                    <a  target="_parent" href="{{url('/admin/actualite')}}">
                         <i class="material-icons">import_contacts</i>
                         <span>Actualités</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/medias')}}">
+                    <a  target="_parent" href="{{url('/admin/media')}}">
                         <i class="material-icons">collections</i>
                         <span>Médias</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/categories')}}">
+                    <a  target="_parent" href="{{url('/admin/categorie')}}">
                         <i class="material-icons">clear_all</i>
                         <span>Catégories de sponsors</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/sponsors')}}">
+                    <a  target="_parent" href="{{url('/admin/sponsor')}}">
                         <i class="material-icons">monetization_on</i>
                         <span>Sponsors</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/membres')}}">
+                    <a  target="_parent" href="{{url('/admin/membre')}}">
                         <i class="material-icons">people</i>
                         <span>Membres</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/presse')}}">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">link</i>
+                        <span>Associations</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{url('admin/associationedition/media')}}">Medias</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/associationedition/presse')}}">Articles de presse</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/associationedition/membre')}}">Membres</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/associationedition/actualite')}}">Actualites</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/associationedition/prix')}}">Prix</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/associationsponsor')}}">Sponsors</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a  target="_parent" href="{{url('/admin/press')}}">
                         <i class="material-icons">event_note</i>
                         <span>Articles de presse</span>
                     </a>
@@ -172,7 +175,7 @@
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/utilisateurs')}}">
+                    <a  target="_parent" href="{{url('/admin/user')}}">
                         <i class="material-icons">person</i>
                         <span>Utilisateurs</span>
                     </a>
