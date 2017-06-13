@@ -68,7 +68,6 @@ $dots-item-width: 35px;
 // --------------------------------------------------------
 .timeline-dots-wrap {
   position: absolute;
-  overflow: hidden;
 
 	.timeline-horizontal &{
 		width: 100%;
@@ -119,6 +118,29 @@ $dots-item-width: 35px;
   li {
     transition: all $transition-time $transition-ease;
     list-style: none;
+    color: white;
+
+    dl {
+      margin-top: 20px;
+      text-transform: uppercase;
+      text-align: right;
+      transform: translateX(-65%);
+
+      &::after {
+        content: url('../img/prix.svg');
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        right: -40px;
+        transform: translateY(-50%);
+      }
+    }
+
+    p {
+      font-size: 14px;
+    }
 
 		.timeline-horizontal &{
 			float: left;
@@ -195,7 +217,7 @@ $dots-item-width: 35px;
 .timeline-dots {
   height: 100vh !important;
   text-align: center;
-  width: 300px;
+  max-width: 320px;
   position: relative;
 }
 
@@ -218,6 +240,11 @@ li.left-dot {
   button {
     width: 50px;
   }
+
+  p, dl {
+    opacity: 0;
+    transition: all $transition-time $transition-ease;
+  }
 }
 
 li.right-dot {
@@ -225,6 +252,11 @@ li.right-dot {
 
   button {
     width: 50px;
+  }
+
+  p, dl {
+    opacity: 0;
+    transition: all $transition-time $transition-ease;
   }
 }
 
@@ -247,11 +279,19 @@ li.left-dot button::before {
   transition: all $transition-time $transition-ease;
 }
 
+.edition-button a {
+  color: white;
+  font-weight: bold;
+
+  &:hover {
+    color: white;
+  }
+}
+
 
 
 .timeline-dots li.big button {
   font-size:120px;
-  margin: 40px auto;
   width: 100%;
 }
 
@@ -267,18 +307,17 @@ li.left-dot button::before {
   left:50%;
   transform: translateX(-50%);
   height: 100vh;
-  width:300px;
+  max-width:320px;
 
   &::after {
     content: '';
     height: 100vh;
     width: 1px;
-    //background-color: white;
     display: block;
     position: absolute;
     left: 50%;
     top: 0;
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 37%,rgba(255,255,255,0) 37%,rgba(255,255,255,0) 63%,rgba(255,255,255,1) 63%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 33%,rgba(255,255,255,0) 33%,rgba(255,255,255,0) 67%,rgba(255,255,255,1) 67%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   }
 }
 
@@ -316,7 +355,7 @@ li.left-dot button::before {
 }
 
 .timeline-content > .columns {
-  margin: 20px auto 30px auto;
+  margin: 80px auto 30px auto;
   text-align: center;
 }
 
@@ -371,10 +410,14 @@ li.left-dot button::before {
 }
 
 .big {
-  margin:20% auto;
+  margin:25vh auto;
 }
 
 @media (max-width: 767px) {
+
+  .timeline-dots li p, .timeline-dots li dl {
+    display: none;
+  }
   .timeline-dots-wrap {
     left: 20px;
   }
@@ -409,6 +452,10 @@ li.left-dot button::before {
     display: none;
   }
 
+  .timeline-content > .columns {
+    margin: 20px auto 30px auto;
+    text-align: center;
+  }
 }
 
 
