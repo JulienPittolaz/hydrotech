@@ -7,8 +7,15 @@
                     <h2>Création du média</h2>
                 </div>
                 <div class="body">
-                    @if($errors->any())
-                        <div class="alert alert-danger">Erreur dans les données entrées</div>
+                    @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                        </div>
                     @endif
                     <form action="{{ action('Back_office\MediaCtrl@store') }}" id="media-form" method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
                         <label for="titre">Titre</label>
@@ -36,9 +43,12 @@
                             <input name="typeMedia" type="radio" value="Video" id="Video" />
                             <label for="Video">Video</label>
                         </div>
-                        <label for="url">url</label>
-                        <label for="url">Icône du fichier (JPG ou MP4) :</label><br />
-                        <input type="file" name="url" id="url" /><br />
+                        <div class="mediaUpload">
+                            <label for="url">url</label>
+                            <label for="url">Icône du fichier (JPG ou MP4) :</label><br />
+                            <input type="file" name="url" id="urlphoto" /><br />
+                        </div>
+
                         <input type="submit" class="btn btn-primary waves-effect"></input>
                     </form>
                 </div>

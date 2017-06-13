@@ -265,6 +265,16 @@
 
 
 
+    $('#Video').on('click',function () {
+        $('.mediaUpload').empty();
+        $('.mediaUpload').append("<div class='form-group form-float'><div class='form-line'><label for='url'>url</label><label for='url'>Icône du fichier (JPG ou MP4) :</label><br /><input type='url' name='url' id='url' /><br /></div></div>");
+    });
+    $('#Photo').on('click',function () {
+        $('.mediaUpload').empty();
+        $('.mediaUpload').append("<label for='url'>url</label><label for='url'>url de la video :</label><br /><input type='file' name='url' id='url' /><br />");
+    });
+
+
 
 
 
