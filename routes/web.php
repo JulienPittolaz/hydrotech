@@ -22,7 +22,7 @@ Route::group(['middleware' => 'myAuth'], function () {
     Route::get('/auth/logout', 'AuthController@logout');
 });
 
-Route::get('/images/{type}/{filename}', function ($type, $filename)
+/*Route::get('/images/{type}/{filename}', function ($type, $filename)
 {
     echo 'bla';
     $path = storage_path() . '/' . $type .'/' . $filename;
@@ -35,7 +35,7 @@ Route::get('/images/{type}/{filename}', function ($type, $filename)
     $response = Response::make($file, 200);
     $response->header("Content-Type", $type);
     return $response;
-})->name('image');
+})->name('image');*/
 
 
 Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
@@ -47,6 +47,9 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::post('/presse/{id}/edit', 'Back_office\PresseCtrl@update');
     Route::resource('/sponsor', 'Back_office\SponsorCtrl');
     Route::post('/sponsor/{id}/edit', 'Back_office\SponsorCtrl@update');
+
+    Route::delete('sponsor/{id}', 'Back_office\SponsorCtrl@destroy');
+
     Route::resource('/categorie', 'Back_office\CategorieCtrl');
     Route::post('/categorie/{id}/edit', 'Back_office\CategorieCtrl@update');
     Route::resource('/media', 'Back_office\MediaCtrl');
