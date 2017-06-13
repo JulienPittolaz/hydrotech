@@ -171,6 +171,10 @@ class SponsorCtrl extends Controller
         if($sponsor['actif'] == false){
             return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor déjà supprimé');
         }
+        foreach ($sponsor->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
+            $categoriesEditionSponsorAssociees->actif = false;
+            $categoriesEditionSponsorAssociees->save();
+        }
         $sponsor->actif = false;
         $sponsor->save();
         return redirect('admin/sponsor')->withInput()->with('message', 'Sponsor supprimé');

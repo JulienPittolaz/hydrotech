@@ -138,6 +138,10 @@ class CategorieCtrl extends Controller
         if($categorie['actif'] == false){
             return redirect()->back()->withInput()->with('error', 'categorie déjà supprimée');
         }
+        foreach ($categorie->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
+            $categoriesEditionSponsorAssociees->actif = false;
+            $categoriesEditionSponsorAssociees->save();
+        }
         $categorie->actif = false;
         $categorie->save();
         return redirect('admin/categorie')->withInput()->with('message', 'categorie supprimée');
