@@ -4,12 +4,10 @@ $(function() {
     var menu = $('.home_menu');
     setInterval(function() {
             checkScroll();
-    }, 300);
+    }, 800);
 
     function checkScroll() {
         var scrollPos = $(window).scrollTop();
-        console.log(scrollPos);
-        console.log(lastScroll);
         if(scrollPos > 0 && !menu.hasClass('white-menu')) {
             menu.addClass('white-menu');
         } else if(scrollPos == 0 && menu.hasClass('white-menu')) {
