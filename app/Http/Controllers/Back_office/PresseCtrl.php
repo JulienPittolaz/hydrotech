@@ -138,6 +138,6 @@ class PresseCtrl extends Controller
         }
         $presse->actif = false;
         $presse->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/presse')->withInput()->with('message', 'Presse supprimée');
     }
 }

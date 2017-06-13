@@ -135,6 +135,6 @@ class UserCtrl extends Controller
         }
         $user->actif = false;
         $user->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/user')->withInput()->with('message', 'User supprimé');
     }
 }

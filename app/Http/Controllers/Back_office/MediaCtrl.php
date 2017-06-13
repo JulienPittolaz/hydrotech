@@ -137,6 +137,6 @@ class MediaCtrl extends Controller
         }
         $media->actif = false;
         $media->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/media')->withInput()->with('message', 'Media supprimé');
     }
 }

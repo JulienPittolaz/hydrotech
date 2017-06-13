@@ -144,6 +144,6 @@ class MembreCtrl extends Controller
         }
         $membre->actif = false;
         $membre->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/membre')->withInput()->with('message', 'Membre supprimé');
     }
 }

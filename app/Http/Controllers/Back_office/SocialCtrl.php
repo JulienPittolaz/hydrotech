@@ -136,6 +136,6 @@ class SocialCtrl extends Controller
         }
         $social->actif = false;
         $social->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/social')->withInput()->with('message', 'Suppression supprimé');
     }
 }
