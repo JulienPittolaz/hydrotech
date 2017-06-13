@@ -19,7 +19,7 @@ class Media extends Model
     public static function isValid($data = array()) {
         return Validator::make($data, [
             'id' => 'exists:medias|sometimes|required',
-            'url' => 'url|sometimes|required',
+            'url' => 'mimes:jpeg,mp4|sometimes|required',
             'titre' => 'string|sometimes|required',
             'date' => 'date|sometimes|required|before:tomorrow',
             'auteur' => 'string|sometimes|required',

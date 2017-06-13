@@ -136,6 +136,9 @@ class PresseCtrl extends Controller
         if ($presse['actif'] == false) {
             return redirect()->back()->withInput()->with('error', 'Presse déjà supprimée');
         }
+        foreach ($presse->editions as $ed){
+            $presse->editions()->updateExistingPivot($ed->id, ['actif' => false]);
+        }
         $presse->actif = false;
         $presse->save();
         return redirect('admin/presse')->withInput()->with('message', 'Presse supprimée');

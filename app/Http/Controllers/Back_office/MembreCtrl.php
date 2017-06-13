@@ -47,11 +47,11 @@ class MembreCtrl extends Controller
             return redirect()->back()->withInput()->with('error', 'Membre invalide');
         }
 
+        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description']);
         $membre = new Membre($para);
         $membre->save();
-        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description']);
         $ext = $request->file('photoProfil')->getClientOriginalExtension();
-        $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.' . $ext);
+        $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.jpg');
 
 
 
@@ -110,7 +110,7 @@ class MembreCtrl extends Controller
         if($request['photoProfil'] != null){
             $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'role']);
             $ext = $request->file('photoProfil')->getClientOriginalExtension();
-            $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.' . $ext);
+            $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.jpg');
             $membre->photoProfil = $image;
         }
         if (!Membre::isValid($para)) {
@@ -141,6 +141,9 @@ class MembreCtrl extends Controller
         }
         if($membre['actif'] == false){
             return redirect()->back()->withInput()->with('error', 'Membre déjà supprimé');
+        }
+        foreach ($membre->editions as $ed){
+            $membre->editions()->updateExistingPivot($ed->id, ['actif' => false]);
         }
         $membre->actif = false;
         $membre->save();

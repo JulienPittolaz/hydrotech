@@ -64,7 +64,7 @@
                                             <td>{{$media->date}}</td>
                                             <td>{{$media->auteur}}</td>
                                             <td>{{$media->typeMedia}}</td>
-                                            <td>{{$media->url}}</td>
+                                            <td><img src="{{url('/') }}/storage/medias/{{$media->id}}.jpg" width="50px" height="50px"/></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

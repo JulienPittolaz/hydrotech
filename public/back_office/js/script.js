@@ -119,7 +119,6 @@
             },
             'url': {
                 required: true,
-                url: true
             },
             'auteur': {
                 required: true

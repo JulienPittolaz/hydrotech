@@ -47,10 +47,18 @@ class MediaCtrl extends Controller
         if (!Media::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Media invalide');
         }
-        $para['url'] = urlencode($para['url']);
         $media = new Media($para);
         $media->save();
-        $media->url = urldecode($media->url);
+        $para = $request->only(['titre', 'date', 'auteur', 'typeMedia']);
+        $ext = $request->file('photoProfil')->getClientOriginalExtension();
+        if($ext == 'mp4'){
+            $image = $request->file('url')->storeAs('public/medias', $media->id . '.mp4');
+
+        }else {
+            $image = $request->file('url')->storeAs('public/medias', $media->id . '.jpg');
+        }
+        $media->url = $image;
+        $media->save();
         return redirect('admin/media');
     }
 
@@ -100,7 +108,6 @@ class MediaCtrl extends Controller
     {
         $media = Media::find($id);
         $para = $request->intersect(['url', 'titre', 'date', 'auteur', 'typeMedia']);
-        //dd($para);
         $request->replace(['id' => $id]);
         if (!Media::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Media invalide');
@@ -134,6 +141,9 @@ class MediaCtrl extends Controller
         }
         if($media['actif'] == false){
             return redirect()->back()->withInput()->with('error', 'Media déjà supprimé');
+        }
+        foreach ($media->editions as $ed){
+            $media->editions()->updateExistingPivot($ed->id, ['actif' => false]);
         }
         $media->actif = false;
         $media->save();
