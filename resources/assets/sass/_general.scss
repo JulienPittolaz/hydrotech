@@ -43,4 +43,8 @@ body,html{
 
     }
   }
+
+  nav.edition_menu a.current_page  {
+font-weight: $text-weight-bold;
+  }
 }
