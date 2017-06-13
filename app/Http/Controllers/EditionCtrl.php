@@ -187,12 +187,21 @@ class EditionCtrl extends Controller
         $membres = $edition->membres;
         foreach ($membres as $membre) {
             $membre->photoProfil = urldecode($membre->photoProfil);
+            $membre->editions;
         }
         $presses = $edition->presses;
         foreach ($presses as $press) {
             $press->url = urldecode($press->url);
         }
         $edition->prixs;
+
+        $sponsors = Sponsor::all()->where('actif', true);
+        foreach ($sponsors as $sponsor) {
+            foreach ($sponsor->categorieeditionsponsors as $assoc) {
+                $assoc->edition;
+            }
+        }
+        $edition->listeSponsors = $sponsors;
         return $edition;
     }
 
