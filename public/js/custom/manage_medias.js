@@ -3,12 +3,16 @@
  */
 function initMasonry(){
     var $grid = $('.galerie_grid').imagesLoaded( function() {
-        $grid.masonry({
+        $grid.multipleFilterMasonry({
             itemSelector: '.grid-item',
+            filtersGroupSelector:'.filtres',
             columnWidth: 300,
             gutter: 10,
             isFitWidth: true,
             stamp: '.stamp'
         });
+    });
+    $('.btn input').on('click', function () {
+        $(this.parentElement).toggleClass('active');
     });
 }

@@ -5,9 +5,14 @@
 <div class="container">
 
     <div class="filtres">
-
-        <div class="btn"> Photos </div>
-        <div class="btn"> Vidéos </div>
+        <label class="btn">
+        <input type="checkbox" value="Photo">
+        Photos
+        </label>
+        <label class="btn">
+        <input type="checkbox" value="Video">
+        Vidéos
+        </label>
     </div>
 
 
@@ -15,11 +20,11 @@
         <div class="grid-sizer"></div>
         {{#each medias}}
         {{#isVideo}}
-        <div class="grid-item">
+        <div class="grid-item {{typeMedia}}">
             {{> video }}
         </div>
         {{else}}
-        <div class="grid-item">
+        <div class="grid-item {{typeMedia}}">
             {{> photo }}
         </div>
         {{/isVideo}}

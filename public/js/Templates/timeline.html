@@ -1,0 +1,16 @@
+<div class="timeline-container timeline-theme-1">
+    <div class="timeline js-timeline">
+        {{#each timeline}}
+        {{> timeline-container}}
+        {{/each}}
+    </div>
+    <div class="timeline-dots-wrap">
+        <ul class="timeline-dots">
+            {{#each timeline}}
+            <li class="slide-active">
+                <button type="button" role="button">{{annee}}</button>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

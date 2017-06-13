@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Categorie;
 use App\Edition;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -17,6 +19,9 @@ class EditionCtrl extends Controller
     {
         $editions = Edition::all()->where('actif', true);
         $editions->where('publie', true);
+
+
+
         foreach ($editions as $edition) {
             $edition->urlImageMedia = urldecode($edition->urlImageMedia);
             $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
@@ -26,17 +31,64 @@ class EditionCtrl extends Controller
                 $actualite->urlImage = urldecode($actualite->urlImage);
             }
             $categorieEditionSponsors = $edition->categorieeditionsponsors;
+
+            $categories = Categorie::all()->where('actif', true);
+            foreach ($categories as $categorie) {
+                foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces){
+                    $ces->edition;
+                    $ces->sponsor;
+                }
+            }
+            $edition->categorie = $categories;
             foreach ($categorieEditionSponsors as $catEdSp) {
-                $sponsor = $catEdSp->sponsor;
-                $sponsor->urlLogo = urldecode($sponsor->urlLogo);
-                $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
+                /*foreach ($catEdSp as $ces){
+                    $sponsor = $ces->sponsor;
+                    $sponsor->urlLogo = urldecode($sponsor->urlLogo);
+                    $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
+                    $categorie = $ces->categorie;
+                }*/
+                //$sponsor = $catEdSp->sponsor;
+                //$sponsor->urlLogo = urldecode($sponsor->urlLogo);
+                //$sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
+
+                /*$categorie = $catEdSp->categorie;
+                foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces){
+                    $ces->sponsors;
+                }*/
+                //$categorieEditionSponsors = $edition->categorieeditionsponsors->groupBy('categorie_id');
+
+
 
                 /*foreach ($sponsor->categorieeditionsponsors as $categorieDuSponsor){
                     $ed = $categorieDuSponsor->edition;
                     $ed->annee;
                 }*/
-                $catEdSp->categorie;
+                /*
+                if(!array_has($listeCategories, $categorie)){
+                    array_add($listeCategories, $categorie['attributes']['id'], $categorie);
+                }*/
+
             }
+
+
+
+            /*$categorieEditionSponsors = $edition->categorieeditionsponsors->groupBy('categorie.nom');
+            dd($categorieEditionSponsors);*/
+
+
+
+
+
+            //$edition-->put('listeSponsors', $categorieEditionSponsors);
+            //$edition->listeSponsors = Categorie::all();
+            /*$listeSponsors = '';
+            foreach (Categorie::all() as $listeCategories){
+                foreach($listeCategories->categorieeditionsponsors() as $association){
+                    $listeSponsors = $listeSponsors . $association->sponsors;
+                }
+            }
+            $edition->listeSponsors = $listeSponsors;*/
+
             $medias = $edition->medias;
             foreach ($medias as $media) {
                 $media->url = urldecode($media->url);
@@ -50,7 +102,6 @@ class EditionCtrl extends Controller
                 $press->url = urldecode($press->url);
             }
             $edition->prixs;
-
 
         }
         return $editions;
@@ -159,6 +210,15 @@ class EditionCtrl extends Controller
     {
         $edition = Edition::find($id);
         $para = $request->intersect(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
+        if($request->has('publie')) {
+            if ($para['publie'] == 'false') {
+                $para['publie'] = false;
+            }
+            if ($para['publie'] == 'true') {
+                $para['publie'] = true;
+            }
+        }
+
         if (!Edition::isValid($para)) {
             return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
         }
