@@ -51,14 +51,10 @@
             concours étudiant international dédié
             à l’efficience énergétique nautique et
             maritime.
-            Ce concours permet de sensibiliser,
-            et développer de nouvelles idées en
-            rassemblant les futurs ingénieurs
-            du monde entier autour de cette
-            problématique d’actualité. Ces étudiants
-            doivent concevoir, fabriquer et piloter le
+            Des étudiants du monde entier doivent concevoir, fabriquer et piloter le
             bateau le plus rapide et le moins gourmand
             en matière d’énergie.
+            La Fondation fournit à chaque équipe un moteur électrique et une batterie identiques. Les navires concourent dans 2 catégories distinctes: celle du Transport de Masse, qui simule le déplacement d'un cargo avec une charge de 200kg et celle des Transports Légers, qui représente le transport de personnes sur un bateau de plaisance (embarcation personnelle) avec seulement 20kg à bord. Une 3ème course, la« Long Distance Race», confronte tous les bateaux de la catégorie Transport Léger et attribuera la victoire au navire ayant parcouru la plus longue distance pendant deux heures de navigation.
         </p>
         <p class="home_more"><a target="_blank" href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
     </div>
@@ -71,28 +67,10 @@
 </section>
 <section id="globalNews" class="container is-fluid">
 </section>
-<section id="timeline" class="container is-fluid">
-
-    <ul>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-        <li><a href="#/editions/2016/membres">Équipe</a></li>
-    </ul>
-    <ul>
-        <li><a href="#/editions/2017/membres">Équipe</a></li>
-    </ul>
+<section id="timeline" class="">
 </section>
 <section id="popup" class="container is-fluid">
-
-    <div class="popup_content">
-
-    </div>
+    <div class="popup_content"></div>
 </section>
 </body>
 </html>
