@@ -171,6 +171,6 @@ class ActualiteCtrl extends Controller
 
         $actualite->actif = false;
         $actualite->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/actualite')->withInput()->with('message', 'Actualité supprimée');
     }
 }

@@ -56,6 +56,14 @@
                                                     <i class="material-icons">mode_edit</i>
                                                 </button>
                                                 </a>
+
+                                                <form method="post" action="{{action('Back_office\EditionCtrl@destroy', $edition->id)}}" accept-charset="UTF-8">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button type="submit" class="btn bg-red waves-effect">
+                                                        <i class="material-icons">delete</i>
+                                                    </button>
+                                                </form>
                                             </td>
                                             <td class="sorting_1">{{$edition->annee}}</td>
                                             <td>{{$edition->nomEquipe}}</td>

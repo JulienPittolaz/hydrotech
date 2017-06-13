@@ -26,6 +26,7 @@ class EditionAssociationCtrl extends Controller
             //$objets = call_user_func(['\\App\\'.ucfirst($type_ressource), 'all'])->where('actif', true);
 
             $objets = $edition->$ressources;
+            dd($objets);
             $edition->objetsDeLedition = $objets;
         }
 

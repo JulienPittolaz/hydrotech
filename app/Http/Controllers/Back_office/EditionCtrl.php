@@ -247,6 +247,6 @@ class EditionCtrl extends Controller
             $edition['publie'] == false;
         }
         $edition->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/edition')->withInput()->with('message', 'Edition supprimée');
     }
 }

@@ -149,7 +149,7 @@ class SponsorCtrl extends Controller
         $sponsor->update($para);
 
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
-        return redirect('admin/sponsor')->withInput()->with('message', 'Sponsor supprimé');
+        return redirect('admin/sponsor')->withInput()->with('message', 'Modification enregistrée');
     }
 
     /**

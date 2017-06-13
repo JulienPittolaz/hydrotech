@@ -140,6 +140,6 @@ class CategorieCtrl extends Controller
         }
         $categorie->actif = false;
         $categorie->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/categorie')->withInput()->with('message', 'categorie supprimée');
     }
 }
