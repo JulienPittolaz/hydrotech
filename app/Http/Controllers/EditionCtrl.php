@@ -44,7 +44,7 @@ class EditionCtrl extends Controller
             }
 
 
-            $edition->categorie = $categories;
+            $edition->sponsors = $categories;
             foreach ($categorieEditionSponsors as $catEdSp) {
                 /*foreach ($catEdSp as $ces){
                     $sponsor = $ces->sponsor;
@@ -202,7 +202,7 @@ class EditionCtrl extends Controller
             }
         }
 
-        $edition->categories = $categories;
+        $edition->sponsors = $categories;
         return $edition;
     }
 
