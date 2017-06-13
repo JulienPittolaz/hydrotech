@@ -17,11 +17,20 @@
 .home_menu{
 
   position: fixed;
+  transition: all 0.4s;
   z-index: 10000;
   height: 80px;
   width: 100vw;
   padding: 10px;
   //background-color: white;
+
+  &.hiddenMenu {
+    transform: translateY(-100%);
+  }
+
+  &.white-menu {
+    background-color: white;
+  }
 }
 
 #home .container{
@@ -151,12 +160,10 @@
   text-transform: uppercase;
   font-size: $font-size-medium;
   font-weight: $text-weight-bold;
-  position: absolute;
-  bottom: 50px;
-  left:50%;
   text-align: center;
   transform: translateX(-50%) ;
   width: 200px;
+  margin: auto;
 }
 
 
