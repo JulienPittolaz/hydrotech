@@ -11096,3 +11096,8 @@ select.selectpicker {
 .bouton_delete {
     display: inline-block;
 }
+.bouton_delete button{
+    padding: 3px 6px;
+    margin-bottom: 5px;
+    margin-left: 3px;
+}

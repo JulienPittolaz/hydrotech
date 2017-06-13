@@ -116,7 +116,7 @@ class EditionAssociationCtrl extends Controller
         } else {
             $edition->$type_ressource()->save($objet);
         }
-        return redirect('admin/associationedition/'. $type_ressource)->with('message', 'association enregistrée');
+        return redirect('admin/associationedition/'. $request['type_ressource'])->with('message', 'association enregistrée');
     }
 
 
@@ -169,15 +169,19 @@ class EditionAssociationCtrl extends Controller
         if (!get_class($objet)::isValid(['id' => $resource_id])) {
             return redirect()->back()->withInput()->with('error', 'ressource invalide');
         }
+
+        $objet->editions()->updateExistingPivot($edition_id, ['actif' => false]);
+
+
+/*
         $edition = Edition::find($edition_id);
-
-
         foreach ($objet->editions as $ed) {
             if ($ed['id'] == $edition_id && $ed->pivot->actif == false) {
                 return redirect()->back()->withInput()->with('error', 'association inexistante');
             }
             $objet->editions()->updateExistingPivot($ed->id, ['actif' => false]);
-        }
+        }*/
+
         return redirect('admin/associationedition/'. $type_ressource)->with('message', 'association enregistrée');
     }
 }

@@ -27,7 +27,7 @@
                                 <select class="form-control show-tick" data-live-search="true" name="ressource_id">
                                     @foreach($objets as $objet)
                                         @if(!$edition->objetsDeLedition->contains($objet))
-                                        <option value="{{$objet->id}}" type="number">{{$objet->titre}}{{$objet->nom}}</option>
+                                        <option value="{{$objet->id}}" type="number">{{$objet->titre}}{{$objet->nom}}{{$objet->titreArticle}}</option>
                                         @endif
                                     @endforeach
 

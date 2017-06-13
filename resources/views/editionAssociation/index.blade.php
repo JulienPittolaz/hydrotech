@@ -26,14 +26,13 @@
 
                                 @foreach($edition->objetsDeLedition as $objet)
                                     @if($objet->pivot->actif == true)
-                                        <li>{{$objet->titre}}{{$objet->nom}}
+                                        <li>{{$objet->titre}}{{$objet->nom}}{{$objet->titreArticle}}
                                             <form class="bouton_delete" method="post"
                                                   action="{{action('Back_office\EditionAssociationCtrl@destroy', ['edition_id' => $edition->id, 'type_ressource' => $typeRessource, 'resource_id' => $objet->id])}}"
                                                   accept-charset="UTF-8">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <button type="submit" class="btn bg-red waves-effect waves-float tiny">
-                                                    <i class="material-icons tiny">delete</i>
+                                                <button type="submit" class="btn bg-red">X
                                                 </button>
                                             </form>
                                         </li>

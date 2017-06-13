@@ -163,7 +163,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/press')}}">
+                    <a  target="_parent" href="{{url('/admin/presse')}}">
                         <i class="material-icons">event_note</i>
                         <span>Articles de presse</span>
                     </a>
