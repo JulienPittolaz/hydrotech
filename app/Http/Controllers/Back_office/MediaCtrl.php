@@ -50,7 +50,13 @@ class MediaCtrl extends Controller
         $media = new Media($para);
         $media->save();
         $para = $request->only(['titre', 'date', 'auteur', 'typeMedia']);
-        $image = $request->file('url')->storeAs('public/medias', $media->id . '.jpg');
+        $ext = $request->file('photoProfil')->getClientOriginalExtension();
+        if($ext == 'mp4'){
+            $image = $request->file('url')->storeAs('public/medias', $media->id . '.mp4');
+
+        }else {
+            $image = $request->file('url')->storeAs('public/medias', $media->id . '.jpg');
+        }
         $media->url = $image;
         $media->save();
         return redirect('admin/media');
