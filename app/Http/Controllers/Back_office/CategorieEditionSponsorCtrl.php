@@ -32,11 +32,11 @@ class CategorieEditionSponsorCtrl extends Controller
             foreach ($actualites as $actualite) {
                 $actualite->urlImage = urldecode($actualite->urlImage);
             }
-            $categorieEditionSponsors = $edition->categorieeditionsponsors;
+            //$categorieEditionSponsors = $edition->categorieeditionsponsors->where('actif', true)->where('edition_id', $edition->id);
 
             $categories = Categorie::all()->where('actif', true);
             foreach ($categories as $categorie) {
-                foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces){
+                foreach ($categorie->categorieeditionsponsors->where('actif', true)->where('edition_id', $edition->id) as $ces){
                     $ces->edition;
                     $ces->sponsor;
                 }
@@ -44,7 +44,8 @@ class CategorieEditionSponsorCtrl extends Controller
             $edition->categorie = $categories;
 
         }
-        return view('categorieeditionsponsor/index', ['editions' => $editions]);
+        $assoc = Categorieeditionsponsor::all()->where('actif', true);
+        return view('categorieeditionsponsor/index', ['editions' => $editions, 'association' => $assoc]);
     }
 
     /**
@@ -139,10 +140,10 @@ class CategorieEditionSponsorCtrl extends Controller
      */
     public function destroy($categorie_id, $edition_id, $sponsor_id)
     {
-        $categorieEditionSponsor = Categorieeditionsponsor::where(['categorie_id' => $categorie_id, 'edition_id' =>$edition_id, 'sponsor_id' => $sponsor_id, 'actif' => true])->first();
-        if (!Sponsor::isValid(['id' => $categorieEditionSponsor->id])) {
-            return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
-        }
+       $categorieEditionSponsor = Categorieeditionsponsor::all()->where('categorie_id', $categorie_id)
+            ->where('edition_id', $edition_id)
+            ->where('sponsor_id', $sponsor_id)->first();
+
         if ($categorieEditionSponsor == null) {
             return response()->json('Sponsor introuvable', Response::HTTP_NOT_FOUND);
         }

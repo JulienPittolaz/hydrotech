@@ -70,9 +70,9 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
     Route::resource('/associationedition/{annee}/{type_ressource}', 'Back_office\EditionAssociationCtrl', ['only' => 'create']);
     Route::post('/associationedition', 'Back_office\EditionAssociationCtrl@store');
 
-    Route::resource('/associationsponsor/{annee?}', 'Back_office\CategorieEditionSponsorCtrl');
+    Route::resource('/associationsponsor', 'Back_office\CategorieEditionSponsorCtrl');
     Route::post('/associationsponsor', 'Back_office\CategorieEditionSponsorCtrl@store');
-
+    Route::delete('associationsponsor/{categorie_id}/{edition_id}/{sponsor_id}', 'Back_office\CategorieEditionSponsorCtrl@destroy');
 
 
 });
@@ -96,7 +96,7 @@ Route::group(['prefix' => '/api/v1'], function () {
         Route::post('/editions/{edition_id}/Membre/{membre_id}/{role}', 'EditionMembreAssociationCtrl@store');
         Route::post('/sponsors/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@store');
         Route::delete('/editions/{edition_id}/{type_ressource}/{resource_id}', 'EditionAssociationCtrl@destroy');
-        Route::delete('/sponsors/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@destroy');
+        //Route::delete('/sponsors/{categorie_id}/{edition_id}/{sponsor_id}', 'CategorieEditionSponsorCtrl@destroy');
         Route::resource('/membres', 'MembreCtrl');
         Route::resource('/actualites', 'ActualiteCtrl');
         Route::resource('/categories', 'CategorieCtrl');
