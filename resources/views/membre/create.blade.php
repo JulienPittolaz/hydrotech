@@ -10,7 +10,7 @@
                     @if($errors->any())
                         <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
                     @endif
-                    <form action="{{ action('Back_office\MembreCtrl@store') }}" id="membre-form" method="POST" novalidate="novalidate" target="_parent">
+                    <form action="{{ action('Back_office\MembreCtrl@store') }}" id="membre-form" method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
                         <label for="prenom">Prenom</label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -47,13 +47,8 @@
                                 <input value="" type="text" class="form-control" name="description" required="" aria-required="true" aria-invalid="true" placeholder="Description du membre">
                             </div>
                         </div>
-                        <label for="photoProfil">Photo de profil</label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="" type="text" class="form-control" name="photoProfil" required="" aria-required="true" aria-invalid="true" placeholder="Photo de profil du membre">
-                            </div>
-                            <div class="help-info">Commence par http:// ou https://</div>
-                        </div>
+                        <label for="photoProfil">Photo de profil (JPG, PNG ou GIF) :</label><br />
+                        <input type="file" name="photoProfil" id="photoProfil" /><br />
                         <input type="submit" class="btn btn-primary waves-effect"></input>
                     </form>
                 </div>

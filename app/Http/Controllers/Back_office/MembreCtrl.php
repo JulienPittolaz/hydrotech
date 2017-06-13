@@ -46,7 +46,16 @@ class MembreCtrl extends Controller
         if (!Membre::isValid($para)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
+
         $membre = new Membre($para);
+        $membre->save();
+        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description']);
+        $ext = $request->file('photoProfil')->getClientOriginalExtension();
+        $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.' . $ext);
+
+
+
+        $membre->photoProfil = $image;
 
         $membre->save();
         return redirect('admin/membre')->withInput()->with('message', 'Nouveau membre ajouté');
@@ -97,6 +106,13 @@ class MembreCtrl extends Controller
     {
         $membre = Membre::find($id);
         $para = $request->intersect(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role']);
+
+        if($request['photoProfil'] != null){
+            $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'role']);
+            $ext = $request->file('photoProfil')->getClientOriginalExtension();
+            $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.' . $ext);
+            $membre->photoProfil = $image;
+        }
         if (!Membre::isValid($para)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }

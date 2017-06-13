@@ -91,11 +91,27 @@ class EditionCtrl extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $para = $request->only(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
+
         if (!Edition::isValid($para)) {
             return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
         }
+        $para = $request->only(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
+
         $edition = new Edition($para);
+        $edition->urlImageMedia = 'nulachier.jpg';
+        $edition->urlImageEquipe = 'nulachier.jpg';
+        $edition->save();
+
+        $ext1 = $request->file('urlImageMedia')->getClientOriginalExtension();
+        $image1 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageMedia' . $edition->id . '.' . $ext1);
+
+        $ext2 = $request->file('urlImageMedia')->getClientOriginalExtension();
+        $image2 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageEquipe' . $edition->id . '.' . $ext2);
+
+        $edition->urlImageMedia = $image1;
+        $edition->urlImageEquipe = $image2;
         $edition->save();
         return redirect('admin/edition')->withInput()->with('message', 'Nouvelle édition ajoutée');
     }
@@ -171,10 +187,29 @@ class EditionCtrl extends Controller
     public function update(Request $request, $id)
     {
 
+        //dd($request);
         $edition = Edition::find($id);
         $para = $request->intersect(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
         $request->replace(['id' => $id]);
+
+        if($request['urlImageMedia'] != null){
+            $para = $request->intersect(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
+            $ext1 = $request->file('urlImageMedia')->getClientOriginalExtension();
+            $image1 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageMedia' . $edition->id . '.' . $ext1);
+            $edition->urlImageMedia = $image1;
+            //dd($image1);
+        }
+
+        if($request['urlImageEquipe'] != null){
+            $para = $request->intersect(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
+            $ext2 = $request->file('urlImageEquipe')->getClientOriginalExtension();
+            $image2 = $request->file('urlImageEquipe')->storeAs('public/editions', 'urlImageEquipe' . $edition->id . '.' . $ext2);
+            $edition->urlImageEquipe = $image2;
+            //dd($request);
+        }
+
         if (!Edition::isValid($para)) {
+            //dd($request);
             return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
         }
         if (!Edition::isValid(['id' => $id]) || $edition->actif == false) {

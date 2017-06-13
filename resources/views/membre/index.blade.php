@@ -63,7 +63,7 @@
                                             <td>{{$membre->dateNaissance}}</td>
                                             <td>{{$membre->section}}</td>
                                             <td>{{$membre->description}}</td>
-                                            <td><img src="{{$membre->photoProfil}}" width="120px" alt=""></td>
+                                            <td><img src="{{url('/') }}/storage/membres/{{$membre->id}}.jpg" width="50px" height="50px"/></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

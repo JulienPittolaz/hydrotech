@@ -207,11 +207,9 @@
             },
             'urlImageMedia': {
                 required: true,
-                url: true
             },
             'urlImageEquipe': {
                 required: true,
-                url: true
             },
             'lieu': {
                 required: true,

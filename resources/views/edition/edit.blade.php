@@ -11,7 +11,7 @@
                         <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
                     @endif
                     <form action="{{ action('Back_office\EditionCtrl@update', $id = $edition->id) }}" id="edition-form"
-                          method="POST" novalidate="novalidate" target="_parent">
+                          method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
                         <label for="annee">Annee</label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -24,20 +24,14 @@
                                 <input value="{{$edition->nomEquipe}}" type="text" class="form-control" name="nomEquipe" required="" aria-required="true" aria-invalid="true" placeholder="Nom de l'équipe pour l'édition">
                             </div>
                         </div>
-                        <label for="urlImageMedia">Photo de l'édition</label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="{{$edition->urlImageMedia}}" type="url" class="form-control" name="urlImageMedia" required="" aria-required="true" aria-invalid="true" placeholder="Image de l'édition">
-                            </div>
-                            <div class="help-info">Commence par http:// ou https://</div>
-                        </div>
-                        <label for="urlImageEquipe">Photo de l'équipe</label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="{{$edition->urlImageEquipe}}" type="url" class="form-control" name="urlImageEquipe" required="" aria-required="true" aria-invalid="true" placeholder="Image de l'équipe">
-                            </div>
-                            <div class="help-info">Commence par http:// ou https://</div>
-                        </div>
+                        <label for="urlImageMedia">Photo de l'édition (JPG, PNG ou GIF) :</label><br />
+                        <img src="{{url('/') }}/storage/editions/urlImageMedia{{$edition->id}}.jpg" width="100px" height="100px"/><br />
+                        <input type="file" name="urlImageMedia" id="urlImageMedia" size="100"/><br />
+
+                        <label for="urlImageEquipe">Photo de l'équipe (JPG, PNG ou GIF) :</label><br />
+                        <img src="{{url('/') }}/storage/editions/urlImageEquipe{{$edition->id}}.jpg" width="100px" height="100px"/><br />
+                        <input type="file" name="urlImageEquipe" id="urlImageEquipe" size="100"/><br />
+
                         <label for="lieu">Lieu</label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -77,6 +71,7 @@
                             @endif
                         </div>
                         <input type="submit" class="btn btn-primary waves-effect"></input>
+                    </form>
                 </div>
             </div>
         </div>

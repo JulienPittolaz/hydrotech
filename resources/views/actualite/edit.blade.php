@@ -11,7 +11,7 @@
                         <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
                     @endif
                     <form action="{{ action('Back_office\ActualiteCtrl@update', $id = $actualite->id) }}" id="actualite-form"
-                          method="POST" novalidate="novalidate" target="_parent">
+                          method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
                         <label for="titre">Titre</label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -43,14 +43,12 @@
                             <input class="radio-col-light-blue" name="publie" type="radio" value="false" id="false" />
                             <label for="false">Non</label>
                         </div>
-                        <label for="urlImage">Url de l'image </label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="{{$actualite->urlImage}}" type="url" class="form-control" name="urlImage" required="" aria-required="true" aria-invalid="true" placeholder="Url de l'image">
-                            </div>
-                            <div class="help-info">Commence par http:// ou https://</div>
-                        </div>
+                        <label for="urlLogo">Icône du fichier (JPG, PNG ou GIF) :</label><br />
+                        <img src="{{url('/') }}/storage/actualites/{{$actualite->id}}.jpg" width="100px" height="100px"/><br />
+                        <input type="file" name="urlImage" id="urlImage"/><br />
+
                         <input type="submit" class="btn btn-primary waves-effect"></input>
+                    </form>
                 </div>
             </div>
         </div>
