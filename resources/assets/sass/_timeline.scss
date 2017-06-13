@@ -203,6 +203,15 @@ $dots-item-width: 35px;
   position: fixed !important;
 }
 
+.timeline-dots li.big .button-sponsors {
+  font-size: 14px;
+  padding:10px 5px;
+  background: white;
+  color: $contrast-blue;
+  width:120px;
+  margin-bottom:10px;
+}
+
 .timeline > div {
   width: $item-width;
   height: 100vh;
@@ -235,32 +244,33 @@ li.right-dot button::after {
 }
 
 li.left-dot {
-  transform: translateX(38px);
+  transform: translateX(86px);
 
-  button {
+  button.year {
     width: 50px;
   }
 
-  p, dl {
+
+  p, dl, .button-sponsors {
     opacity: 0;
     transition: all $transition-time $transition-ease;
   }
 }
 
 li.right-dot {
-  transform: translateX(-38px);
+  transform: translateX(10px);
 
-  button {
+  button.year {
     width: 50px;
   }
 
-  p, dl {
+  p, dl, .button-sponsors {
     opacity: 0;
     transition: all $transition-time $transition-ease;
   }
 }
 
-li.left-dot button::before {
+li.left-dot button.year::before {
   content: '';
   width:8px;
   height:8px;
@@ -273,7 +283,7 @@ li.left-dot button::before {
   transform: translateY(-50%);
 }
 
-.timeline-dots button {
+.timeline-dots button.year {
   background-color: transparent;
   position: relative;
   transition: all $transition-time $transition-ease;
@@ -290,7 +300,7 @@ li.left-dot button::before {
 
 
 
-.timeline-dots li.big button {
+.timeline-dots li.big button.year {
   font-size:120px;
   width: 100%;
 }
@@ -410,7 +420,7 @@ li.left-dot button::before {
 }
 
 .big {
-  margin:25vh auto;
+  margin:15vh auto;
 }
 
 @media (max-width: 767px) {
@@ -422,20 +432,20 @@ li.left-dot button::before {
     left: 20px;
   }
 
-  .timeline-dots li.big button {
+  .timeline-dots li.big button.year {
     font-size:30px;
     transform: translateX(30px);
   }
 
   li.right-dot {
-    transform: translateX(38px);
+    transform: translateX(86px);
 
-    button {
+    button.year {
       width: 50px;
     }
   }
 
-  li.right-dot button::before {
+  li.right-dot button.year::before {
     content: '';
     width:8px;
     height:8px;
@@ -448,8 +458,12 @@ li.left-dot button::before {
     transform: translateY(-50%);
   }
 
-  li.right-dot button::after {
+  li.right-dot button.year::after {
     display: none;
+  }
+
+  .timeline-dots li .button-sponsors {
+    transform: translate(40px);
   }
 
   .timeline-content > .columns {
