@@ -21,32 +21,37 @@
   height: 80px;
   width: 100vw;
   padding: 10px;
-  background-color: white;
+  //background-color: white;
 }
 
-.home_menu_deroule{
-  //background-color: white;
+
+.home_englobe{
+
+  height: 370px;
+  position: relative;
+  //right:50px;
+  //bottom: 50px;
 
 }
 
 .home_descConcours{
+  margin-top: 40px;
   background: $contrast-blue;
   color: white;
   height:300px;
   max-width: 300px;
   text-align: justify;
   padding:15px;
-  position: absolute;
-  right:50px;
-  bottom: 50px;
+  position: relative;
+  //right:50px;
+  //bottom: 50px;
 }
 
 .home_descConcours p{
 
   height: 220px;
+  width: 270px;
   overflow: hidden;
-
-
 }
 
 .home_more{
@@ -76,6 +81,17 @@
   top:30px;
 }
 
+.home_presentation{
+
+  position: relative;
+  background-color: red;
+  margin-top: 70px;
+  height: 250px;
+  width: 800px;
+  margin-left: 100px;
+
+}
+
 .home_team{
   font-size: 100px;
   text-transform: uppercase;
@@ -83,21 +99,34 @@
   color:  $contrast-blue;
   line-height: 0.8;
   position: absolute;
-  top:150px;
-  left:250px;
+  top:20px;
+  left:150px;
 }
+
 
 .home_participants{
   color: white;
   font-weight: $text-weight-bold;
   font-size: $font-size-medium;
   position: absolute;
-  margin-top:155px;
-  left:100px;
+  margin-top:25px;
+  left:0px;
   text-align: right;
   text-transform: uppercase;
   border-right: 8px solid;
   padding-right: 10px;
+}
+
+.home_sponsors{
+
+  color: white;
+  font-weight: $text-weight-bold;
+  font-size: 30px;
+  text-transform: uppercase;
+  position: absolute;
+  top: 180px;
+  left:250px;
+
 }
 
 .home_arrow {
@@ -168,11 +197,20 @@
 
 /* jQuery Countdown styles 2.0.0. */
 
-#defaultCountdown { width: 240px; height: 45px; }
+#defaultCountdown {
+  width: 290px;
+  height: 45px;
+  //position: absolute;
+  //top: 310px;
+  //left: 250px;
+
+}
 
 .is-countdown {
-  border: 1px solid #ccc;
-  background-color: #eee;
+  color: white;
+  font-weight: $text-weight-bold;
+  text-transform: uppercase;
+  font-size: $font-size-big;
 }
 .countdown-rtl {
   direction: rtl;
@@ -210,18 +248,21 @@
 .countdown-section {
   display: block;
   float: left;
-  font-size: 75%;
+  font-size: 100%;
   text-align: center;
 }
 .countdown-amount {
   font-size: 200%;
-}
+ }
 .countdown-period {
   display: block;
+  font-size: $font-size-base;
 }
 .countdown-descr {
   display: block;
   width: 100%;
+  //font-size: $font-size-medium;
+  font-weight: $text-weight-medium;
 }
 
 
@@ -241,7 +282,7 @@
     // prend tte la place de la div et ne deform pas l'img
     background-size: cover;
     // vh: viewport height : 100% de la hauteur
-    height:100vh;
+    max-height:100vh;
     // vh: viewport width
     width:100vw;
     // pour que les positions absolues soit par rapport à #home
@@ -290,6 +331,16 @@
     //position: relative;
     //left: 50px;
     display: none;
+  }
+
+
+  .home_arrow {
+    display: none
+  }
+
+
+  .home_scroll{
+    display: none
   }
 
 

@@ -38,24 +38,32 @@
         <div id="contact"><a href="/#/contact">Contact</a></div>
     </div>
 
-
-    <div class="home_presentation">
-        <div class="home_team"> Team <br> Heig-Vd</div>
-        <div class="home_participants"> Participants <br> au concours <br> Hydrocontest</div>
-        <div id="defaultCountdown"></div>
+    <div class="columns">
+        <div class="is-two-thirds column">
+            <div class="home_presentation">
+                <div class="home_team"> Team <br> Heig-Vd</div>
+                <div class="home_participants"> Participants <br> au concours <br> Hydrocontest</div>
+                <div class="home_sponsors">Yverdons-les-Bains Energies</div>
+            </div>
+        </div>
     </div>
+    <div class="columns">
+        <div class="column is-4 is-offset-8">
+            <div class="home_englobe">
+                <div id="defaultCountdown"></div>
+                <div class="home_descConcours">
+                    <p>Le concours — II s’agit d’une des problématiques actuelles et communes liées au développement industriel et
+                    technologique de notre ère. Avec 90% des échanges commerciaux opérés par la mer,
 
-    <div class="home_descConcours">
-        <p>Le concours — II s’agit d’une des problématiques actuelles et communes liées au développement industriel et
-        technologique de notre ère. Avec 90% des échanges commerciaux opérés par la mer,
-
-        le transport maritime est un enjeu économique et environnemental majeur. En effet, si le bateau reste le moyen
-        de transport le plus écologique, en matière d’emissions de CO2 par tonne transportée, il représente tout de même
-        la 5ème source de pollution mondiale...
-        </p>
-        <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
+                    le transport maritime est un enjeu économique et environnemental majeur. En effet, si le bateau reste le moyen
+                    de transport le plus écologique, en matière d’emissions de CO2 par tonne transportée, il représente tout de même
+                    la 5ème source de pollution mondiale...
+                    </p>
+                    <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-
     <footer class="home_scroll">
         <div>Scroll</div>
         <div class="home_arrow"></div>
