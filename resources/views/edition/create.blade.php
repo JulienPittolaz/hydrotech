@@ -10,7 +10,7 @@
                     @if($errors->any())
                         <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
                     @endif
-                    <form action="{{ action('Back_office\EditionCtrl@store') }}" id="edition-form" method="POST" novalidate="novalidate" target="_parent">
+                    <form action="{{ action('Back_office\EditionCtrl@store')}}" id="edition-form" method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
                         <label for="annee">Annee</label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -23,20 +23,10 @@
                                 <input value="" type="text" class="form-control" name="nomEquipe" required="" aria-required="true" aria-invalid="true" placeholder="Nom de l'équipe pour l'édition">
                             </div>
                         </div>
-                        <label for="urlImageMedia">Photo de l'édition</label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="" type="url" class="form-control" name="urlImageMedia" required="" aria-required="true" aria-invalid="true" placeholder="Image de l'édition">
-                            </div>
-                            <div class="help-info">Commence par http:// ou https://</div>
-                        </div>
-                        <label for="urlImageEquipe">Photo de l'équipe</label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="" type="url" class="form-control" name="urlImageEquipe" required="" aria-required="true" aria-invalid="true" placeholder="Image de l'équipe">
-                            </div>
-                            <div class="help-info">Commence par http:// ou https://</div>
-                        </div>
+                        <label for="urlImageMedia">Image de l'édition (JPG, PNG ou GIF) :</label><br />
+                        <input type="file" name="urlImageMedia" id="urlImageMedia" /><br />
+                        <label for="urlImageEquipe">Image de l'équipe (JPG, PNG ou GIF) :</label><br />
+                        <input type="file" name="urlImageEquipe" id="urlImageEquipe" /><br />
                         <label for="lieu">Lieu</label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -68,8 +58,13 @@
                             <input class="radio-col-light-blue" name="publie" type="radio" value="0" id="false" />
                             <label for="false">Non</label>
                         </div>
-                        <input type="submit" class="btn btn-primary waves-effect"></input>
+                        <input type="submit" class="btn btn-primary waves-effect"/>
                     </form>
+                    {{--<form action="{{ action('Back_office\EditionCtrl@store')}}" id="edition-form" method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">--}}
+                        {{--<input type="file" id="file1"/>--}}
+                        {{--<input type="file" id="file2" />--}}
+                        {{--<input type="submit" class="btn btn-primary waves-effect"/>--}}
+                    {{--</form>--}}
                 </div>
             </div>
         </div>

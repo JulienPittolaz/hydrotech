@@ -42,7 +42,6 @@
                             <input class="radio-col-light-blue" name="publie" type="radio" value="0" id="false" />
                             <label for="false">Non</label>
                         </div>
-                        <label for="urlImage">Ajouter une image </label>
                         <label for="urlImage">Image (JPG, PNG ou GIF) :</label><br />
                         <input type="file" name="urlImage" id="urlImage" /><br />
                         <input type="submit" class="btn btn-primary waves-effect"></input>

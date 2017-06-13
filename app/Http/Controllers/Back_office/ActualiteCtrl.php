@@ -43,23 +43,26 @@ class ActualiteCtrl extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request['urlImage']);
+        //dd($request);
         $inputs = $request->only(['titre', 'datePublication', 'contenu', 'urlImage', 'publie']);
         if (!Actualite::isValid($inputs)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
         $inputs = $request->only(['titre', 'datePublication', 'contenu', 'publie']);
+//        $actualite = new Actualite([
+//            'titre' => $inputs['titre'],
+//            'datePublication' => $inputs['datePublication'],
+//            'contenu' => $inputs['contenu'],
+//            'auteur' => 'UTILISATEUR TEST',
+//            //'auteur' => Auth::user()->name,
+//            'publie' => $inputs['publie']
+//        ]);
+        $actualite = new Actualite($inputs);
+        $actualite->auteur = "UTILISATEUR TEST";
+        $actualite->urlImage = 'tagueule.jpeg';
+        $actualite->save();
         $ext = $request->file('urlImage')->getClientOriginalExtension();
-        $image = $request->file('urlImage')->storeAs('public/actualites', $inputs['titre'] . '.' . $ext);
-        $actualite = new Actualite([
-            'titre' => $inputs['titre'],
-            'datePublication' => $inputs['datePublication'],
-            'contenu' => $inputs['contenu'],
-            'urlImage' => $image,
-            'auteur' => 'UTILISATEUR TEST',
-            //'auteur' => Auth::user()->name,
-            'publie' => $inputs['publie']
-        ]);
+        $image = $request->file('urlImage')->storeAs('public/actualites', $actualite->id . '.' . $ext);
         $actualite->urlImage = $image;
         $actualite->save();
         return redirect('admin/actualite')->withInput()->with('message', 'Nouvelle actualité créée');
@@ -121,7 +124,12 @@ class ActualiteCtrl extends Controller
                 $inputs['publie'] = true;
             }
         }
-
+        if($request['urlImage'] != null){
+            $para = $request->only(['titre', 'datePublication', 'contenu', 'publie']);
+            $ext = $request->file('urlImage')->getClientOriginalExtension();
+            $image = $request->file('urlImage')->storeAs('public/actualites', $actualite->id . '.' . $ext);
+            $actualite->urlImage = $image;
+        }
         if (!Actualite::isValid($inputs)) {
             return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
         }

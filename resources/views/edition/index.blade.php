@@ -59,8 +59,8 @@
                                             </td>
                                             <td class="sorting_1">{{$edition->annee}}</td>
                                             <td>{{$edition->nomEquipe}}</td>
-                                            <td>{{$edition->urlImageMedia}}</td>
-                                            <td>{{$edition->urlImageEquipe}}</td>
+                                            <td><img src="{{url('/') }}/storage/editions/urlImageMedia{{$edition->id}}.jpg" width="50px" height="50px"/></td>
+                                            <td><img src="{{url('/') }}/storage/editions/urlImageEquipe{{$edition->id}}.jpg" width="50px" height="50px"/></td>
                                             <td>{{$edition->lieu}}</td>
                                             <td>{{$edition->dateDebut}}</td>
                                             <td>{{$edition->dateFin}}</td>
