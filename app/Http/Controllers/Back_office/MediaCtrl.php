@@ -49,15 +49,12 @@ class MediaCtrl extends Controller
         }
         $media = new Media($para);
         $media->save();
-        $para = $request->only(['titre', 'date', 'auteur', 'typeMedia']);
-        $ext = $request->file('photoProfil')->getClientOriginalExtension();
-        if($ext == 'mp4'){
-            $image = $request->file('url')->storeAs('public/medias', $media->id . '.mp4');
-
-        }else {
+        if($para['typeMedia'] == "Photo") {
+            $para = $request->only(['titre', 'date', 'auteur', 'typeMedia']);
             $image = $request->file('url')->storeAs('public/medias', $media->id . '.jpg');
+            $media->url = $image;
         }
-        $media->url = $image;
+
         $media->save();
         return redirect('admin/media');
     }
@@ -108,7 +105,15 @@ class MediaCtrl extends Controller
     {
         $media = Media::find($id);
         $para = $request->intersect(['url', 'titre', 'date', 'auteur', 'typeMedia']);
+        if($para['typeMedia'] == "Photo" || $para['typeMedia'] == "photo" ){
+            if($request['url'] != null){
+                $para = $request->only(['url', 'titre', 'date', 'auteur', 'typeMedia']);
+                $image = $request->file('url')->storeAs('public/medias', $media->id . '.jpg');
+                $media->url = $image;
+            }
+        }
         $request->replace(['id' => $id]);
+
         if (!Media::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Media invalide');
         }
@@ -119,7 +124,7 @@ class MediaCtrl extends Controller
             $para['url'] = urlencode($para['url']);
         }
         $media->update($para);
-        $media->url = urldecode($media->url);
+        //$media->url = urldecode($media->url);
         return redirect('admin/media')->withInput()->with('message', 'Modification enregistrée');
     }
 
