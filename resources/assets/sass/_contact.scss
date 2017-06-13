@@ -64,9 +64,6 @@
   border: solid 2px;
 }
 
-.formulaireContactSuite .columns {
-  max-width: 600px;
-}
 
 body, button, input, select, textarea {
   font-family: $font-family-sans-serif;
@@ -83,8 +80,6 @@ body, button, input, select, textarea {
 
 .formulaireContactSuite .button {
   border-color: $contrast-blue;
-  margin-top: 20px;
-  margin-left: 478px;
   text-transform: uppercase;
   font-weight: $text-weight-bold;
 }
@@ -101,17 +96,32 @@ body, button, input, select, textarea {
   min-height: 170px;
 }
 
-.contact_retour {
-  font-family: icomoon;
-  margin-top: 80px;
+.field_button {
+  text-align: center;
+  margin-top: 15px;
 }
-.contact_retour:before {
-  content: "\ea2a";
-  font-size: 30px;
+.field_button .button {
+  width:100px;
 
 }
-.contact_retour:hover:before {
-  color: $contrast-blue;
+
+.btn_retour_contact{
+
+  background-color: $contrast-blue;
+  text-transform: uppercase;
+  border: 0px;
+  display: inline-block;
+  line-height: 0px;
+
+  a {
+    color: white;
+    font-weight: $text-weight-bold;
+  }
+
+}
+.btn_retour_contact:hover{
+
+  color: white;
 
 }
 /* Smartphones moyen (ex: iphone)*/

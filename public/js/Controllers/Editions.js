@@ -14,6 +14,7 @@ var CtrlEditions = {
             POPUP.append(JST[page](content));
             $(" nav.edition_menu").css("display", "block");
             $(" nav.edition_menu ul").addClass('isHidden');
+            $("nav.edition_menu li a[data-page="+ page +"]").addClass("current_page");
             $('section').hide();
             $('section#popup').show();
             if (page == 'medias'){
@@ -46,6 +47,8 @@ var CtrlEditions = {
                     POPUP.append(JST[page](content));
                     $(" nav.edition_menu").css("display", "block");
                     $(" nav.edition_menu ul").addClass('isHidden');
+                    console.log(page)
+                    $("nav.edition_menu li a[data-page="+ page +"]").addClass("current_page");
                     $('section').hide();
                     $('section#popup').show();
                     if (page == 'medias'){
