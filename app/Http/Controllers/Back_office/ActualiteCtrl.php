@@ -127,7 +127,7 @@ class ActualiteCtrl extends Controller
         if($request['urlImage'] != null){
             $para = $request->only(['titre', 'datePublication', 'contenu', 'publie']);
             $ext = $request->file('urlImage')->getClientOriginalExtension();
-            $image = $request->file('urlImage')->storeAs('public/actualites', $actualite->id . '.' . $ext);
+            $image = $request->file('urlImage')->storeAs('public/actualites', $actualite->id . '.jpg');
             $actualite->urlImage = $image;
         }
         if (!Actualite::isValid($inputs)) {

@@ -10,7 +10,7 @@
                     @if($errors->any())
                         <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
                     @endif
-                    <form action="{{ action('Back_office\EditionCtrl@update', $id = $edition->id) }}" id="edition-form"
+                    <form action="{{ action('Back_office\EditionCtrl@update', $id = $edition->id) }}" 
                           method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
                         <label for="annee">Annee</label>
                         <div class="form-group form-float">
