@@ -68,6 +68,7 @@
                                                     </button>
                                                 </form>
 
+
                                             </td>
                                             <td class="sorting_1">{{$sponsor->nom}}</td>
                                             <td><img src="{{url('/') }}/storage/sponsors/{{$sponsor->nom}}.jpg" width="50px" height="50px"/></td>

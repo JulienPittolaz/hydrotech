@@ -432,22 +432,22 @@
 
 
     $('.image-editor').cropit();
+
 /*
-    $('form').submit(function() {
+    $('#cropform-button').click(function(e) {
+        e.preventDefault();
+        console.log('coucou');
         // Move cropped image data to hidden input
         var imageData = $('.image-editor').cropit('export');
         $('.hidden-image-data').val(imageData);
-
+        console.log($(this).parent().parent());
         // Print HTTP request params
-        var formValue = $(this).serialize();
+        var formValue = $(this).parent().parent().serialize();
         $('#result-data').text(formValue);
 
         // Prevent the form from actually submitting
         return false;
     });
-
-
-
 
 */
 
