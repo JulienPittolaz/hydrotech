@@ -8,15 +8,12 @@ function manageArticles(){
         if (href.substr(href.length -1) == '/'){
             href = href.substr(0,href.length-1);
         }
-        $(actu).html($(actu).html().substring(0,160)+"… "+"<div class='view-more'>Lire la suite</div>");
+        var viewMoreUrl = href+"/"+articleId;
+        $(actu).html($(actu).html().substring(0,160)+"… "+"<div class='view-more'><a href='"+viewMoreUrl+"'>Lire la suite</a></div>");
     });
-    $(".view-more").on('click',function(){
+    $(".view-more a").on('click',function(){
         $('.actualite').hide();
-        var superCool = this.parentElement.parentElement;
-        var idArticle = $(superCool).data('id');
-        var selecteurArticle = '.actualite_zoom_'+idArticle;
-        var currentLoc = window.location.href;
-        $(selecteurArticle).show('slow');
+
     });
     $('.btn_actualite_zoom').on('click', function () {
         $(this.parentElement).hide();

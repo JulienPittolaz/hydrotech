@@ -1,0 +1,10 @@
+#globalNews{
+  padding: 50px 0;
+  .latest_news_title{
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $contrast-blue;
+    margin-bottom:20px;
+  }
+}

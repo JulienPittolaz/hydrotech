@@ -25,11 +25,15 @@ var CtrlEditions = {
             }
             if (page == 'actualites'){
                 manageArticles();
+                if (!_.isNull(article)){
+                    $('.columns').empty();
+                    console.log(JST['actualite_zoom'](CURRENT_ED.actualites[article-1]));
+                    $('.columns').append(JST['actualite_zoom'](CURRENT_ED.actualites[article-1]));
+                }
             }
             $(".popup_cross").on("click", function () {
                 $('section').show();
                 $('section#popup').hide();
-                $(window).scrollTop($(window).scrollTop()+1);
             });
         } else{
             var edition = new ModelEdition();
@@ -55,6 +59,10 @@ var CtrlEditions = {
                     }
                     if (page == 'actualites'){
                         manageArticles();
+                        if (!_.isNull(article)){
+                            $('.columns').empty();
+                            $('.columns').append(JST['actualite_zoom'](edition.attributes.actualites[article-1]));
+                        }
                     }
                     $(".popup_cross").on("click", function () {
                         $('section').show();

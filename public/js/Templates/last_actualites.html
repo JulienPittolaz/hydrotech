@@ -1,0 +1,10 @@
+<div class="container">
+    <h2 class="latest_news_title"> Dernières actualités</h2>
+        <div class="columns">
+            {{#each actualites}}
+            <article class="actualite_last column is-one-quarter is-multiline actualite_{{id}}" data-id="{{id}}">
+                {{> last_actualite }}
+            </article>
+            {{/each}}
+        </div>
+</div>
