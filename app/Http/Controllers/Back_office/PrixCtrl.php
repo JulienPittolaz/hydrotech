@@ -141,6 +141,9 @@ class PrixCtrl extends Controller
         if($prix['actif'] == false){
             return response()->json('Prix déjà supprimé', Response::HTTP_NOT_FOUND);
         }
+        foreach ($prix->editions as $ed){
+            $prix->editions()->updateExistingPivot($ed->id, ['actif' => false]);
+        }
         $prix->actif = false;
         $prix->save();
         return redirect('admin/prix')->withInput()->with('message', 'Prix supprimé');

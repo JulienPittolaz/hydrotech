@@ -61,8 +61,8 @@ class ActualiteCtrl extends Controller
         $actualite->auteur = "UTILISATEUR TEST";
         $actualite->urlImage = 'tagueule.jpeg';
         $actualite->save();
-        $ext = $request->file('urlImage')->getClientOriginalExtension();
-        $image = $request->file('urlImage')->storeAs('public/actualites', $actualite->id . '.' . $ext);
+        //$ext = $request->file('urlImage')->getClientOriginalExtension();
+        $image = $request->file('urlImage')->storeAs('public/actualites', $actualite->id . '.jpg');
         $actualite->urlImage = $image;
         $actualite->save();
         return redirect('admin/actualite')->withInput()->with('message', 'Nouvelle actualité créée');

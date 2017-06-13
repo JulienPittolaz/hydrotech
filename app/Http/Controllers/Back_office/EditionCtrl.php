@@ -104,11 +104,11 @@ class EditionCtrl extends Controller
         $edition->urlImageEquipe = 'nulachier.jpg';
         $edition->save();
 
-        $ext1 = $request->file('urlImageMedia')->getClientOriginalExtension();
-        $image1 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageMedia' . $edition->id . '.' . $ext1);
+        //$ext1 = $request->file('urlImageMedia')->getClientOriginalExtension();
+        $image1 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageMedia' . $edition->id . '.jpg');
 
-        $ext2 = $request->file('urlImageMedia')->getClientOriginalExtension();
-        $image2 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageEquipe' . $edition->id . '.' . $ext2);
+        //$ext2 = $request->file('urlImageMedia')->getClientOriginalExtension();
+        $image2 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageEquipe' . $edition->id . '.jpg');
 
         $edition->urlImageMedia = $image1;
         $edition->urlImageEquipe = $image2;
@@ -194,16 +194,16 @@ class EditionCtrl extends Controller
 
         if($request['urlImageMedia'] != null){
             $para = $request->intersect(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
-            $ext1 = $request->file('urlImageMedia')->getClientOriginalExtension();
-            $image1 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageMedia' . $edition->id . '.' . $ext1);
+            //$ext1 = $request->file('urlImageMedia')->getClientOriginalExtension();
+            $image1 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageMedia' . $edition->id . '.jpg');
             $edition->urlImageMedia = $image1;
             //dd($image1);
         }
 
         if($request['urlImageEquipe'] != null){
             $para = $request->intersect(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
-            $ext2 = $request->file('urlImageEquipe')->getClientOriginalExtension();
-            $image2 = $request->file('urlImageEquipe')->storeAs('public/editions', 'urlImageEquipe' . $edition->id . '.' . $ext2);
+            //$ext2 = $request->file('urlImageEquipe')->getClientOriginalExtension();
+            $image2 = $request->file('urlImageEquipe')->storeAs('public/editions', 'urlImageEquipe' . $edition->id . '.jpg');
             $edition->urlImageEquipe = $image2;
             //dd($request);
         }
@@ -239,9 +239,25 @@ class EditionCtrl extends Controller
             return response()->json('Edition déjà supprimée', Response::HTTP_NOT_FOUND);
         }
         foreach ($edition->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
-            $categoriesEditionSponsorAssociees->pivot->actif = false;
-            $categoriesEditionSponsorAssociees->save();
+                $categoriesEditionSponsorAssociees->actif = false;
+                $categoriesEditionSponsorAssociees->save();
         }
+        foreach ($edition->prixs as $prix){
+            $edition->prixs()->updateExistingPivot($prix->id, ['actif' => false]);
+        }
+        foreach ($edition->presses as $presse){
+            $edition->presses()->updateExistingPivot($presse->id, ['actif' => false]);
+        }
+        foreach ($edition->membres as $membre){
+            $edition->membres()->updateExistingPivot($membre->id, ['actif' => false]);
+        }
+        foreach ($edition->actualites as $actualite){
+            $edition->actualites()->updateExistingPivot($actualite->id, ['actif' => false]);
+        }
+        foreach ($edition->medias as $media){
+            $edition->medias()->updateExistingPivot($media->id, ['actif' => false]);
+        }
+
         $edition->actif = false;
         if ($edition['publie'] == true){
             $edition['publie'] == false;

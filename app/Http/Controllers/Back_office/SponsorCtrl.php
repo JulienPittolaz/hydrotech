@@ -125,8 +125,8 @@ class SponsorCtrl extends Controller
 
         if($request['urlLogo'] != null){
             $para = $request->only(['nom', 'urlSponsor']);
-            $ext = $request->file('urlLogo')->getClientOriginalExtension();
-            $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.' . $ext);
+            //$ext = $request->file('urlLogo')->getClientOriginalExtension();
+            $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.jpg');
             $sponsor->urlLogo = $image;
         }
         if (!Sponsor::isValid($para)) {
