@@ -14,6 +14,7 @@ var CtrlEditions = {
             POPUP.append(JST[page](content));
             $(" nav.edition_menu").css("display", "block");
             $(" nav.edition_menu ul").addClass('isHidden');
+            $("nav.edition_menu li a[data-page="+ page +"]").addClass("current_page");
             $('section').hide();
             $('section#popup').show();
             if (page == 'medias'){
@@ -24,6 +25,11 @@ var CtrlEditions = {
             }
             if (page == 'actualites'){
                 manageArticles();
+                if (!_.isNull(article)){
+                    $('.columns').empty();
+                    console.log(JST['actualite_zoom'](CURRENT_ED.actualites[article-1]));
+                    $('.columns').append(JST['actualite_zoom'](CURRENT_ED.actualites[article-1]));
+                }
             }
             $(".popup_cross").on("click", function () {
                 $('section').show();
@@ -41,6 +47,8 @@ var CtrlEditions = {
                     POPUP.append(JST[page](content));
                     $(" nav.edition_menu").css("display", "block");
                     $(" nav.edition_menu ul").addClass('isHidden');
+                    console.log(page)
+                    $("nav.edition_menu li a[data-page="+ page +"]").addClass("current_page");
                     $('section').hide();
                     $('section#popup').show();
                     if (page == 'medias'){
@@ -51,6 +59,10 @@ var CtrlEditions = {
                     }
                     if (page == 'actualites'){
                         manageArticles();
+                        if (!_.isNull(article)){
+                            $('.columns').empty();
+                            $('.columns').append(JST['actualite_zoom'](edition.attributes.actualites[article-1]));
+                        }
                     }
                     $(".popup_cross").on("click", function () {
                         $('section').show();
