@@ -3,7 +3,7 @@
  */
 
 var ModelMembres = Hydrotech.Collection.extend({
-    url: '/api/v1/membres',
+    url: 'api/v1/membres',
 
     model: ModelMembre,
     initialize: function () {
