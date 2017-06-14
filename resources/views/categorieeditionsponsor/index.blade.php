@@ -48,7 +48,7 @@
                                 @endforeach
                             </ul>
 
-                            <a href="{{action('Back_office\CategorieEditionSponsorCtrl@create',$edition->annee)}}"
+                            <a href="{{action('Back_office\CategorieEditionSponsorCtrl@create', $edition->annee)}}"
                                target="_parent">
                                 <button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button>
                             </a>

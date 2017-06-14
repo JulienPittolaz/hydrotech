@@ -15,6 +15,10 @@ Route::get('/', function () {
     //return view('Back_office.prixCtrl@index');
 });
 
+Route::get('admin', function(){
+    return redirect('/auth/login');
+});
+
 Route::get('/auth/login', 'AuthController@login');
 Route::post('/auth/check', 'AuthController@check');
 
@@ -73,6 +77,7 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
 
 
     Route::resource('/associationsponsor', 'Back_office\CategorieEditionSponsorCtrl');
+    Route::get('/associationsponsor/create/{annee}', 'Back_office\CategorieEditionSponsorCtrl@create');
     Route::post('/associationsponsor', 'Back_office\CategorieEditionSponsorCtrl@store');
     Route::delete('associationsponsor/{categorie_id}/{edition_id}/{sponsor_id}', 'Back_office\CategorieEditionSponsorCtrl@destroy');
 

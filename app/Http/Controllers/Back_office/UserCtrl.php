@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Auth;
+use App\Role;
 
 class UserCtrl extends Controller
 {
@@ -18,6 +20,9 @@ class UserCtrl extends Controller
     {
         $users = User::all()->where('actif', true);
         $user_columns = User::all()->first()['fillable'];
+        if (!Auth::user()->hasRole(Role::READ, 'user')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('user/index', ['users' => $users, 'columns' => $user_columns]);
     }
 
@@ -28,6 +33,9 @@ class UserCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'user')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('user.create');
     }
 
@@ -42,6 +50,9 @@ class UserCtrl extends Controller
         $para = $request->only(['name', 'email', 'password']);
         if (!User::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'User invalide');
+        }
+        if (!Auth::user()->hasRole(Role::CREATE, 'user')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
         $user = new User($para);
         $user->save();
@@ -63,6 +74,9 @@ class UserCtrl extends Controller
         if (User::find($id) == null) {
             return redirect()->back()->withInput()->with('error', 'User introuvable');
         }
+        if (!Auth::user()->hasRole(Role::READ, 'user')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return $user;
     }
 
@@ -77,6 +91,9 @@ class UserCtrl extends Controller
         $user = User::find($id);
         if(!$user) {
             return redirect('admin/user');
+        }
+        if (!Auth::user()->hasRole(Role::UPDATE, 'user')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
         $user->first();
         return view('user/edit', ['user' => $user]);
@@ -107,6 +124,9 @@ class UserCtrl extends Controller
         if (!User::isValid(['id' => $id]) || $user->actif == false) {
             return redirect()->back()->withInput()->with('error', 'User inexistant');
         }
+        if (!Auth::user()->hasRole(Role::UPDATE, 'user')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         if($user['actif'] == false){
             return redirect()->back()->withInput()->with('error', 'User déjà supprimé');
         }
@@ -132,6 +152,9 @@ class UserCtrl extends Controller
         }
         if($user['actif'] == false){
             return redirect()->back()->withInput()->with('error', 'User déjà supprimé');
+        }
+        if (!Auth::user()->hasRole(Role::DELETE, 'user')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
         $user->actif = false;
         $user->save();

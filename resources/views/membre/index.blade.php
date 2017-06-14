@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        Liste des prix
+                        Liste des membres
                     </h2>
                 </div>
                 @if(Session::has('message'))

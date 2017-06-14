@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Back_office;
 
 use App\Http\Controllers\Controller;
 use App\Membre;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Auth;
 
 class MembreCtrl extends Controller
 {
@@ -17,6 +18,10 @@ class MembreCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
+
         $membres = Membre::all()->where('actif', true);
 
         $membre_columns = Membre::all()->first()['fillable'];
@@ -31,6 +36,9 @@ class MembreCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('membre/create');
     }
 
@@ -42,6 +50,9 @@ class MembreCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::READ, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil']);
         if (!Membre::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Membre invalide');
@@ -69,6 +80,9 @@ class MembreCtrl extends Controller
      */
     public function show($id)
     {
+        if (!Auth::user()->hasRole(Role::READ, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $membre = Membre::find($id);
         if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
             return redirect()->back()->withInput()->with('error', 'Membre invalide');
@@ -87,6 +101,9 @@ class MembreCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $membre = Membre::find($id);
         if (!$membre) {
             return redirect('admin/membre');
@@ -104,6 +121,9 @@ class MembreCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $membre = Membre::find($id);
         $para = $request->intersect(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role']);
 
@@ -131,6 +151,9 @@ class MembreCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $membre = Membre::find($id);
 
         if (!Membre::isValid(['id' => $id])) {

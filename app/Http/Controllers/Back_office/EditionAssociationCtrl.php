@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Back_office;
 
 use App\Edition;
 use App\Media;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class EditionAssociationCtrl extends Controller
 {
@@ -17,7 +19,9 @@ class EditionAssociationCtrl extends Controller
      */
     public function index($type_ressource)
     {
-
+        if (!Auth::user()->hasRole(Role::READ, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         //$objets = call_user_func(['\\App\\'.ucfirst($type_ressource), 'all'])->where('actif', true);
         $editions = Edition::all()->where('actif', true);
         $ressources = $type_ressource . 's';
@@ -61,6 +65,9 @@ class EditionAssociationCtrl extends Controller
      */
     public function create($annee, $type_ressource)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $edition = Edition::all()->where('actif', true)->where('annee', $annee)->first();
         $objets = call_user_func(['\\App\\' . ucfirst($type_ressource), 'all'])->where('actif', true);
 
@@ -80,6 +87,9 @@ class EditionAssociationCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $edition_id = $request['edition_id'];
         $type_ressource = $request['type_ressource'];
         $resource_id = $request['ressource_id'];
@@ -162,6 +172,9 @@ class EditionAssociationCtrl extends Controller
      */
     public function destroy($edition_id, $type_ressource, $resource_id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         if (!Edition::isValid(['id' => $edition_id])) {
             return redirect()->back()->withInput()->with('error', 'edition invalide');
         }

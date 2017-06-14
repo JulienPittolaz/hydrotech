@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Back_office;
 
+use App\Role;
 use App\Social;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class SocialCtrl extends Controller
 {
@@ -16,6 +18,9 @@ class SocialCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'social')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $socials = Social::all()->where('actif', true);
         $social_columns = Social::all()->first()['fillable'];
 
@@ -32,6 +37,9 @@ class SocialCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'social')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('social.create');
     }
 
@@ -43,6 +51,9 @@ class SocialCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'social')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $para = $request->only(['nom', 'url']);
         if (!Social::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Reseau social invalide');
@@ -62,6 +73,9 @@ class SocialCtrl extends Controller
      */
     public function show($id)
     {
+        if (!Auth::user()->hasRole(Role::READ, 'social')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $social = Social::find($id);
         if (!Social::isValid(['id' => $id]) || $social->actif == false) {
             return redirect()->back()->withInput()->with('error', 'Reseau social invalide');
@@ -81,6 +95,9 @@ class SocialCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'social')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $social = Social::find($id);
         if (!$social) {
             return redirect('admin/social');
@@ -99,6 +116,9 @@ class SocialCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'social')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $social = Social::find($id);
         $para = $request->intersect(['url', 'titre', 'date', 'auteur', 'typeSocial']);
         if (!Social::isValid($para)) {
@@ -123,6 +143,9 @@ class SocialCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'social')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $social = Social::find($id);
 
         if (!Social::isValid(['id' => $id])) {

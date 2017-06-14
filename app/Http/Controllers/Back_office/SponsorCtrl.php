@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Back_office;
 
+use App\Role;
 use App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 
 class SponsorCtrl extends Controller
@@ -18,6 +20,9 @@ class SponsorCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $sponsors = Sponsor::all()->where('actif', true);
 
 
@@ -44,6 +49,9 @@ class SponsorCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('sponsor.create');
     }
 
@@ -55,6 +63,9 @@ class SponsorCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         //dd($request['urlLogo']);
         $para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
         //dd($request->file('urlLogo'));
@@ -83,6 +94,9 @@ class SponsorCtrl extends Controller
      */
     public function show($id)
     {
+        if (!Auth::user()->hasRole(Role::READ, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $sponsor = Sponsor::find($id);
         if (!Sponsor::isValid(['id' => $id]) || $sponsor->actif == false) {
             return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor non valide');
@@ -102,6 +116,9 @@ class SponsorCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $sponsor = Sponsor::find($id);
         if (!$sponsor) {
             return redirect('admin/sponsor');
@@ -120,6 +137,9 @@ class SponsorCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $sponsor = Sponsor::find($id);
         $para = $request->intersect(['nom', 'urlLogo', 'urlSponsor']);
 
@@ -160,6 +180,9 @@ class SponsorCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $sponsor = Sponsor::find($id);
 
         if (!Sponsor::isValid(['id' => $id])) {

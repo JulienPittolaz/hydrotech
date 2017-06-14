@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Back_office;
 
 use App\Actualite;
 use App\Edition;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
-
 class ActualiteCtrl extends Controller
 {
     /**
@@ -19,8 +19,10 @@ class ActualiteCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'actualite')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $actualites = Actualite::all()->where('actif', true);
-
         $actualite_columns = Actualite::all()->first()['fillable'];
         return view('actualite/index', ['actualites' => $actualites, 'columns' => $actualite_columns]);
     }
@@ -32,6 +34,9 @@ class ActualiteCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'actualite')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('actualite.create');
     }
 
@@ -43,7 +48,9 @@ class ActualiteCtrl extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        if (!Auth::user()->hasRole(Role::CREATE, 'actualite')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $inputs = $request->only(['titre', 'datePublication', 'contenu', 'urlImage', 'publie']);
         if (!Actualite::isValid($inputs)) {
             return redirect()->back()->withInput()->with('error', 'Actualité invalide');
@@ -76,7 +83,9 @@ class ActualiteCtrl extends Controller
      */
     public function show($id)
     {
-
+        if (!Auth::user()->hasRole(Role::READ, 'actualite')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $actualite = Actualite::find($id);
 
         if (!Actualite::isValid(['id' => $id]) || $actualite->actif == false) {
@@ -96,6 +105,9 @@ class ActualiteCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'actualite')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $actualite = Actualite::find($id);
         if (!$actualite) {
             return redirect('admin/actualite');
@@ -113,6 +125,9 @@ class ActualiteCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'actualite')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $actualite = Actualite::find($id);
 
         $inputs = $request->intersect(['titre', 'datePublication', 'contenu', 'publie', 'urlImage']);
@@ -155,6 +170,9 @@ class ActualiteCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'actualite')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $actualite = Actualite::find($id);
 
         if (!Actualite::isValid(['id' => $id])) {

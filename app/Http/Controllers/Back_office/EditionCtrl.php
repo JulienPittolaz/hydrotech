@@ -9,10 +9,12 @@ use App\Media;
 use App\Membre;
 use App\Presse;
 use App\Prix;
+use App\Role;
 use App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class EditionCtrl extends Controller
 {
@@ -23,6 +25,9 @@ class EditionCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $editions = Edition::all()->where('actif', true);
 
 
@@ -64,6 +69,9 @@ class EditionCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $membres = Membre::all()->where('actif', true);
         $actualites = Actualite::all()->where('actif', true);
         $medias = Media::all()->where('actif', true);
@@ -91,6 +99,9 @@ class EditionCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         //dd($request);
         $para = $request->only(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
 
@@ -124,6 +135,9 @@ class EditionCtrl extends Controller
      */
     public function show($id)
     {
+        if (!Auth::user()->hasRole(Role::READ, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $edition = Edition::find($id);
 
         if (!Edition::isValid(['id' => $id]) || $edition->actif == false) {
@@ -169,6 +183,9 @@ class EditionCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $edition = Edition::find($id);
         if (!$edition) {
             return redirect('admin/edition');
@@ -186,7 +203,9 @@ class EditionCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        if (!Auth::user()->hasRole(Role::UPDATE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         //dd($request);
         $edition = Edition::find($id);
         $para = $request->intersect(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
@@ -227,6 +246,9 @@ class EditionCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $edition = Edition::find($id);
 
         if (!Edition::isValid(['id' => $id])) {

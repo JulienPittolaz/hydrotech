@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Back_office;
 
 use App\Media;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Auth;
 
 class MediaCtrl extends Controller
 {
@@ -17,6 +19,9 @@ class MediaCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $medias = Media::all()->where('actif', true);
         $media_columns = Media::all()->first()['fillable'];
         foreach ($medias as $media){
@@ -32,6 +37,9 @@ class MediaCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('media.create');
     }
 
@@ -43,6 +51,9 @@ class MediaCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $para = $request->only(['url', 'titre', 'date', 'auteur', 'typeMedia']);
         if (!Media::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Media invalide');
@@ -67,6 +78,9 @@ class MediaCtrl extends Controller
      */
     public function show($id)
     {
+        if (!Auth::user()->hasRole(Role::READ, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $media = Media::find($id);
         if (!Media::isValid(['id' => $id]) || $media->actif == false) {
             return redirect()->back()->withInput()->with('error', 'Media invalide');
@@ -86,6 +100,9 @@ class MediaCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $media = Media::find($id);
         if(!$media) {
             return redirect('media');
@@ -103,6 +120,9 @@ class MediaCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $media = Media::find($id);
         $para = $request->intersect(['url', 'titre', 'date', 'auteur', 'typeMedia']);
         if($para['typeMedia'] == "Photo" || $para['typeMedia'] == "photo" ){
@@ -136,6 +156,9 @@ class MediaCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $media = Media::find($id);
 
         if (!Media::isValid(['id' => $id])) {

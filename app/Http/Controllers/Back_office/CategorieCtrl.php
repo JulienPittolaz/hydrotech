@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Back_office;
 
 use App\Categorie;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class CategorieCtrl extends Controller
@@ -17,6 +19,9 @@ class CategorieCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categories = Categorie::all()->where('actif', true);
 
         $categorie_columns = Categorie::all()->first()['fillable'];
@@ -30,6 +35,9 @@ class CategorieCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('categorie.create');
     }
 
@@ -41,6 +49,9 @@ class CategorieCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $inputs = $request->only(['nom', 'description']);
         if (!Categorie::isValid($inputs)) {
             return redirect()->back()->withInput()->with('error', 'categorie invalide');
@@ -62,7 +73,9 @@ class CategorieCtrl extends Controller
      */
     public function show($id)
     {
-
+        if (!Auth::user()->hasRole(Role::READ, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categorie = Categorie::find($id);
 
         if (!Categorie::isValid(['id' => $id]) || $categorie->actif == false) {
@@ -83,6 +96,9 @@ class CategorieCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categorie = Categorie::find($id);
         if(!$categorie) {
             return redirect('admin/categorie');
@@ -100,6 +116,9 @@ class CategorieCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categorie = Categorie::find($id);
 
         $inputs = $request->intersect(['nom', 'description']);
@@ -127,6 +146,9 @@ class CategorieCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categorie = Categorie::find($id);
 
         if (!Categorie::isValid(['id' => $id])) {

@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Back_office;
 use App\Categorie;
 use App\Categorieeditionsponsor;
 use App\Edition;
+use App\Role;
 use App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class CategorieEditionSponsorCtrl extends Controller
 {
@@ -19,6 +21,9 @@ class CategorieEditionSponsorCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $editions = Edition::all()->where('actif', true);
         $editions->where('publie', true);
 
@@ -55,6 +60,9 @@ class CategorieEditionSponsorCtrl extends Controller
      */
     public function create($annee)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categories = Categorie::all()->where('actif', true);
         $sponsors = Sponsor::all()->where('actif', true);
         $edition = Edition::all()->where('annee', $annee)->first();
@@ -70,6 +78,9 @@ class CategorieEditionSponsorCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categorie_id = $request['categorie_id'];
         $edition_id = $request['edition_id'];
         $sponsor_id = $request['sponsor_id'];
@@ -140,6 +151,9 @@ class CategorieEditionSponsorCtrl extends Controller
      */
     public function destroy($categorie_id, $edition_id, $sponsor_id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'edition')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
        $categorieEditionSponsor = Categorieeditionsponsor::all()->where('categorie_id', $categorie_id)
             ->where('edition_id', $edition_id)
             ->where('sponsor_id', $sponsor_id)->first();
