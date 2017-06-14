@@ -24,7 +24,7 @@ class Membre extends Model
             'dateNaissance' => 'date|sometimes|required|before_or_equal:today',
             'section' => 'string|sometimes|required',
             'description' => 'string|sometimes|required',
-            'photoProfil' => 'url|sometimes|required',
+            'photoProfil' => 'image|sometimes|required',
         ])->passes();
     }
 }
