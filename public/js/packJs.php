@@ -18,7 +18,6 @@
         'Lib/masonry.pkgd.min.js',
         'Lib/zoom.js',
         'Lib/jquery.gridder.min.js',
-        'Lib/owl.carousel.min.js',
         'Lib/TweenMax.min.js',
         'Lib/ScrollMagic.js',
         'Lib/animation.gsap.js',

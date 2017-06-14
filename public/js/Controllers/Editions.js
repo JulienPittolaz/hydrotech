@@ -48,6 +48,7 @@ var CtrlEditions = {
                     var fillIn = edition.attributes[page];
                     content[page] = fillIn;
                     content['year'] = annee;
+                    console.log(content);
                     POPUP.empty();
                     POPUP.append(JST[page](content));
                     $(" nav.edition_menu").css("display", "block");
