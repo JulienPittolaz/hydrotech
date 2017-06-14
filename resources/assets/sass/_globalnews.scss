@@ -17,8 +17,53 @@
   /*and (min-width: 30em)*/
 and (max-width: 41em), screen /*and (min-device-width: 30em)*/
 and (max-device-width: 41em) {
+
   .latest_news_title {
     text-align: center;
     margin-bottom: 30px;
   }
+
+  .latest_actualite_contenu p{
+
+    display: none;
+
+  }
+
+  .latest_actualite_contenu a{
+
+    text-transform: uppercase;
+    font-weight: $text-weight-bold;
+    text-align: center;
+    font-size: $font-size-medium;
+  }
+
+
+  .actualite_auteur{
+
+    display: none;
+  }
+
+  .actualite_nomAuteur{
+
+    display: none;
+  }
+
+  .actualite_time{
+
+    display: none;
+  }
+
+  .actualite_titre{
+
+    font-size: 20px;
+  }
+
+  #globalNews article:nth-of-type(-n+2){
+
+    display: none;
+
+  }
+
+
+
 }
