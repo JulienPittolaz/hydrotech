@@ -111,8 +111,11 @@ class EditionCtrl extends Controller
 
         }
 
-
-        return $editions;
+        $arrResults = [];
+        foreach ($editions as $item) {
+            $arrResults[] = $item;
+        }
+        return response()->json($arrResults);
     }
 
     /**
