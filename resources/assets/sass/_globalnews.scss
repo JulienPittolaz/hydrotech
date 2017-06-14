@@ -1,10 +1,24 @@
-#globalNews{
+#globalNews {
   padding: 50px 0;
-  .latest_news_title{
+  .latest_news_title {
     font-size: 32px;
     font-weight: 700;
     text-transform: uppercase;
     color: $contrast-blue;
-    margin-bottom:20px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Smartphones moyen (ex: iphone)*/
+/* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
+@media screen and /*(min-width: 21em) and*/
+(max-width: 30em), screen and /*(min-device-width: 21em) and*/
+(max-device-width: 30em)
+  /*and (min-width: 30em)*/
+and (max-width: 41em), screen /*and (min-device-width: 30em)*/
+and (max-device-width: 41em) {
+  .latest_news_title {
+    text-align: center;
+    margin-bottom: 30px;
   }
 }
