@@ -24,7 +24,6 @@
                                 <input value="" type="text" class="form-control" name="nom" required="" aria-required="true" aria-invalid="true" placeholder="Nom du sponsor">
                             </div>
                         </div>
-                        <label for="urlLogo">Adresse URL du logo</label>
                        {{-- <form action="#" id="cropform">
                         <div class="image-editor">
                             <input type="hidden" name="MAX_FILE_SIZE" value="250000"/>
@@ -36,9 +35,13 @@
                             <button id="cropform-button">Crop !</button>
                         </div>
                         </form>--}}
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label for="urlLogo">Icône du fichier (JPG, PNG ou GIF) :</label><br />
+                                <input type="file" name="urlLogo" id="urlLogo" required /><br />
+                            </div>
+                        </div>
 
-                        <label for="urlLogo">Icône du fichier (JPG, PNG ou GIF) :</label><br />
-                        <input type="file" name="urlLogo" id="urlLogo" /><br />
 
                         <label for="urlSponsor">Adresse du site du sponsor</label>
                         <div class="form-group form-float">

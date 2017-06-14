@@ -18,7 +18,7 @@
                         </div>
                     @endif
                     <form action="{{ action('Back_office\EditionCtrl@update', $id = $edition->id) }}" 
-                          method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
+                          method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data" id="edition-form-edit">
                         <label for="annee">Annee</label>
                         <div class="form-group form-float">
                             <div class="form-line">
