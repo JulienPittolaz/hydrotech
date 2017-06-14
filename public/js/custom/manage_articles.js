@@ -17,8 +17,6 @@ function manageArticles(){
     });
     $(".view-more a").on('click',function(){
         $('.actualite').hide();
-        $('a.btn_actualite_zoom').attr('href','http://pingouin.heig-vd.ch/');
-
     });
 
 

@@ -208,7 +208,12 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
      success: function () {
         $("#socials").html(JST['reseauxSociaux']({reseauxSociaux:mesreseauxSociaux.toJSON()}));
     }
+
  });
+
+    manageNoHashes();
+
+
 
 
 
