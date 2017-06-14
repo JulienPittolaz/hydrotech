@@ -7,7 +7,7 @@
                     <h2>Edition du média</h2>
                 </div>
                 <div class="body">
-                    <form action="{{ action('Back_office\MediaCtrl@update', $id = $media->id) }}" id="media-form" method="POST" novalidate="novalidate" target="_parent">
+                    <form action="{{ action('Back_office\MediaCtrl@update', $id = $media->id) }}" method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
                         <label for="titre">Titre</label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -41,11 +41,10 @@
                             @endif
 
                         </div>
-                        <label for="url">url</label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="{{$media->url}}" type="text" class="form-control" name="url" required="" aria-required="true" aria-invalid="true">
-                            </div>
+                        <div class="mediaUpload">
+                            <label for="url">url</label>
+                            <label for="url">Icône du fichier (JPG ou MP4) :</label><br />
+                            <input type="file" name="url" id="urlphoto" /><br />
                         </div>
                         <input type="submit" class="btn btn-primary waves-effect"></input>
                     </form>

@@ -51,13 +51,12 @@ class ActualiteCtrl extends Controller
             'titre' => $inputs['titre'],
             'datePublication' => $inputs['datePublication'],
             'contenu' => $inputs['contenu'],
-            'urlImage' => urlencode($inputs['urlImage']),
+            'urlImage' => $inputs['urlImage'],
             'auteur' => 'UTILISATEUR TEST',
             //'auteur' => Auth::user()->name,
             'publie' => $inputs['publie']
         ]);
         $actualite->save();
-        $actualite['urlImage'] = urldecode($actualite['urlImage']);
         return  response()->json($actualite, Response::HTTP_CREATED);
     }
 
@@ -122,12 +121,7 @@ class ActualiteCtrl extends Controller
         if($actualite['actif'] == false){
             return response()->json('Actualité supprimée', Response::HTTP_NOT_FOUND);
         }
-
-        if($request->has('urlImage')) {
-            $inputs['urlImage'] = urlencode($inputs['urlImage']);
-        }
         $actualite->update($inputs);
-        $actualite['urlImage'] = urldecode($actualite['urlImage']);
         return  response()->json($actualite, Response::HTTP_OK);
     }
 

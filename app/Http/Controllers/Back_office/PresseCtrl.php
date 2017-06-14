@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Back_office;
 
 use App\Presse;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Auth;
 
 
 class PresseCtrl extends Controller
@@ -18,6 +20,9 @@ class PresseCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'presse')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $presses = Presse::all()->where('actif', true);
         foreach ($presses as $press) {
             $press->url = urldecode($press->url);
@@ -33,6 +38,9 @@ class PresseCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'presse')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('presse.create');
     }
 
@@ -44,6 +52,9 @@ class PresseCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'presse')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $para = $request->only(['url', 'titreArticle', 'description', 'dateParution', 'nomPresse']);
         if (!Presse::isValid($para)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
@@ -63,12 +74,15 @@ class PresseCtrl extends Controller
      */
     public function show($id)
     {
+        if (!Auth::user()->hasRole(Role::READ, 'presse')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $presse = Presse::find($id);
         if (!Presse::isValid(['id' => $id]) || $presse->actif == false) {
-            return response()->json('Presse non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Presse invalide');
         }
         if (Presse::find($id) == null) {
-            return response()->json('Presse introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Presse déjà introuvable');
         }
         $presse->url = urldecode($presse->url);
         return $presse;
@@ -82,6 +96,9 @@ class PresseCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'presse')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $presse = Presse::find($id);
         if (!$presse) {
             return redirect('presse');
@@ -100,14 +117,17 @@ class PresseCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'presse')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $presse = Presse::find($id);
         $para = $request->intersect(['url', 'titreArticle', 'description', 'dateParution', 'nomPresse']);
         $request->replace(['id' => $id]);
         if (!Presse::isValid($para)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->withErrors('error', 'Presse invalide');
         }
         if (!Presse::isValid(['id' => $id]) || $presse->actif == false) {
-            return response()->json('Presse inexistant', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->withErrors('error', 'Presse inexistante');
         }
         if ($request->has('url')) {
             $para['url'] = urlencode($para['url']);
@@ -125,19 +145,25 @@ class PresseCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'presse')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $presse = Presse::find($id);
 
         if (!Presse::isValid(['id' => $id])) {
-            return response()->json('Presse non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Presse invalide');
         }
         if ($presse == null) {
-            return response()->json('Presse introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Presse introuvable');
         }
         if ($presse['actif'] == false) {
-            return response()->json('Presse déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Presse déjà supprimée');
+        }
+        foreach ($presse->editions as $ed){
+            $presse->editions()->updateExistingPivot($ed->id, ['actif' => false]);
         }
         $presse->actif = false;
         $presse->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/presse')->withInput()->with('message', 'Presse supprimée');
     }
 }

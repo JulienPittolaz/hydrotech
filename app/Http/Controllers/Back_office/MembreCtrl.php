@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Back_office;
 
 use App\Http\Controllers\Controller;
 use App\Membre;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Auth;
 
 class MembreCtrl extends Controller
 {
@@ -17,11 +18,13 @@ class MembreCtrl extends Controller
      */
     public function index()
     {
-        $membres = Membre::all()->where('actif', true);
-        $membre_columns = Membre::all()->first()['fillable'];
-        foreach ($membres as $membre){
-            $membre->photoProfil = urldecode($membre->photoProfil);
+        if (!Auth::user()->hasRole(Role::READ, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
+
+        $membres = Membre::all()->where('actif', true);
+
+        $membre_columns = Membre::all()->first()['fillable'];
         return view('membre/index')->with(['membres' => $membres, 'columns' => $membre_columns]);
 
     }
@@ -33,6 +36,9 @@ class MembreCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('membre/create');
     }
 
@@ -44,17 +50,26 @@ class MembreCtrl extends Controller
      */
     public function store(Request $request)
     {
-        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role']);
-        dd($para);  
-        if (!Membre::isValid($para)) {
-            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+        if (!Auth::user()->hasRole(Role::READ, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
-        $para['photoProfil'] = urlencode($para['photoProfil']);
+        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil']);
+        if (!Membre::isValid($para)) {
+            return redirect()->back()->withInput()->with('error', 'Membre invalide');
+        }
+
+        $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description']);
         $membre = new Membre($para);
+        $membre->save();
+        $ext = $request->file('photoProfil')->getClientOriginalExtension();
+        $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.jpg');
+
+
+
+        $membre->photoProfil = $image;
 
         $membre->save();
-        $membre->photoProfil = urldecode($membre->photoProfil);
-        return response()->json($membre, Response::HTTP_CREATED);
+        return redirect('admin/membre')->withInput()->with('message', 'Nouveau membre ajouté');
     }
 
     /**
@@ -65,14 +80,16 @@ class MembreCtrl extends Controller
      */
     public function show($id)
     {
+        if (!Auth::user()->hasRole(Role::READ, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $membre = Membre::find($id);
         if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
-            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Membre invalide');
         }
         if (Membre::find($id) == null) {
-            return response()->json('Membre introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Membre introuvable');
         }
-        $membre->photoProfil = urldecode($membre->photoProfil);
         return $membre;
     }
 
@@ -84,7 +101,15 @@ class MembreCtrl extends Controller
      */
     public function edit($id)
     {
-        //
+        if (!Auth::user()->hasRole(Role::UPDATE, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
+        $membre = Membre::find($id);
+        if (!$membre) {
+            return redirect('admin/membre');
+        }
+        $membre->first();
+        return view('membre/edit', ['membre' => $membre]);
     }
 
     /**
@@ -96,20 +121,26 @@ class MembreCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $membre = Membre::find($id);
         $para = $request->intersect(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'photoProfil', 'role']);
+
+        if($request['photoProfil'] != null){
+            $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'role']);
+            $ext = $request->file('photoProfil')->getClientOriginalExtension();
+            $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.jpg');
+            $membre->photoProfil = $image;
+        }
         if (!Membre::isValid($para)) {
-            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Membre invalide');
         }
         if (!Membre::isValid(['id' => $id]) || $membre->actif == false) {
-            return response()->json('Membre inexistant', Response::HTTP_NOT_FOUND);
-        }
-        if($request->has('photoProfil')){
-            $para['photoProfil'] = urlencode($para['photoProfil']);
+            return redirect()->back()->withInput()->with('error', 'Membre inexistant');
         }
         $membre->update($para);
-        $membre->photoProfil = urldecode($membre->photoProfil);
-        return response()->json($membre, Response::HTTP_OK);
+        return redirect('admin/membre')->withInput()->with('message', 'Modification enregistrée');
     }
 
     /**
@@ -120,19 +151,25 @@ class MembreCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'membre')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $membre = Membre::find($id);
 
         if (!Membre::isValid(['id' => $id])) {
-            return response()->json('Membre non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Membre invalide');
         }
         if ($membre == null) {
-            return response()->json('Membre introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Membre inexistant');
         }
         if($membre['actif'] == false){
-            return response()->json('Membre déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Membre déjà supprimé');
+        }
+        foreach ($membre->editions as $ed){
+            $membre->editions()->updateExistingPivot($ed->id, ['actif' => false]);
         }
         $membre->actif = false;
         $membre->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/membre')->withInput()->with('message', 'Membre supprimé');
     }
 }

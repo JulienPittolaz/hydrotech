@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Back_office;
 
 use App\Media;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Auth;
 
 class MediaCtrl extends Controller
 {
@@ -17,6 +19,9 @@ class MediaCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $medias = Media::all()->where('actif', true);
         $media_columns = Media::all()->first()['fillable'];
         foreach ($medias as $media){
@@ -32,6 +37,9 @@ class MediaCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('media.create');
     }
 
@@ -43,14 +51,22 @@ class MediaCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $para = $request->only(['url', 'titre', 'date', 'auteur', 'typeMedia']);
         if (!Media::isValid($para)) {
-            return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
+            return redirect()->back()->withInput()->with('error', 'Media invalide');
         }
-        $para['url'] = urlencode($para['url']);
         $media = new Media($para);
         $media->save();
-        $media->url = urldecode($media->url);
+        if($para['typeMedia'] == "Photo") {
+            $para = $request->only(['titre', 'date', 'auteur', 'typeMedia']);
+            $image = $request->file('url')->storeAs('public/medias', $media->id . '.jpg');
+            $media->url = $image;
+        }
+
+        $media->save();
         return redirect('admin/media');
     }
 
@@ -62,12 +78,15 @@ class MediaCtrl extends Controller
      */
     public function show($id)
     {
+        if (!Auth::user()->hasRole(Role::READ, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $media = Media::find($id);
         if (!Media::isValid(['id' => $id]) || $media->actif == false) {
-            return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Media invalide');
         }
         if (Media::find($id) == null) {
-            return response()->json('Media introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Media inexistant');
         }
         $media->url = urldecode($media->url);
         return $media;
@@ -81,6 +100,9 @@ class MediaCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $media = Media::find($id);
         if(!$media) {
             return redirect('media');
@@ -98,22 +120,32 @@ class MediaCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $media = Media::find($id);
         $para = $request->intersect(['url', 'titre', 'date', 'auteur', 'typeMedia']);
-        //dd($para);
-        $request->replace(['id' => $id]);
-        if (!Media::isValid($para)) {
-            return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);
+        if($para['typeMedia'] == "Photo" || $para['typeMedia'] == "photo" ){
+            if($request['url'] != null){
+                $para = $request->only(['url', 'titre', 'date', 'auteur', 'typeMedia']);
+                $image = $request->file('url')->storeAs('public/medias', $media->id . '.jpg');
+                $media->url = $image;
+            }
         }
-        if (!Media::isValid(['id' => $id]) || $media->actif == false) {
-            return response()->json('Media inexistant', Response::HTTP_NOT_FOUND);
+        $request->replace(['id' => $id]);
+
+        if (!Media::isValid($para)) {
+            return redirect()->back()->withInput()->with('error', 'Media invalide');
+        }
+        if ($media == null || $media->actif == false) {
+            return redirect()->back()->withInput()->with('error', 'Media inexistant');
         }
         if($request->has('url')){
             $para['url'] = urlencode($para['url']);
         }
         $media->update($para);
-        $media->url = urldecode($media->url);
-        return response()->json($media, Response::HTTP_OK);
+        //$media->url = urldecode($media->url);
+        return redirect('admin/media')->withInput()->with('message', 'Modification enregistrée');
     }
 
     /**
@@ -124,19 +156,25 @@ class MediaCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'media')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $media = Media::find($id);
 
         if (!Media::isValid(['id' => $id])) {
-            return response()->json('Media non valide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'Media invalide');
         }
         if ($media == null) {
-            return response()->json('Media introuvable', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Media inexistant');
         }
         if($media['actif'] == false){
-            return response()->json('Media déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'Media déjà supprimé');
+        }
+        foreach ($media->editions as $ed){
+            $media->editions()->updateExistingPivot($ed->id, ['actif' => false]);
         }
         $media->actif = false;
         $media->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/media')->withInput()->with('message', 'Media supprimé');
     }
 }

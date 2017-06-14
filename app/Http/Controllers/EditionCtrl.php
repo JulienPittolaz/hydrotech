@@ -18,17 +18,11 @@ class EditionCtrl extends Controller
         $editions = Edition::all()->where('actif', true);
         $editions->where('publie', true);
         foreach ($editions as $edition) {
-            $edition->urlImageMedia = urldecode($edition->urlImageMedia);
-            $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
 
             $actualites = $edition->actualites;
-            foreach ($actualites as $actualite) {
-                $actualite->urlImage = urldecode($actualite->urlImage);
-            }
             $categorieEditionSponsors = $edition->categorieeditionsponsors;
             foreach ($categorieEditionSponsors as $catEdSp) {
                 $sponsor = $catEdSp->sponsor;
-                $sponsor->urlLogo = urldecode($sponsor->urlLogo);
                 $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
 
                 /*foreach ($sponsor->categorieeditionsponsors as $categorieDuSponsor){
@@ -42,9 +36,6 @@ class EditionCtrl extends Controller
                 $media->url = urldecode($media->url);
             }
             $membres = $edition->membres;
-            foreach ($membres as $membre) {
-                $membre->photoProfil = urldecode($membre->photoProfil);
-            }
             $presses = $edition->presses;
             foreach ($presses as $press) {
                 $press->url = urldecode($press->url);
@@ -78,12 +69,8 @@ class EditionCtrl extends Controller
         if (!Edition::isValid($para)) {
             return response()->json('Edition non valide', Response::HTTP_BAD_REQUEST);
         }
-        $para['urlImageMedia'] = urlencode($para['urlImageMedia']);
-        $para['urlImageEquipe'] = urlencode($para['urlImageEquipe']);
         $edition = new Edition($para);
         $edition->save();
-        $edition->urlImageMedia = urldecode($edition->urlImageMedia);
-        $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
         return response()->json($edition, Response::HTTP_CREATED);
     }
 
@@ -102,8 +89,6 @@ class EditionCtrl extends Controller
         if ($edition == null) {
             return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
         }
-        $edition->urlImageMedia = urldecode($edition->urlImageMedia);
-        $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
 
         $actualites = $edition->actualites;
         foreach ($actualites as $actualite) {
@@ -112,7 +97,6 @@ class EditionCtrl extends Controller
         $categorieEditionSponsors = $edition->categorieeditionsponsors;
         foreach ($categorieEditionSponsors as $catEdSp) {
             $sponsor = $catEdSp->sponsor;
-            $sponsor->urlLogo = urldecode($sponsor->urlLogo);
             $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
 
             /*foreach ($sponsor->categorieeditionsponsors as $categorieDuSponsor){
@@ -126,9 +110,6 @@ class EditionCtrl extends Controller
             $media->url = urldecode($media->url);
         }
         $membres = $edition->membres;
-        foreach ($membres as $membre) {
-            $membre->photoProfil = urldecode($membre->photoProfil);
-        }
         $presses = $edition->presses;
         foreach ($presses as $press) {
             $press->url = urldecode($press->url);
@@ -174,15 +155,7 @@ class EditionCtrl extends Controller
         if (!Edition::isValid(['id' => $id]) || $edition->actif == false) {
             return response()->json('Edition inexistante', Response::HTTP_NOT_FOUND);
         }
-        if($request->has('urlImageMedia')){
-            $para['urlImageMedia'] = urlencode($para['urlImageMedia']);
-        }
-        if($request->has('urlImageEquipe')){
-            $para['urlImageEquipe'] = urlencode($para['urlImageEquipe']);
-        }
         $edition->update($para);
-        $edition->urlImageMedia = urldecode($edition->urlImageMedia);
-        $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
         return response()->json($edition, Response::HTTP_OK);
     }
 

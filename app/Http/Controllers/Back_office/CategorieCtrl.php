@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Back_office;
 
 use App\Categorie;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CategorieCtrl extends Controller
 {
@@ -16,7 +19,11 @@ class CategorieCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categories = Categorie::all()->where('actif', true);
+
         $categorie_columns = Categorie::all()->first()['fillable'];
         return view('categorie/index', ['categories' => $categories, 'columns' => $categorie_columns]);
     }
@@ -28,6 +35,9 @@ class CategorieCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('categorie.create');
     }
 
@@ -39,9 +49,12 @@ class CategorieCtrl extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $inputs = $request->only(['nom', 'description']);
         if (!Categorie::isValid($inputs)) {
-            return response()->json('Categorie invalide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'categorie invalide');
         }
 
         $categorie = new Categorie([
@@ -49,7 +62,7 @@ class CategorieCtrl extends Controller
             'description' => $inputs['description']
         ]);
         $categorie->save();
-        return  response()->json($categorie, Response::HTTP_CREATED);
+        return  redirect('admin/categorie')->withInput()->with('message', 'Nouvelle catégorie sponsor ajoutée');
     }
 
     /**
@@ -60,12 +73,18 @@ class CategorieCtrl extends Controller
      */
     public function show($id)
     {
-
+        if (!Auth::user()->hasRole(Role::READ, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categorie = Categorie::find($id);
 
         if (!Categorie::isValid(['id' => $id]) || $categorie->actif == false) {
-            return response()->json('Requête invalide', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'categorie invalide');
         }
+        if(Categorie::find($id) == null){
+            return redirect()->back()->withInput()->with('error', 'categorie inexistante');
+        }
+
         return $categorie;
     }
 
@@ -77,9 +96,12 @@ class CategorieCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categorie = Categorie::find($id);
         if(!$categorie) {
-            return redirect('categorie');
+            return redirect('admin/categorie');
         }
         $categorie->first();
         return view('categorie/edit', ['categorie' => $categorie]);
@@ -94,24 +116,26 @@ class CategorieCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categorie = Categorie::find($id);
 
         $inputs = $request->intersect(['nom', 'description']);
         $request->replace(['id' => $id]);
         if (!Categorie::isValid($inputs)) {
-            return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'categorie invalide');
         }
-
-        if (!Categorie::isValid(['id' => $id])) {
-            return response()->json('Not found', Response::HTTP_NOT_FOUND);
+        if (!Categorie::isValid(['id' => $id]) || $categorie->actif == false) {
+            return redirect()->back()->withInput()->with('error', 'categorie inexistante');
         }
 
         if($categorie['actif'] == false){
-            return response()->json('Categorie déjà supprimée', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'categorie inexistante');
         }
 
         $categorie->update($inputs);
-        return  back()->withInput();
+        return  redirect('admin/categorie')->withInput()->with('message', 'Modification enregistrée');
     }
 
     /**
@@ -122,17 +146,26 @@ class CategorieCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'categorie')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $categorie = Categorie::find($id);
 
         if (!Categorie::isValid(['id' => $id])) {
-            return response()->json('Requête invalide', Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->withInput()->with('error', 'categorie invalide');
         }
-
+        if ($categorie == null) {
+            return redirect()->back()->withInput()->with('error', 'categorie existants');
+        }
         if($categorie['actif'] == false){
-            return response()->json('Categorie déjà supprimée', Response::HTTP_NOT_FOUND);
+            return redirect()->back()->withInput()->with('error', 'categorie déjà supprimée');
+        }
+        foreach ($categorie->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
+            $categoriesEditionSponsorAssociees->actif = false;
+            $categoriesEditionSponsorAssociees->save();
         }
         $categorie->actif = false;
         $categorie->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/categorie')->withInput()->with('message', 'categorie supprimée');
     }
 }

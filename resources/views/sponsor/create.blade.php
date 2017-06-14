@@ -7,10 +7,17 @@
                     <h2>Création du sponsor</h2>
                 </div>
                 <div class="body">
-                    @if($errors->any())
-                        <div class="alert alert-danger">Erreur dans les valeurs entrées</div>
+                    @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
                     @endif
-                    <form action="{{ action('Back_office\SponsorCtrl@store') }}" id="sponsor-form" method="POST" novalidate="novalidate" target="_parent">
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
+                    <form action="{{ action('Back_office\SponsorCtrl@store') }}" id="sponsor-form" method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
                         <label for="nom">Nom</label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -18,12 +25,21 @@
                             </div>
                         </div>
                         <label for="urlLogo">Adresse URL du logo</label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="" type="url" class="form-control" name="urlLogo" required="" aria-required="true" aria-invalid="true" placeholder="Url du logo">
-                            </div>
-                            <div class="help-info">Commence par http:// ou https://</div>
+                       {{-- <form action="#" id="cropform">
+                        <div class="image-editor">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="250000"/>
+                            <input type="file" class="cropit-image-input" name="urlLogo">
+                            <div class="cropit-preview"></div>
+                            <div class="image-size-label">Redimensionner l'image</div>
+                            <input type="range" class="cropit-image-zoom-input" min="0" max="1" step="0.01">
+                            <input type="hidden" name="image-data" class="hidden-image-data"/>
+                            <button id="cropform-button">Crop !</button>
                         </div>
+                        </form>--}}
+
+                        <label for="urlLogo">Icône du fichier (JPG, PNG ou GIF) :</label><br />
+                        <input type="file" name="urlLogo" id="urlLogo" /><br />
+
                         <label for="urlSponsor">Adresse du site du sponsor</label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -31,7 +47,7 @@
                             </div>
                             <div class="help-info">Commence par http:// ou https://</div>
                         </div>
-                        <input type="submit" class="btn btn-primary waves-effect"></input>
+                        <input type="submit" class="btn btn-primary waves-effect"/>
                     </form>
                 </div>
             </div>

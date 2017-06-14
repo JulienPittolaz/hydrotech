@@ -5,14 +5,24 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        Liste des prix
+                        Liste des membres
                     </h2>
                 </div>
+                @if(Session::has('message'))
+                    <div class="alert alert-success">
+                        {{ Session::get('message') }}
+                    </div>
+                @endif
+                @if(Session::has('error'))
+                    <div class="alert alert-danger">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
                 <div class="body">
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
                             <div class="col-sm-12">
-                                <a href="{{route('prix.create')}}" target="_parent"><button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button></a>
+                                <a href="{{route('membre.create')}}" target="_parent"><button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button></a>
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable"
                                        id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
                                     <thead>
@@ -46,11 +56,19 @@
                                         {{--*/ $i++ /*--}}
                                         <tr role="row" class="odd">
                                             <td style="width: 20px !important;">
-                                                <a target="_parent" href="{{ route('membres.edit', $membre->id) }}">
+                                                <a target="_parent" href="{{ route('membre.edit', $membre->id) }}">
                                                     <button type="button" class="btn btn-primary waves-effect">
                                                         <i class="material-icons">mode_edit</i>
                                                     </button>
                                                 </a>
+                                                <form method="post" action="{{action('Back_office\MembreCtrl@destroy', $membre->id)}}" accept-charset="UTF-8">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button type="submit" class="btn bg-red waves-effect">
+                                                        <i class="material-icons">delete</i>
+                                                    </button>
+                                                </form>
+
                                             </td>
                                             <td>{{$membre->adresseMail}}</td>
                                             <td class="sorting_1">{{$membre->nom}}</td>
@@ -58,8 +76,7 @@
                                             <td>{{$membre->dateNaissance}}</td>
                                             <td>{{$membre->section}}</td>
                                             <td>{{$membre->description}}</td>
-                                            <td><img src="{{$membre->photoProfil}}" width="120px" alt=""></td>
-                                            <td>{{$membre->role}}</td>
+                                            <td><img src="{{url('/') }}/storage/membres/{{$membre->id}}.jpg" width="50px" height="50px"/></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

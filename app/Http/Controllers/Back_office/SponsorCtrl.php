@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Back_office;
 
+use App\Role;
 use App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Auth;
+
 
 class SponsorCtrl extends Controller
 {
@@ -16,6 +20,9 @@ class SponsorCtrl extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasRole(Role::READ, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $sponsors = Sponsor::all()->where('actif', true);
 
 
@@ -42,6 +49,9 @@ class SponsorCtrl extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasRole(Role::CREATE, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         return view('sponsor.create');
     }
 
@@ -53,15 +63,25 @@ class SponsorCtrl extends Controller
      */
     public function store(Request $request)
     {
-        $para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
-        if (!Sponsor::isValid($para)) {
-            return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
+        if (!Auth::user()->hasRole(Role::CREATE, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
-        $para['urlLogo'] = urlencode($para['urlLogo']);
+        //dd($request['urlLogo']);
+        $para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
+        //dd($request->file('urlLogo'));
+        if (!Sponsor::isValid($para)) {
+            return redirect()->back()->withInput()->withErrors('error', 'Presse invalide');
+        }
+
         $para['urlSponsor'] = urlencode($para['urlSponsor']);
+
+        $para = $request->only(['nom', 'urlSponsor']);
+        $ext = $request->file('urlLogo')->getClientOriginalExtension();
+        $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.jpg');
         $sponsor = new Sponsor($para);
+        $sponsor->urlLogo = $image;
         $sponsor->save();
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
+        //$sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return redirect('admin/sponsor')->withInput()->with('message', 'Nouveau sponsor ajouté');
     }
@@ -74,14 +94,16 @@ class SponsorCtrl extends Controller
      */
     public function show($id)
     {
+        if (!Auth::user()->hasRole(Role::READ, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $sponsor = Sponsor::find($id);
         if (!Sponsor::isValid(['id' => $id]) || $sponsor->actif == false) {
-            return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
+            return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor non valide');
         }
         if (Sponsor::find($id) == null) {
-            return response()->json('Sponsor introuvable', Response::HTTP_NOT_FOUND);
+            return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor introuvable');
         }
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return $sponsor;
     }
@@ -94,12 +116,14 @@ class SponsorCtrl extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $sponsor = Sponsor::find($id);
         if (!$sponsor) {
             return redirect('admin/sponsor');
         }
         $sponsor->first();
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return view('sponsor/edit', ['sponsor' => $sponsor]);
     }
@@ -113,24 +137,39 @@ class SponsorCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()->hasRole(Role::UPDATE, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $sponsor = Sponsor::find($id);
         $para = $request->intersect(['nom', 'urlLogo', 'urlSponsor']);
+
+        if($request['urlLogo'] != null){
+            $para = $request->only(['nom', 'urlSponsor']);
+            //$ext = $request->file('urlLogo')->getClientOriginalExtension();
+            $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.jpg');
+            $sponsor->urlLogo = $image;
+        }
         if (!Sponsor::isValid($para)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
         }
         if (!Sponsor::isValid(['id' => $id]) || $sponsor->actif == false) {
-            return response()->json('Sponsor inexistant', Response::HTTP_NOT_FOUND);
-        }
-        if($request->has('urlLogo')){
-            $para['urlLogo'] = urlencode($para['urlLogo']);
+            return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor inexistant');
         }
         if($request->has('urlSponsor')){
             $para['urlSponsor'] = urlencode($para['urlSponsor']);
         }
+
+        if($request['urlLogo'] != null){
+            $para = $request->only(['nom', 'urlSponsor']);
+            $ext = $request->file('urlLogo')->getClientOriginalExtension();
+            $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.' . $ext);
+            $sponsor->urlLogo = $image;
+        }
+
         $sponsor->update($para);
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
+
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
-        return redirect('admin/presse')->withInput()->with('message', 'Modification enregistrée');
+        return redirect('admin/sponsor')->withInput()->with('message', 'Modification enregistrée');
     }
 
     /**
@@ -141,19 +180,26 @@ class SponsorCtrl extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole(Role::DELETE, 'sponsor')) {
+            return redirect()->back()->with('error', 'Pas les droits suffisants');
+        }
         $sponsor = Sponsor::find($id);
 
         if (!Sponsor::isValid(['id' => $id])) {
-            return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
+            return rredirect('admin/sponsor')->withInput()->with('error', 'Sponsor non valide');
         }
         if ($sponsor == null) {
-            return response()->json('Sponsor introuvable', Response::HTTP_NOT_FOUND);
+            return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor introuvable');
         }
         if($sponsor['actif'] == false){
-            return response()->json('Sponsor déjà supprimé', Response::HTTP_NOT_FOUND);
+            return redirect('admin/sponsor')->withInput()->with('error', 'Sponsor déjà supprimé');
+        }
+        foreach ($sponsor->categorieeditionsponsors as $categoriesEditionSponsorAssociees){
+            $categoriesEditionSponsorAssociees->actif = false;
+            $categoriesEditionSponsorAssociees->save();
         }
         $sponsor->actif = false;
         $sponsor->save();
-        return response()->json('OK', Response::HTTP_OK);
+        return redirect('admin/sponsor')->withInput()->with('message', 'Sponsor supprimé');
     }
 }

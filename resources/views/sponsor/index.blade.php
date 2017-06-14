@@ -13,6 +13,11 @@
                         {{ Session::get('message') }}
                     </div>
                 @endif
+                @if(Session::has('error'))
+                    <div class="alert alert-danger">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
                 <div class="body">
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
@@ -56,14 +61,28 @@
                                                     <i class="material-icons">mode_edit</i>
                                                 </button>
                                                 </a>
+{{--
+                                                <a target="_parent" href="{{action('Back_office\SponsorCtrl@destroy',$sponsor->id)}}">
+--}}
+
+                                                <form method="post" action="{{action('Back_office\SponsorCtrl@destroy', $sponsor->id)}}" accept-charset="UTF-8">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button type="submit" class="btn bg-red waves-effect">
+                                                    <i class="material-icons">delete</i>
+                                                    </button>
+                                                </form>
+
+
                                             </td>
                                             <td class="sorting_1">{{$sponsor->nom}}</td>
-                                            <td>{{$sponsor->urlLogo}}</td>
+                                            <td><img src="{{url('/') }}/storage/sponsors/{{$sponsor->nom}}.jpg" width="50px" height="50px"/></td>
                                             <td>{{$sponsor->urlSponsor}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div>
                             </div>
                         </div>
                        </div>
@@ -71,4 +90,5 @@
             </div>
         </div>
     </div>
+
 @endsection

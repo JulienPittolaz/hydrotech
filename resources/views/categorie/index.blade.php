@@ -8,6 +8,16 @@
                         Liste des catégories sponsors
                     </h2>
                 </div>
+                @if(Session::has('message'))
+                    <div class="alert alert-success">
+                        {{ Session::get('message') }}
+                    </div>
+                @endif
+                @if(Session::has('error'))
+                    <div class="alert alert-danger">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
                 <div class="body">
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
@@ -51,6 +61,14 @@
                                                     <i class="material-icons">mode_edit</i>
                                                 </button>
                                                 </a>
+
+                                                <form method="post" action="{{action('Back_office\CategorieCtrl@destroy', $categorie->id)}}" accept-charset="UTF-8">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button type="submit" class="btn bg-red waves-effect">
+                                                        <i class="material-icons">delete</i>
+                                                    </button>
+                                                </form>
                                             </td>
                                             <td class="sorting_1">{{$categorie->nom}}</td>
                                             <td>{{$categorie->description}}</td>

@@ -17,11 +17,10 @@ class Media extends Model
     }
 
     public static function isValid($data = array()) {
-        dd($data);
-        return Validator::make($data, [
+        $rules = [
             'id' => 'exists:medias|sometimes|required',
-            'url' => 'url|sometimes|required',
             'titre' => 'string|sometimes|required',
+            'url' => 'required',
             'date' => 'date|sometimes|required|before:tomorrow',
             'auteur' => 'string|sometimes|required',
             'typeMedia' => [
@@ -29,7 +28,15 @@ class Media extends Model
                 'required',
                 'string',
                 Rule::in(['Photo', 'photo', 'Video', 'video']),
-            ],
-        ])->passes();
+            ]];
+
+        if($data['typeMedia'] == "Photo" || $data['typeMedia'] == "photo"){
+            $rules['url'] .= '|image|sometimes';
+        }
+        else{
+            $rules['url'] .= '|url|sometimes';
+        }
+
+        return Validator::make($data, $rules)->passes();
     }
 }
