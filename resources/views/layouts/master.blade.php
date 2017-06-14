@@ -89,8 +89,8 @@
             <a class="navbar-brand" target="_parent" href="{{ url('/admin/prix') }}">HYDRO.HEIG-VD.CH</a>
 
         </div>
-        <div class="navbar-right" >
-            <a href="{{ url('/auth/logout') }}">Déconnexion</a>
+        <div class="nav navbar-nav navbar-right" >
+            <a href="{{ url('/auth/logout') }}" class="logout-link"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a>
         </div>
     </div>
 </nav>

@@ -11101,3 +11101,9 @@ select.selectpicker {
     margin-bottom: 5px;
     margin-left: 3px;
 }
+
+.logout-link{
+    color: white;
+    padding: 20px 10px;
+    float: left;
+}
