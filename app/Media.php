@@ -31,6 +31,7 @@ class Media extends Model
                 'string',
                 Rule::in(['Photo', 'photo', 'Video', 'video']),
             ]];
+
         if (isset($data['typeMedia'])) {
             if ($data['typeMedia'] == "Photo" || $data['typeMedia'] == "photo") {
                 $rules['url'] .= '|image|sometimes';
@@ -38,7 +39,6 @@ class Media extends Model
                 $rules['url'] .= '|url|sometimes';
             }
         }
-
         return Validator::make($data, $rules)->passes();
     }
 }
