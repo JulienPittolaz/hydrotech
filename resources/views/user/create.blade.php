@@ -36,6 +36,12 @@
                                 <input value="" type="password" class="form-control" name="password" required="" aria-required="true" aria-invalid="true" placeholder="Password du user">
                             </div>
                         </div>
+                        <label for="password2">Confirmation du password</label>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input value="" type="password" class="form-control" name="password2" required="" aria-required="true" aria-invalid="true" placeholder="Confirmation du password">
+                            </div>
+                        </div>
                         <input type="submit" class="btn btn-primary waves-effect"/>
                     </form>
                 </div>
