@@ -63,7 +63,7 @@
                             La Fondation fournit à chaque équipe un moteur électrique et une batterie identiques. Les navires concourent dans 2 catégories distinctes: celle du <b>Transport de Masse</b>, qui simule le déplacement d'un cargo avec une charge de 200kg et celle des <b>Transports Légers</b>,
                             qui représente le transport de personnes sur un bateau de plaisance (embarcation personnelle) avec seulement 20kg à bord. Une 3ème course, la <b> « Long Distance Race » </b>, attribuera la victoire au navire (léger) ayant parcouru la plus longue distance pendant deux heures de navigation.
                         </p>
-                        <p class="home_more"><a href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
+                        <p class="home_more"><a target="_blank" href="http://www.hydrocontest.org/fr/">+ En savoir plus</a></p>
                     </div>
                 </div>
             </div>
