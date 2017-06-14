@@ -198,9 +198,11 @@ class EditionCtrl extends Controller
         $categories = Categorie::all()->where('actif', true);
         foreach ($categories as $categorie) {
             foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces) {
-                $ces->edition;
+                $ces->sponsor->urlSponsor = urldecode($ces->sponsor->urlSponsor);
+                $ces->sponsor->urlLogo = urldecode($ces->sponsor->urlLogo);
                 foreach ($ces->sponsor->categorieeditionsponsors as $c){
-                    $c->edition;
+                    $c->edition->urlImageMedia = urldecode($c->edition->urlImageMedia);
+                    $c->edition->urlImageEquipe = urldecode($c->edition->urlImageEquipe);
                 }
             }
         }
