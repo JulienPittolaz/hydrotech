@@ -73,24 +73,17 @@ class SponsorCtrl extends Controller
         }
 
         $para['urlSponsor'] = urlencode($para['urlSponsor']);
-        $image_data = $request['urlLogo'];
-        //$image_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $request['urlLogo']));
         $para = $request->only(['nom', 'urlSponsor']);
-        //$ext = $image_data->getClientOriginalExtension();
+        $image_data = $request['urlLogo'];
+        $nom = str_replace(' ', '', $para['nom']);
         $source = fopen($image_data, 'r');
-        $destination = fopen(public_path() . '/../storage/app/public/sponsors/'. $para['nom'] .'.jpg', 'w');
-
+        $destination = fopen(public_path() . '/../storage/app/public/sponsors/'. $nom .'.jpg', 'w');
         stream_copy_to_stream($source, $destination);
-
         fclose($source);
         fclose($destination);
-        //file_put_contents('public/images/sponsors/' . $para['nom']  .'.jpg', $image_data);
-        //$image = $image_data->storeAs('public/sponsors', $para['nom'] . '.jpg');
         $sponsor = new Sponsor($para);
-        $para['nom'] = str_replace(' ', '', $para['nom']);
-        $sponsor->urlLogo = public_path() . '/../storage/app/public/sponsors/'. $para['nom'] .'.jpg';
+        $sponsor->urlLogo = public_path() . '/../storage/app/public/sponsors/'. $nom .'.jpg';
         $sponsor->save();
-        //$sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return redirect('admin/sponsor')->withInput()->with('message', 'Nouveau sponsor ajouté');
     }

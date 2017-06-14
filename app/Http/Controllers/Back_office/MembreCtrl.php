@@ -59,15 +59,15 @@ class MembreCtrl extends Controller
         }
 
         $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description']);
+        $image_data = $request['photoProfil'];
+        $nom = str_replace(' ', '', $para['nom'].$para['prenom']);
+        $source = fopen($image_data, 'r');
+        $destination = fopen(public_path() . '/../storage/app/public/membres/'. $nom .'.jpg', 'w');
+        stream_copy_to_stream($source, $destination);
+        fclose($source);
+        fclose($destination);
         $membre = new Membre($para);
-        $membre->save();
-        $ext = $request->file('photoProfil')->getClientOriginalExtension();
-        $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.jpg');
-
-
-
-        $membre->photoProfil = $image;
-
+        $membre->photoProfil = public_path() . '/../storage/app/public/membres/'. $nom .'.jpg';
         $membre->save();
         return redirect('admin/membre')->withInput()->with('message', 'Nouveau membre ajouté');
     }

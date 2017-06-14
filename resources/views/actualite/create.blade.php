@@ -76,10 +76,15 @@
                             <label for="false">Non</label>
                         </div>
                         <div class="form-group form-float">
-                            <div class="form-line">
-                                <label for="urlImage">Image (JPG, PNG ou GIF) :</label><br/>
-                                <input type="file" name="urlImage" id="urlImage"/><br/>
+                            <label for="urlImage">Photo</label>
+                            <div id="image-cropper-actualite">
+                                <div class="cropit-preview"></div>
+                                <input type="range" class="cropit-image-zoom-input" />
+                                <!-- The actual file input will be hidden -->
+                                <input type="file" class="cropit-image-input" />
+                                <!-- And clicking on this button will open up select file dialog -->
                             </div>
+                            <input id="urlImage" type="hidden" name="urlImage">
                         </div>
                         <input type="submit" class="btn btn-primary waves-effect"></input>
                     </form>

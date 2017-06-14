@@ -83,10 +83,15 @@
                             </div>
                         </div>
                         <div class="form-group form-float">
-                            <div class="form-line">
-                                <label for="photoProfil">Photo de profil (JPG, PNG ou GIF) :</label><br/>
-                                <input type="file" name="photoProfil" id="photoProfil"/><br/>
+                            <label for="urlLogo">Photo du membre</label>
+                            <div id="image-cropper-membre">
+                                <div class="cropit-preview"></div>
+                                <input type="range" class="cropit-image-zoom-input" />
+                                <!-- The actual file input will be hidden -->
+                                <input type="file" class="cropit-image-input" />
+                                <!-- And clicking on this button will open up select file dialog -->
                             </div>
+                            <input id="photoProfil" type="hidden" name="photoProfil">
                         </div>
                         <input type="submit" class="btn btn-primary waves-effect"></input>
                     </form>

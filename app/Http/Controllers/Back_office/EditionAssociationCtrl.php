@@ -99,7 +99,8 @@ class EditionAssociationCtrl extends Controller
         }
         $objet = call_user_func_array(['\\App\\' . ucfirst($type_ressource), 'find'], [$resource_id]);
         //$objet = call_user_func(['\\App\\'.ucfirst($type_ressource), 'all'])->where('actif', true)->where('id', $resource_id);
-        if (!get_class($objet)::isValid(['id' => $resource_id])) {
+        $classe = get_class($objet);
+        if (!$classe::isValid(['id' => $resource_id])) {
             return redirect()->back()->withInput()->with('error', 'ressource invalide');
         }
         $edition = Edition::find($edition_id);
@@ -179,7 +180,8 @@ class EditionAssociationCtrl extends Controller
             return redirect()->back()->withInput()->with('error', 'edition invalide');
         }
         $objet = call_user_func_array(['\\App\\' . ucfirst($type_ressource), 'find'], [$resource_id]);
-        if (!get_class($objet)::isValid(['id' => $resource_id])) {
+        $classe = get_class($objet);
+        if (!$classe::isValid(['id' => $resource_id])) {
             return redirect()->back()->withInput()->with('error', 'ressource invalide');
         }
 

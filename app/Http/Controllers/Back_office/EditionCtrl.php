@@ -103,26 +103,23 @@ class EditionCtrl extends Controller
             return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
         //dd($request);
-        $para = $request->only(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
+        $para = $request->only(['annee', 'nomEquipe', 'urlImageMedia', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
 
         if (!Edition::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Edition invalide');
         }
         $para = $request->only(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
-
+        $image_data = $request['urlImageMedia'];
+        $nom = str_replace(' ', '', $para['nomEquipe']);
+        $source = fopen($image_data, 'r');
+        $destination = fopen(public_path() . '/../storage/app/public/edition/'. $nom .'.jpg', 'w');
+        stream_copy_to_stream($source, $destination);
+        fclose($source);
+        fclose($destination);
         $edition = new Edition($para);
-        $edition->urlImageMedia = 'nulachier.jpg';
-        $edition->urlImageEquipe = 'nulachier.jpg';
+        $edition->urlImageMedia = public_path() . '/../storage/app/public/edition/'. $nom .'.jpg';
         $edition->save();
 
-        //$ext1 = $request->file('urlImageMedia')->getClientOriginalExtension();
-        $image1 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageMedia' . $edition->id . '.jpg');
-
-        //$ext2 = $request->file('urlImageMedia')->getClientOriginalExtension();
-        $image2 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageEquipe' . $edition->id . '.jpg');
-
-        $edition->urlImageMedia = $image1;
-        $edition->urlImageEquipe = $image2;
         $edition->save();
         return redirect('admin/edition')->withInput()->with('message', 'Nouvelle édition ajoutée');
     }

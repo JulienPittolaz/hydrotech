@@ -64,13 +64,16 @@ class ActualiteCtrl extends Controller
 //            //'auteur' => Auth::user()->name,
 //            'publie' => $inputs['publie']
 //        ]);
+        $image_data = $request['urlImage'];
+        $nom = str_replace(' ', '', $inputs['titre']);
+        $source = fopen($image_data, 'r');
+        $destination = fopen(public_path() . '/../storage/app/public/actualites/'. $nom .'.jpg', 'w');
+        stream_copy_to_stream($source, $destination);
+        fclose($source);
+        fclose($destination);
         $actualite = new Actualite($inputs);
-        $actualite->auteur = "UTILISATEUR TEST";
-        $actualite->urlImage = 'tagueule.jpeg';
-        $actualite->save();
-        //$ext = $request->file('urlImage')->getClientOriginalExtension();
-        $image = $request->file('urlImage')->storeAs('public/actualites', $actualite->id . '.jpg');
-        $actualite->urlImage = $image;
+        $actualite->auteur = Auth::user()->name;
+        $actualite->urlImage = public_path() . '/../storage/app/public/actualites/'. $nom .'.jpg';
         $actualite->save();
         return redirect('admin/actualite')->withInput()->with('message', 'Nouvelle actualité créée');
     }

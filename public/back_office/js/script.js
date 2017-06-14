@@ -290,9 +290,6 @@
             'urlImageMedia': {
                 required: true,
             },
-            'urlImageEquipe': {
-                required: true,
-            },
             'lieu': {
                 required: true,
             },
@@ -581,13 +578,58 @@
         $('#sponsor-form').submit();
     });
 
+    $('#image-cropper-edition-background').cropit({
+        smallImage: 'stretch',
+        maxZoom: '2',
+        width: 400,
+        height: 225
+    });
 
+    $('#edition-form input[type=submit]').on('click', function(e) {
+        e.preventDefault();
+        var imageData = $('#image-cropper-edition-background').cropit('export',{
+            type: 'image/jpeg',
+            quality: .7,
+            exportZoom: 4
+        });
+        $('#urlImageMedia').val(imageData);
+        $('#edition-form').submit();
+    });
 
-// In the demos I'm passing in an imageState option
-// so it renders an image by default:
-// $('#image-cropper').cropit({ imageState: { src: { imageSrc } } });
+    $('#image-cropper-membre').cropit({
+        smallImage: 'stretch',
+        maxZoom: '2',
+        width: 320,
+        height: 396
+    });
 
+    $('#membre-form input[type=submit]').on('click', function(e) {
+        e.preventDefault();
+        var imageData = $('#image-cropper-membre').cropit('export',{
+            type: 'image/jpeg',
+            quality: .7
+        });
+        $('#photoProfil').val(imageData);
+        $('#membre-form').submit();
+    });
 
+    $('#image-cropper-actualite').cropit({
+        smallImage: 'stretch',
+        maxZoom: '2',
+        width: 400,
+        height: 225
+    });
+
+    $('#actualite-form input[type=submit]').on('click', function(e) {
+        e.preventDefault();
+        var imageData = $('#image-cropper-actualite').cropit('export',{
+            type: 'image/jpeg',
+            quality: .7,
+            exportZoom: 4
+        });
+        $('#urlImage').val(imageData);
+        $('#actualite-form').submit();
+    });
 
 
 
