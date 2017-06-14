@@ -18,3 +18,11 @@ Handlebars.registerHelper('urlToEmbed', function (url) {
     console.log(returnValue);
     return returnValue;
 });
+
+Handlebars.registerHelper('isValid', function (block) {
+    if(this.sponsor) {
+        return block.fn(this);
+    } else {
+        return block.inverse(this);
+    }
+});

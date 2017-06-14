@@ -452,6 +452,8 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $contributor->ressources()->save($social, ['role' => \App\Role::UPDATE]);
         $contributor->ressources()->save($social, ['role' => \App\Role::DELETE]);
 
+        $contributor->ressources()->save($edition, ['role' => \App\Role::READ]);
+
 
         //*******CREATION DES COMMENTAIRES*******
         $edition1->presses()->save($presse1);
