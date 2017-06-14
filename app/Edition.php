@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rule;
 use Validator;
 
 class Edition extends Model
@@ -41,17 +43,19 @@ class Edition extends Model
 
 
     public static function isValid($inputs) {
+        $id = Input::input('id', null);
         return Validator::make($inputs, [
             'id' => 'exists:editions|sometimes|required',
-            'annee' => 'exists:editions|integer|digits:4|sometimes|required',
+            'annee' => ['integer', 'sometimes', 'required', 'digits:4', Rule::unique('editions')->ignore($id)],
             'nomEquipe' => 'string|sometimes|required',
-            'urlImageMedia' => 'url|sometimes|required',
-            'urlImageEquipe' => 'url|sometimes|required',
+            'urlImageMedia' => 'image|sometimes|required',
+            'urlImageEquipe' => 'image|sometimes|required',
             'lieu' => 'string|sometimes|required',
             'dateDebut' => 'date|sometimes|required|before_or_equal:dateFin',
             'dateFin' => 'date|sometimes|required|after_or_equal:dateDebut',
             'description' => 'string|sometimes|required',
             'publie' => 'boolean|sometimes|required'
         ])->passes();
+
     }
 }
