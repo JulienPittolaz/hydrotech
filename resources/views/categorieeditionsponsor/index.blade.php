@@ -19,42 +19,45 @@
                             {{ Session::get('error') }}
                         </div>
                     @endif
-                    <ul>
-                        @foreach($editions as $edition)
+                    @if($editions != null && $association != null)
+                        <ul>
+                            @foreach($editions as $edition)
 
-                            <li>{{$edition->annee}}</li>
-                            <ul>
-                                @foreach($edition->categorie as $categorie)
-                                    <li>{{$categorie->nom}}</li>
-                                    <ul>
-                                        @foreach($categorie->categorieeditionsponsors->where('actif', true)->where('edition_id', $edition->id) as $assoc)
-                                            <ul>
-                                                <li>
-                                                    {{$assoc->sponsor->nom}}
-                                                    <form method="post"
-                                                          action="{{action('Back_office\CategorieEditionSponsorCtrl@destroy', ['categorie_id' => $categorie->id, 'edition_id' => $edition->id, 'sponsor_id' => $assoc->sponsor->id])}}"
-                                                          accept-charset="UTF-8" class="bouton_delete">
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <input type="hidden" name="_token"
-                                                               value="{{ csrf_token() }}">
-                                                        <button type="submit" class="btn bg-red waves-effect ">X</button>
-                                                    </form>
+                                <li>{{$edition->annee}}</li>
+                                <ul>
+                                    @foreach($edition->categorie as $categorie)
+                                        <li>{{$categorie->nom}}</li>
+                                        <ul>
+                                            @foreach($categorie->categorieeditionsponsors->where('actif', true)->where('edition_id', $edition->id) as $assoc)
+                                                <ul>
+                                                    <li>
+                                                        {{$assoc->sponsor->nom}}
+                                                        <form method="post"
+                                                              action="{{action('Back_office\CategorieEditionSponsorCtrl@destroy', ['categorie_id' => $categorie->id, 'edition_id' => $edition->id, 'sponsor_id' => $assoc->sponsor->id])}}"
+                                                              accept-charset="UTF-8" class="bouton_delete">
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <input type="hidden" name="_token"
+                                                                   value="{{ csrf_token() }}">
+                                                            <button type="submit" class="btn bg-red waves-effect ">X
+                                                            </button>
+                                                        </form>
 
 
-                                                </li>
-                                            </ul>
-                                        @endforeach
-                                    </ul>
-                                @endforeach
-                            </ul>
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </ul>
+                                    @endforeach
+                                </ul>
 
-                            <a href="{{action('Back_office\CategorieEditionSponsorCtrl@create', $edition->annee)}}"
-                               target="_parent">
-                                <button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button>
-                            </a>
+                                <a href="{{action('Back_office\CategorieEditionSponsorCtrl@create', $edition->annee)}}"
+                                   target="_parent">
+                                    <button type="button" class="m-b-20 btn bg-green waves-effect">NOUVEAU</button>
+                                </a>
 
-                        @endforeach
-                    </ul>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
 
             </div>

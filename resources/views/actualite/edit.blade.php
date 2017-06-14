@@ -17,7 +17,7 @@
                             {{ Session::get('error') }}
                         </div>
                     @endif
-                    <form action="{{ action('Back_office\ActualiteCtrl@update', $id = $actualite->id) }}"
+                    <form action="{{ action('Back_office\ActualiteCtrl@update', $id = $actualite->id) }}" id="actualite-form"
                           method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data" id="actualite-form-edit">
                         <label for="titre">Titre</label>
                         <div class="form-group form-float">
@@ -52,12 +52,6 @@
                                 </grammarly-btn>
                             </div>
                         </div>
-                        <label for="auteur">Auteur</label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="{{$actualite->auteur}}" type="text" class="form-control" name="auteur" required="" aria-required="true" aria-invalid="true" placeholder="Auteur de l'article">
-                            </div>
-                        </div>
                         <label for="publie">Publication</label>
                         <div class="demo-radio-button ">
                             <input class="radio-col-light-blue" name="publie" type="radio" id="true" value="true"checked />
@@ -65,9 +59,18 @@
                             <input class="radio-col-light-blue" name="publie" type="radio" value="false" id="false" />
                             <label for="false">Non</label>
                         </div>
-                        <label for="urlImage">Icône du fichier (JPG, PNG ou GIF) :</label><br />
-                        <img src="{{url('/') }}/storage/actualites/{{$actualite->id}}.jpg" width="100px" height="100px"/><br />
-                        <input type="file" name="urlImage" id="urlImage"/><br/>
+                        <input type="hidden" id="oldPhoto" value="{{$actualite->urlImage}}">
+                        <div class="form-group form-float">
+                            <label for="urlImage">Photo de l'actualité</label>
+                            <div id="image-cropper-actualite">
+                                <div class="cropit-preview"></div>
+                                <input type="range" class="cropit-image-zoom-input" />
+                                <!-- The actual file input will be hidden -->
+                                <input type="file" class="cropit-image-input" />
+                                <!-- And clicking on this button will open up select file dialog -->
+                            </div>
+                            <input id="urlImage" type="hidden" name="urlImage">
+                        </div>
 
                         <input type="submit" class="btn btn-primary waves-effect"></input>
                     </form>

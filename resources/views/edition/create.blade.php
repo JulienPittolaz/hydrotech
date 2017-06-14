@@ -35,16 +35,15 @@
                             </div>
                         </div>
                         <div class="form-group form-float">
-                            <div class="form-line">
-                                <label for="urlImageMedia">Image de l'édition (JPG, PNG ou GIF) :</label><br/>
-                                <input type="file" name="urlImageMedia" id="urlImageMedia"/><br/>
+                            <label for="urlLogo">Image de l'édition</label>
+                            <div id="image-cropper-edition-background">
+                                <div class="cropit-preview"></div>
+                                <input type="range" class="cropit-image-zoom-input" />
+                                <!-- The actual file input will be hidden -->
+                                <input type="file" class="cropit-image-input" />
+                                <!-- And clicking on this button will open up select file dialog -->
                             </div>
-                        </div>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <label for="urlImageEquipe">Image de l'équipe (JPG, PNG ou GIF) :</label><br/>
-                                <input type="file" name="urlImageEquipe" id="urlImageEquipe"/><br/>
-                            </div>
+                            <input id="urlImageMedia" type="hidden" name="urlImageMedia">
                         </div>
                         <label for="lieu">Lieu</label>
                         <div class="form-group form-float">
