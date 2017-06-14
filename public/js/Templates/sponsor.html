@@ -1,17 +1,23 @@
 {{#isValid}}
 <li class="sponsor-item column is-one-quarter-desktop is-full-tablet">
-    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+    <div class="flip-container" onclick="this.classList.toggle('hover');">
         <div class="flipper">
-            <div class="front" >
-                asdasdasdads
+            <div class="front" style="background-image: url({{sponsor.urlLogo}})">
             </div>
             <div class="back">
                 <div class="sponsor-name">{{sponsor.nom}}</div>
                 <div class="sponsor-website">
                     <a href="{{sponsor.urlSponsor}}" target="_blank">
-                        {{sponsor.urlSponsor}}
-                        <button>Visiter le site</button>
+                        <div class="spon-link">Visiter le site</div>
                     </a>
+                </div>
+                <div class="sponsor-participations">
+                    <span>Ils nous ont soutenu en</span>
+                    <ul>
+                        {{#each sponsor.categorieeditionsponsors}}
+                            <li><a href="#/editions/{{edition.annee}}/sponsors">{{edition.annee}}</a></li>
+                        {{/each}}
+                    </ul>
                 </div>
             </div>
         </div>

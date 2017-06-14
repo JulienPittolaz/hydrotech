@@ -21,7 +21,7 @@ margin-bottom: 50px;
 }
 
 /* Disable grayscale on hover */
-.spons_logo img:hover {
+.front:hover {
   filter: none;
 }
 
@@ -31,7 +31,6 @@ margin-bottom: 50px;
   perspective: 1000;
 }
 
-.flip-container:hover .flipper,
 .flip-container.hover .flipper {
   transform: rotateY(180deg);
 }
@@ -59,6 +58,11 @@ margin-bottom: 50px;
 .front {
   z-index: 2;
   background: white;
+  background-position: center center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  filter: grayscale(1);
+  transition: 0.3s filter;
 }
 
 .back {
@@ -68,6 +72,7 @@ margin-bottom: 50px;
   transform: rotateY(180deg);
 
   background: #f8f8f8;
+  padding-left: 15px;
 }
 
 .back-title {
@@ -95,6 +100,12 @@ margin-bottom: 50px;
   flex-wrap: wrap;
 }
 
+.sponsor-name {
+  font-size: 18px;
+  color: $contrast-blue;
+  margin-top: 15px;
+}
+
 .sponsor-category {
   text-transform: uppercase;
   color: $contrast-blue;
@@ -103,10 +114,18 @@ margin-bottom: 50px;
   margin-bottom: 10px;
 }
 
-.sponsor-link {
+.spon-link {
+  margin: 20px 0;
   background: $contrast-blue;
   color: white;
   border-radius: 0;
   padding: 10px 5px;
+  width: 140px;
+  text-align: center;
+}
+
+.sponsor-participations li {
+  display: inline-block;
+  margin-right: 10px;
 }
 
