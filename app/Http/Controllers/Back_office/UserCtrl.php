@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back_office;
 
+use App\Groupe;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -37,13 +38,14 @@ class UserCtrl extends Controller
         if (!Auth::user()->hasRole(Role::CREATE, 'user')) {
             return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
-        return view('user.create');
+        $groupes = Groupe::all()->where('actif', true);
+        return view('user.create', ['groupes' => $groupes]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,16 +57,21 @@ class UserCtrl extends Controller
         if (!Auth::user()->hasRole(Role::CREATE, 'user')) {
             return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
-
+        $groupe = Groupe::all()->find($request['groupe']);
+        if ($groupe == null) {
+            return redirect()->back()->with('error', 'Groupe inconnu');
+        }
         $para['password'] = bcrypt($para['password']);
         $user = new User($para);
         $user->save();
-        return  redirect('admin/user')->withInput()->with('message', 'Nouvel user ajouté');
+        $user->groupes()->save($groupe);
+        return redirect('admin/user')->withInput()->with('message', 'Nouvel user ajouté');
     }
+
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -86,27 +93,28 @@ class UserCtrl extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $user = User::find($id);
-        if(!$user) {
+        if (!$user) {
             return redirect('admin/user');
         }
         if (!Auth::user()->hasRole(Role::UPDATE, 'user')) {
             return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
         $user->first();
-        return view('user/edit', ['user' => $user]);
+        $groupe = $user->groupes->first()->nom;
+        return view('user/edit', ['user' => $user, 'groupe' => $groupe]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -115,14 +123,16 @@ class UserCtrl extends Controller
         $user = User::find($id);
         $para = $request->intersect(['name', 'email', 'password', 'password2']);
         //dd($request);
-        if (!Hash::check($para['password'], $user->password)){
-            return redirect()->back()->withInput()->with('error', 'Le password n\'est pas le bon');
-        }
-        $para['password'] = bcrypt($para['password']);
 
-        if($para['password2'] != null){
+        if ($request['password2'] != null) {
+            if ($request['password'] != null) {
+                if (!Hash::check($para['password'], $user->password)) {
+                    return redirect()->back()->withInput()->with('error', 'Le password n\'est pas le bon');
+                }
+            }
             $para['password'] = bcrypt($para['password2']);
         }
+
         if (!User::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'User non valide');
         }
@@ -132,8 +142,12 @@ class UserCtrl extends Controller
         if (!Auth::user()->hasRole(Role::UPDATE, 'user')) {
             return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
-        if($user['actif'] == false){
+        if ($user['actif'] == false) {
             return redirect()->back()->withInput()->with('error', 'User déjà supprimé');
+        }
+        $groupe = Groupe::all()->find($request['groupe']);
+        if ($groupe == null) {
+            return redirect()->back()->with('error', 'Groupe inconnu');
         }
         $user->update($para);
         return redirect('admin/user')->withInput()->with('message', 'Modification enregistrée');
@@ -142,7 +156,7 @@ class UserCtrl extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -155,7 +169,7 @@ class UserCtrl extends Controller
         if ($user == null) {
             redirect()->back()->withInput()->with('error', 'User introuvable');
         }
-        if($user['actif'] == false){
+        if ($user['actif'] == false) {
             return redirect()->back()->withInput()->with('error', 'User déjà supprimé');
         }
         if (!Auth::user()->hasRole(Role::DELETE, 'user')) {

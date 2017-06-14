@@ -42,6 +42,14 @@
                                 <input value="" type="password" class="form-control" name="password2" required="" aria-required="true" aria-invalid="true" placeholder="Confirmation du password">
                             </div>
                         </div>
+                        <label for="groupe">Groupe</label>
+                        <div class="form-group form-float">
+                            <select class="form-control show-tick" data-live-search="true" name="groupe">
+                                @foreach($groupes as $groupe)
+                                    <option value="{{$groupe->id}}" type="number">{{$groupe->nom}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <input type="submit" class="btn btn-primary waves-effect"/>
                     </form>
                 </div>
