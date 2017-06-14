@@ -158,10 +158,7 @@ class EditionCtrl extends Controller
     public function show($annee)
     {
         $edition = Edition::all()->where('annee', $annee)->first();
-        if (!Edition::isValid(['annee' => $annee]) || $edition->actif == false) {
-            return response()->json('Annee edition non valide', Response::HTTP_BAD_REQUEST);
-        }
-        if ($edition == null) {
+        if ($edition == null || $edition->actif == false) {
             return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
         }
         $edition->urlImageMedia = urldecode($edition->urlImageMedia);
