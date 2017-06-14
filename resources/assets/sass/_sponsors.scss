@@ -37,8 +37,9 @@ margin-bottom: 50px;
 }
 
 .flip-container, .front, .back {
-  width: 280px;
-  height: 200px;
+  width: 100%;
+  padding-bottom: 66.66%;
+  height: 100%;
 }
 
 .flipper {
@@ -86,7 +87,7 @@ margin-bottom: 50px;
   background: $contrast-blue;
   padding: 15px;
   margin:1px;
-  width: 300px;
+  min-width: 300px;
 }
 
 .sponsor-list {

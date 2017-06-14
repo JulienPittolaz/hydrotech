@@ -6,11 +6,8 @@
         <h2 class="sponsor-category">Catégorie {{nom}}</h2>
         <ul class="sponsor-list columns">
             {{#each categorieeditionsponsors}}
-            {{#each sponsor}}
-            {{nom}}
-            {{/each}}
-            {{/each}}
             {{>sponsor}}
+            {{/each}}
         </ul>
         {{/each}}
     </div>

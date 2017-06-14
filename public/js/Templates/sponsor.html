@@ -1,13 +1,15 @@
-<li class="sponsor-item column">
+{{#isValid}}
+<li class="sponsor-item column is-one-quarter-desktop is-full-tablet">
     <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
         <div class="flipper">
             <div class="front" >
                 asdasdasdads
             </div>
             <div class="back">
-                <div class="sponsor-name">{{nom}}</div>
+                <div class="sponsor-name">{{sponsor.nom}}</div>
                 <div class="sponsor-website">
-                    <a href="urlSponsor">
+                    <a href="{{sponsor.urlSponsor}}" target="_blank">
+                        {{sponsor.urlSponsor}}
                         <button>Visiter le site</button>
                     </a>
                 </div>
@@ -15,88 +17,4 @@
         </div>
     </div>
 </li>
-<li class="sponsor-item column">
-    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-        <div class="flipper">
-            <div class="front" >
-                asdasdasdads
-            </div>
-            <div class="back">
-                <div class="sponsor-name">{{nom}}</div>
-                <div class="sponsor-website">
-                    <a href="urlSponsor">
-                        <button>Visiter le site</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</li>
-<li class="sponsor-item column">
-    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-        <div class="flipper">
-            <div class="front" >
-                asdasdasdads
-            </div>
-            <div class="back">
-                <div class="sponsor-name">{{nom}}</div>
-                <div class="sponsor-website">
-                    <a href="urlSponsor">
-                        <button>Visiter le site</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</li>
-<li class="sponsor-item column">
-    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-        <div class="flipper">
-            <div class="front" >
-                asdasdasdads
-            </div>
-            <div class="back">
-                <div class="sponsor-name">{{nom}}</div>
-                <div class="sponsor-website">
-                    <a href="urlSponsor">
-                        <button>Visiter le site</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</li>
-<li class="sponsor-item column">
-    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-        <div class="flipper">
-            <div class="front" >
-                asdasdasdads
-            </div>
-            <div class="back">
-                <div class="sponsor-name">{{nom}}</div>
-                <div class="sponsor-website">
-                    <a href="urlSponsor">
-                        <button>Visiter le site</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</li>
-<li class="sponsor-item column">
-    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-        <div class="flipper">
-            <div class="front" >
-                asdasdasdads
-            </div>
-            <div class="back">
-                <div class="sponsor-name">{{nom}}</div>
-                <div class="sponsor-website">
-                    <a href="urlSponsor">
-                        <button>Visiter le site</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</li>
+{{/isValid}}
