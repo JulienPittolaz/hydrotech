@@ -13,7 +13,8 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+          type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
@@ -21,28 +22,29 @@
     <!-- Dropzone Css -->
     <link href="{{url("back_office/plugins/dropzone/dropzone.css")}}" rel="stylesheet">
     <!-- Animation Css -->
-    <link href="{{url("back_office/plugins/animate-css/animate.css")}}" rel="stylesheet" />
+    <link href="{{url("back_office/plugins/animate-css/animate.css")}}" rel="stylesheet"/>
 
     <link href="{{url("back_office/plugins/multi-select/css/multi-select.css")}}" rel="stylesheet">
     <!-- Colorpicker Css -->
-    <link href="{{url("back_office/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css")}}" rel="stylesheet" />
+    <link href="{{url("back_office/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css")}}" rel="stylesheet"/>
 
     <!-- Waves Effect Css -->
-    <link href="{{url("back_office/plugins/node-waves/waves.css")}}" rel="stylesheet" />
+    <link href="{{url("back_office/plugins/node-waves/waves.css")}}" rel="stylesheet"/>
 
     <!-- Animation Css -->
-    <link href="{{url("back_office/plugins/animate-css/animate.css")}}" rel="stylesheet" />
+    <link href="{{url("back_office/plugins/animate-css/animate.css")}}" rel="stylesheet"/>
 
     <!-- Morris Chart Css-->
-    <link href="{{url("back_office/plugins/morrisjs/morris.css")}}" rel="stylesheet" />
-    <link href="{{url("back_office/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css")}}" rel="stylesheet" />
+    <link href="{{url("back_office/plugins/morrisjs/morris.css")}}" rel="stylesheet"/>
+    <link href="{{url("back_office/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css")}}"
+          rel="stylesheet"/>
 
     <!-- Custom Css -->
     <link href="{{url("back_office/css/style.css")}}" rel="stylesheet">
     <link href="{{url("back_office/css/custom.css")}}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="{{url("back_office/css/themes/all-themes.css")}}" rel="stylesheet" />
+    <link href="{{url("back_office/css/themes/all-themes.css")}}" rel="stylesheet"/>
 </head>
 
 <body class="theme-blue">
@@ -81,9 +83,14 @@
 <nav class="navbar">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+            <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
+               data-target="#navbar-collapse" aria-expanded="false"></a>
             <a href="javascript:void(0);" class="bars"></a>
             <a class="navbar-brand" target="_parent" href="{{ url('/admin/prix') }}">HYDRO.HEIG-VD.CH</a>
+
+        </div>
+        <div class="nav navbar-nav navbar-right" >
+            <a href="{{ url('/auth/logout') }}" class="logout-link"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a>
         </div>
     </div>
 </nav>
@@ -101,37 +108,37 @@
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/prix')}}">
+                    <a target="_parent" href="{{url('/admin/prix')}}">
                         <i class="material-icons">grade</i>
                         <span>Prix</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/actualite')}}">
+                    <a target="_parent" href="{{url('/admin/actualite')}}">
                         <i class="material-icons">import_contacts</i>
                         <span>Actualités</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/media')}}">
+                    <a target="_parent" href="{{url('/admin/media')}}">
                         <i class="material-icons">collections</i>
                         <span>Médias</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/categorie')}}">
+                    <a target="_parent" href="{{url('/admin/categorie')}}">
                         <i class="material-icons">clear_all</i>
                         <span>Catégories de sponsors</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/sponsor')}}">
+                    <a target="_parent" href="{{url('/admin/sponsor')}}">
                         <i class="material-icons">monetization_on</i>
                         <span>Sponsors</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/membre')}}">
+                    <a target="_parent" href="{{url('/admin/membre')}}">
                         <i class="material-icons">people</i>
                         <span>Membres</span>
                     </a>
@@ -163,19 +170,19 @@
                     </ul>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/presse')}}">
+                    <a target="_parent" href="{{url('/admin/presse')}}">
                         <i class="material-icons">event_note</i>
                         <span>Articles de presse</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/social')}}">
+                    <a target="_parent" href="{{url('/admin/social')}}">
                         <i class="material-icons">share</i>
                         <span>Réseaux sociaux</span>
                     </a>
                 </li>
                 <li>
-                    <a  target="_parent" href="{{url('/admin/user')}}">
+                    <a target="_parent" href="{{url('/admin/user')}}">
                         <i class="material-icons">person</i>
                         <span>Utilisateurs</span>
                     </a>
@@ -192,37 +199,37 @@
             @yield('content')
         </div>
     </section>
-    </section>
-    <!-- Jquery Core Js -->
-    <script src="{{url("back_office/plugins/jquery/jquery.min.js")}}"></script>
+</section>
+<!-- Jquery Core Js -->
+<script src="{{url("back_office/plugins/jquery/jquery.min.js")}}"></script>
 
-    <!-- Bootstrap Core Js -->
-    <script src="{{url("back_office/plugins/bootstrap/js/bootstrap.js")}}"></script>
+<!-- Bootstrap Core Js -->
+<script src="{{url("back_office/plugins/bootstrap/js/bootstrap.js")}}"></script>
 
-    <!-- Select Plugin Js -->
-    <script src="{{url("back_office/plugins/bootstrap-select/js/bootstrap-select.js")}}"></script>
+<!-- Select Plugin Js -->
+<script src="{{url("back_office/plugins/bootstrap-select/js/bootstrap-select.js")}}"></script>
 
-    <!-- Slimscroll Plugin Js -->
-    <script src="{{url("back_office/plugins/jquery-slimscroll/jquery.slimscroll.js")}}"></script>
+<!-- Slimscroll Plugin Js -->
+<script src="{{url("back_office/plugins/jquery-slimscroll/jquery.slimscroll.js")}}"></script>
 
-    <!-- Waves Effect Plugin Js -->
-    <script src="{{url("back_office/plugins/node-waves/waves.js")}}"></script>
+<!-- Waves Effect Plugin Js -->
+<script src="{{url("back_office/plugins/node-waves/waves.js")}}"></script>
 
-    <!-- Jquery CountTo Plugin Js -->
-    <script src="{{url("back_office/plugins/jquery-countto/jquery.countTo.js")}}"></script>
+<!-- Jquery CountTo Plugin Js -->
+<script src="{{url("back_office/plugins/jquery-countto/jquery.countTo.js")}}"></script>
 
-    <!-- Morris Plugin Js -->
-    <script src="{{url("back_office/plugins/raphael/raphael.min.js")}}"></script>
-    <script src="{{url("back_office/plugins/morrisjs/morris.js")}}"></script>
+<!-- Morris Plugin Js -->
+<script src="{{url("back_office/plugins/raphael/raphael.min.js")}}"></script>
+<script src="{{url("back_office/plugins/morrisjs/morris.js")}}"></script>
 
-    <!-- ChartJs -->
-    <script src="{{url("back_office/plugins/chartjs/Chart.bundle.js")}}"></script>
+<!-- ChartJs -->
+<script src="{{url("back_office/plugins/chartjs/Chart.bundle.js")}}"></script>
 
 <!-- Bootstrap Colorpicker Js -->
 <script src="{{url("back_office/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js")}}"></script>
 
-    <!-- DropzoneJs -->
-    <script src="{{url("back_office/plugins/dropzone/dropzone.js")}}"></script>
+<!-- DropzoneJs -->
+<script src="{{url("back_office/plugins/dropzone/dropzone.js")}}"></script>
 
 <!-- Input Mask Plugin Js -->
 <script src="{{url("back_office/plugins/jquery-inputmask/jquery.inputmask.bundle.js")}}"></script>
@@ -233,26 +240,26 @@
 <!-- noUISlider Plugin Js -->
 <script src="{{url("back_office/plugins/nouislider/nouislider.js")}}"></script>
 
-    <!-- Flot Charts Plugin Js -->
-    <!-- Flot Charts Plugin Js -->
-    <script src="{{url("back_office/plugins/flot-charts/jquery.flot.js")}}"></script>
-    <script src="{{url("back_office/plugins/flot-charts/jquery.flot.resize.js")}}"></script>
-    <script src="{{url("back_office/plugins/flot-charts/jquery.flot.pie.js")}}"></script>
-    <script src="{{url("back_office/plugins/flot-charts/jquery.flot.categories.js")}}"></script>
-    <script src="{{url("back_office/plugins/flot-charts/jquery.flot.time.js")}}"></script>
+<!-- Flot Charts Plugin Js -->
+<!-- Flot Charts Plugin Js -->
+<script src="{{url("back_office/plugins/flot-charts/jquery.flot.js")}}"></script>
+<script src="{{url("back_office/plugins/flot-charts/jquery.flot.resize.js")}}"></script>
+<script src="{{url("back_office/plugins/flot-charts/jquery.flot.pie.js")}}"></script>
+<script src="{{url("back_office/plugins/flot-charts/jquery.flot.categories.js")}}"></script>
+<script src="{{url("back_office/plugins/flot-charts/jquery.flot.time.js")}}"></script>
 
-    <!-- Sparkline Chart Plugin Js -->
-    <script src="{{url("back_office/plugins/jquery-sparkline/jquery.sparkline.js")}}"></script>
-    <script src="{{url("back_office/plugins/jquery-sparkline/jquery.sparkline.js")}}"></script>
-
-
-    <script src="{{url("back_office/plugins/jquery-datatable/jquery.dataTables.js")}}"></script>
-    <script src="{{url("back_office/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js")}}"></script>
-    <script src="{{url("back_office/plugins/autosize/autosize.js")}}"></script>
-    <script src="{{url("back_office/plugins/jquery-validation/jquery.validate.js")}}"></script>
+<!-- Sparkline Chart Plugin Js -->
+<script src="{{url("back_office/plugins/jquery-sparkline/jquery.sparkline.js")}}"></script>
+<script src="{{url("back_office/plugins/jquery-sparkline/jquery.sparkline.js")}}"></script>
 
 
-    <script src="{{url("back_office/js/cropit.js")}}"></script>
+<script src="{{url("back_office/plugins/jquery-datatable/jquery.dataTables.js")}}"></script>
+<script src="{{url("back_office/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js")}}"></script>
+<script src="{{url("back_office/plugins/autosize/autosize.js")}}"></script>
+<script src="{{url("back_office/plugins/jquery-validation/jquery.validate.js")}}"></script>
+
+
+<script src="{{url("back_office/js/cropit.js")}}"></script>
 
 <!-- Autosize Plugin Js -->
 <script src="{{url("back_office/plugins/autosize/autosize.js")}}"></script>
@@ -265,8 +272,8 @@
 <script src="{{url("back_office/js/admin.js")}}"></script>
 <script src="{{url("back_office/js/pages/forms/basic-form-elements.js")}}"></script>
 
-    <!-- Demo Js -->
-    <script src="{{url("back_office/js/demo.js")}}"></script>
-    <script src="{{url("back_office/js/script.js")}}"></script>
+<!-- Demo Js -->
+<script src="{{url("back_office/js/demo.js")}}"></script>
+<script src="{{url("back_office/js/script.js")}}"></script>
 </body>
 </html>

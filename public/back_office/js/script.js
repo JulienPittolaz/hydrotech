@@ -29,6 +29,7 @@
         }
     });
 
+
     $('#presse-form').validate({
         rules: {
             'url': {
@@ -93,8 +94,44 @@
             'nom': {
                 required: true
             },
+            'urlLogo':{
+                required:true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
 
-            'urlLogo': {
+    $('#membre-form').validate({
+        rules: {
+            'adresseMail': {
+                required: true,
+                email: true
+            },
+            'nom': {
+                required: true
+            },
+            'prenom': {
+                required: true
+            },
+            'dateNaissance': {
+                required: true,
+                date:true
+            },
+            'section': {
+                required: true
+            },
+            'description': {
+                required: true
+            },
+            'photoProfil': {
                 required: true
             }
         },
@@ -141,6 +178,25 @@
             $(element).parents('.form-group').append(error);
         }
     });
+    $('#media-form-edit').validate({
+        rules: {
+            'titre': {
+                maxlength: 30
+            },
+            'date': {
+                date: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
 
     $('#actualite-form').validate({
         rules: {
@@ -165,6 +221,29 @@
             },
             'urlImage': {
                 required: true,
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+    $('#actualite-form-edit').validate({
+        rules: {
+            'titre': {
+                maxlength: 30
+            },
+            'datePublication': {
+                date: true
+
+            },
+            'contenu': {
+                maxlength: 500
             }
         },
         highlight: function (input) {
@@ -243,6 +322,32 @@
             $(element).parents('.form-group').append(error);
         }
     });
+
+    $('#edition-form-edit').validate({
+        rules: {
+            'annee': {
+                digits: 4
+            },
+            'dateDebut': {
+                date: true
+            },
+            'dateFin': {
+                date: true
+            },
+            'description': {
+                maxlength: 500
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
     $('#user-form').validate({
         rules: {
             'email': {
@@ -253,7 +358,23 @@
                 required: true
             },
             'name': {
-                required: true,
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+    $('#user-form-edit').validate({
+        rules: {
+            'email': {
+                email: true
             }
         },
         highlight: function (input) {
