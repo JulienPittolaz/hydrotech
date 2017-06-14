@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Validator;
+use Illuminate\Http\Request;
 
 class Presse extends Model
 {
-    protected $fillable = ['url', 'titreArticle', 'description', 'dateParution', 'nomPresse'];
+    protected $fillable = [ 'dateParution', 'titreArticle', 'description', 'nomPresse', 'url'];
     protected $hidden = ['actif'];
     //protected $table = "presses";
 
@@ -21,8 +22,9 @@ class Presse extends Model
             'url' => 'url|sometimes|required',
             'titreArticle' => 'string|sometimes|required',
             'description' => 'string|sometimes|required',
-            'dateParution' => 'date|sometimes|required|before:tomorrow',
+            'dateParution' => 'date|sometimes|required|before_or_equal:today',
             'nomPresse' => 'string|sometimes|required',
         ])->passes();
     }
+
 }

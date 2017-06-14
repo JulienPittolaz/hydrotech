@@ -19,15 +19,12 @@ class SponsorCtrl extends Controller
 
 
         foreach ($sponsors as $sponsor){
-            $sponsor->urlLogo = urldecode($sponsor->urlLogo);
             $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
 
             $categorieSponsorEditions = $sponsor->categorieeditionsponsors;
             foreach ($categorieSponsorEditions as $categorieDuSponsor){
                 $ed = $categorieDuSponsor->edition;
                 $ed->annee;
-                $ed->urlImageMedia = urldecode($ed->urlImageMedia);
-                $ed->urlImageEquipe = urldecode($ed->urlImageEquipe);
             }
         }
         return $sponsors;
@@ -55,11 +52,9 @@ class SponsorCtrl extends Controller
         if (!Sponsor::isValid($para)) {
             return response()->json('Sponsor non valide', Response::HTTP_BAD_REQUEST);
         }
-        $para['urlLogo'] = urlencode($para['urlLogo']);
         $para['urlSponsor'] = urlencode($para['urlSponsor']);
         $sponsor = new Sponsor($para);
         $sponsor->save();
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return response()->json($sponsor, Response::HTTP_CREATED);
     }
@@ -82,7 +77,6 @@ class SponsorCtrl extends Controller
         if (Sponsor::find($id) == null) {
             return response()->json('Sponsor introuvable', Response::HTTP_NOT_FOUND);
         }
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return $sponsor;
     }
@@ -115,14 +109,10 @@ class SponsorCtrl extends Controller
         if (!Sponsor::isValid(['id' => $id]) || $sponsor->actif == false) {
             return response()->json('Sponsor inexistant', Response::HTTP_NOT_FOUND);
         }
-        if($request->has('urlLogo')){
-            $para['urlLogo'] = urlencode($para['urlLogo']);
-        }
         if($request->has('urlSponsor')){
             $para['urlSponsor'] = urlencode($para['urlSponsor']);
         }
         $sponsor->update($para);
-        $sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return response()->json($sponsor, Response::HTTP_OK);
     }

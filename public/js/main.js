@@ -6,10 +6,10 @@ $(function () {
     // GESTION MENU HAMBURGER
     $("#popup").on("click", "nav.edition_menu",  function () {
         $("body nav.edition_menu ul").toggleClass('isHidden');
-        $("html").toggleClass("isNoScroll")
-        $("body nav.edition_menu ul").toggleClass("isBlock")
+        $("html").toggleClass("isNoScroll");
+        $("body nav.edition_menu ul").toggleClass("isBlock");
 
-        })
+    })
 
 
     /**
@@ -208,7 +208,12 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
      success: function () {
         $("#socials").html(JST['reseauxSociaux']({reseauxSociaux:mesreseauxSociaux.toJSON()}));
     }
+
  });
+
+    manageNoHashes();
+
+
 
 
 
@@ -924,6 +929,7 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     tests.fetch({
         success: function(){
             $('#timeline').append(JST['timeline']({timeline:tests.toJSON()}));
+            console.log(tests.toJSON());
             initTimeline();
         }
     });

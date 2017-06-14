@@ -1,22 +1,22 @@
-<div data-time="{{annee}}">
-    <div class="soutiens"></div>
-    <div style=" background-image: url({{urlImageMedia}})" alt="" class="timeline-background">
+<div data-time="{{annee}}" id="timeline-{{annee}}">
+    <div>
+        <div style="background-image: url({{urlImageMedia}})" class="timeline-background"></div>
         <div class="timeline-filter"></div>
         <div class="timeline-content container">
             <div class="columns">
-                <div class="column is-half-desktop actualites-button">
-                    <button class="edition-button "><a href="#/editions/{{annee}}/actualites">Actualités</a></button>
+                <div class="column is-4 actualites-button">
+                    <a class="tl_link" href="#/editions/{{annee}}/actualites"><button class="edition-button ">Actualités</button></a>
                 </div>
-                <div class="column is-half-desktop galerie-button">
-                    <button class="edition-button "><a href="#/editions/{{annee}}/medias">Medias</a></button>
+                <div class="column is-offset-4 is-4 galerie-button">
+                    <a class="tl_link" href="#/editions/{{annee}}/medias"><button class="edition-button ">Medias</button></a>
                 </div>
             </div>
             <div class="columns">
-                <div class="column is-half-desktop equipe-button">
-                    <button class="edition-button"><a href="#/editions/{{annee}}/membres">Equipe</a></button>
+                <div class="column is-4 equipe-button">
+                    <a class="tl_link" href="#/editions/{{annee}}/membres"><button class="edition-button">Equipe</button></a>
                 </div>
-                <div class="column is-half-desktop presse-button">
-                    <button class="edition-button"><a href="#/editions/{{annee}}/presses">Presse</a></button>
+                <div class="column is-offset-4 is-4 presse-button">
+                    <a class="tl_link" href="#/editions/{{annee}}/presses"><button class="edition-button">Presse</button></a>
                 </div>
             </div>
         </div>

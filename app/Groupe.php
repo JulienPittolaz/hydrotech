@@ -29,7 +29,7 @@ class Groupe extends Model
             ->get();
 
         foreach ($ressources as $ressource) {
-            if (strtolower($ressource->name) == strtolower($ressourceLabel)) {
+            if (strtolower($ressource->nom) == strtolower($ressourceLabel)) {
                 return true;
             }
         }

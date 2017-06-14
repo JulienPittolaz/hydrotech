@@ -4,7 +4,7 @@
   // prend tte la place de la div et ne deform pas l'img
   background-size: cover;
   // vh: viewport height : 100% de la hauteur
-  height:100vh;
+  min-height:100vh;
   // vh: viewport width
   width:100vw;
 // pour que les positions absolues soit par rapport à #home
@@ -17,41 +17,58 @@
 .home_menu{
 
   position: fixed;
+  transition: all 0.4s;
   z-index: 10000;
   height: 80px;
   width: 100vw;
   padding: 10px;
-  background-color: white;
+  //background-color: white;
+
+  &.hiddenMenu {
+    transform: translateY(-100%);
+  }
+
+  &.white-menu {
+    background-color: white;
+  }
 }
 
-.home_menu_deroule{
-  //background-color: white;
+#home .container{
+
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+
+.home_englobe{
+
+  //max-height: 600px;
+  //width: 400px;
+  position: relative;
+  margin: auto;
 
 }
 
 .home_descConcours{
+  margin-top: 40px;
   background: $contrast-blue;
   color: white;
-  height:300px;
-  max-width: 300px;
+  height:auto;
+  max-width: 460px;
   text-align: justify;
   padding:15px;
-  position: absolute;
-  right:50px;
-  bottom: 50px;
+  position: relative;
+  font-size: $font-size-base;
+}
+.home_descConcours b {
+  font-size:$font-size-base;
 }
 .home_descConcours .concours {
   font-weight:$text-weight-bold ;
-  font-size: 16px;
+  font-size: $font-size-medium;
 }
 
-.home_descConcours p{
-
-  height: 220px;
-  overflow: hidden;
-
-
-}
 
 .home_more{
 
@@ -59,7 +76,7 @@
   font-size: $font-size-medium;
   font-weight: $text-weight-bold;
   text-transform: uppercase;
-  margin-top: 20px;
+  margin-top: 11px;
 
 }
 
@@ -80,28 +97,51 @@
   top:30px;
 }
 
+.home_presentation{
+
+  position: relative;
+  margin-top: 70px;
+  height: 220px;
+  //width: 800px;
+
+}
+
 .home_team{
   font-size: 100px;
   text-transform: uppercase;
   font-weight: $text-weight-bold;
   color:  $contrast-blue;
   line-height: 0.8;
-  position: absolute;
-  top:150px;
-  left:250px;
+  //position: absolute;
+  //top:20px;
+  //left:150px;
 }
+
 
 .home_participants{
   color: white;
   font-weight: $text-weight-bold;
   font-size: $font-size-medium;
-  position: absolute;
-  margin-top:155px;
-  left:100px;
+  //position: absolute;
+  margin-top:10px;
+  //left:0px;
   text-align: right;
   text-transform: uppercase;
   border-right: 8px solid;
   padding-right: 10px;
+  height: 80px;
+}
+
+.home_sponsors{
+
+  color: white;
+  font-weight: $text-weight-bold;
+  font-size: 30px;
+  text-transform: uppercase;
+  //position: absolute;
+  //top: 180px;
+  //left:150px;
+
 }
 
 .home_arrow {
@@ -120,12 +160,11 @@
   text-transform: uppercase;
   font-size: $font-size-medium;
   font-weight: $text-weight-bold;
-  position: absolute;
-  bottom: 50px;
-  left:50%;
   text-align: center;
   transform: translateX(-50%) ;
   width: 200px;
+  margin: 30px auto 0 auto;
+
 }
 
 
@@ -172,11 +211,21 @@
 
 /* jQuery Countdown styles 2.0.0. */
 
-#defaultCountdown { width: 240px; height: 45px; }
+#defaultCountdown {
+  //width: 290px;
+  height: 45px;
+  margin: auto;
+  //position: absolute;
+  //top: 310px;
+  //left: 250px;
+
+}
 
 .is-countdown {
-  border: 1px solid #ccc;
-  background-color: #eee;
+  color: white;
+  font-weight: $text-weight-bold;
+  text-transform: uppercase;
+  font-size: $font-size-big;
 }
 .countdown-rtl {
   direction: rtl;
@@ -214,18 +263,21 @@
 .countdown-section {
   display: block;
   float: left;
-  font-size: 75%;
+  font-size: 100%;
   text-align: center;
 }
 .countdown-amount {
   font-size: 200%;
-}
+ }
 .countdown-period {
   display: block;
+  font-size: $font-size-base;
 }
 .countdown-descr {
   display: block;
   width: 100%;
+  //font-size: $font-size-medium;
+  font-weight: $text-weight-medium;
 }
 
 
@@ -233,69 +285,63 @@
   content: "\ea96";
 }
 
+
+
 /* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
 @media screen and /*(min-width: 21em) and*/ (max-width: 30em),  screen and /*(min-device-width: 21em) and*/ (max-device-width: 30em)
 /*and (min-width: 30em)*/ and (max-width: 41em), screen /*and (min-device-width: 30em)*/ and (max-device-width: 41em){
 
 
 
-  #home{
-    background: url("../img/bateau.jpg");
-    background-position:center center;
-    // prend tte la place de la div et ne deform pas l'img
-    background-size: cover;
-    // vh: viewport height : 100% de la hauteur
-    height:100vh;
-    // vh: viewport width
-    width:100vw;
-    // pour que les positions absolues soit par rapport à #home
-    position: relative;
-  }
-
   .home_presentation{
-
+    height: auto;
+    width: 100vw;
+    margin-left: 0;
   }
 
   .home_team{
     font-size: 50px;
-    text-transform: uppercase;
-    font-weight: $text-weight-bold;
-    color:  $contrast-blue;
-    line-height: 0.8;
     position: initial;
-    padding-top: 15vh;
-    width: 300px;
+    padding-top: 5vh;
+    //width: 300px;
     margin:auto;
+    margin-left: 0;
   }
 
-  .home_descConcours{
-    background: $contrast-blue;
-    color: white;
-    height:300px;
-    max-width: 300px;
-    text-align: justify;
-    padding:15px;
+  .home_sponsors{
+
+    font-size: 18px;
+    margin-left: 0;
     position: initial;
-    margin: auto;
-    margin-top: 5vh;
 
   }
+
+
+}
+
+
+/*Media Queries pour Ipad en Landscape et portrait*/
+@media only screen
+and (max-width : 768px) {
+
+
 
   .home_participants{
-    //color: white;
-    //font-weight: $text-weight-bold;
-    //font-size: $font-size-base;
-    //margin-top: 10px;
-    //border-right: none;
-    //text-align: left;
-    //text-transform: uppercase;
-    //padding-right: 10px;
-    //top: 100px;
-    //position: relative;
-    //left: 50px;
+
+    display:none;
+  }
+
+  #defaultCountdown {
     display: none;
   }
 
+  .home_arrow {
+    display: none
+  }
 
+
+  .home_scroll{
+    display: none
+  }
 }
 

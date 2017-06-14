@@ -19,7 +19,7 @@ var MainRouter = Hydrotech.Router.extend({
     contact: function(subject){
         window['CtrlContact']['contact']();
     },
-    editions: function(annee,page){
-        window['CtrlEditions']['show'](annee,page);
+    editions: function(annee,page,article){
+        window['CtrlEditions']['show'](annee,page,article);
     }
 });

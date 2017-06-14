@@ -10,7 +10,7 @@ var CtrlContact = {
         $('.formulaireContactSuite').hide();
         $('.btnFirstPage').on('click', function (){
             $('#pageDynamicTitle').html($(this).html());
-            $('.formulaireContact1').hide('fast');
+            $('.formulaireContact1').hide();
             $('.formulaireContactSuite').show();
         });
         $('section#popup').show();
@@ -19,5 +19,14 @@ var CtrlContact = {
             $('section').show();
             $('section#popup').hide();
         });
+        $('.btn_send_email').on('click',CtrlContact.validate);
+        $('.btn_back').on('click',function(){
+            $('.formulaireContactSuite').hide();
+            $('.formulaireContact1').show();
+
+        })
+    },
+    validate: function(data){
+        console.log("Validation");
     }
 }

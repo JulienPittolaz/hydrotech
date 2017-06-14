@@ -44,9 +44,13 @@ function initTimeline() {
                 TweenMax.to($('.big').next('li'), 0.1, {autoAlpha: 1} );
                 TweenMax.to($('.big').prev('li').prev('li'), 0.1, {autoAlpha: 1} );
                 TweenMax.to($('.big').next('li').next('li'), 0.1, {autoAlpha: 1} );
-                $('.timeline-dots li').removeClass('right-dot').removeClass('left-dot')
-                $('.big').prevAll('li').addClass('right-dot');
-                $('.big').nextAll('li').addClass('left-dot');
+                if($('.timeline-dots li').hasClass('right-dot') || $('.timeline-dots li').hasClass('left-dot')) {
+                    $('.timeline-dots li').removeClass('right-dot').removeClass('left-dot');
+                }
+                if(!$('.big').prevAll('li').hasClass('right-dot') || !$('.big').nextAll('li').hasClass('left-dot')) {
+                    $('.big').prevAll('li').addClass('right-dot');
+                    $('.big').nextAll('li').addClass('left-dot');
+                }
             })
             .addTo(controller);
     };

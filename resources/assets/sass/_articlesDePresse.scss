@@ -39,10 +39,19 @@
 
 }
 
+li.selectedItem{
+  font-weight: 700;
+}
+
+li.selectedItem::before{
+  font-weight: 400;
+}
+
 .presse_nom{
 
   font-weight: $text-weight-bold;
   text-transform: uppercase;
+  margin-top: -15px;
 }
 
 .presse_bloc{
@@ -74,6 +83,10 @@
 .gridder-list{
   display: inline;
   vertical-align: top;
+}
+
+.gridder-list:hover{
+  cursor:pointer;
 }
 .gridder-show{
   display: block;
