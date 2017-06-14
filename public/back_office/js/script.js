@@ -560,29 +560,36 @@
 
 
 
-
+    var $oldSponsor = $('#oldPhoto').val() || null;
     $('#image-cropper-sponsor-logo').cropit({
         smallImage: 'stretch',
-        maxZoom: '2'
+        maxZoom: '2',
+        imageState: {
+            src: $oldSponsor,
+        },
+        width: 300,
+        height: 168
     });
 
     $('#sponsor-form input[type=submit]').on('click', function(e) {
         e.preventDefault();
         var imageData = $('#image-cropper-sponsor-logo').cropit('export',{
             type: 'image/jpeg',
-            quality: .6,
-            width: 270,
-            height: 180
+            quality: .9,
         });
         $('#urlLogo').val(imageData);
         $('#sponsor-form').submit();
     });
 
+    var $oldEdition = $('#oldPhoto').val() || null;
     $('#image-cropper-edition-background').cropit({
         smallImage: 'stretch',
         maxZoom: '2',
         width: 400,
-        height: 225
+        height: 225,
+        imageState: {
+            src: $oldEdition,
+        }
     });
 
     $('#edition-form input[type=submit]').on('click', function(e) {
@@ -596,11 +603,15 @@
         $('#edition-form').submit();
     });
 
+    var $oldMembre = $('#oldPhoto').val() || null;
     $('#image-cropper-membre').cropit({
         smallImage: 'stretch',
         maxZoom: '2',
         width: 320,
-        height: 396
+        height: 396,
+        imageState: {
+            src: $oldMembre,
+        }
     });
 
     $('#membre-form input[type=submit]').on('click', function(e) {
@@ -613,11 +624,15 @@
         $('#membre-form').submit();
     });
 
+    var $oldActualite = $('#oldPhoto').val() || null;
     $('#image-cropper-actualite').cropit({
         smallImage: 'stretch',
         maxZoom: '2',
         width: 400,
-        height: 225
+        height: 225,
+        imageState: {
+            src: $oldActualite,
+        }
     });
 
     $('#actualite-form input[type=submit]').on('click', function(e) {

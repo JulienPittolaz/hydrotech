@@ -81,10 +81,7 @@
                                                 <td class="sorting_1">{{$edition->annee}}</td>
                                                 <td>{{$edition->nomEquipe}}</td>
                                                 <td>
-                                                    <img src="{{url('/') }}/storage/editions/urlImageMedia{{$edition->id}}.jpg"
-                                                         width="50px" height="50px"/></td>
-                                                <td>
-                                                    <img src="{{url('/') }}/storage/editions/urlImageEquipe{{$edition->id}}.jpg"
+                                                    <img src="{{$edition->urlImageMedia}}"
                                                          width="50px" height="50px"/></td>
                                                 <td>{{$edition->lieu}}</td>
                                                 <td>{{$edition->dateDebut}}</td>

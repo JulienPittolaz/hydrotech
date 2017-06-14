@@ -67,7 +67,7 @@ class MembreCtrl extends Controller
         fclose($source);
         fclose($destination);
         $membre = new Membre($para);
-        $membre->photoProfil = public_path() . '/../storage/app/public/membres/'. $nom .'.jpg';
+        $membre->photoProfil = url('/') . '/storage/membres/'. $nom .'.jpg';
         $membre->save();
         return redirect('admin/membre')->withInput()->with('message', 'Nouveau membre ajouté');
     }
@@ -109,6 +109,7 @@ class MembreCtrl extends Controller
             return redirect('admin/membre');
         }
         $membre->first();
+        $membre->photoProfil = urldecode($membre->photoProfil);
         return view('membre/edit', ['membre' => $membre]);
     }
 
@@ -129,9 +130,15 @@ class MembreCtrl extends Controller
 
         if($request['photoProfil'] != null){
             $para = $request->only(['adresseMail', 'nom', 'prenom', 'dateNaissance', 'section', 'description', 'role']);
-            $ext = $request->file('photoProfil')->getClientOriginalExtension();
-            $image = $request->file('photoProfil')->storeAs('public/membres', $membre->id . '.jpg');
-            $membre->photoProfil = $image;
+            $image_data = $request['photoProfil'];
+            $nom = str_replace(' ', '', $para['nom'].$para['prenom']);
+            unlink(public_path() . '/../storage/app/public/membres/'. $nom .'.jpg');
+            $source = fopen($image_data, 'r');
+            $destination = fopen(public_path() . '/../storage/app/public/membres/'. $nom .'.jpg', 'w');
+            stream_copy_to_stream($source, $destination);
+            fclose($source);
+            fclose($destination);
+            $para['photoProfil'] = url('/') . '/storage/membres/'. $nom .'.jpg';
         }
         if (!Membre::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Membre invalide');

@@ -86,7 +86,7 @@
                                                 @else
                                                     <td>non</td>
                                                 @endif
-                                                <td><img src="{{url('/') }}/storage/actualites/{{$actualite->id}}.jpg"
+                                                <td><img src="{{$actualite->urlImage}}"
                                                          width="50px" height="50px"/></td>
                                             </tr>
                                         @endforeach

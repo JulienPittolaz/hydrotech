@@ -73,7 +73,7 @@ class ActualiteCtrl extends Controller
         fclose($destination);
         $actualite = new Actualite($inputs);
         $actualite->auteur = Auth::user()->name;
-        $actualite->urlImage = public_path() . '/../storage/app/public/actualites/'. $nom .'.jpg';
+        $actualite->urlImage = url('/') . '/storage/actualites/'. $nom .'.jpg';
         $actualite->save();
         return redirect('admin/actualite')->withInput()->with('message', 'Nouvelle actualité créée');
     }
@@ -144,9 +144,15 @@ class ActualiteCtrl extends Controller
         }
         if($request['urlImage'] != null){
             $para = $request->only(['titre', 'datePublication', 'contenu', 'publie']);
-            $ext = $request->file('urlImage')->getClientOriginalExtension();
-            $image = $request->file('urlImage')->storeAs('public/actualites', $actualite->id . '.jpg');
-            $actualite->urlImage = $image;
+            $image_data = $request['urlImage'];
+            $nom = str_replace(' ', '', $para['titre']);
+            unlink(public_path() . '/../storage/app/public/actualites/'. $nom .'.jpg');
+            $source = fopen($image_data, 'r');
+            $destination = fopen(public_path() . '/../storage/app/public/actualites/'. $nom .'.jpg', 'w');
+            stream_copy_to_stream($source, $destination);
+            fclose($source);
+            fclose($destination);
+            $inputs['urlImage'] = url('/') . '/storage/actualites/'. $nom .'.jpg';
         }
         if (!Actualite::isValid($inputs)) {
             return redirect()->back()->withInput()->with('error', 'Actualité invalide');

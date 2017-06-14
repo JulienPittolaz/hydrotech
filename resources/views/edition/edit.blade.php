@@ -17,7 +17,7 @@
                             {{ Session::get('error') }}
                         </div>
                     @endif
-                    <form action="{{ action('Back_office\EditionCtrl@update', $id = $edition->id) }}" 
+                    <form action="{{ action('Back_office\EditionCtrl@update', $id = $edition->id) }}" id="edition-form"
                           method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data" id="edition-form-edit">
                         <label for="annee">Annee</label>
                         <div class="form-group form-float">
@@ -31,13 +31,18 @@
                                 <input value="{{$edition->nomEquipe}}" type="text" class="form-control" name="nomEquipe" required="" aria-required="true" aria-invalid="true" placeholder="Nom de l'équipe pour l'édition">
                             </div>
                         </div>
-                        <label for="urlImageMedia">Photo de l'édition (JPG, PNG ou GIF) :</label><br />
-                        <img src="{{url('/') }}/storage/editions/urlImageMedia{{$edition->id}}.jpg" width="100px" height="100px"/><br />
-                        <input type="file" name="urlImageMedia" id="urlImageMedia" size="100"/><br />
-
-                        <label for="urlImageEquipe">Photo de l'équipe (JPG, PNG ou GIF) :</label><br />
-                        <img src="{{url('/') }}/storage/editions/urlImageEquipe{{$edition->id}}.jpg" width="100px" height="100px"/><br />
-                        <input type="file" name="urlImageEquipe" id="urlImageEquipe" size="100"/><br />
+                        <input type="hidden" id="oldPhoto" value="{{$edition->urlImageMedia}}">
+                        <div class="form-group form-float">
+                            <label for="urlImageMedia">Photo de l'édition</label>
+                            <div id="image-cropper-edition-background">
+                                <div class="cropit-preview"></div>
+                                <input type="range" class="cropit-image-zoom-input" />
+                                <!-- The actual file input will be hidden -->
+                                <input type="file" class="cropit-image-input" />
+                                <!-- And clicking on this button will open up select file dialog -->
+                            </div>
+                            <input id="urlImageMedia" type="hidden" name="urlImageMedia">
+                        </div>
 
                         <label for="lieu">Lieu</label>
                         <div class="form-group form-float">

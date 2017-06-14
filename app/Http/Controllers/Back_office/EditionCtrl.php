@@ -110,14 +110,14 @@ class EditionCtrl extends Controller
         }
         $para = $request->only(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
         $image_data = $request['urlImageMedia'];
-        $nom = str_replace(' ', '', $para['nomEquipe']);
+        $nom = str_replace(' ', '', $para['nomEquipe'].$para['annee']);
         $source = fopen($image_data, 'r');
-        $destination = fopen(public_path() . '/../storage/app/public/edition/'. $nom .'.jpg', 'w');
+        $destination = fopen(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg', 'w');
         stream_copy_to_stream($source, $destination);
         fclose($source);
         fclose($destination);
         $edition = new Edition($para);
-        $edition->urlImageMedia = public_path() . '/../storage/app/public/edition/'. $nom .'.jpg';
+        $edition->urlImageMedia = url('/') . '/storage/editions/'. $nom .'.jpg';
         $edition->save();
 
         $edition->save();
@@ -205,24 +205,21 @@ class EditionCtrl extends Controller
         }
         //dd($request);
         $edition = Edition::find($id);
-        $para = $request->intersect(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
-        $request->replace(['id' => $id]);
-
+        $para = $request->intersect(['annee', 'nomEquipe', 'urlImageMedia', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
         if($request['urlImageMedia'] != null){
             $para = $request->intersect(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
-            //$ext1 = $request->file('urlImageMedia')->getClientOriginalExtension();
-            $image1 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageMedia' . $edition->id . '.jpg');
-            $edition->urlImageMedia = $image1;
-            //dd($image1);
+            $image_data = $request['urlImageMedia'];
+            $nom = str_replace(' ', '', $para['nomEquipe'].$para['annee']);
+            unlink(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg');
+            $source = fopen($image_data, 'r');
+            $destination = fopen(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg', 'w');
+            stream_copy_to_stream($source, $destination);
+            fclose($source);
+            fclose($destination);
+            $para['urlImageMedia'] = url('/') . '/storage/editions/'. $nom .'.jpg';
         }
+        $request->replace(['id' => $id]);
 
-        if($request['urlImageEquipe'] != null){
-            $para = $request->intersect(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
-            //$ext2 = $request->file('urlImageEquipe')->getClientOriginalExtension();
-            $image2 = $request->file('urlImageEquipe')->storeAs('public/editions', 'urlImageEquipe' . $edition->id . '.jpg');
-            $edition->urlImageEquipe = $image2;
-            //dd($request);
-        }
 
         if (!Edition::isValid($para)) {
             //dd($request);

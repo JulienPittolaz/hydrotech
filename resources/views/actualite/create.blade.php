@@ -61,13 +61,6 @@
                                 </grammarly-btn>
                             </div>
                         </div>
-                        <label for="auteur">Auteur</label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="" type="text" class="form-control" name="auteur" required=""
-                                       aria-required="true" aria-invalid="true" placeholder="Auteur de l'article">
-                            </div>
-                        </div>
                         <label for="publie">Publication</label>
                         <div class="demo-radio-button ">
                             <input class="radio-col-light-blue" name="publie" type="radio" id="true" value="1" checked/>
