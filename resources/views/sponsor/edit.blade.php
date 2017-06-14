@@ -26,9 +26,18 @@
                                 <input value="{{$sponsor->nom}}" type="text" class="form-control" name="nom" required="" aria-required="true" aria-invalid="true" placeholder="Nom du sponsor">
                             </div>
                         </div>
-                        <label for="urlLogo">Icône du fichier (JPG, PNG ou GIF) :</label><br />
-                        <img src="{{url('/') }}/storage/sponsors/{{$sponsor->nom}}.jpg" width="100px" height="100px"/><br />
-                        <input type="file" name="urlLogo" id="urlLogo"/><br />
+                        <input type="hidden" id="oldPhoto" value="{{$sponsor->urlLogo}}">
+                        <div class="form-group form-float">
+                            <label for="urlLogo">Photo de l'édition</label>
+                            <div id="image-cropper-sponsor-logo">
+                                <div class="cropit-preview"></div>
+                                <input type="range" class="cropit-image-zoom-input" />
+                                <!-- The actual file input will be hidden -->
+                                <input type="file" class="cropit-image-input" />
+                                <!-- And clicking on this button will open up select file dialog -->
+                            </div>
+                            <input id="urlLogo" type="hidden" name="urlLogo">
+                        </div>
                         <label for="urlSponsor">Adresse du site du sponsor</label>
                         <div class="form-group form-float">
                             <div class="form-line">

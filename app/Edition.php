@@ -9,7 +9,7 @@ use Validator;
 
 class Edition extends Model
 {
-    protected $fillable = ['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie'];
+    protected $fillable = ['annee', 'nomEquipe', 'urlImageMedia', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie'];
     protected $hidden = ['actif'];
     //protected $table = "editions";
 
@@ -48,8 +48,7 @@ class Edition extends Model
             'id' => 'exists:editions|sometimes|required',
             'annee' => ['integer', 'sometimes', 'required', 'digits:4', Rule::unique('editions')->ignore($id)],
             'nomEquipe' => 'string|sometimes|required',
-            'urlImageMedia' => 'image|sometimes|required',
-            'urlImageEquipe' => 'image|sometimes|required',
+            'urlImageMedia' => 'string|sometimes|required',
             'lieu' => 'string|sometimes|required',
             'dateDebut' => 'date|sometimes|required|before_or_equal:dateFin',
             'dateFin' => 'date|sometimes|required|after_or_equal:dateDebut',
