@@ -15,6 +15,7 @@
     </script>
 
     <script src="js/packJs.php" charset="utf-8"></script>
+
     <script>
         $(function(){
             initCountdown();
