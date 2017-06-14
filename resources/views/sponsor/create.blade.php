@@ -24,24 +24,19 @@
                                 <input value="" type="text" class="form-control" name="nom" required="" aria-required="true" aria-invalid="true" placeholder="Nom du sponsor">
                             </div>
                         </div>
-                        <label for="urlLogo">Adresse URL du logo</label>
-                       {{-- <form action="#" id="cropform">
-                        <div class="image-editor">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="250000"/>
-                            <input type="file" class="cropit-image-input" name="urlLogo">
-                            <div class="cropit-preview"></div>
-                            <div class="image-size-label">Redimensionner l'image</div>
-                            <input type="range" class="cropit-image-zoom-input" min="0" max="1" step="0.01">
-                            <input type="hidden" name="image-data" class="hidden-image-data"/>
-                            <button id="cropform-button">Crop !</button>
-                        </div>
-                        </form>--}}
-
-                        <label for="urlLogo">Icône du fichier (JPG, PNG ou GIF) :</label><br />
-                        <input type="file" name="urlLogo" id="urlLogo" /><br />
-
-                        <label for="urlSponsor">Adresse du site du sponsor</label>
                         <div class="form-group form-float">
+                        <label for="urlLogo">Adresse URL du logo</label>
+                        <div id="image-cropper-sponsor-logo">
+                            <div class="cropit-preview"></div>
+                            <input type="range" class="cropit-image-zoom-input" />
+                            <!-- The actual file input will be hidden -->
+                            <input type="file" class="cropit-image-input" />
+                            <!-- And clicking on this button will open up select file dialog -->
+                        </div>
+                        <input id="urlLogo" type="hidden" name="urlLogo">
+                        </div>
+                        <div class="form-group form-float">
+                            <label for="urlSponsor">Adresse du site du sponsor</label>
                             <div class="form-line">
                                 <input value="" type="url" class="form-control" name="urlSponsor" required="" aria-required="true" aria-invalid="true" placeholder="Site du sponsor">
                             </div>

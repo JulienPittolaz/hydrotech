@@ -92,6 +92,10 @@
             },
             'nom': {
                 required: true
+            },
+
+            'urlLogo': {
+                required: true
             }
         },
         highlight: function (input) {
@@ -438,25 +442,29 @@
 
 
 
-    $('.image-editor').cropit();
 
-/*
-    $('#cropform-button').click(function(e) {
-        e.preventDefault();
-        console.log('coucou');
-        // Move cropped image data to hidden input
-        var imageData = $('.image-editor').cropit('export');
-        $('.hidden-image-data').val(imageData);
-        console.log($(this).parent().parent());
-        // Print HTTP request params
-        var formValue = $(this).parent().parent().serialize();
-        $('#result-data').text(formValue);
-
-        // Prevent the form from actually submitting
-        return false;
+    $('#image-cropper-sponsor-logo').cropit({
+        smallImage: 'stretch',
+        maxZoom: '2'
     });
 
-*/
+    $('#sponsor-form input[type=submit]').on('click', function(e) {
+        e.preventDefault();
+        var imageData = $('#image-cropper-sponsor-logo').cropit('export',{
+            type: 'image/jpeg',
+            quality: .6,
+            width: 270,
+            height: 180
+        });
+        $('#urlLogo').val(imageData);
+        $('#sponsor-form').submit();
+    });
+
+
+
+// In the demos I'm passing in an imageState option
+// so it renders an image by default:
+// $('#image-cropper').cropit({ imageState: { src: { imageSrc } } });
 
 
 
