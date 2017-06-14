@@ -76,6 +76,7 @@ body, button, input, select, textarea {
 .input, .textarea {
   color: $contrast-blue;
   border-color: $text-color;
+  margin-bottom:1.5rem;
 }
 
 .formulaireContactSuite .button {

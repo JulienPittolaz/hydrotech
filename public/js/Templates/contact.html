@@ -28,14 +28,12 @@
                     <div class="columns">
                         <div class="field column is-half">
                             <p class="control">
-                            <div class="error object_error">Le nom doit être spécifié.</div>
-                            <input class="input is-medium" type="text" placeholder="*Nom">
+                            <input class="input is-medium" required type="text" placeholder="*Nom" name="nom">
                             </p>
                         </div>
                         <div class="field column is-half">
                             <p class="control">
-                            <div class="error object_error">Le prénom doit être spécifié.</div>
-                            <input class="input is-medium" type="text" placeholder="*Prénom">
+                            <input class="input is-medium" required type="text" placeholder="*Prénom" name="prenom">
                             </p>
                         </div>
                     </div>
@@ -43,27 +41,24 @@
                 <div class="columns">
                     <div class="field column is-half">
                         <p class="control">
-                            <input class="input is-medium" type="text" placeholder="Entreprise">
+                            <input class="input is-medium" type="text" placeholder="Entreprise" name="entreprise">
                         </p>
                     </div>
                     <div class="field column is-half">
                         <p class="control">
-                        <div class="error object_error">L'adresse e-mail n'est pas valide.</div>
-                        <input class="input is-medium" type="email" placeholder="*Email">
+                        <input class="input is-medium" required type="email" placeholder="*Email" name="email">
                         </p>
                     </div>
                 </div>
                 <div class="form2">
                     <div class="field">
                         <p class="control">
-                        <div class="error object_error">L'objet doit être spécifié.</div>
-                        <input class="input is-medium" type="text" placeholder="*Objet">
+                        <input class="input is-medium" required type="text" placeholder="*Objet" name="objet">
                         </p>
                     </div>
                     <div class="field">
                         <p class="control">
-                        <div class="error object_error">L'objet doit être spécifié.</div>
-                        <textarea class="textarea is-medium" placeholder="*Message"></textarea>
+                        <textarea class="textarea is-medium" required placeholder="*Message" name="message"></textarea>
                         </p>
                     </div>
                 </div>
@@ -72,7 +67,7 @@
                         <a class="button is-medium is-primary is-outlined btn_back">Retour</a>
                     </div>
                     <div class="column is-2 is-offset-5">
-                        <a class="button is-medium is-primary is-outlined btn_send_email">Envoyer!</a>
+                        <button class="button is-medium is-primary is-outlined btn_send_email" type="submit">Envoyer!</button>
                     </div>
                 </div>
             </div>
