@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    //return view('Back_office.prixCtrl@index');
-});
+Route::get('/', 'Front_office\FrontCtrl@index');
 
 Route::get('admin', function(){
     return redirect('/auth/login');
