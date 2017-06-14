@@ -929,6 +929,7 @@ $(".content").html(JST['utilisateur'](testModelUtilisateur.toJSON()));
     tests.fetch({
         success: function(){
             $('#timeline').append(JST['timeline']({timeline:tests.toJSON()}));
+            console.log(tests.toJSON());
             initTimeline();
         }
     });
