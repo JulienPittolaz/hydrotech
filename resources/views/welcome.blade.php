@@ -39,10 +39,10 @@
         <div class="columns">
             <div class="column">
                 <div class="columns home_presentation">
-                    <div class="column is-2 home_participants"> Participants <br> au concours <br> Hydrocontest</div>
+                    <div class="column is-2 home_participants"> Participant <br> au concours <br> Hydrocontest</div>
                     <div class="column is-10">
                         <span class="home_team">Team <br> Heig-Vd<br></span>
-                        <span class="home_sponsors">Yverdons-les-Bains Energies</span>
+                        <span class="home_sponsors">Yverdon-les-Bains Energies</span>
                     </div>
                 </div>
             </div>
