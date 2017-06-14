@@ -18,14 +18,11 @@ class MembreCtrl extends Controller
     public function index()
     {
         $membres = Membre::all()->where('actif', true);
-<<<<<<< HEAD
         foreach ($membres as $membre){
             //$membre['photoProfil'] = urldecode($membre['photoProfil']);
             $membre->photoProfil = urldecode($membre->photoProfil);
             $membre->editions;
         }
-=======
->>>>>>> 89e865748df3eaf13fab873ccdaa2692b26bef94
         return $membres;
     }
 
