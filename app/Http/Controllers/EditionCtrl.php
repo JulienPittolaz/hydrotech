@@ -18,7 +18,7 @@ class EditionCtrl extends Controller
      */
     public function index()
     {
-        $editions = Edition::all()->where('actif', true);
+        $editions = Edition::all()->where('actif', true)->where('publie', true);
         $editions->where('publie', true);
 
 
@@ -38,11 +38,14 @@ class EditionCtrl extends Controller
                 foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces) {
                     $ces->edition;
                     foreach ($ces->sponsor->categorieeditionsponsors as $c){
+                        $c->sponsor->urlLogo = urldecode($c->sponsor->urlLogo);
+                        $c->sponsor->urlSponsor = urldecode($c->sponsor->urlSponsor);
                         $c->edition;
+                        $c->edition->urlImageMedia = urldecode($c->edition->urlImageMedia);
+                        $c->edition->urlImageEquipe = urldecode($c->edition->urlImageEquipe);
                     }
                 }
             }
-
 
             $edition->sponsors = $categories;
             foreach ($categorieEditionSponsors as $catEdSp) {
