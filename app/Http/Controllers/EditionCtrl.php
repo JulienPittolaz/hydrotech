@@ -18,8 +18,7 @@ class EditionCtrl extends Controller
      */
     public function index()
     {
-        $editions = Edition::all()->where('actif', true)->where('publie', true);
-        $editions->where('publie', true);
+        $editions = Edition::all()->where('actif', true)->where('publie', true)->sortByDesc('annee');
 
 
 
