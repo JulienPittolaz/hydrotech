@@ -26,7 +26,7 @@ class EditionCtrl extends Controller
             $edition->urlImageMedia = urldecode($edition->urlImageMedia);
             $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
 
-            $actualites = $edition->actualites->where('actif', true)->where('datePublication', '<=', date('Y-m-d') )->where('publie', true)->sortByDesc('datePublication');
+            $actualites = $edition->actualites;
             foreach ($actualites as $actualite) {
                 $actualite->urlImage = urldecode($actualite->urlImage);
             }
@@ -60,7 +60,7 @@ class EditionCtrl extends Controller
             foreach ($medias as $media) {
                 $media->url = urldecode($media->url);
             }
-            $membres = $edition->membres->where('pivot.actif', true);
+            $membres = $edition->membres;
             foreach ($membres as $membre) {
                 $membre->photoProfil = urldecode($membre->photoProfil);
                 $membre->editions;
@@ -127,7 +127,7 @@ class EditionCtrl extends Controller
         $edition->urlImageMedia = urldecode($edition->urlImageMedia);
         $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
 
-        $actualites = $edition->actualites->where('actif', true)->where('datePublication', '<=', date('Y-m-d') )->where('publie', true)->sortByDesc('datePublication');
+        $actualites = $edition->actualites;
         foreach ($actualites as $actualite) {
             $actualite->urlImage = urldecode($actualite->urlImage);
         }
