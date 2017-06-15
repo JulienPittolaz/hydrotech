@@ -26,13 +26,13 @@ var CtrlEditions = {
             if (page == 'presses'){
                 managePresse();
             }
-            if (page == 'actualites'){
+            if (page == 'actus'){
                 manageArticles();
                 $('.actualite_footer').show();
                 if (!_.isNull(article)){
                     $('#popup .columns').empty();
                     var contentArticle = {};
-                    var actusArray = CURRENT_ED.actualites;
+                    var actusArray = CURRENT_ED.actus;
                     var actuFound = $.grep(actusArray, function(n,i){
                         return n.id == article;
                     });
@@ -72,12 +72,13 @@ var CtrlEditions = {
                     if (page == 'presses'){
                         managePresse();
                     }
-                    if (page == 'actualites'){
+                    if (page == 'actus'){
+                        console.log(content);
                         manageArticles();
                         if (!_.isNull(article)){
                             $('#popup .columns').empty();
                             var contentArticle = {};
-                            var actusArray = edition.attributes.actualites;
+                            var actusArray = edition.attributes.actus;
                             var actuFound = $.grep(actusArray, function(n,i){
                                 return n.id == article;
                             });

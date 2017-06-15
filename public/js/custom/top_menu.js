@@ -7,7 +7,7 @@ $(function() {
     var isScroll = false;
     var lastScroll = 0;
     var menu = $('.home_menu');
-    setInterval(function() {
+    var scrollInterval = setInterval(function() {
             checkScroll();
     }, 800);
 
@@ -26,4 +26,14 @@ $(function() {
         }
         lastScroll = scrollPos;
     }
+
+    menu.on('mouseenter', function() {
+        clearInterval(scrollInterval);
+    });
+
+    menu.on('mouseout', function() {
+        scrollInterval = setInterval(function() {
+            checkScroll();
+        }, 800);
+    });
 });
