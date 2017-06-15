@@ -57,11 +57,10 @@ function initTimeline() {
                     $('.big').nextAll('li').addClass('left-dot');
                 }
 
-                // animation boutons
-
-
             })
             .addTo(controller);
+
+        console.log(controller)
     };
     // create scene to pin and link animation
 

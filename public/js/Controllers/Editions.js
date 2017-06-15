@@ -19,6 +19,7 @@ var CtrlEditions = {
             $(" nav.edition_menu ul").addClass('isHidden');
             $("nav.edition_menu li a[data-page="+ page +"]").addClass("current_page");
             $('section').hide();
+            $(window).scrollTop(0);
             $('section#popup').show();
             if (page == 'medias'){
                 initMasonry();
@@ -65,6 +66,7 @@ var CtrlEditions = {
                     $(" nav.edition_menu ul").addClass('isHidden');
                     $("nav.edition_menu li a[data-page="+ page +"]").addClass("current_page");
                     $('section').hide();
+                    $(window).scrollTop(0);
                     $('section#popup').show();
                     if (page == 'medias'){
                         initMasonry();

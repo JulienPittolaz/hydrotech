@@ -92,7 +92,6 @@ li.selectedItem::before{
   display: block;
   float: left;
   width: 100%;
-  height: 150px;
   position: relative;
   color: white;
   font-size: $font-size-base;
@@ -113,7 +112,7 @@ li.selectedItem::before{
 
   position: relative;
   float: right;
-  bottom: -60px;
+  margin-top:3rem;
   text-transform: uppercase;
   color: $contrast-blue;
   font-weight: $text-weight-bold;
