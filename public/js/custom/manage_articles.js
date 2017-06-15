@@ -1,3 +1,5 @@
+/*
+* */
 function manageArticles(){
     var size_articles = $(".columns article").length;
     x = 4;
