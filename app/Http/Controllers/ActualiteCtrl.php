@@ -17,7 +17,7 @@ class ActualiteCtrl extends Controller
      */
     public function index()
     {
-        $actualites = Actualite::all()->where('actif', true);
+        $actualites = Actualite::all()->where('actif', true)->where('datePublication', '<=', date('Y-m-d'))->sortByDesc('datePublication');
         foreach ($actualites as $actualite) {
             $actualite->urlImage = urldecode($actualite->urlImage);
             $actualite->editions;
