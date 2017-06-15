@@ -59,12 +59,10 @@ var CtrlEditions = {
                     var fillIn = edition.attributes[page];
                     content[page] = fillIn;
                     content['year'] = annee;
-                    console.log(content);
                     POPUP.empty();
                     POPUP.append(JST[page](content));
                     $(" nav.edition_menu").css("display", "block");
                     $(" nav.edition_menu ul").addClass('isHidden');
-                    console.log(page)
                     $("nav.edition_menu li a[data-page="+ page +"]").addClass("current_page");
                     $('section').hide();
                     $('section#popup').show();
@@ -83,10 +81,15 @@ var CtrlEditions = {
                             var actuFound = $.grep(actusArray, function(n,i){
                                 return n.id == article;
                             });
-                            contentArticle['article'] = actuFound[0];
-                            contentArticle['year'] = annee;
-                            $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
-                            $('footer.actualite_footer').hide();
+                            if (_.isEmpty(actuFound)){
+                                showErrorPage(POPUP);
+
+                            }else{
+                                contentArticle['article'] = actuFound[0];
+                                contentArticle['year'] = annee;
+                                $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
+                                $('footer.actualite_footer').hide();
+                            }
                         }
                     }
                     $(".popup_cross").on("click", function () {

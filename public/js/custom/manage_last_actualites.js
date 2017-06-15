@@ -4,7 +4,7 @@
  */
 function manageLatestActus(){
     // On récupère les 4 dernières actus de l'édition courante
-    var LATEST_NEWS = CURRENT_ED.actualites.slice(0,4);
+    var LATEST_NEWS = CURRENT_ED.actus.slice(0,4);
     //On définit l'année pour la gestion du bouton de retour
     var year = CURRENT_ED.annee;
     //Envoi à la template
