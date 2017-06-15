@@ -30,7 +30,7 @@ var CtrlContact = {
     validate: function(data){
         var fields = [];
         _.each($('.ctf_field'), function(data){
-            fields.push({$(data).attr($(data).val()});
+            fields.push($(data).val());
         });
         console.log(fields);
 
