@@ -585,19 +585,19 @@
     $('#image-cropper-edition-background').cropit({
         smallImage: 'stretch',
         maxZoom: '2',
-        width: 400,
-        height: 225,
         imageState: {
             src: $oldEdition,
         }
     });
+    $('#image-cropper-edition-background').cropit('previewSize', { width: 1600, height: 900 });
 
     $('#edition-form input[type=submit]').on('click', function(e) {
         e.preventDefault();
         var imageData = $('#image-cropper-edition-background').cropit('export',{
             type: 'image/jpeg',
-            quality: .7,
-            exportZoom: 4
+            quality: 1,
+            width: 1600,
+            height: 900,
         });
         $('#urlImageMedia').val(imageData);
         $('#edition-form').submit();
@@ -628,8 +628,8 @@
     $('#image-cropper-actualite').cropit({
         smallImage: 'stretch',
         maxZoom: '2',
-        width: 400,
-        height: 225,
+        width: 900,
+        height: 500,
         imageState: {
             src: $oldActualite,
         }
@@ -639,8 +639,7 @@
         e.preventDefault();
         var imageData = $('#image-cropper-actualite').cropit('export',{
             type: 'image/jpeg',
-            quality: .7,
-            exportZoom: 4
+            quality: 1
         });
         $('#urlImage').val(imageData);
         $('#actualite-form').submit();
