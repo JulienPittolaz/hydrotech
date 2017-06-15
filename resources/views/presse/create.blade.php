@@ -21,7 +21,7 @@
                         <label for="titreArticle">Titre de l'article</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="{{ old('titreArticle') }}" type="text" class="form-control" name="titreArticle" required="" aria-required="true" aria-invalid="true" placeholder="La date de parution">
+                                <input value="{{ old('titreArticle') }}" type="text" class="form-control" name="titreArticle" required="" aria-required="true" aria-invalid="true" placeholder="Le titre de l'article">
                             </div>
                         </div>
                         <label for="dateParution">Date de parution</label>

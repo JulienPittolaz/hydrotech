@@ -72,8 +72,7 @@ class EditionAssociationCtrl extends Controller
         $objets = call_user_func(['\\App\\' . ucfirst($type_ressource), 'all'])->where('actif', true);
 
         $ressources = $type_ressource . 's';
-
-        $edition->objetsDeLedition = $edition->$ressources->where('actif', true);
+        $edition->objetsDeLedition = $edition->$ressources->where('pivot.actif', true);
 
 
         return view('editionAssociation/create', ['annee' => $annee, 'type_ressource' => $type_ressource, 'objets' => $objets, 'edition' => $edition]);
