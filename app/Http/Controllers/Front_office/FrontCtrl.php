@@ -25,7 +25,7 @@ class FrontCtrl extends Controller
         foreach ($actualites as $actualite) {
             array_push($actus, $actualite);
         }
-        $edition->actualites = $actus;
+        $edition->actus = $actus;
 
         /*   $categorieEditionSponsors = $edition->categorieeditionsponsors;
            foreach ($categorieEditionSponsors as $catEdSp) {

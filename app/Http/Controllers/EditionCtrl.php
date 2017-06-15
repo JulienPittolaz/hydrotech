@@ -30,6 +30,13 @@ class EditionCtrl extends Controller
             foreach ($actualites as $actualite) {
                 $actualite->urlImage = urldecode($actualite->urlImage);
             }
+
+            $actus = [];
+            foreach ($actualites as $actualite) {
+                array_push($actus, $actualite);
+            }
+            $edition->actus = $actus;
+            
             $categorieEditionSponsors = $edition->categorieeditionsponsors;
 
             $categories = Categorie::all()->where('actif', true);
@@ -124,6 +131,12 @@ class EditionCtrl extends Controller
         foreach ($actualites as $actualite) {
             $actualite->urlImage = urldecode($actualite->urlImage);
         }
+
+        $actus = [];
+        foreach ($actualites as $actualite) {
+            array_push($actus, $actualite);
+        }
+        $edition->actus = $actus;
 
      /*   $categorieEditionSponsors = $edition->categorieeditionsponsors;
         foreach ($categorieEditionSponsors as $catEdSp) {
