@@ -43,6 +43,28 @@
 
 }
 
+.input.ctf_field_error{
+  border-color:red;
+  color:red;
+}
+
+.textarea.ctf_field_error{
+  border-color:red;
+  color:red;
+}
+
+.user_notfications{
+  height:15px;
+  margin-bottom:5px;
+  .message_error{
+    display:none;
+    color:red;
+  }
+  .message_success{
+    display:none;
+    color:green;
+  }
+}
 .button.is-primary.is-outlined:hover, .button.is-primary.is-outlined:focus {
   background-color: $contrast-blue;
   border-color: $contrast-blue;

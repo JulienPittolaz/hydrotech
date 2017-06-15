@@ -48,7 +48,7 @@
     <link href="{{url("back_office/css/themes/all-themes.css")}}" rel="stylesheet"/>
 </head>
 
-<body class="theme-blue">
+<body class="theme-indigo">
 <!-- Page Loader -->
 <div class="page-loader-wrapper">
     <div class="loader">

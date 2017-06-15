@@ -51,9 +51,15 @@ function initTimeline() {
                     $('.big').prevAll('li').addClass('right-dot');
                     $('.big').nextAll('li').addClass('left-dot');
                 }
+
+                // animation boutons
+
+
             })
             .addTo(controller);
     };
     // create scene to pin and link animation
+
+
 
 }
