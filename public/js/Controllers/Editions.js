@@ -1,4 +1,6 @@
 /**
+ * Ce controller a pour but la gestion de toutes les pages rattachées à une édition
+ * 
  * Created by timdlp on 06.06.17.
  */
 
