@@ -327,6 +327,7 @@ li.left-dot button.year::before {
     position: absolute;
     left: 50%;
     top: 0;
+    opacity: 0.2;
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 33%,rgba(255,255,255,0) 33%,rgba(255,255,255,0) 67%,rgba(255,255,255,1) 67%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   }
 }
@@ -463,13 +464,22 @@ li.left-dot button.year::before {
     display: none;
   }
 
-  .timeline-dots li .button-sponsors {
+  .timeline-dots li.big .button-sponsors {
     transform: translate(40px);
+    padding: 8px 5px;
+    width: 103px;
+    margin-left: 8px;
   }
 
   .timeline-content > .columns {
     margin: 20px auto 30px auto;
     text-align: center;
+  }
+  .timeline .timeline-content {
+    margin-left: 50px;
+  }
+  .timeline-dots li.big button.year {
+    margin-left:15px;
   }
 }
 

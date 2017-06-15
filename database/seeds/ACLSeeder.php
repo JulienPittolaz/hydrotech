@@ -240,7 +240,6 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition1->annee = 2017;
         $edition1->nomEquipe = "TEAM HEIG-VD TAMER";
         $edition1->urlImageMedia = urlencode("http://img.el-wlid.com/imgcache/122723.jpg");
-        $edition1->urlImageEquipe = urlencode('http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png');
         $edition1->lieu = "Saint-Tropez";
         $edition1->dateDebut = "2017-07-04";
         $edition1->dateFin = '2017-07-11';
@@ -251,7 +250,6 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition2->annee = 2016;
         $edition2->nomEquipe = "TEAM HEIG-VD JEAN-JEAN";
         $edition2->urlImageMedia = urlencode("http://img.el-wlid.com/imgcache/122723.jpg");
-        $edition2->urlImageEquipe = urlencode('http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png');
         $edition2->lieu = "Lausanne";
         $edition2->dateDebut = "2016-07-04";
         $edition2->dateFin = '2016-07-11';
@@ -262,7 +260,6 @@ With a style based on 50's advertisements and a vintage feel - Holocraft perfect
         $edition3->annee = 2015;
         $edition3->nomEquipe = "TEAM HEIG-VD ON ETAIT PAS ENCORE LA";
         $edition3->urlImageMedia = urlencode("http://img.el-wlid.com/imgcache/122723.jpg");
-        $edition3->urlImageEquipe = urlencode('http://aboutcolonblank.com/wp-content/uploads/2012/07/nyan-cat.png');
         $edition3->lieu = "Un lieu resté secret";
         $edition3->dateDebut = "2015-07-04";
         $edition3->dateFin = '2015-07-11';
