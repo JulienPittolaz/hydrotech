@@ -590,13 +590,15 @@
             src: $oldEdition,
         }
     });
+    $('#image-cropper-edition-background').cropit('previewSize', { width: 1600, height: 900 });
 
     $('#edition-form input[type=submit]').on('click', function(e) {
         e.preventDefault();
         var imageData = $('#image-cropper-edition-background').cropit('export',{
             type: 'image/jpeg',
             quality: 1,
-            exportZoom: 4
+            width: 1600,
+            height: 900,
         });
         $('#urlImageMedia').val(imageData);
         $('#edition-form').submit();
@@ -639,7 +641,6 @@
         var imageData = $('#image-cropper-actualite').cropit('export',{
             type: 'image/jpeg',
             quality: 1,
-            exportZoom: 4
         });
         $('#urlImage').val(imageData);
         $('#actualite-form').submit();

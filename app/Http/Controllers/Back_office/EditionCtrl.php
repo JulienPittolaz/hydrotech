@@ -104,7 +104,6 @@ class EditionCtrl extends Controller
         }
         //dd($request);
         $para = $request->only(['annee', 'nomEquipe', 'urlImageMedia', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
-
         if (!Edition::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Edition invalide');
         }

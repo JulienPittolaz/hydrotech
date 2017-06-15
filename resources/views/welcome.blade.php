@@ -9,14 +9,12 @@
     <title>Hydrocontest - HEIG-VD</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="{{url("css/app.css")}}" type="text/css">
     <script>
         var CURRENT_ED = {!!$current_ed !!};
-        console.log(CURRENT_ED);
     </script>
 
-    <script src="js/packJs.php" charset="utf-8"></script>
-
+    <script src="{{url("js/packJs.php")}}" charset="utf-8"></script>
     <script>
         $(function(){
             initCountdown();
