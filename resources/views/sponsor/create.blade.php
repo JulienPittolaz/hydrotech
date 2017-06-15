@@ -21,11 +21,11 @@
                         <label for="nom">Nom</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="nom" required="" aria-required="true" aria-invalid="true" placeholder="Nom du sponsor">
+                                <input value="{{ old('nom') }}" type="text" class="form-control" name="nom" required="" aria-required="true" aria-invalid="true" placeholder="Nom du sponsor">
                             </div>
                         </div>
                         <div class="form-group form-float">
-                        <label for="urlLogo">Adresse URL du logo</label>
+                        <label for="urlLogo">Logo</label>
                         <div id="image-cropper-sponsor-logo">
                             <div class="cropit-preview"></div>
                             <input type="range" class="cropit-image-zoom-input" />
@@ -38,7 +38,7 @@
                         <div class="form-group form-float">
                             <label for="urlSponsor">Adresse du site du sponsor</label>
                             <div class="form-line">
-                                <input value="" type="url" class="form-control" name="urlSponsor" required="" aria-required="true" aria-invalid="true" placeholder="Site du sponsor">
+                                <input value="{{ old('urlSponsor') }}" type="url" class="form-control" name="urlSponsor" required="" aria-required="true" aria-invalid="true" placeholder="Site du sponsor">
                             </div>
                             <div class="help-info">Commence par http:// ou https://</div>
                         </div>

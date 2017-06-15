@@ -22,14 +22,14 @@
                         <label for="titre">Titre</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="titre" required=""
+                                <input value="{{ old('titre') }}" type="text" class="form-control" name="titre" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Titre de l'actualite">
                             </div>
                         </div>
                         <label for="datePublication">Date de publication</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="date" class="form-control" name="datePublication" required=""
+                                <input value="{{ old('datePublication') }}" type="date" class="form-control" name="datePublication" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Date de publication">
                             </div>
                         </div>
