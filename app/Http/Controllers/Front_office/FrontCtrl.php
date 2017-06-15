@@ -42,7 +42,7 @@ class FrontCtrl extends Controller
         foreach ($medias as $media) {
             $media->url = urldecode($media->url);
         }
-        $membres = $edition->membres;
+        $membres = $edition->membres->where('pivot.actif', true);
         foreach ($membres as $membre) {
             $membre->photoProfil = urldecode($membre->photoProfil);
             $membre->editions;
