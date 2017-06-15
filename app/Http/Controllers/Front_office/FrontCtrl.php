@@ -42,7 +42,7 @@ class FrontCtrl extends Controller
         foreach ($medias as $media) {
             $media->url = urldecode($media->url);
         }
-        $membres = $edition->membres;
+        $membres = $edition->membres->where('pivot.actif', true);
         foreach ($membres as $membre) {
             $membre->photoProfil = urldecode($membre->photoProfil);
             $membre->editions;
@@ -58,7 +58,7 @@ class FrontCtrl extends Controller
             foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id)->where('categorie_id', $categorie->id)->where('actif', true) as $ces) {
                 $ces->sponsor->urlSponsor = urldecode($ces->sponsor->urlSponsor);
                 $ces->sponsor->urlLogo = urldecode($ces->sponsor->urlLogo);
-                foreach ($ces->sponsor->categorieeditionsponsors as $c){
+                foreach ($ces->sponsor->categorieeditionsponsors->where('actif', true) as $c){
                     $c->edition->urlImageMedia = urldecode($c->edition->urlImageMedia);
                     $c->edition->urlImageEquipe = urldecode($c->edition->urlImageEquipe);
                 }

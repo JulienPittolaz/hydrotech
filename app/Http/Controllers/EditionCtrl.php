@@ -36,7 +36,7 @@ class EditionCtrl extends Controller
                 array_push($actus, $actualite);
             }
             $edition->actus = $actus;
-            
+
             $categorieEditionSponsors = $edition->categorieeditionsponsors;
 
             $categories = Categorie::all()->where('actif', true);
@@ -153,11 +153,12 @@ class EditionCtrl extends Controller
         foreach ($medias as $media) {
             $media->url = urldecode($media->url);
         }
-        $membres = $edition->membres;
+        $membres = $edition->membres->where('pivot.actif', true);
         foreach ($membres as $membre) {
             $membre->photoProfil = urldecode($membre->photoProfil);
             $membre->editions;
         }
+        $edition->equipe = $membres;
         $presses = $edition->presses;
         foreach ($presses as $press) {
             $press->url = urldecode($press->url);
