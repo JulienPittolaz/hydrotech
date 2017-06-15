@@ -22,7 +22,7 @@ class Media extends Model
         $rules = [
             'id' => 'exists:medias|sometimes|required',
             'titre' => 'string|sometimes|required',
-            'url' => 'required',
+            'url' => 'sometimes|required',
             'date' => 'date|sometimes|required|before:tomorrow',
             'auteur' => 'string|sometimes|required',
             'typeMedia' => [
@@ -31,14 +31,6 @@ class Media extends Model
                 'string',
                 Rule::in(['Photo', 'photo', 'Video', 'video']),
             ]];
-
-        if (isset($data['typeMedia'])) {
-            if ($data['typeMedia'] == "Photo" || $data['typeMedia'] == "photo") {
-                $rules['url'] .= '|image|sometimes';
-            } else {
-                $rules['url'] .= '|url|sometimes';
-            }
-        }
         return Validator::make($data, $rules)->passes();
     }
 }
