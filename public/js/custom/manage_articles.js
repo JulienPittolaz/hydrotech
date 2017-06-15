@@ -4,7 +4,6 @@ function manageArticles(){
     var size_articles = $(".columns article").length;
     x = 4;
     $('#popup .columns article.actualite:lt('+x+')').show();
-    console.log(x,size_articles);
     if (x >= size_articles){
         $('.actualite_footer').hide();
     }
