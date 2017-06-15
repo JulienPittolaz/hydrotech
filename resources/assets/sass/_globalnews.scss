@@ -9,6 +9,20 @@
   }
 }
 
+.latest_actualite_contenu{
+
+  font-weight: $text-weight-light;
+
+}
+
+.latest_actualite_contenu a{
+
+  text-transform: uppercase;
+  font-weight: $text-weight-bold;
+  text-align: center;
+  font-size: $font-size-medium;
+}
+
 /* Smartphones moyen (ex: iphone)*/
 /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
 @media screen and /*(min-width: 21em) and*/
