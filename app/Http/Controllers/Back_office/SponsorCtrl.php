@@ -66,22 +66,24 @@ class SponsorCtrl extends Controller
         if (!Auth::user()->hasRole(Role::CREATE, 'sponsor')) {
             return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
-        //dd($request['urlLogo']);
         $para = $request->only(['nom', 'urlLogo', 'urlSponsor']);
         //dd($request->file('urlLogo'));
         if (!Sponsor::isValid($para)) {
-            return redirect()->back()->withInput()->withErrors('error', 'Presse invalide');
+            return redirect()->back()->withInput()->withErrors('error', 'Sponsor invalide');
         }
 
         $para['urlSponsor'] = urlencode($para['urlSponsor']);
-
         $para = $request->only(['nom', 'urlSponsor']);
-        $ext = $request->file('urlLogo')->getClientOriginalExtension();
-        $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.jpg');
+        $image_data = $request['urlLogo'];
+        $nom = str_replace(' ', '', $para['nom']);
+        $source = fopen($image_data, 'r');
+        $destination = fopen(public_path() . '/../storage/app/public/sponsors/'. $nom .'.jpg', 'w');
+        stream_copy_to_stream($source, $destination);
+        fclose($source);
+        fclose($destination);
         $sponsor = new Sponsor($para);
-        $sponsor->urlLogo = $image;
+        $sponsor->urlLogo = url('/') . '/storage/sponsors/'. $nom .'.jpg';
         $sponsor->save();
-        //$sponsor->urlLogo = urldecode($sponsor->urlLogo);
         $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
         return redirect('admin/sponsor')->withInput()->with('message', 'Nouveau sponsor ajouté');
     }
@@ -142,12 +144,17 @@ class SponsorCtrl extends Controller
         }
         $sponsor = Sponsor::find($id);
         $para = $request->intersect(['nom', 'urlLogo', 'urlSponsor']);
-
         if($request['urlLogo'] != null){
             $para = $request->only(['nom', 'urlSponsor']);
-            //$ext = $request->file('urlLogo')->getClientOriginalExtension();
-            $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.jpg');
-            $sponsor->urlLogo = $image;
+            $image_data = $request['urlLogo'];
+            $nom = str_replace(' ', '', $para['nom']);
+            unlink(public_path() . '/../storage/app/public/sponsors/'. $nom .'.jpg');
+            $source = fopen($image_data, 'r');
+            $destination = fopen(public_path() . '/../storage/app/public/sponsors/'. $nom .'.jpg', 'w');
+            stream_copy_to_stream($source, $destination);
+            fclose($source);
+            fclose($destination);
+            $para['urlLogo'] = url('/') . '/storage/sponsors/'. $nom .'.jpg';
         }
         if (!Sponsor::isValid($para)) {
             return Redirect::back()->withErrors(['error', 'Invalide'])->withInput();
@@ -157,13 +164,6 @@ class SponsorCtrl extends Controller
         }
         if($request->has('urlSponsor')){
             $para['urlSponsor'] = urlencode($para['urlSponsor']);
-        }
-
-        if($request['urlLogo'] != null){
-            $para = $request->only(['nom', 'urlSponsor']);
-            $ext = $request->file('urlLogo')->getClientOriginalExtension();
-            $image = $request->file('urlLogo')->storeAs('public/sponsors', $para['nom'] . '.' . $ext);
-            $sponsor->urlLogo = $image;
         }
 
         $sponsor->update($para);

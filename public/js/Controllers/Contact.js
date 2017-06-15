@@ -27,6 +27,10 @@ var CtrlContact = {
         })
     },
     validate: function(data){
-        console.log("Validation");
+        var fields = [];
+        _.each($('.ctf_field'), function(data){
+            fields.push($(data).val());
+        });
+
     }
 }
