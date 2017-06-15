@@ -146,7 +146,9 @@ class ActualiteCtrl extends Controller
             $para = $request->only(['titre', 'datePublication', 'contenu', 'publie']);
             $image_data = $request['urlImage'];
             $nom = str_replace(' ', '', $para['titre']);
-            unlink(public_path() . '/../storage/app/public/actualites/'. $nom .'.jpg');
+            if(file_exists(public_path() . '/../storage/app/public/actualites/'. $nom .'.jpg')) {
+                unlink(public_path() . '/../storage/app/public/actualites/'. $nom .'.jpg');
+            }
             $source = fopen($image_data, 'r');
             $destination = fopen(public_path() . '/../storage/app/public/actualites/'. $nom .'.jpg', 'w');
             stream_copy_to_stream($source, $destination);
