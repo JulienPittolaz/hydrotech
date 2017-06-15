@@ -73,7 +73,7 @@ class EditionAssociationCtrl extends Controller
 
         $ressources = $type_ressource . 's';
 
-        $edition->objetsDeLedition = $edition->$ressources;
+        $edition->objetsDeLedition = $edition->$ressources->where('actif', true);
 
 
         return view('editionAssociation/create', ['annee' => $annee, 'type_ressource' => $type_ressource, 'objets' => $objets, 'edition' => $edition]);
