@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MediaCtrl extends Controller
 {
@@ -62,11 +63,11 @@ class MediaCtrl extends Controller
         $media->save();
         if($para['typeMedia'] == "Photo") {
             $para = $request->only(['titre', 'date', 'auteur', 'typeMedia']);
-            $image = $request->file('url')->storeAs('public/medias', $media->id . '.jpg');
-            $media->url = $image;
+            //$image = $request->file('url')->store('avatars');
+            $image = $request->file('url')->storeAs('', $media->id . '.jpg', 'medias');
+            $media->url = url('/') . '/storage/medias/'. $media->id .'.jpg';
+            $media->save();
         }
-
-        $media->save();
         return redirect('admin/media');
     }
 
@@ -128,8 +129,8 @@ class MediaCtrl extends Controller
         if($para['typeMedia'] == "Photo" || $para['typeMedia'] == "photo" ){
             if($request['url'] != null){
                 $para = $request->only(['url', 'titre', 'date', 'auteur', 'typeMedia']);
-                $image = $request->file('url')->storeAs('public/medias', $media->id . '.jpg');
-                $media->url = $image;
+                $image = $request->file('url')->storeAs('', $media->id . '.jpg', 'medias');
+                $para['url'] = url('/') . '/storage/medias/'. $media->id .'.jpg';
             }
         }
         $request->replace(['id' => $id]);
@@ -139,9 +140,6 @@ class MediaCtrl extends Controller
         }
         if ($media == null || $media->actif == false) {
             return redirect()->back()->withInput()->with('error', 'Media inexistant');
-        }
-        if($request->has('url')){
-            $para['url'] = urlencode($para['url']);
         }
         $media->update($para);
         //$media->url = urldecode($media->url);

@@ -123,7 +123,7 @@ class PrixCtrl extends Controller
         $prix = Prix::find($id);
 
         $inputs = $request->intersect(['nom', 'description', 'montant']);
-        $inputs['montant'] = (int)$inputs['montant'];
+        $inputs['montant'] = (int)$request['montant'];
         $request->replace(['id' => $id]);
         if (!Prix::isValid($inputs)) {
             return redirect()->back()->withInput()->with('error', 'Prix invalide');

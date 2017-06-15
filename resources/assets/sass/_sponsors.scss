@@ -49,7 +49,6 @@ margin-bottom: 50px;
 
 .front, .back {
   backface-visibility: hidden;
-
   position: absolute;
   top: 0;
   left: 0;
@@ -91,7 +90,6 @@ margin-bottom: 50px;
 .sponsor-item {
   background: $contrast-blue;
   padding: 15px;
-  margin:1px;
   min-width: 300px;
 }
 
