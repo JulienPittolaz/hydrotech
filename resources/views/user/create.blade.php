@@ -21,25 +21,25 @@
                         <label for="name">Nom</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="name" required="" aria-required="true" aria-invalid="true" placeholder="Nom">
+                                <input value="{{ old('name') }}" type="text" class="form-control" name="name" required="" aria-required="true" aria-invalid="true" placeholder="Nom">
                             </div>
                         </div>
                         <label for="email">Adresse mail</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="email" class="form-control" name="email" required="" aria-required="true" aria-invalid="true" placeholder="Adresse mail">
+                                <input value="{{ old('email') }}" type="email" class="form-control" name="email" required="" aria-required="true" aria-invalid="true" placeholder="Adresse mail">
                             </div>
                         </div>
                         <label for="password">Mot de passe</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="password" class="form-control" name="password" required="" aria-required="true" aria-invalid="true" placeholder="Mot de passe">
+                                <input value="{{ old('password') }}" type="password" class="form-control" name="password" required="" aria-required="true" aria-invalid="true" placeholder="Mot de passe">
                             </div>
                         </div>
                         <label for="password2">Confirmation du mot de passe</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="password" class="form-control" name="password2" required="" aria-required="true" aria-invalid="true" placeholder="Confirmation du mot de passe">
+                                <input value="{{ old('password2') }}" type="password" class="form-control" name="password2" required="" aria-required="true" aria-invalid="true" placeholder="Confirmation du mot de passe">
                             </div>
                         </div>
                         <label for="groupe">Groupe</label>
