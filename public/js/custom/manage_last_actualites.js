@@ -3,6 +3,7 @@
  * Created by timdlp on 13.06.17.
  */
 function manageLatestActus(){
+    if(!_.isEmpty(CURRENT_ED.actus)){
     // On récupère les 4 dernières actus de l'édition courante
     var LATEST_NEWS = CURRENT_ED.actus.slice(0,4);
     //On définit l'année pour la gestion du bouton de retour
@@ -15,4 +16,5 @@ function manageLatestActus(){
         var viewMoreUrl = "#/editions/"+year+"/actus/"+articleId;
         $(actu).html($(actu).html().substring(0,160)+"… "+"<div class='latest-news-view-more'><a href='"+viewMoreUrl+"'>Lire la suite</a></div>");
     });
+    }
 }
