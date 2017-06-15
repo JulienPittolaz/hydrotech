@@ -29,9 +29,9 @@ var CtrlEditions = {
                 if (!_.isNull(article)){
                     $('#popup .columns').empty();
                     var contentArticle = {};
+                    console.log(article-1);
                     contentArticle['article'] = CURRENT_ED.actualites[article-1];
                     contentArticle['year'] = annee;
-                    console.log(contentArticle);
                     $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
                     $('footer.actualite_footer').hide();
                 }
