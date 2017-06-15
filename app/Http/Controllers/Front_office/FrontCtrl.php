@@ -47,6 +47,7 @@ class FrontCtrl extends Controller
             $membre->photoProfil = urldecode($membre->photoProfil);
             $membre->editions;
         }
+        $edition->equipe = $membres;
         $presses = $edition->presses;
         foreach ($presses as $press) {
             $press->url = urldecode($press->url);
