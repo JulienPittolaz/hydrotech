@@ -69,10 +69,6 @@
                 </div>
             </div>
         </div>
-        <footer class="home_scroll">
-            <div>Scroll</div>
-            <div class="home_arrow"></div>
-        </footer>
     </div>
 
 </section>

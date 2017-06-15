@@ -59,8 +59,6 @@ function initTimeline() {
 
             })
             .addTo(controller);
-
-        console.log(controller)
     };
     // create scene to pin and link animation
 
