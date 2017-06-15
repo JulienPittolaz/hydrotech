@@ -81,10 +81,15 @@ var CtrlEditions = {
                             var actuFound = $.grep(actusArray, function(n,i){
                                 return n.id == article;
                             });
-                            contentArticle['article'] = actuFound[0];
-                            contentArticle['year'] = annee;
-                            $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
-                            $('footer.actualite_footer').hide();
+                            if (_.isEmpty(actuFound)){
+                                showErrorPage(POPUP);
+
+                            }else{
+                                contentArticle['article'] = actuFound[0];
+                                contentArticle['year'] = annee;
+                                $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
+                                $('footer.actualite_footer').hide();
+                            }
                         }
                     }
                     $(".popup_cross").on("click", function () {
