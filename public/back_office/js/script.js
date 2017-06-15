@@ -201,7 +201,7 @@
         rules: {
             'titre': {
                 required: true,
-                maxlength: 30
+                maxlength: 50
             },
             'datePublication': {
                 required: true,
@@ -234,14 +234,15 @@
     $('#actualite-form-edit').validate({
         rules: {
             'titre': {
-                maxlength: 30
+                maxlength: 30,
+                required: true
             },
             'datePublication': {
                 date: true
 
             },
             'contenu': {
-                maxlength: 500
+                required: true
             }
         },
         highlight: function (input) {
@@ -583,6 +584,8 @@
     $('#image-cropper-edition-background').cropit({
         smallImage: 'stretch',
         maxZoom: '2',
+        width: 1600,
+        height: 900,
         imageState: {
             src: $oldEdition,
         }
@@ -616,7 +619,7 @@
         e.preventDefault();
         var imageData = $('#image-cropper-membre').cropit('export',{
             type: 'image/jpeg',
-            quality: .7
+            quality: 1
         });
         $('#photoProfil').val(imageData);
         $('#membre-form').submit();
@@ -637,7 +640,7 @@
         e.preventDefault();
         var imageData = $('#image-cropper-actualite').cropit('export',{
             type: 'image/jpeg',
-            quality: 1
+            quality: 1,
         });
         $('#urlImage').val(imageData);
         $('#actualite-form').submit();
