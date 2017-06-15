@@ -21,7 +21,11 @@ class FrontCtrl extends Controller
             $actualite->urlImage = urldecode($actualite->urlImage);
         }
 
-        $edition->actus = $actualites;
+        $actus = [];
+        foreach ($actualites as $actualite) {
+            array_push($actus, $actualite);
+        }
+        $edition->actus = $actus;
 
         /*   $categorieEditionSponsors = $edition->categorieeditionsponsors;
            foreach ($categorieEditionSponsors as $catEdSp) {
