@@ -72,7 +72,6 @@ class EditionAssociationCtrl extends Controller
         $objets = call_user_func(['\\App\\' . ucfirst($type_ressource), 'all'])->where('actif', true);
 
         $ressources = $type_ressource . 's';
-
         $edition->objetsDeLedition = $edition->$ressources->where('pivot.actif', true);
 
 
