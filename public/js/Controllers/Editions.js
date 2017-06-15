@@ -29,9 +29,12 @@ var CtrlEditions = {
                 if (!_.isNull(article)){
                     $('#popup .columns').empty();
                     var contentArticle = {};
-                    contentArticle['article'] = CURRENT_ED.actualites[article-1];
+                    var actusArray = CURRENT_ED.actualites;
+                    var actuFound = $.grep(actusArray, function(n,i){
+                        return n.id == article;
+                    });
+                    contentArticle['article'] = actuFound[0];
                     contentArticle['year'] = annee;
-
                     $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
                     $('footer.actualite_footer').hide();
                 }
@@ -68,7 +71,11 @@ var CtrlEditions = {
                         if (!_.isNull(article)){
                             $('#popup .columns').empty();
                             var contentArticle = {};
-                            contentArticle['article'] = edition.attributes.actualites[article-1];
+                            var actusArray = edition.attributes.actualites;
+                            var actuFound = $.grep(actusArray, function(n,i){
+                                return n.id == article;
+                            });
+                            contentArticle['article'] = actuFound[0];
                             contentArticle['year'] = annee;
                             $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
                             $('footer.actualite_footer').hide();
