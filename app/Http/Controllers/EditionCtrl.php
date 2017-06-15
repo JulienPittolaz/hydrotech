@@ -47,7 +47,7 @@ class EditionCtrl extends Controller
             }
 
             $edition->sponsors = $categories;
-            
+
 
             $medias = $edition->medias;
             foreach ($medias as $media) {
