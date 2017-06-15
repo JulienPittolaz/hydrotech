@@ -16,11 +16,12 @@ class FrontCtrl extends Controller
         }
         $edition->urlImageMedia = urldecode($edition->urlImageMedia);
         $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
-
-        $actualites = $edition->actualites->->where('actif', true)->where('datePublication', '<=', date('Y-m-d') )->where('publie', true)->sortByDesc('datePublication');
+        $actualites = $edition->actualites->where('actif', true)->where('datePublication', '<=', date('Y-m-d') )->where('publie', true)->sortByDesc('datePublication');
         foreach ($actualites as $actualite) {
             $actualite->urlImage = urldecode($actualite->urlImage);
         }
+
+        $edition->actus = $actualites;
 
         /*   $categorieEditionSponsors = $edition->categorieeditionsponsors;
            foreach ($categorieEditionSponsors as $catEdSp) {
@@ -61,7 +62,6 @@ class FrontCtrl extends Controller
         }
 
         $edition->sponsors = $categories;
-
         return view('welcome')->with('current_ed', $edition);
     }
 }

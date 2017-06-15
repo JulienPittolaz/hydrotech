@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/app.css" type="text/css">
     <script>
         var CURRENT_ED = {!!$current_ed !!};
+        console.log(CURRENT_ED);
     </script>
 
     <script src="js/packJs.php" charset="utf-8"></script>
