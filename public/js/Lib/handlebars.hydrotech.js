@@ -26,3 +26,11 @@ Handlebars.registerHelper('isValid', function (block) {
         return block.inverse(this);
     }
 });
+
+Handlebars.registerHelper('hasPrixs', function (block) {
+    if(this.prixs.length > 0) {
+        return block.fn(this);
+    } else {
+        return block.inverse(this);
+    }
+});
