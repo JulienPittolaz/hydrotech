@@ -10,14 +10,14 @@ use App\Http\Controllers\Controller;
 class FrontCtrl extends Controller
 {
     public function index() {
-        $edition = Edition::latest()->first();
+        $edition = Edition::where('actif', true)->where('publie', true)->latest()->first();
         if ($edition == null || $edition->actif == false) {
             return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
         }
         $edition->urlImageMedia = urldecode($edition->urlImageMedia);
         $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
 
-        $actualites = $edition->actualites;
+        $actualites = $edition->actualites->sortByDesc('dateParution');
         foreach ($actualites as $actualite) {
             $actualite->urlImage = urldecode($actualite->urlImage);
         }
