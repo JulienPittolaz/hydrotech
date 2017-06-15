@@ -77,7 +77,7 @@ var CtrlContact = {
     },
     send: function(data){
         console.log(data);
-        $.post( "send/email/", data , function() {
+        $.post( "./send/email/", data , function() {
             $('.message_success').show();
             }
         );
