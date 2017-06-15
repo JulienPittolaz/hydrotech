@@ -1,4 +1,6 @@
 /**
+ * Ce fichier est responable de l'initialisation de Masonry pour la présentation des galeries de médias
+ *
  * Created by timdlp on 11.06.17.
  */
 function initMasonry(){

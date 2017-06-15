@@ -10,17 +10,22 @@ use App\Http\Controllers\Controller;
 class FrontCtrl extends Controller
 {
     public function index() {
-        $edition = Edition::latest()->first();
+        $edition = Edition::where('actif', true)->where('publie', true)->latest()->first();
         if ($edition == null || $edition->actif == false) {
             return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
         }
         $edition->urlImageMedia = urldecode($edition->urlImageMedia);
         $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
-
-        $actualites = $edition->actualites;
+        $actualites = $edition->actualites->where('actif', true)->where('datePublication', '<=', date('Y-m-d') )->where('publie', true)->sortByDesc('datePublication');
         foreach ($actualites as $actualite) {
             $actualite->urlImage = urldecode($actualite->urlImage);
         }
+
+        $actus = [];
+        foreach ($actualites as $actualite) {
+            array_push($actus, $actualite);
+        }
+        $edition->actus = $actus;
 
         /*   $categorieEditionSponsors = $edition->categorieeditionsponsors;
            foreach ($categorieEditionSponsors as $catEdSp) {
@@ -61,7 +66,6 @@ class FrontCtrl extends Controller
         }
 
         $edition->sponsors = $categories;
-
         return view('welcome')->with('current_ed', $edition);
     }
 }

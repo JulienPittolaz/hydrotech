@@ -47,7 +47,7 @@ class EditionCtrl extends Controller
             }
 
             $edition->sponsors = $categories;
-            
+
 
             $medias = $edition->medias;
             foreach ($medias as $media) {
@@ -153,7 +153,7 @@ class EditionCtrl extends Controller
 
         $categories = Categorie::all()->where('actif', true);
         foreach ($categories as $categorie) {
-            foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces) {
+            foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id)->where('actif', true) as $ces) {
                 $ces->sponsor->urlSponsor = urldecode($ces->sponsor->urlSponsor);
                 $ces->sponsor->urlLogo = urldecode($ces->sponsor->urlLogo);
                 foreach ($ces->sponsor->categorieeditionsponsors as $c){

@@ -1,3 +1,8 @@
+/*
+* Ce fichier contient un fragment de code nécessaire à l'initialisation de la timeline présentée en page d'accueil.
+*
+* */
+
 function initTimeline() {
 
 

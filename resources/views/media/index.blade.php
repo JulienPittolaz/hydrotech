@@ -72,7 +72,7 @@
                                                 <td>{{$media->auteur}}</td>
                                                 <td>{{$media->typeMedia}}</td>
                                                 @if($media->typeMedia == "Photo" || $media->typeMedia == "photo")
-                                                    <td><img src="{{url('/') }}/storage/medias/{{$media->id}}.jpg"
+                                                    <td><img src="{{$media->url}}"
                                                              width="50px" height="50px"/></td>
                                                 @else
                                                     <td>{{$media->url}}</td>
