@@ -22,14 +22,14 @@
                         <label for="annee">Annee</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="number" class="form-control" name="annee" required=""
+                                <input value="{{ old('annee') }}" type="number" class="form-control" name="annee" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Annee de l'édition">
                             </div>
                         </div>
                         <label for="nomEquipe">Nom de l'équipe</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="nomEquipe" required=""
+                                <input value="{{ old('nomEquipe') }}" type="text" class="form-control" name="nomEquipe" required=""
                                        aria-required="true" aria-invalid="true"
                                        placeholder="Nom de l'équipe pour l'édition">
                             </div>
@@ -48,14 +48,14 @@
                         <label for="lieu">Lieu</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="lieu" required=""
+                                <input value="{{ old('lieu') }}" type="text" class="form-control" name="lieu" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Lieu de l'édition">
                             </div>
                         </div>
                         <label for="dateDebut">Date du début de l'édition</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="date" class="form-control" name="dateDebut" required=""
+                                <input value="{{ old('dateDebut') }}" type="date" class="form-control" name="dateDebut" required=""
                                        aria-required="true" aria-invalid="true"
                                        placeholder="Date du début de l'édition">
                             </div>
@@ -63,14 +63,14 @@
                         <label for="dateFin">Date de fin de l'édition</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="date" class="form-control" name="dateFin" required=""
+                                <input value="{{ old('dateFin') }}" type="date" class="form-control" name="dateFin" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Date de Fin de l'édition">
                             </div>
                         </div>
                         <label for="description">Description</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="description" required=""
+                                <input value="{{ old('description') }}" type="text" class="form-control" name="description" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Description de l'édition">
                             </div>
                         </div>

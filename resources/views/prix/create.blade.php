@@ -21,7 +21,7 @@
                         <label for="email_address">Nom</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="nom" required="" aria-required="true" aria-invalid="true" placeholder="Le nom du prix">
+                                <input value="{{ old('nom') }}" type="text" class="form-control" name="nom" required="" aria-required="true" aria-invalid="true" placeholder="Le nom du prix">
                             </div>
                         </div>
                         <label for="description">Description</label>
@@ -38,7 +38,7 @@
                         <label for="email_address">Montant - CHF</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="montant" required="" placeholder="Le montant du prix" aria-required="true" aria-invalid="true">
+                                <input value="{{ old('montant') }}" type="number" class="form-control" name="montant" required="" placeholder="Le montant du prix" aria-required="true" aria-invalid="true">
                             </div>
                         </div>
                         <input type="submit" class="btn btn-primary waves-effect"></input>

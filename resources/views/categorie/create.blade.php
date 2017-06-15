@@ -21,7 +21,7 @@
                         <label for="nom">Nom</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="nom" required="" aria-required="true" aria-invalid="true" placeholder="Le nom de la categorie">
+                                <input value="{{ old('nom') }}" type="text" class="form-control" name="nom" required="" aria-required="true" aria-invalid="true" placeholder="Le nom de la categorie">
                             </div>
                         </div>
                         <label for="description">Description</label>
