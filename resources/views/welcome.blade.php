@@ -33,7 +33,7 @@
         <div id="socials">
 
         </div>
-        <div id="contact"><a href="/#/contact">Contact</a></div>
+        <div id="contact"><a href="#/contact">Contact</a></div>
     </div>
 
     <div class="container">

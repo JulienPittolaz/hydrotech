@@ -24,13 +24,15 @@ var CtrlContact = {
             $('.formulaireContactSuite').hide();
             $('.formulaireContact1').show();
 
-        })
+        });
+
     },
     validate: function(data){
         var fields = [];
         _.each($('.ctf_field'), function(data){
             fields.push($(data).val());
         });
+        console.log(fields);
 
     }
 }
