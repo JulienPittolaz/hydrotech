@@ -4,7 +4,6 @@
 function manageLatestActus(){
     var LATEST_NEWS = CURRENT_ED.actualites.slice(0,4);
     var year = CURRENT_ED.annee;
-    console.log(year);
     $('#globalNews').append(JST['last_actualites']({actualites:LATEST_NEWS},{year:year}));
     _.each($('.latest_actualite_contenu'), function(actu){
         var articleId = $(actu.parentElement).attr("data-id");
