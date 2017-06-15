@@ -14,7 +14,7 @@ class Edition extends Model
     //protected $table = "editions";
 
     public function membres() {
-        return $this->belongsToMany('\App\Membre')->withTimestamps()->withPivot('actif');
+        return $this->belongsToMany('\App\Membre')->withTimestamps()->withPivot('actif', 'roleMembre');
     }
 
     public function actualites() {
