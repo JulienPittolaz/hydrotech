@@ -11,6 +11,9 @@
 |
 */
 
+//Route pour l'envoi du formulaire de contact
+Route::post('/send/email', 'MailCtrl@sendemail');
+
 Route::get('/', 'Front_office\FrontCtrl@index');
 
 Route::get('admin', function(){
@@ -95,6 +98,3 @@ Route::group(['prefix' => '/api/v1'], function () {
     Route::resource('/sponsors', 'SponsorCtrl', ['only' => ['index', 'show']]);
     Route::resource('/users', 'UserCtrl', ['only' => ['index', 'show']]);
 });
-
-//Route pour l'envoi du formulaire de contact
-Route::post('/send/email', 'MailCtrl@sendemail');
