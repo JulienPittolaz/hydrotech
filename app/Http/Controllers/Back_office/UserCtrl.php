@@ -145,10 +145,6 @@ class UserCtrl extends Controller
         if ($user['actif'] == false) {
             return redirect()->back()->withInput()->with('error', 'User déjà supprimé');
         }
-        $groupe = Groupe::all()->find($request['groupe']);
-        if ($groupe == null) {
-            return redirect()->back()->with('error', 'Groupe inconnu');
-        }
         $user->update($para);
         return redirect('admin/user')->withInput()->with('message', 'Modification enregistrée');
     }
