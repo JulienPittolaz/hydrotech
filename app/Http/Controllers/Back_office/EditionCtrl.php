@@ -209,7 +209,9 @@ class EditionCtrl extends Controller
             $para = $request->intersect(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
             $image_data = $request['urlImageMedia'];
             $nom = str_replace(' ', '', $para['nomEquipe'].$para['annee']);
-            unlink(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg');
+            if(file_exists(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg')) {
+                unlink(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg');
+            }
             $source = fopen($image_data, 'r');
             $destination = fopen(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg', 'w');
             stream_copy_to_stream($source, $destination);
