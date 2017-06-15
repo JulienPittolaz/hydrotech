@@ -150,22 +150,22 @@
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="{{url('admin/associationedition/media')}}">Medias</a>
+                            <a href="{{url('admin/associationedition/media')}}">Edition et media</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/associationedition/presse')}}">Articles de presse</a>
+                            <a href="{{url('admin/associationedition/presse')}}">Edition et article de presse</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/associationedition/membre')}}">Membres</a>
+                            <a href="{{url('admin/associationedition/membre')}}">Edition et membre</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/associationedition/actualite')}}">Actualites</a>
+                            <a href="{{url('admin/associationedition/actualite')}}">Edition et actualite</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/associationedition/prix')}}">Prix</a>
+                            <a href="{{url('admin/associationedition/prix')}}">Edition et prix</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/associationsponsor')}}">Sponsors</a>
+                            <a href="{{url('admin/associationsponsor')}}">Edition et sponsor</a>
                         </li>
                     </ul>
                 </li>

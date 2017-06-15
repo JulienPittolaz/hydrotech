@@ -18,28 +18,28 @@
                         </div>
                     @endif
                     <form action="{{ action('Back_office\UserCtrl@store') }}" id="user-form" method="POST" novalidate="novalidate" target="_parent" enctype="multipart/form-data">
-                        <label for="name">Name</label>
+                        <label for="name">Nom</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="name" required="" aria-required="true" aria-invalid="true" placeholder="Name du user">
+                                <input value="" type="text" class="form-control" name="name" required="" aria-required="true" aria-invalid="true" placeholder="Nom">
                             </div>
                         </div>
-                        <label for="email">Adresse mail de l'user</label>
+                        <label for="email">Adresse mail</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="email" class="form-control" name="email" required="" aria-required="true" aria-invalid="true" placeholder="Adresse mail du user">
+                                <input value="" type="email" class="form-control" name="email" required="" aria-required="true" aria-invalid="true" placeholder="Adresse mail">
                             </div>
                         </div>
-                        <label for="password">Password de l'user</label>
+                        <label for="password">Mot de passe</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="password" class="form-control" name="password" required="" aria-required="true" aria-invalid="true" placeholder="Password du user">
+                                <input value="" type="password" class="form-control" name="password" required="" aria-required="true" aria-invalid="true" placeholder="Mot de passe">
                             </div>
                         </div>
-                        <label for="password2">Confirmation du password</label>
+                        <label for="password2">Confirmation du mot de passe</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="password" class="form-control" name="password2" required="" aria-required="true" aria-invalid="true" placeholder="Confirmation du password">
+                                <input value="" type="password" class="form-control" name="password2" required="" aria-required="true" aria-invalid="true" placeholder="Confirmation du mot de passe">
                             </div>
                         </div>
                         <label for="groupe">Groupe</label>

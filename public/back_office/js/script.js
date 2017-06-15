@@ -146,7 +146,6 @@
         }
     });
 
-
     $('#media-form').validate({
         rules: {
             'titre': {
@@ -210,8 +209,7 @@
 
             },
             'contenu': {
-                required: true,
-                maxlength: 500
+                required: true
             },
             'auteur': {
                 required: true
@@ -220,7 +218,7 @@
                 required: true
             },
             'urlImage': {
-                required: true,
+                required: true
             }
         },
         highlight: function (input) {
