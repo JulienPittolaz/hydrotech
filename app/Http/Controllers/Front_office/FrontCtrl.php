@@ -25,7 +25,6 @@ class FrontCtrl extends Controller
         foreach ($actualites as $actualite) {
             array_push($actus, $actualite);
         }
-        $edition->actus = $actus;
         $edition->actualites = $actus;
 
         /*   $categorieEditionSponsors = $edition->categorieeditionsponsors;
@@ -56,7 +55,7 @@ class FrontCtrl extends Controller
 
         $categories = Categorie::all()->where('actif', true);
         foreach ($categories as $categorie) {
-            foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces) {
+            foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id)->where('categorie_id', $categorie->id)->where('actif', true) as $ces) {
                 $ces->sponsor->urlSponsor = urldecode($ces->sponsor->urlSponsor);
                 $ces->sponsor->urlLogo = urldecode($ces->sponsor->urlLogo);
                 foreach ($ces->sponsor->categorieeditionsponsors as $c){
