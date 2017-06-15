@@ -288,9 +288,6 @@
             'urlImageMedia': {
                 required: true,
             },
-            'urlImageEquipe': {
-                required: true,
-            },
             'lieu': {
                 required: true,
             },
@@ -561,27 +558,91 @@
 
 
 
-    $('.image-editor').cropit();
-
-/*
-    $('#cropform-button').click(function(e) {
-        e.preventDefault();
-        console.log('coucou');
-        // Move cropped image data to hidden input
-        var imageData = $('.image-editor').cropit('export');
-        $('.hidden-image-data').val(imageData);
-        console.log($(this).parent().parent());
-        // Print HTTP request params
-        var formValue = $(this).parent().parent().serialize();
-        $('#result-data').text(formValue);
-
-        // Prevent the form from actually submitting
-        return false;
+    var $oldSponsor = $('#oldPhoto').val() || null;
+    $('#image-cropper-sponsor-logo').cropit({
+        smallImage: 'stretch',
+        maxZoom: '2',
+        imageState: {
+            src: $oldSponsor,
+        },
+        width: 300,
+        height: 168
     });
 
-*/
+    $('#sponsor-form input[type=submit]').on('click', function(e) {
+        e.preventDefault();
+        var imageData = $('#image-cropper-sponsor-logo').cropit('export',{
+            type: 'image/jpeg',
+            quality: .9,
+        });
+        $('#urlLogo').val(imageData);
+        $('#sponsor-form').submit();
+    });
 
+    var $oldEdition = $('#oldPhoto').val() || null;
+    $('#image-cropper-edition-background').cropit({
+        smallImage: 'stretch',
+        maxZoom: '2',
+        width: 400,
+        height: 225,
+        imageState: {
+            src: $oldEdition,
+        }
+    });
 
+    $('#edition-form input[type=submit]').on('click', function(e) {
+        e.preventDefault();
+        var imageData = $('#image-cropper-edition-background').cropit('export',{
+            type: 'image/jpeg',
+            quality: .7,
+            exportZoom: 4
+        });
+        $('#urlImageMedia').val(imageData);
+        $('#edition-form').submit();
+    });
+
+    var $oldMembre = $('#oldPhoto').val() || null;
+    $('#image-cropper-membre').cropit({
+        smallImage: 'stretch',
+        maxZoom: '2',
+        width: 320,
+        height: 396,
+        imageState: {
+            src: $oldMembre,
+        }
+    });
+
+    $('#membre-form input[type=submit]').on('click', function(e) {
+        e.preventDefault();
+        var imageData = $('#image-cropper-membre').cropit('export',{
+            type: 'image/jpeg',
+            quality: .7
+        });
+        $('#photoProfil').val(imageData);
+        $('#membre-form').submit();
+    });
+
+    var $oldActualite = $('#oldPhoto').val() || null;
+    $('#image-cropper-actualite').cropit({
+        smallImage: 'stretch',
+        maxZoom: '2',
+        width: 400,
+        height: 225,
+        imageState: {
+            src: $oldActualite,
+        }
+    });
+
+    $('#actualite-form input[type=submit]').on('click', function(e) {
+        e.preventDefault();
+        var imageData = $('#image-cropper-actualite').cropit('export',{
+            type: 'image/jpeg',
+            quality: .7,
+            exportZoom: 4
+        });
+        $('#urlImage').val(imageData);
+        $('#actualite-form').submit();
+    });
 
 
 

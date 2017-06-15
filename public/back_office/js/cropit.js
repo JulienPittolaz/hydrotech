@@ -270,9 +270,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      this.zoomer = new _Zoomer2['default']();
 
-	      if (this.options.allowDragNDrop) {
-	        _jquery2['default'].event.props.push('dataTransfer');
-	      }
+	      //if (this.options.allowDragNDrop) {
+	        //_jquery2['default'].event.props.push('dataTransfer');
+	      //}
 
 	      this.bindListeners();
 

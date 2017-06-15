@@ -78,9 +78,18 @@
                                 </grammarly-btn>
                             </div>
                         </div>
-                        <label for="photoProfil">Photo de profil (JPG, PNG ou GIF) :</label><br/>
-                        <img src="{{url('/') }}/storage/membres/{{$membre->id}}.jpg" width="100px" height="100px"/><br/>
-                        <input type="file" name="photoProfil" id="urlLogo"/><br/>
+                        <input type="hidden" id="oldPhoto" value="{{$membre->photoProfil}}">
+                        <div class="form-group form-float">
+                            <label for="urlLogo">Photo du membre</label>
+                            <div id="image-cropper-membre">
+                                <div class="cropit-preview"></div>
+                                <input type="range" class="cropit-image-zoom-input" />
+                                <!-- The actual file input will be hidden -->
+                                <input type="file" class="cropit-image-input" />
+                                <!-- And clicking on this button will open up select file dialog -->
+                            </div>
+                            <input id="photoProfil" type="hidden" name="photoProfil">
+                        </div>
 
                 <input type="submit" class="btn btn-primary waves-effect"></input>
                 </form>

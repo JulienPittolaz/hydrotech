@@ -83,7 +83,7 @@
                                                 <td>{{$membre->dateNaissance}}</td>
                                                 <td>{{$membre->section}}</td>
                                                 <td>{{$membre->description}}</td>
-                                                <td><img src="{{url('/') }}/storage/membres/{{$membre->id}}.jpg"
+                                                <td><img src="{{$membre->photoProfil}}"
                                                          width="50px" height="50px"/></td>
                                             </tr>
                                         @endforeach
