@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 
     <title>Hydrocontest - HEIG-VD</title>
 
@@ -14,6 +15,7 @@
     </script>
 
     <script src="js/packJs.php" charset="utf-8"></script>
+
     <script>
         $(function(){
             initCountdown();
@@ -32,17 +34,17 @@
         <div id="socials">
 
         </div>
-        <div id="contact"><a href="/#/contact">Contact</a></div>
+        <div id="contact"><a href="#/contact">Contact</a></div>
     </div>
 
     <div class="container">
         <div class="columns">
             <div class="column">
                 <div class="columns home_presentation">
-                    <div class="column is-2 home_participants"> Participants <br> au concours <br> Hydrocontest</div>
+                    <div class="column is-2 home_participants"> Participant <br> au concours <br> Hydrocontest</div>
                     <div class="column is-10">
                         <span class="home_team">Team <br> Heig-Vd<br></span>
-                        <span class="home_sponsors">Yverdons-les-Bains Energies</span>
+                        <span class="home_sponsors">Yverdon-les-Bains Energies</span>
                     </div>
                 </div>
             </div>

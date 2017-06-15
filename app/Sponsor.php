@@ -23,7 +23,7 @@ class Sponsor extends Model
         return Validator::make($data, [
             'id' => 'exists:sponsors|sometimes|required',
             'nom'   => 'string|sometimes|required',
-            'urlLogo'    => 'url|sometimes|required',
+            'urlLogo'    => 'string|sometimes|required',
             'urlSponsor'    => 'url|sometimes|required',
         ])->passes();
     }

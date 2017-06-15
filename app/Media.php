@@ -8,20 +8,21 @@ use Illuminate\Validation\Rule;
 
 class Media extends Model
 {
-    protected $fillable = ['url', 'titre', 'date', 'auteur', 'typeMedia'];
+    protected $fillable = ['titre', 'date', 'auteur', 'typeMedia', 'url'];
     protected $hidden = ['actif'];
     protected $table = "medias";
 
-    public function editions() {
+    public function editions()
+    {
         return $this->belongsToMany('\App\Edition')->withTimestamps()->withPivot('actif');
     }
 
-    public static function isValid($data = array()) {
-        dd($data);
-        return Validator::make($data, [
+    public static function isValid($data = array())
+    {
+        $rules = [
             'id' => 'exists:medias|sometimes|required',
-            'url' => 'url|sometimes|required',
             'titre' => 'string|sometimes|required',
+            'url' => 'required',
             'date' => 'date|sometimes|required|before:tomorrow',
             'auteur' => 'string|sometimes|required',
             'typeMedia' => [
@@ -29,7 +30,15 @@ class Media extends Model
                 'required',
                 'string',
                 Rule::in(['Photo', 'photo', 'Video', 'video']),
-            ],
-        ])->passes();
+            ]];
+
+        if (isset($data['typeMedia'])) {
+            if ($data['typeMedia'] == "Photo" || $data['typeMedia'] == "photo") {
+                $rules['url'] .= '|image|sometimes';
+            } else {
+                $rules['url'] .= '|url|sometimes';
+            }
+        }
+        return Validator::make($data, $rules)->passes();
     }
 }

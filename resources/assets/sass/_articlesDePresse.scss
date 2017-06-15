@@ -14,7 +14,7 @@
 
 .presse_subtitle{
 
-  font-size: $font-size-big;
+  font-size: 25px;
   text-transform: uppercase;
   font-weight: $text-weight-bold;
 
@@ -33,10 +33,18 @@
 
 .presse_titre{
 
-  font-size: $font-size-medium;
+  font-size: 21px;
   text-transform: uppercase;
   font-weight: $text-weight-light;
 
+}
+
+li.selectedItem{
+  font-weight: 700;
+}
+
+li.selectedItem::before{
+  font-weight: 400;
 }
 
 .presse_nom{
@@ -75,6 +83,10 @@
 .gridder-list{
   display: inline;
   vertical-align: top;
+}
+
+.gridder-list:hover{
+  cursor:pointer;
 }
 .gridder-show{
   display: block;

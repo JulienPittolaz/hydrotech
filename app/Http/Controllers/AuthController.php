@@ -19,7 +19,7 @@ class AuthController extends Controller
         if (!Auth::attempt(['email' => $email, 'password' => $password], false)) {
             return redirect()->action('AuthController@login')->with('error', true);
         }
-        return redirect(Session::get('oldUrl', '/'));
+        return redirect('/admin/edition');
 
     }
 
