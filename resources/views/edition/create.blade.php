@@ -22,41 +22,40 @@
                         <label for="annee">Annee</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="number" class="form-control" name="annee" required=""
+                                <input value="{{ old('annee') }}" type="number" class="form-control" name="annee" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Annee de l'édition">
                             </div>
                         </div>
                         <label for="nomEquipe">Nom de l'équipe</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="nomEquipe" required=""
+                                <input value="{{ old('nomEquipe') }}" type="text" class="form-control" name="nomEquipe" required=""
                                        aria-required="true" aria-invalid="true"
                                        placeholder="Nom de l'équipe pour l'édition">
                             </div>
                         </div>
                         <div class="form-group form-float">
-                            <div class="form-line">
-                                <label for="urlImageMedia">Image de l'édition (JPG, PNG ou GIF) :</label><br/>
-                                <input type="file" name="urlImageMedia" id="urlImageMedia"/><br/>
+                            <label for="urlLogo">Image de l'édition</label>
+                            <div id="image-cropper-edition-background">
+                                <div class="cropit-preview"></div>
+                                <input type="range" class="cropit-image-zoom-input" />
+                                <!-- The actual file input will be hidden -->
+                                <input type="file" class="cropit-image-input" />
+                                <!-- And clicking on this button will open up select file dialog -->
                             </div>
-                        </div>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <label for="urlImageEquipe">Image de l'équipe (JPG, PNG ou GIF) :</label><br/>
-                                <input type="file" name="urlImageEquipe" id="urlImageEquipe"/><br/>
-                            </div>
+                            <input id="urlImageMedia" type="hidden" name="urlImageMedia">
                         </div>
                         <label for="lieu">Lieu</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="lieu" required=""
+                                <input value="{{ old('lieu') }}" type="text" class="form-control" name="lieu" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Lieu de l'édition">
                             </div>
                         </div>
                         <label for="dateDebut">Date du début de l'édition</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="date" class="form-control" name="dateDebut" required=""
+                                <input value="{{ old('dateDebut') }}" type="date" class="form-control" name="dateDebut" required=""
                                        aria-required="true" aria-invalid="true"
                                        placeholder="Date du début de l'édition">
                             </div>
@@ -64,14 +63,14 @@
                         <label for="dateFin">Date de fin de l'édition</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="date" class="form-control" name="dateFin" required=""
+                                <input value="{{ old('dateFin') }}" type="date" class="form-control" name="dateFin" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Date de Fin de l'édition">
                             </div>
                         </div>
                         <label for="description">Description</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="description" required=""
+                                <input value="{{ old('description') }}" type="text" class="form-control" name="description" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Description de l'édition">
                             </div>
                         </div>

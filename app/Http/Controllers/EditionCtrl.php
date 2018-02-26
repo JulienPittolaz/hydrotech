@@ -18,8 +18,7 @@ class EditionCtrl extends Controller
      */
     public function index()
     {
-        $editions = Edition::all()->where('actif', true)->where('publie', true);
-        $editions->where('publie', true);
+        $editions = Edition::all()->where('actif', true)->where('publie', true)->sortByDesc('annee');
 
 
 
@@ -31,13 +30,20 @@ class EditionCtrl extends Controller
             foreach ($actualites as $actualite) {
                 $actualite->urlImage = urldecode($actualite->urlImage);
             }
+
+            $actus = [];
+            foreach ($actualites as $actualite) {
+                array_push($actus, $actualite);
+            }
+            $edition->actus = $actus;
+
             $categorieEditionSponsors = $edition->categorieeditionsponsors;
 
             $categories = Categorie::all()->where('actif', true);
             foreach ($categories as $categorie) {
-                foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces) {
+                foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id)->where('actif', true) as $ces) {
                     $ces->edition;
-                    foreach ($ces->sponsor->categorieeditionsponsors as $c){
+                    foreach ($ces->sponsor->categorieeditionsponsors->where('actif', true) as $c){
                         $c->sponsor->urlLogo = urldecode($c->sponsor->urlLogo);
                         $c->sponsor->urlSponsor = urldecode($c->sponsor->urlSponsor);
                         $c->edition;
@@ -48,49 +54,6 @@ class EditionCtrl extends Controller
             }
 
             $edition->sponsors = $categories;
-            foreach ($categorieEditionSponsors as $catEdSp) {
-                /*foreach ($catEdSp as $ces){
-                    $sponsor = $ces->sponsor;
-                    $sponsor->urlLogo = urldecode($sponsor->urlLogo);
-                    $sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
-                    $categorie = $ces->categorie;
-                }*/
-                //$sponsor = $catEdSp->sponsor;
-                //$sponsor->urlLogo = urldecode($sponsor->urlLogo);
-                //$sponsor->urlSponsor = urldecode($sponsor->urlSponsor);
-
-                /*$categorie = $catEdSp->categorie;
-                foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces){
-                    $ces->sponsors;
-                }*/
-                //$categorieEditionSponsors = $edition->categorieeditionsponsors->groupBy('categorie_id');
-
-
-                /*foreach ($sponsor->categorieeditionsponsors as $categorieDuSponsor){
-                    $ed = $categorieDuSponsor->edition;
-                    $ed->annee;
-                }*/
-                /*
-                if(!array_has($listeCategories, $categorie)){
-                    array_add($listeCategories, $categorie['attributes']['id'], $categorie);
-                }*/
-
-            }
-
-
-            /*$categorieEditionSponsors = $edition->categorieeditionsponsors->groupBy('categorie.nom');
-            dd($categorieEditionSponsors);*/
-
-
-            //$edition-->put('listeSponsors', $categorieEditionSponsors);
-            //$edition->listeSponsors = Categorie::all();
-            /*$listeSponsors = '';
-            foreach (Categorie::all() as $listeCategories){
-                foreach($listeCategories->categorieeditionsponsors() as $association){
-                    $listeSponsors = $listeSponsors . $association->sponsors;
-                }
-            }
-            $edition->listeSponsors = $listeSponsors;*/
 
 
             $medias = $edition->medias;
@@ -102,6 +65,7 @@ class EditionCtrl extends Controller
                 $membre->photoProfil = urldecode($membre->photoProfil);
                 $membre->editions;
             }
+            $edition->equipe = $membres;
             $presses = $edition->presses;
             foreach ($presses as $press) {
                 $press->url = urldecode($press->url);
@@ -169,6 +133,12 @@ class EditionCtrl extends Controller
             $actualite->urlImage = urldecode($actualite->urlImage);
         }
 
+        $actus = [];
+        foreach ($actualites as $actualite) {
+            array_push($actus, $actualite);
+        }
+        $edition->actus = $actus;
+
      /*   $categorieEditionSponsors = $edition->categorieeditionsponsors;
         foreach ($categorieEditionSponsors as $catEdSp) {
             $sponsor = $catEdSp->sponsor;
@@ -184,11 +154,12 @@ class EditionCtrl extends Controller
         foreach ($medias as $media) {
             $media->url = urldecode($media->url);
         }
-        $membres = $edition->membres;
+        $membres = $edition->membres->where('pivot.actif', true);
         foreach ($membres as $membre) {
             $membre->photoProfil = urldecode($membre->photoProfil);
             $membre->editions;
         }
+        $edition->equipe = $membres;
         $presses = $edition->presses;
         foreach ($presses as $press) {
             $press->url = urldecode($press->url);
@@ -197,10 +168,10 @@ class EditionCtrl extends Controller
 
         $categories = Categorie::all()->where('actif', true);
         foreach ($categories as $categorie) {
-            foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces) {
+            foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id)->where('categorie_id', $categorie->id)->where('actif', true) as $ces) {
                 $ces->sponsor->urlSponsor = urldecode($ces->sponsor->urlSponsor);
                 $ces->sponsor->urlLogo = urldecode($ces->sponsor->urlLogo);
-                foreach ($ces->sponsor->categorieeditionsponsors as $c){
+                foreach ($ces->sponsor->categorieeditionsponsors->where('actif', true) as $c){
                     $c->edition->urlImageMedia = urldecode($c->edition->urlImageMedia);
                     $c->edition->urlImageEquipe = urldecode($c->edition->urlImageEquipe);
                 }

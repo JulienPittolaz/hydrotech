@@ -18,7 +18,6 @@ class CreateEditionsTable extends Migration
             $table->integer('annee')->unsigned();
             $table->string('nomEquipe');
             $table->string('urlImageMedia');
-            $table->string('urlImageEquipe');
             $table->string('lieu');
             $table->date('dateDebut');
             $table->date('dateFin');

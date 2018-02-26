@@ -1,3 +1,8 @@
+/*
+* Ce fichier contient un fragment de code nécessaire à l'initialisation de la timeline présentée en page d'accueil.
+*
+* */
+
 function initTimeline() {
 
 
@@ -51,9 +56,12 @@ function initTimeline() {
                     $('.big').prevAll('li').addClass('right-dot');
                     $('.big').nextAll('li').addClass('left-dot');
                 }
+
             })
             .addTo(controller);
     };
     // create scene to pin and link animation
+
+
 
 }

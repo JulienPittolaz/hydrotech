@@ -1,8 +1,13 @@
+/**
+ * Ce fichier contient un fragment de code qui permet la gestion de l'affichage dynamique de notre barre de titre (avec réseaux sociaux et logo)
+ * Cette dernière suit la page au scroll
+ */
+
 $(function() {
     var isScroll = false;
     var lastScroll = 0;
     var menu = $('.home_menu');
-    setInterval(function() {
+    var scrollInterval = setInterval(function() {
             checkScroll();
     }, 800);
 
@@ -21,4 +26,14 @@ $(function() {
         }
         lastScroll = scrollPos;
     }
+
+    menu.on('mouseenter', function() {
+        clearInterval(scrollInterval);
+    });
+
+    menu.on('mouseout', function() {
+        scrollInterval = setInterval(function() {
+            checkScroll();
+        }, 800);
+    });
 });

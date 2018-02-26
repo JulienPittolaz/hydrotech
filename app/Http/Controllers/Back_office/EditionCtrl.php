@@ -103,26 +103,22 @@ class EditionCtrl extends Controller
             return redirect()->back()->with('error', 'Pas les droits suffisants');
         }
         //dd($request);
-        $para = $request->only(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
-
+        $para = $request->only(['annee', 'nomEquipe', 'urlImageMedia', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
         if (!Edition::isValid($para)) {
             return redirect()->back()->withInput()->with('error', 'Edition invalide');
         }
         $para = $request->only(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie', 'membres', 'actualites', 'medias']);
-
+        $image_data = $request['urlImageMedia'];
+        $nom = str_replace(' ', '', $para['nomEquipe'].$para['annee']);
+        $source = fopen($image_data, 'r');
+        $destination = fopen(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg', 'w');
+        stream_copy_to_stream($source, $destination);
+        fclose($source);
+        fclose($destination);
         $edition = new Edition($para);
-        $edition->urlImageMedia = 'nulachier.jpg';
-        $edition->urlImageEquipe = 'nulachier.jpg';
+        $edition->urlImageMedia = url('/') . '/storage/editions/'. $nom .'.jpg';
         $edition->save();
 
-        //$ext1 = $request->file('urlImageMedia')->getClientOriginalExtension();
-        $image1 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageMedia' . $edition->id . '.jpg');
-
-        //$ext2 = $request->file('urlImageMedia')->getClientOriginalExtension();
-        $image2 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageEquipe' . $edition->id . '.jpg');
-
-        $edition->urlImageMedia = $image1;
-        $edition->urlImageEquipe = $image2;
         $edition->save();
         return redirect('admin/edition')->withInput()->with('message', 'Nouvelle édition ajoutée');
     }
@@ -208,24 +204,23 @@ class EditionCtrl extends Controller
         }
         //dd($request);
         $edition = Edition::find($id);
-        $para = $request->intersect(['annee', 'nomEquipe', 'urlImageMedia', 'urlImageEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
-        $request->replace(['id' => $id]);
-
+        $para = $request->intersect(['annee', 'nomEquipe', 'urlImageMedia', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
         if($request['urlImageMedia'] != null){
             $para = $request->intersect(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
-            //$ext1 = $request->file('urlImageMedia')->getClientOriginalExtension();
-            $image1 = $request->file('urlImageMedia')->storeAs('public/editions', 'urlImageMedia' . $edition->id . '.jpg');
-            $edition->urlImageMedia = $image1;
-            //dd($image1);
+            $image_data = $request['urlImageMedia'];
+            $nom = str_replace(' ', '', $para['nomEquipe'].$para['annee']);
+            if(file_exists(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg')) {
+                unlink(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg');
+            }
+            $source = fopen($image_data, 'r');
+            $destination = fopen(public_path() . '/../storage/app/public/editions/'. $nom .'.jpg', 'w');
+            stream_copy_to_stream($source, $destination);
+            fclose($source);
+            fclose($destination);
+            $para['urlImageMedia'] = url('/') . '/storage/editions/'. $nom .'.jpg';
         }
+        $request->replace(['id' => $id]);
 
-        if($request['urlImageEquipe'] != null){
-            $para = $request->intersect(['annee', 'nomEquipe', 'lieu', 'dateDebut', 'dateFin', 'description', 'publie']);
-            //$ext2 = $request->file('urlImageEquipe')->getClientOriginalExtension();
-            $image2 = $request->file('urlImageEquipe')->storeAs('public/editions', 'urlImageEquipe' . $edition->id . '.jpg');
-            $edition->urlImageEquipe = $image2;
-            //dd($request);
-        }
 
         if (!Edition::isValid($para)) {
             //dd($request);

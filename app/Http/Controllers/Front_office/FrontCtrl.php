@@ -10,17 +10,22 @@ use App\Http\Controllers\Controller;
 class FrontCtrl extends Controller
 {
     public function index() {
-        $edition = Edition::latest()->first();
+        $edition = Edition::where('actif', true)->where('publie', true)->latest()->first();
         if ($edition == null || $edition->actif == false) {
             return response()->json('Edition introuvable', Response::HTTP_NOT_FOUND);
         }
         $edition->urlImageMedia = urldecode($edition->urlImageMedia);
         $edition->urlImageEquipe = urldecode($edition->urlImageEquipe);
-
-        $actualites = $edition->actualites;
+        $actualites = $edition->actualites->where('actif', true)->where('datePublication', '<=', date('Y-m-d') )->where('publie', true)->sortByDesc('datePublication');
         foreach ($actualites as $actualite) {
             $actualite->urlImage = urldecode($actualite->urlImage);
         }
+
+        $actus = [];
+        foreach ($actualites as $actualite) {
+            array_push($actus, $actualite);
+        }
+        $edition->actus = $actus;
 
         /*   $categorieEditionSponsors = $edition->categorieeditionsponsors;
            foreach ($categorieEditionSponsors as $catEdSp) {
@@ -37,11 +42,12 @@ class FrontCtrl extends Controller
         foreach ($medias as $media) {
             $media->url = urldecode($media->url);
         }
-        $membres = $edition->membres;
+        $membres = $edition->membres->where('pivot.actif', true);
         foreach ($membres as $membre) {
             $membre->photoProfil = urldecode($membre->photoProfil);
             $membre->editions;
         }
+        $edition->equipe = $membres;
         $presses = $edition->presses;
         foreach ($presses as $press) {
             $press->url = urldecode($press->url);
@@ -50,10 +56,10 @@ class FrontCtrl extends Controller
 
         $categories = Categorie::all()->where('actif', true);
         foreach ($categories as $categorie) {
-            foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id) as $ces) {
+            foreach ($categorie->categorieeditionsponsors->where('edition_id', $edition->id)->where('categorie_id', $categorie->id)->where('actif', true) as $ces) {
                 $ces->sponsor->urlSponsor = urldecode($ces->sponsor->urlSponsor);
                 $ces->sponsor->urlLogo = urldecode($ces->sponsor->urlLogo);
-                foreach ($ces->sponsor->categorieeditionsponsors as $c){
+                foreach ($ces->sponsor->categorieeditionsponsors->where('actif', true) as $c){
                     $c->edition->urlImageMedia = urldecode($c->edition->urlImageMedia);
                     $c->edition->urlImageEquipe = urldecode($c->edition->urlImageEquipe);
                 }
@@ -61,7 +67,6 @@ class FrontCtrl extends Controller
         }
 
         $edition->sponsors = $categories;
-
         return view('welcome')->with('current_ed', $edition);
     }
 }

@@ -72,8 +72,7 @@ class EditionAssociationCtrl extends Controller
         $objets = call_user_func(['\\App\\' . ucfirst($type_ressource), 'all'])->where('actif', true);
 
         $ressources = $type_ressource . 's';
-
-        $edition->objetsDeLedition = $edition->$ressources;
+        $edition->objetsDeLedition = $edition->$ressources->where('pivot.actif', true);
 
 
         return view('editionAssociation/create', ['annee' => $annee, 'type_ressource' => $type_ressource, 'objets' => $objets, 'edition' => $edition]);
@@ -99,7 +98,8 @@ class EditionAssociationCtrl extends Controller
         }
         $objet = call_user_func_array(['\\App\\' . ucfirst($type_ressource), 'find'], [$resource_id]);
         //$objet = call_user_func(['\\App\\'.ucfirst($type_ressource), 'all'])->where('actif', true)->where('id', $resource_id);
-        if (!get_class($objet)::isValid(['id' => $resource_id])) {
+
+        if ($objet == null) {
             return redirect()->back()->withInput()->with('error', 'ressource invalide');
         }
         $edition = Edition::find($edition_id);
@@ -179,7 +179,8 @@ class EditionAssociationCtrl extends Controller
             return redirect()->back()->withInput()->with('error', 'edition invalide');
         }
         $objet = call_user_func_array(['\\App\\' . ucfirst($type_ressource), 'find'], [$resource_id]);
-        if (!get_class($objet)::isValid(['id' => $resource_id])) {
+        $classe = get_class($objet);
+        if (!$classe::isValid(['id' => $resource_id])) {
             return redirect()->back()->withInput()->with('error', 'ressource invalide');
         }
 

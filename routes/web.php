@@ -11,6 +11,9 @@
 |
 */
 
+//Route pour l'envoi du formulaire de contact
+Route::post('/send/email', 'MailCtrl@sendemail');
+
 Route::get('/', 'Front_office\FrontCtrl@index');
 
 Route::get('admin', function(){
@@ -85,7 +88,7 @@ Route::group(['middleware' => 'myAuth', 'prefix' => '/admin'], function () {
 Route::group(['prefix' => '/api/v1'], function () {
     //PUBLIC ROUTES
     Route::resource('/membres', 'MembreCtrl', ['only' => ['index', 'show']]);
-    Route::resource('/actualites', 'ActualiteCtrl', ['only' => ['index', 'show']]);
+    Route::resource('/actus', 'ActualiteCtrl', ['only' => ['index', 'show']]);
     Route::resource('/categories', 'CategorieCtrl', ['only' => ['index', 'show']]);
     Route::resource('/editions', 'EditionCtrl', ['only' => ['index', 'show']]);
     Route::resource('/medias', 'MediaCtrl', ['only' => ['index', 'show']]);

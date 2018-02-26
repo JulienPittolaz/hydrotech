@@ -22,14 +22,14 @@
                         <label for="titre">Titre</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="titre" required=""
+                                <input value="{{ old('titre') }}" type="text" class="form-control" name="titre" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Titre de l'actualite">
                             </div>
                         </div>
                         <label for="datePublication">Date de publication</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="date" class="form-control" name="datePublication" required=""
+                                <input value="{{ old('datePublication') }}" type="date" class="form-control" name="datePublication" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Date de publication">
                             </div>
                         </div>
@@ -61,13 +61,6 @@
                                 </grammarly-btn>
                             </div>
                         </div>
-                        <label for="auteur">Auteur</label>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input value="" type="text" class="form-control" name="auteur" required=""
-                                       aria-required="true" aria-invalid="true" placeholder="Auteur de l'article">
-                            </div>
-                        </div>
                         <label for="publie">Publication</label>
                         <div class="demo-radio-button ">
                             <input class="radio-col-light-blue" name="publie" type="radio" id="true" value="1" checked/>
@@ -76,10 +69,15 @@
                             <label for="false">Non</label>
                         </div>
                         <div class="form-group form-float">
-                            <div class="form-line">
-                                <label for="urlImage">Image (JPG, PNG ou GIF) :</label><br/>
-                                <input type="file" name="urlImage" id="urlImage"/><br/>
+                            <label for="urlImage">Photo</label>
+                            <div id="image-cropper-actualite">
+                                <div class="cropit-preview"></div>
+                                <input type="range" class="cropit-image-zoom-input" />
+                                <!-- The actual file input will be hidden -->
+                                <input type="file" class="cropit-image-input" />
+                                <!-- And clicking on this button will open up select file dialog -->
                             </div>
+                            <input id="urlImage" type="hidden" name="urlImage">
                         </div>
                         <input type="submit" class="btn btn-primary waves-effect"></input>
                     </form>

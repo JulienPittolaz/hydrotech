@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
-    <!-- Favicon-->
-    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+    <title>Interface Admin | Hydrocontest HEIG-VD</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -50,12 +49,12 @@
                             <i class="material-icons">lock</i>
                         </span>
                     <div class="form-line">
-                        <input type="password" class="form-control" name="password" placeholder="Mot de pass" required>
+                        <input type="password" class="form-control" name="password" placeholder="Mot de passe" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        <button class="btn btn-block bg-pink waves-effect" type="submit">SE CONNECTER</button>
+                        <button class="btn btn-block bg-indigo waves-effect" type="submit">SE CONNECTER</button>
                     </div>
                 </div>
             </form>

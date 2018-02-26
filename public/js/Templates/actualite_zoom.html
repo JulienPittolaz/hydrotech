@@ -1,11 +1,11 @@
 <article class="actualite_zoom column is-8 is-offset-2 actualite_zoom_{{id}}">
             <header>
                 <img src="{{article.urlImage}}" alt="">
-                <h2 class="actualite_titre mgt1 mgb1"> {{titre}}</h2>
+                <h2 class="actualite_titre mgt1 mgb1"> {{article.titre}}</h2>
                 <span class="actualite_auteur">Écrit par: </span> <span class="actualite_nomAuteur">{{article.auteur}}</span>
                 <time class="actualite_time">{{toHuman article.datePublication}}</time>
             </header>
 
             <p>{{article.contenu}}</p>
-            <a class="button btn_actualite_zoom" href="#/editions/{{year}}/actualites">Voir toutes les actualités</a>
+            <a class="button btn_actualite_zoom" href="#/editions/{{year}}/actus">Voir toutes les actualités</a>
 </article>

@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <title>Interface Admin | Hydrocontest HEIG-VD</title>
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -47,7 +48,7 @@
     <link href="{{url("back_office/css/themes/all-themes.css")}}" rel="stylesheet"/>
 </head>
 
-<body class="theme-blue">
+<body class="theme-indigo">
 <!-- Page Loader -->
 <div class="page-loader-wrapper">
     <div class="loader">
@@ -150,22 +151,22 @@
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="{{url('admin/associationedition/media')}}">Medias</a>
+                            <a href="{{url('admin/associationedition/media')}}">Edition et media</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/associationedition/presse')}}">Articles de presse</a>
+                            <a href="{{url('admin/associationedition/presse')}}">Edition et article de presse</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/associationedition/membre')}}">Membres</a>
+                            <a href="{{url('admin/associationedition/membre')}}">Edition et membre</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/associationedition/actualite')}}">Actualites</a>
+                            <a href="{{url('admin/associationedition/actualite')}}">Edition et actualite</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/associationedition/prix')}}">Prix</a>
+                            <a href="{{url('admin/associationedition/prix')}}">Edition et prix</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/associationsponsor')}}">Sponsors</a>
+                            <a href="{{url('admin/associationsponsor')}}">Edition et sponsor</a>
                         </li>
                     </ul>
                 </li>

@@ -22,35 +22,35 @@
                         <label for="prenom">Prenom</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="prenom" required=""
-                                       aria-required="true" aria-invalid="true" placeholder="Prenom du membre">
+                                <input type="text" class="form-control" name="prenom" required=""
+                                       aria-required="true" aria-invalid="true" placeholder="Prenom du membre" value="{{ old('prenom') }}">
                             </div>
                         </div>
                         <label for="nom">Nom</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="nom" required=""
-                                       aria-required="true" aria-invalid="true" placeholder="Nom du membre">
+                                <input type="text" class="form-control" name="nom" required=""
+                                       aria-required="true" aria-invalid="true" placeholder="Nom du membre" value="{{ old('nom') }}">
                             </div>
                         </div>
                         <label for="dateNaissance">Date de naissance</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="date" class="form-control" name="dateNaissance" required=""
+                                <input value="{{ old('dateNaissance') }}" type="date" class="form-control" name="dateNaissance" required=""
                                        aria-required="true" aria-invalid="true">
                             </div>
                         </div>
                         <label for="adresseMail">Adresse mail</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="email" class="form-control" name="adresseMail" required=""
+                                <input value="{{ old('adresseMail') }}" type="email" class="form-control" name="adresseMail" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Adresse mail du membre">
                             </div>
                         </div>
                         <label for="section">Section</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="section" required=""
+                                <input value="{{ old('section') }}" type="text" class="form-control" name="section" required=""
                                        aria-required="true" aria-invalid="true" placeholder="Section du membre">
                             </div>
                         </div>
@@ -83,10 +83,15 @@
                             </div>
                         </div>
                         <div class="form-group form-float">
-                            <div class="form-line">
-                                <label for="photoProfil">Photo de profil (JPG, PNG ou GIF) :</label><br/>
-                                <input type="file" name="photoProfil" id="photoProfil"/><br/>
+                            <label for="urlLogo">Photo du membre</label>
+                            <div id="image-cropper-membre">
+                                <div class="cropit-preview"></div>
+                                <input type="range" class="cropit-image-zoom-input" />
+                                <!-- The actual file input will be hidden -->
+                                <input type="file" class="cropit-image-input" />
+                                <!-- And clicking on this button will open up select file dialog -->
                             </div>
+                            <input id="photoProfil" type="hidden" name="photoProfil" value="{{ old('photoProfil') }}">
                         </div>
                         <input type="submit" class="btn btn-primary waves-effect"></input>
                     </form>

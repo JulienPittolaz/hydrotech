@@ -4,16 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 
     <title>Hydrocontest - HEIG-VD</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="{{url("css/app.css")}}" type="text/css">
     <script>
         var CURRENT_ED = {!!$current_ed !!};
     </script>
 
-    <script src="js/packJs.php" charset="utf-8"></script>
+    <script src="{{url("js/packJs.php")}}" charset="utf-8"></script>
     <script>
         $(function(){
             initCountdown();
@@ -32,7 +33,7 @@
         <div id="socials">
 
         </div>
-        <div id="contact"><a href="/#/contact">Contact</a></div>
+        <div id="contact"><a href="#/contact">Contact</a></div>
     </div>
 
     <div class="container">
@@ -68,10 +69,6 @@
                 </div>
             </div>
         </div>
-        <footer class="home_scroll">
-            <div>Scroll</div>
-            <div class="home_arrow"></div>
-        </footer>
     </div>
 
 </section>

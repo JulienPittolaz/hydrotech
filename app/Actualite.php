@@ -25,7 +25,7 @@ class Actualite extends Model
             'dateModification' => 'date|sometimes|required|after_or_equal:dateCreation',
             'auteur' => 'string|sometimes|required',
             'publie' => 'boolean|sometimes|required',
-            'urlImage' => 'image|sometimes|required',
+            'urlImage' => 'string|sometimes|required',
         ])->passes();
     }
 }

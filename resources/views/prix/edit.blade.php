@@ -52,6 +52,7 @@
                         </div>
                     </div>
                     <input type="submit" class="btn btn-primary waves-effect"></input>
+                    </form>
                 </div>
             </div>
         </div>

@@ -37,7 +37,7 @@ margin-bottom: 50px;
 
 .flip-container, .front, .back {
   width: 100%;
-  padding-bottom: 66.66%;
+  padding-bottom: 56.25%;
   height: 100%;
 }
 
@@ -49,7 +49,6 @@ margin-bottom: 50px;
 
 .front, .back {
   backface-visibility: hidden;
-
   position: absolute;
   top: 0;
   left: 0;
@@ -59,7 +58,7 @@ margin-bottom: 50px;
   z-index: 2;
   background: white;
   background-position: center center;
-  background-size: 60%;
+  background-size: 50%;
   background-repeat: no-repeat;
   filter: grayscale(1);
   transition: 0.3s filter;
@@ -91,7 +90,6 @@ margin-bottom: 50px;
 .sponsor-item {
   background: $contrast-blue;
   padding: 15px;
-  margin:1px;
   min-width: 300px;
 }
 
@@ -115,7 +113,7 @@ margin-bottom: 50px;
 }
 
 .spon-link {
-  margin: 20px 0;
+  margin: 14px 0;
   background: $contrast-blue;
   color: white;
   border-radius: 0;
@@ -130,3 +128,14 @@ margin-bottom: 50px;
   margin-right: 10px;
 }
 
+.sponsors .sponsor-list:first-child {
+  background-color: #ffdd57;
+}
+/* Smartphones moyen (ex: iphone)*/ /* Petite tablette (ou moyenne tablette en mode portrait), grand smartphone */
+@media screen and (min-width: 21em) and (max-width: 30em),  screen and (min-device-width: 21em) and (max-device-width: 30em)
+and (min-width: 30em) and (max-width: 41em), screen and (min-device-width: 30em) and (max-device-width: 41em){
+
+  .sponsor-category {
+  text-align: center;
+  }
+  }

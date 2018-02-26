@@ -8,14 +8,16 @@
         <ul class="timeline-dots">
             {{#each timeline}}
             <li>
-                <a class="tl_link" href="#timeline-{{annee}}"><button class="year" type="button" role="button">{{annee}}</button></a>
+                <button class="year" type="button" role="button">{{annee}}</button>
                 <a class="tl_link" href="#/editions/{{annee}}/sponsors"><button class="button-sponsors">SPONSORS</button></a>
                 <p>Organisé à <b>{{lieu}}</b>, le <b>{{toHuman dateDebut}}</b></p>
+                {{#hasPrixs}}
                 <dl class="prixs">
                     {{#each prixs}}
                     <dt>{{nom}}</dt>
                     {{/each}}
                 </dl>
+                {{/hasPrixs}}
             </li>
             {{/each}}
         </ul>

@@ -1,8 +1,11 @@
 /**
+ * Ce controller a pour but la gestion de toutes les pages rattachées à une édition
+ *
  * Created by timdlp on 06.06.17.
  */
 
 var CtrlEditions = {
+    //Fonction de gestion de l'affichage
     show: function (annee, page,article) {
         var POPUP = $("#popup .popup_content");
         if (annee == CURRENT_ED.annee) {
@@ -17,23 +20,32 @@ var CtrlEditions = {
             $("nav.edition_menu li a[data-page="+ page +"]").addClass("current_page");
             $('section').hide();
             $('section#popup').show();
+            $(window).scrollTop(0);
             if (page == 'medias'){
                 initMasonry();
             }
             if (page == 'presses'){
                 managePresse();
             }
-            if (page == 'actualites'){
+            if (page == 'actus'){
                 manageArticles();
                 $('.actualite_footer').show();
                 if (!_.isNull(article)){
                     $('#popup .columns').empty();
                     var contentArticle = {};
-                    contentArticle['article'] = CURRENT_ED.actualites[article-1];
-                    contentArticle['year'] = annee;
-                    console.log(contentArticle);
-                    $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
-                    $('footer.actualite_footer').hide();
+                    var actusArray = CURRENT_ED.actus;
+                    var actuFound = $.grep(actusArray, function(n,i){
+                        return n.id == article;
+                    });
+                    if (_.isEmpty(actuFound)){
+                        showErrorPage(POPUP);
+
+                    }else{
+                        contentArticle['article'] = actuFound[0];
+                        contentArticle['year'] = annee;
+                        $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
+                        $('footer.actualite_footer').hide();
+                    }
                 }
             }
             $(".popup_cross").on("click", function () {
@@ -48,30 +60,39 @@ var CtrlEditions = {
                     var fillIn = edition.attributes[page];
                     content[page] = fillIn;
                     content['year'] = annee;
-                    console.log(content);
                     POPUP.empty();
                     POPUP.append(JST[page](content));
                     $(" nav.edition_menu").css("display", "block");
                     $(" nav.edition_menu ul").addClass('isHidden');
-                    console.log(page)
                     $("nav.edition_menu li a[data-page="+ page +"]").addClass("current_page");
                     $('section').hide();
                     $('section#popup').show();
+                    $(window).scrollTop(0);
                     if (page == 'medias'){
                         initMasonry();
                     }
                     if (page == 'presses'){
                         managePresse();
                     }
-                    if (page == 'actualites'){
+                    if (page == 'actus'){
+                        console.log(content);
                         manageArticles();
                         if (!_.isNull(article)){
                             $('#popup .columns').empty();
                             var contentArticle = {};
-                            contentArticle['article'] = edition.attributes.actualites[article-1];
-                            contentArticle['year'] = annee;
-                            $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
-                            $('footer.actualite_footer').hide();
+                            var actusArray = edition.attributes.actus;
+                            var actuFound = $.grep(actusArray, function(n,i){
+                                return n.id == article;
+                            });
+                            if (_.isEmpty(actuFound)){
+                                showErrorPage(POPUP);
+
+                            }else{
+                                contentArticle['article'] = actuFound[0];
+                                contentArticle['year'] = annee;
+                                $('#popup .columns').append(JST['actualite_zoom'](contentArticle));
+                                $('footer.actualite_footer').hide();
+                            }
                         }
                     }
                     $(".popup_cross").on("click", function () {
@@ -80,8 +101,7 @@ var CtrlEditions = {
                     });
                 },
                 error: function () {
-                    POPUP.empty();
-                    POPUP.append("<h1>Not Found</h1>");
+                    showErrorPage(POPUP);
                 }
             });
 

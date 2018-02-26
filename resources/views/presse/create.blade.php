@@ -21,13 +21,13 @@
                         <label for="titreArticle">Titre de l'article</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="titreArticle" required="" aria-required="true" aria-invalid="true" placeholder="La date de parution">
+                                <input value="{{ old('titreArticle') }}" type="text" class="form-control" name="titreArticle" required="" aria-required="true" aria-invalid="true" placeholder="Le titre de l'article">
                             </div>
                         </div>
                         <label for="dateParution">Date de parution</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="date" class="form-control" name="dateParution" required="" aria-required="true" aria-invalid="true" placeholder="La date de parution">
+                                <input value="{{ old('dateParution') }}" type="date" class="form-control" name="dateParution" required="" aria-required="true" aria-invalid="true" placeholder="La date de parution">
                             </div>
                         </div>
                         <label for="description">Description de l'article</label>
@@ -39,13 +39,13 @@
                         <label for="nomPresse">Nom de la presse</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="text" class="form-control" name="nomPresse" required="" aria-required="true" aria-invalid="true" placeholder="Le nom de la presse">
+                                <input value="{{ old('nomPresse') }}" type="text" class="form-control" name="nomPresse" required="" aria-required="true" aria-invalid="true" placeholder="Le nom de la presse">
                             </div>
                         </div>
                         <label for="url">Url de l'article</label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input value="" type="url" class="form-control" name="url" required="" aria-required="true" aria-invalid="true" placeholder="L'url de l'article">
+                                <input value="{{ old('url') }}" type="url" class="form-control" name="url" required="" aria-required="true" aria-invalid="true" placeholder="L'url de l'article">
                             </div>
                             <div class="help-info">Commence par http:// ou https://</div>
                         </div>
